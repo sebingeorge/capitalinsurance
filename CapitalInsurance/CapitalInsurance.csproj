@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\adminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProposalController.cs" />
@@ -240,8 +241,13 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Proposal\Index.cshtml" />
-    <Content Include="Views\Proposal\CreateProposal.cshtml" />
+    <Content Include="Views\Proposal\Create.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\admin\Customer.cshtml" />
+    <Content Include="Views\admin\Employee.cshtml" />
+    <Content Include="Views\admin\Designation.cshtml" />
+    <Content Include="Views\admin\Policy.cshtml" />
+    <Content Include="Views\admin\Insurance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

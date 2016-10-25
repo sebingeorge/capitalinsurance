@@ -13,7 +13,7 @@ namespace CapitalInsurance.Controllers
         {
             return View();
         }
-        public ActionResult CreateProposal()
+        public ActionResult Create()
         {
             return View();
         }

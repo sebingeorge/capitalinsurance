@@ -2,12 +2,25 @@
     padding-top: 50px;
     padding-bottom: 20px;
     background:#10a4d4;
+    font-family:Arial;
+    font-size:12px;
+    color:#b0b0b0;
+}
+.body 
+{
+    background: url(../Images/manhand.png) no-repeat; 
+    width:762px;
+    height:608px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+ul,li 
+{
+    list-style-type:none;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -21,5 +34,317 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
+}
+.outer-login 
+{
+    height:auto;
+    background-color:#ffffff;
+    color:#b8baba;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    position:absolute;
+    right:106px;
+
+}
+    .outer-login h2 {
+        font-size:18px;
+        color:#585a59;
+        text-align:center;
+        height:52px;
+        line-height:52px;
+        background: url(../images/login-head.png) repeat-x;
+        border-bottom:1px solid #c2c3c5; 
+        margin:0;
+        border-radius:4px 4px 0 0;
+        -moz-border-radius:4px 4px 0 0;
+        margin-bottom:20px;
+
+
+    }
+
+    .outer-login .form-control 
+    {
+        width:100%;
+        height:35px;
+        border-radius:3px;
+        -moz-border-radius:3px;
+    }
+
+    .outer-login input, select, textarea 
+    {
+        max-width:100%;
+    }
+.text-outer 
+{
+    border:3px solid #f1f5f8;
+}
+.outer-login .btn 
+{
+    background: url(../images/btn.jpg) repeat-x;
+    height:29px;
+    line-height:15px;
+    font-size:14px;
+    color:#fff;
+    border-radius:15px;
+    -moz-border-radius:15px;
+    padding-left:15px;
+    padding-right:15px;
+    font-weight:bold;
+
+}
+    .outer-login .btn:hover 
+    {
+    border-radius:35px;
+    -moz-border-radius:35px
+    }
+    .menu-icon
+    {
+     background: url(../Images/icon_nav.png) no-repeat;
+     width:44px;
+     height:34px;
+     position:fixed;
+     left:34px;
+     top:13px;
+    }
+
+.content-in 
+{
+    border-radius:5px;
+    -moz-border-radius:5px;
+    background-color:#fff;
+    margin-top:40px;
+    min-height:300px;
+}
+
+    .content-in h1 
+    {
+        background: url(../images/content-head.jpg) repeat-x;
+        width:100%;
+        height:40px;
+        line-height:40px;
+        border-radius:5px 5px 0 0;
+       -moz-border-radius:5px 5px 0 0;
+       font-weight:bold;
+       color:#787676;
+       text-transform:uppercase;
+       font-size:12px;
+       margin:0;
+       padding-left:15px;
+       margin-bottom:30px;
+    
+    }
+
+    .content-in h2
+    {
+       
+       color:#787676;
+       font-size:14px;
+       font-style:normal;
+    }
+
+        .content-in h3
+    {
+       color:#000;
+       font-size:12px;
+       font-style:normal;
+    }
+.navbar-nav img 
+{
+    margin:0;
+    padding:0;
+}
+
+.form_input 
+{
+    background: /*url(../images/form-text.jpg) repeat-x*/#fff;
+    height:25px;
+    line-height:25px;
+    width:100%;
+    border:1px solid #cccccc;
+    color:#909090;
+    margin-bottom:6px;
+    font-size:11px;
+}
+.text-area 
+{
+    height:50px;
+}
+.form-button
+{
+ background: url(../images/button.jpg) repeat-x;
+ height:27px;
+ padding-right:20px;
+ padding-left:20px;
+border-radius:15px;
+-moz-border-radius:15px;
+font-size:15px;
+color:#fff;
+font-weight:bold;
+width:80px;
+margin-right:10px;
+margin-bottom:20px;
+}
+
+.right 
+{
+    float:right;
+}
+.main-check 
+{
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
+.check 
+{
+    display:unset;
+    margin-right: 11px;
+
+}
+/*.text-outer 
+{
+    border:3px solid #f1f5f8;
+}*/
+
+
+
+    /*sidebar*/
+
+            .sidebar-nav li {
+            display: block;
+        }
+
+        .sidebar-nav ul {
+            padding-left: 15px;
+        }
+
+        /*!
+ * Start Bootstrap - Simple Sidebar (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+ body {
+    overflow-x: hidden;
+ }
+
+/* Toggle Styles */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    margin-top:-39px;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
 }

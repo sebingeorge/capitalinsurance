@@ -9,6 +9,83 @@
 
 </head>
 <body>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper" class="nav nav-pills nav-stacked">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Start Bootstrap
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#first-level-1">Admin<span class="caret arrow"></span></a>
+                    <div id="first-level-1" class="collapse">
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("Customer","admin")" data-toggle="collapse" data-target="#second-level-1">Customer<span class="caret arrow"></span></a>
+                                <a href="@Url.Action("Designation", "admin")" data-toggle="collapse" data-target="#second-level-1">Designation<span class="caret arrow"></span></a>
+                                <a href="@Url.Action("Employee", "admin")" data-toggle="collapse" data-target="#second-level-1">Employee<span class="caret arrow"></span></a>
+                                <a href="@Url.Action("Insurance", "admin")" data-toggle="collapse" data-target="#second-level-1">Insurance<span class="caret arrow"></span></a>
+                                <a href="@Url.Action("Policy", "admin")" data-toggle="collapse" data-target="#second-level-1">Policy<span class="caret arrow"></span></a>
+                                @*<div id="second-level-1" class="collapse">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Second Level Menu 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Second Level Menu 2</a>
+                                        </li>
+                                    </ul>
+                                </div>*@
+
+                                
+                                @*<div id="second-level-2" class="collapse">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Second Level Menu 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Second Level Menu 2</a>
+                                        </li>
+                                    </ul>
+                                </div>*@
+                            </li>
+                            @*<li class="aa"><a href="#">Sub Menu Item 1</a></li>
+                            <li class="aa"><a href="#">Sub Menu Item 2</a></li>*@
+                        </ul>
+                    </div>
+
+                    <a href="#" data-toggle="collapse" data-target="#first-level-2">Proposal<span class="caret arrow"></span></a>
+                    <div id="first-level-2" class="collapse">
+                        <ul>
+                            <li>
+                                
+                                <a href="@Url.Action("Create", "Proposal")" data-toggle="collapse" data-target="#second-level-2">Proposal<span class="caret arrow"></span></a>
+
+                            </li>
+
+                        </ul>
+                    </div>
+                
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        @*<div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                    </div>
+                </div>
+            </div>
+        </div>*@
+        <!-- /#page-content-wrapper -->
+    </div>
+
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -17,15 +94,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <li><a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" width="177" /></a></li>
+
+                    <a href="#menu-toggle" class="menu-icon" id="menu-toggle"></a>
+               
                 @*@Html.ActionLink("Capital Insurance", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li><a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" width="120" /></a></li>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Proposal", "CreateProposal", "Proposal")</li>
+                    <li>@Html.ActionLink("Proposal", "Create", "Proposal")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -39,5 +119,11 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
 </body>
 </html>

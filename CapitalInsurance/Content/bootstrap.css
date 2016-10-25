@@ -1654,7 +1654,9 @@ legend {
 label {
   display: inline-block;
   margin-bottom: 5px;
-  font-weight: bold;
+  color:#5a5c5c;
+  width:100%;
+  /*font-weight: bold;*/
 }
 
 input[type="search"] {
@@ -4243,9 +4245,9 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-nav > li > a {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  line-height: 20px;
+  padding-top: 0px;
+  padding-bottom: 5px;
+  line-height: 50px;
 }
 
 @media (max-width: 767px) {
@@ -4280,8 +4282,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
     float: left;
   }
   .navbar-nav > li > a {
-    padding-top: 25px;
-    padding-bottom: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
 }
 
