@@ -192,6 +192,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\back.png" />
+    <Content Include="images\btn.jpg" />
+    <Content Include="images\button.jpg" />
+    <Content Include="images\content-head.jpg" />
+    <Content Include="images\form-text.jpg" />
+    <Content Include="images\icon_nav.png" />
+    <Content Include="images\login-head.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\m-logo.png" />
+    <Content Include="images\manhand.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\a1b3cdf3-0ee0-4-231-b9ee - FTP.pubxml" />
