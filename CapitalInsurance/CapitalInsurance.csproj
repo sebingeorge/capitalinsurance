@@ -259,6 +259,7 @@
     <Content Include="Views\admin\Designation.cshtml" />
     <Content Include="Views\admin\Policy.cshtml" />
     <Content Include="Views\admin\Insurance.cshtml" />
+    <Content Include="Views\admin\InsuranceProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

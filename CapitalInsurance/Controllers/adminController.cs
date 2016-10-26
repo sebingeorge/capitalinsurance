@@ -29,6 +29,10 @@ namespace CapitalInsurance.Controllers
         {
             return View();
         }
+        public ActionResult InsuranceProduct()
+        {
+            return View();
+        }
         public ActionResult Policy()
         {
             return View();
