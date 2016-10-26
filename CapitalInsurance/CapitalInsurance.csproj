@@ -271,6 +271,16 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Capital.DAL\Capital.DAL.csproj">
+      <Project>{e721cd6b-5bb8-4650-8d4d-a9f5249da1dd}</Project>
+      <Name>Capital.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Capital.Domain\Capital.Domain.csproj">
+      <Project>{159e5253-970e-4988-be31-f635f98e6907}</Project>
+      <Name>Capital.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
