@@ -114,7 +114,7 @@ textarea {
     -moz-border-radius:5px;
     background-color:#fff;
     margin-top:40px;
-    min-height:300px;
+    /*min-height:300px;*/
 }
 
     .content-in h1 
@@ -131,7 +131,7 @@ textarea {
        font-size:12px;
        margin:0;
        padding-left:15px;
-       margin-bottom:30px;
+       margin-bottom:8px;
     
     }
 
@@ -140,7 +140,9 @@ textarea {
        
        color:#787676;
        font-size:14px;
-       font-style:normal;
+       font-weight:bold;
+       margin-top:0;
+       margin-bottom:5px;
     }
 
         .content-in h3
@@ -158,8 +160,8 @@ textarea {
 .form_input 
 {
     background: /*url(../images/form-text.jpg) repeat-x*/#fff;
-    height:25px;
-    line-height:25px;
+    height:20px;
+    line-height:20px;
     width:100%;
     border:1px solid #959595;
     color:#909090;
@@ -170,7 +172,7 @@ textarea {
 {
     height:50px;
 }
-.form-button
+/*.form-button
 {
  background: url(../images/button.jpg) repeat-x;
  height:27px;
@@ -184,7 +186,49 @@ font-weight:bold;
 width:80px;
 margin-right:10px;
 margin-bottom:20px;
+}*/
+.form-button
+{
+    background: url(../images/btn.jpg) repeat-x;
+    height:27px;
+    line-height:15px;
+    font-size:15px;
+    color:#fff;
+    border-radius:6px;
+    -moz-border-radius:6px;
+    padding-left:5px;
+    padding-right:5px;
+    font-weight:bold;
+    border:0;
+    margin-right:10px;
+    min-width:80px;
+    margin-bottom:10px;
+
 }
+    .form-button .btn:hover 
+    {
+     color:#75d2f0;
+    }
+
+    .create
+{
+    background: url(../images/btn.jpg) repeat-x;
+    height:20px;
+    line-height:15px;
+    font-size:12px;
+    color:#fff;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    padding-left:10px;
+    padding-right:10px;
+    font-weight:bold;
+    border:0;
+
+}
+    .create .btn:hover 
+    {
+     color:#75d2f0;
+    }
 
 .right 
 {
@@ -200,6 +244,22 @@ margin-bottom:20px;
     display:unset;
     margin-right: 11px;
 
+}
+.nzero 
+{
+    width:88%;
+}
+.half 
+{
+    width:50%;
+}
+.half-h 
+{
+    width:25%;
+}
+.content-in .col-md-0
+{
+    margin:0;
 }
 /*.text-outer 
 {
