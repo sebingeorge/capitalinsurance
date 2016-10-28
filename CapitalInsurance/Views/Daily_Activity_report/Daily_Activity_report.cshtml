@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "Daily_Activity_report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container content-in">
+    <div class="row">
+        <h1>Daily Activity Report</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1">
+            <div class="form-group">
+                <div class="photo col-md-12">
+                    <img src="~/Images/photo.jpg" />
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+
+
+                <div class="col-md-6">
+                    <label>Date</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-12">
+                    <label>Employee</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row form-group">
+
+
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <hr />
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered" id="tab_logic">
+            <thead>
+                <tr class="grid_heading">
+                    <th width="30%">Task</th>
+                    <th width="20%">Client</th>
+                    <th width="20%">Mode of Contact</th>
+                    <th width="5%" class="text-right">Hours</th>
+                    <th width="25%">Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+
+                    <td>Task1</td>
+                    <td>Client 1</td>
+                    <td>Mode of Contact</td>
+                    <td class="text-right">7:am</td>
+                    <td>Remarks</td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>Task2</td>
+                    <td>Client 2</td>
+                    <td>Mode of Contact</td>
+                    <td class="text-right">10:am</td>
+                    <td>Remarks</td>
+
+
+
+
+                </tr>
+                <tr>
+
+                    <td>Task3</td>
+                    <td>Client3</td>
+                    <td>Mode of Contact</td>
+                    <td class="text-right">9:pm</td>
+                    <td>Remarks</td>
+
+
+
+
+                </tr>
+
+
+
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <button type="button" class="create">New Prospective Client</button>
+
+    <div class="row">
+        <hr />
+        <div class="col-md-12">
+            <button type="button" class="form-button">Previous</button>
+            <button type="button" class="form-button right">Save</button>
+            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+

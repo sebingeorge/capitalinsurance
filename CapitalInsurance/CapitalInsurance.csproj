@@ -226,6 +226,12 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Daily_Activity_report\Daily_Activity_report.cshtml" />
+    <Content Include="Views\New_Policy\Issue.cshtml" />
+    <Content Include="Views\Sales_Achievement_report\Sales_Achievement_report.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Sales_Target\Sales_Target.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -270,12 +276,8 @@
     <Content Include="Views\admin\Insurance.cshtml" />
     <Content Include="Views\admin\InsuranceProduct.cshtml" />
     <Content Include="Views\Policy_Endorsement\Proposal.cshtml" />
-    <Content Include="Views\Daily_Activity_report\Daily_Activity_report.cshtml" />
-    <Content Include="Views\Sales_Target\Sales_Target.cshtml" />
-    <Content Include="Views\Sales_Achievement_report\Sales_Achievement_report.cshtml" />
     <Content Include="Views\Customer_Invoice\Customer_Invoice.cshtml" />
     <Content Include="Views\Policy_Endorsement\Issue.cshtml" />
-    <Content Include="Views\New_Policy\Issue.cshtml" />
     <Content Include="Views\Policy_Renewal\Proposal.cshtml" />
     <Content Include="Views\Policy_Renewal\Issue.cshtml" />
   </ItemGroup>
