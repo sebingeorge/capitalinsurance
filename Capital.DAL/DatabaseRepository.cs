@@ -8,7 +8,7 @@ namespace Capital.DAL
     {
         public static string DbFile
         {
-            get { return Environment.CurrentDirectory + "\\SimpleDb.sqlite"; }
+            get { return Environment.CurrentDirectory + "\\CapitalDb.sqlite"; }
         }
 
         public static void CreateDatabaseRepository()
