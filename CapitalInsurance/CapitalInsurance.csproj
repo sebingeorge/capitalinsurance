@@ -171,11 +171,11 @@
     <Compile Include="Controllers\adminController.cs" />
     <Compile Include="Controllers\Customer_InvoiceController.cs" />
     <Compile Include="Controllers\Daily_Activity_reportController.cs" />
+    <Compile Include="Controllers\New_PolicyController.cs" />
+    <Compile Include="Controllers\PolicyIssueController.cs" />
     <Compile Include="Controllers\Policy_EndorsementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PolicyIssueController.cs" />
-    <Compile Include="Controllers\New_PolicyController.cs" />
     <Compile Include="Controllers\Policy_RenewalController.cs" />
     <Compile Include="Controllers\Sales_Achievement_reportController.cs" />
     <Compile Include="Controllers\Sales_TargetController.cs" />
