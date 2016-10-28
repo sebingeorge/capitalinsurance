@@ -24,12 +24,12 @@
                     <div id="first-level-1" class="collapse">
                         <ul>
                             <li>
-                                <a href="@Url.Action("Customer","admin")" data-toggle="collapse" data-target="#second-level-1">Customer<span class="caret arrow"></span></a>
-                                <a href="@Url.Action("Designation", "admin")" data-toggle="collapse" data-target="#second-level-1">Employee Designation<span class="caret arrow"></span></a>
-                                <a href="@Url.Action("Employee", "admin")" data-toggle="collapse" data-target="#second-level-1">Employee<span class="caret arrow"></span></a>
-                                <a href="@Url.Action("Insurance", "admin")" data-toggle="collapse" data-target="#second-level-1">Insurance Company<span class="caret arrow"></span></a>
-                                <a href="@Url.Action("InsuranceProduct", "admin")" data-toggle="collapse" data-target="#second-level-1">Insurance Product<span class="caret arrow"></span></a>
-                                <a href="@Url.Action("Policy", "admin")" data-toggle="collapse" data-target="#second-level-1">Policy<span class="caret arrow"></span></a>
+                                <a href="@Url.Action("Customer","admin")" data-toggle="collapse" data-target="#second-level-1">Customer</a>
+                                <a href="@Url.Action("Designation", "admin")" data-toggle="collapse" data-target="#second-level-1">Employee Designation</span></a>
+                                <a href="@Url.Action("Employee", "admin")" data-toggle="collapse" data-target="#second-level-1">Employee</a>
+                                <a href="@Url.Action("Insurance", "admin")" data-toggle="collapse" data-target="#second-level-1">Insurance Company</a>
+                                <a href="@Url.Action("InsuranceProduct", "admin")" data-toggle="collapse" data-target="#second-level-1">Insurance Product</a>
+                                <a href="@Url.Action("Policy", "admin")" data-toggle="collapse" data-target="#second-level-1">Policy</a>
                                 @*<div id="second-level-1" class="collapse">
                             <ul>
                                 <li>
@@ -135,7 +135,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" width="120" /></a></li>
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li><a href="@Url.Action("Index", "Home")"><img src="~/Images/home.png" /></a></li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
 
                 </ul>
                 @*@Html.Partial("_LoginPartial")*@

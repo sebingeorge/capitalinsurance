@@ -1463,7 +1463,7 @@ th {
 }
 
 .table-bordered {
-  border: 1px solid #dddddd;
+  /*border: 1px solid #dddddd;*/
 }
 
 .table-bordered > thead > tr > th,
@@ -1655,7 +1655,7 @@ legend {
 label {
   display: inline-block;
   margin-bottom: 5px;
-  color:#5a5c5c;
+  color:/*5a5c5c*/#222323;
   width:100%;
   /*font-weight: bold;*/
 }

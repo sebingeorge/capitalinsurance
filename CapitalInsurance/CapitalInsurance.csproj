@@ -204,6 +204,7 @@
     <Content Include="images\button.jpg" />
     <Content Include="images\content-head.jpg" />
     <Content Include="images\form-text.jpg" />
+    <Content Include="images\home.png" />
     <Content Include="images\icon_nav.png" />
     <Content Include="images\login-head.png" />
     <Content Include="images\logo.png" />

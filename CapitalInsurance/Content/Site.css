@@ -2,7 +2,7 @@
     padding-top: 50px;
     padding-bottom: 20px;
     background:#10a4d4;
-    font-family:Arial;
+    font-family:Tahoma;
     font-size:12px;
     color:#b0b0b0;
 }
@@ -119,14 +119,14 @@ textarea {
 
     .content-in h1 
     {
-        background: url(../images/content-head.jpg) repeat-x;
+        background: /*url(../images/content-head.jpg) repeat-x*/#353737;
         width:100%;
         height:40px;
         line-height:40px;
         border-radius:5px 5px 0 0;
        -moz-border-radius:5px 5px 0 0;
        font-weight:bold;
-       color:#787676;
+       color:#fff;
        text-transform:uppercase;
        font-size:12px;
        margin:0;
@@ -139,10 +139,11 @@ textarea {
     {
        
        color:#787676;
-       font-size:14px;
+       font-size:12px;
        font-weight:bold;
        margin-top:0;
        margin-bottom:5px;
+       text-transform:uppercase;
     }
 
         .content-in h3
@@ -165,10 +166,12 @@ textarea {
     height:18px;
     line-height:18px;
     width:100%;
-    border:1px solid #959595;
-    color:#909090;
+    border:1px solid #3f3f3f;
+    color:#6b6b6b;
     margin-bottom:6px;
     font-size:11px;
+    border-radius:2px;
+    -moz-border-radus:2px;
 }
 .text-area 
 {
@@ -205,7 +208,6 @@ margin-bottom:20px;
     -moz-border-radius:6px;
     padding-left:5px;
     padding-right:5px;
-    font-weight:bold;
     border:0;
     margin-right:10px;
     min-width:80px;
@@ -220,15 +222,13 @@ margin-bottom:20px;
     .create
 {
     background: url(../images/btn.jpg) repeat-x;
-    height:20px;
-    line-height:15px;
+    height:18px;
     font-size:12px;
     color:#fff;
     border-radius:4px;
     -moz-border-radius:4px;
     padding-left:10px;
     padding-right:10px;
-    font-weight:bold;
     border:0;
 
 }
@@ -270,21 +270,32 @@ margin-bottom:20px;
 }
 .content-in .grid_heading
 {
-    background-color:#1da2cd !important;
-    height:20px;
+    /*background-color:#1da2cd !important;*/
+    /*height:20px;*/
 }
-.content-in .grid_heading h1 
+table thead tr th
 {
+    height:18px;
+}
+
+.content-in .footer th 
+{
+     border-radius:0 !important;
+    -moz-border-radius:0 !important;
+}
+
+.content-in .grid_heading th 
+{
+    border-radius:5px 5px 0 0;
+    -moz-border-radius:5px 5px 0 0;
     color:#fff;
-    background-image:none;
-    height:10px;
-    line-height:19px;
+    background:#10a4d4;
+    height:18px;
+    line-height:18px;
     padding-left:5px;
+    padding-right:5px;
 }
-.content-in tr
-{
-    height:15px;
-}
+
 .content-in td 
 {
     padding-left:5px;
@@ -295,11 +306,11 @@ margin-bottom:20px;
 {
     width:80px;
     height:90px;
-    background-color:#10a4d4;
+    background-color:#696969;
     border-radius: 5px;
-    height: 95px;
-    padding: 3px;
-    width: 98px;
+    height: 91px;
+    padding:1px;
+    width: 94px;
 }
 .photo img
     {
