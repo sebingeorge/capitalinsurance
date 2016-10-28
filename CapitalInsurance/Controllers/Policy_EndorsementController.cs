@@ -6,14 +6,18 @@ using System.Web.Mvc;
 
 namespace CapitalInsurance.Controllers
 {
-    public class ProposalController : Controller
+    public class Policy_EndorsementController : Controller
     {
-        // GET: Proposal
+        // GET: Endorsement
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Create()
+        public ActionResult Proposal()
+        {
+            return View();
+        }
+        public ActionResult Issue()
         {
             return View();
         }

@@ -1,0 +1,217 @@
+﻿
+@{
+    ViewBag.Title = "Endorsement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container content-in">
+    <div class="row">
+        <h1>Policy Endorsement</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Client Name</label>
+                    <select class="form_input">
+                        <option value="">Client 1</option>
+                        <option value="">Client 2</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Address 1</label>
+                    <input type="text" class="form_input" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Address 2</label>
+                    <input type="text" class="form_input" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Address 1</label>
+                    <input type="text" class="form_input" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <h2>Insurance Details</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label>CIB Effective Date</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-6">
+                    <label>Endorsement Date</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+                <div class="col-md-12">
+                    <label>Client Name</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Insurance Company</label>
+                    <select class="form_input">
+                        <option value="">Insurance Company 1</option>
+                        <option value="">Insurance Company 2</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label>Type of Insurance</label>
+                    <select class="form_input">
+                        <option value="">Insurance 1</option>
+                        <option value="">Insurance 2</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label>Endorsement type</label>
+                    <select class="form_input">
+                        <option value="">Endorsement Type 1</option>
+                        <option value="">Endorsement Type 2</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row form-group">
+
+
+                <div class="col-md-6">
+                    <label>Addition No.</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+                <div class="col-md-6">
+                    <label>Deletion No.</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-6">
+                    <label>Commi. Percentage</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-6">
+                    <label>Policy Premium</label>
+                    <input type="text" class="form_input" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row form-group">
+
+
+                <div class="col-md-6">
+                    <label>Policy Fee</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-6">
+                    <label>Addition Fees</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-6">
+                    <label>Total Amount</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-6">
+                    <label>RM's</label>
+                    <input type="text" class="form_input" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr />
+
+    <h2>Contact Persons Details</h2>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Name</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-12">
+                    <label>Mobile / Landline</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Payment Option</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-12">
+                    <label>RM's</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row form-group">
+
+                <div class="col-md-12">
+                    <label>Designation</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+                <div class="col-md-12">
+                    <label>Email</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <hr />
+        <div class="col-md-offset-8 col-md-4">
+            <button type="button" class="form-button right">Save</button>
+            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+        </div>
+
+    </div>
+
+
+</div>
+

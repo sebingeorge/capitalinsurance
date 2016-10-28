@@ -3,6 +3,131 @@
     ViewBag.Title = "InsuranceProduct";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container content-in">
+    <div class="row">
+        <h1>Insurance Product</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Insurance Name</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-12">
+                    <label>Insurance Short Name</label>
+                    <input type="text" class="form_input" />
+                </div>
 
-<h2>InsuranceProduct</h2>
+
+
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row form-group">
+
+                <div class="col-md-12">
+                    <label>Insurance Type</label>
+                    <select class="form_input">
+                        <option value="">Insurance Type 1</option>
+                        <option value="">Insurance Type 2</option>
+                    </select>
+                </div>
+
+                <div class="col-md-12">
+                    <label>Insurance Company</label>
+                    <select class="form_input">
+                        <option value="">Insurance Company 1</option>
+                        <option value="">Insurance Company 2</option>
+                    </select>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row form-group">
+
+                <div class="col-md-6">
+                    <label>Active Till</label>
+                    <select class="form_input">
+                        <option value="">Active</option>
+                        <option value="">Active</option>
+                    </select>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        
+
+    </div>
+
+    <hr />
+    <h2>Insurance Product Parametre&nbsp;<button type="button" class="create">...</button></h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered" id="tab_logic">
+            <thead>
+                <tr class="grid_heading">
+                    <th><h1>Parametres</h1></th>
+                    <th><h1>Description</h1></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+
+                    <td>10001</td>
+                    <td>Description</td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>10001</td>
+                    <td>Description</td>
+
+
+
+
+                </tr>
+                <tr>
+
+                    <td>10001</td>
+                    <td>Description</td>
+
+
+
+
+                </tr>
+
+
+
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="row">
+        <hr />
+        <div class="col-md-offset-8 col-md-4">
+            <button type="button" class="form-button right">Save</button>
+            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+        </div>
+
+    </div>
+
+
+    
+
+    </div>
+
 

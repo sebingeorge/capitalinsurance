@@ -1103,6 +1103,7 @@ pre code {
   }
   .col-md-3 {
     width: 25%;
+    margin-bottom:-10px;
   }
   .col-md-4 {
     width: 33.33333333333333%;
@@ -1424,7 +1425,7 @@ th {
 .table thead > tr > td,
 .table tbody > tr > td,
 .table tfoot > tr > td {
-  padding: 8px;
+  /*padding: 8px;*/
   line-height: 1.428571429;
   vertical-align: top;
   border-top: 1px solid #dddddd;
@@ -1755,7 +1756,7 @@ textarea.form-control {
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .radio,

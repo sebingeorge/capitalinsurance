@@ -31,35 +31,67 @@
                                 <a href="@Url.Action("InsuranceProduct", "admin")" data-toggle="collapse" data-target="#second-level-1">Insurance Product<span class="caret arrow"></span></a>
                                 <a href="@Url.Action("Policy", "admin")" data-toggle="collapse" data-target="#second-level-1">Policy<span class="caret arrow"></span></a>
                                 @*<div id="second-level-1" class="collapse">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Second Level Menu 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Second Level Menu 2</a>
-                                            </li>
-                                        </ul>
-                                    </div>*@
+                            <ul>
+                                <li>
+                                    <a href="#">Second Level Menu 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Second Level Menu 2</a>
+                                </li>
+                            </ul>
+                        </div>*@
 
 
                                 @*<div id="second-level-2" class="collapse">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Second Level Menu 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Second Level Menu 2</a>
-                                            </li>
-                                        </ul>
-                                    </div>*@
+                            <ul>
+                                <li>
+                                    <a href="#">Second Level Menu 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Second Level Menu 2</a>
+                                </li>
+                            </ul>
+                        </div>*@
                             </li>
                             @*<li class="aa"><a href="#">Sub Menu Item 1</a></li>
-                                <li class="aa"><a href="#">Sub Menu Item 2</a></li>*@
+                    <li class="aa"><a href="#">Sub Menu Item 2</a></li>*@
                         </ul>
                     </div>
 
-                    <a href="#" data-toggle="collapse" data-target="#first-level-2">Proposal<span class="caret arrow"></span></a>
+                    <a href="#" data-toggle="collapse" data-target="#first-level-2">New Policy<span class="caret arrow"></span></a>
                     <div id="first-level-2" class="collapse">
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("Proposal", "New_Policy")" data-toggle="collapse" data-target="#second-level-2">Proposal</a>
+                                <a href="@Url.Action("Issue", "New_Policy")" data-toggle="collapse" data-target="#second-level-2">Issue</a>
+                            </li>
+                        </ul>
+                      </div>
+
+                    <a href="#" data-toggle="collapse" data-target="#first-level-3">Policy Renewal<span class="caret arrow"></span></a>
+                    <div id="first-level-3" class="collapse">
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("Proposal", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-3">Proposal</a>
+                                <a href="@Url.Action("Issue", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-3">Issue</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="#" data-toggle="collapse" data-target="#first-level-4">Policy Endorsement<span class="caret arrow"></span></a>
+                    <div id="first-level-4" class="collapse">
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("Proposal", "Policy_Endorsement")" data-toggle="collapse" data-target="#second-level-4">Proposal</a>
+                                <a href="@Url.Action("Issue", "Policy_Endorsement")" data-toggle="collapse" data-target="#second-level-4">Issue</a>
+                            </li>
+                        </ul>
+                    </div>
+                                    <a href="@Url.Action("Daily_Activity_report", "Daily_Activity_report")" data-toggle="collapse" data-target="#first-level-5">Daily Activity Report</a>
+                                    <a href="@Url.Action("Sales_Target", "Sales_Target")" data-toggle="collapse" data-target="#first-level-6">Sales Target</a>
+                                    <a href="@Url.Action("Sales_Achievement_report", "Sales_Achievement_report")" data-toggle="collapse" data-target="#first-level-7">Sales Achievement report</a>
+                                    <a href="@Url.Action("Customer_Invoice", "Customer_Invoice")" data-toggle="collapse" data-target="#first-level-8">Customer Invoice</a>
+                                    @*<div id="first-level-2" class="collapse">
                         <ul>
                             <li>
 
@@ -68,13 +100,13 @@
                             </li>
 
                         </ul>
-                    </div>
+                    </div>*@
 
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-        <!-- Page Content -->
-        @*<div id="page-content-wrapper">
+                                </ul>
+                            </div>
+                            <!-- /#sidebar-wrapper -->
+                            <!-- Page Content -->
+                            @*<div id="page-content-wrapper">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
@@ -83,8 +115,8 @@
                     </div>
                 </div>
             </div>*@
-        <!-- /#page-content-wrapper -->
-    </div>
+                            <!-- /#page-content-wrapper -->
+</div>
 
 
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -106,7 +138,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
 
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @*@Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>

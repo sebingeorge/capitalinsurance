@@ -169,9 +169,16 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\adminController.cs" />
+    <Compile Include="Controllers\Customer_InvoiceController.cs" />
+    <Compile Include="Controllers\Daily_Activity_reportController.cs" />
+    <Compile Include="Controllers\Policy_EndorsementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProposalController.cs" />
+    <Compile Include="Controllers\PolicyIssueController.cs" />
+    <Compile Include="Controllers\New_PolicyController.cs" />
+    <Compile Include="Controllers\Policy_RenewalController.cs" />
+    <Compile Include="Controllers\Sales_Achievement_reportController.cs" />
+    <Compile Include="Controllers\Sales_TargetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -202,6 +209,7 @@
     <Content Include="images\logo.png" />
     <Content Include="images\m-logo.png" />
     <Content Include="images\manhand.png" />
+    <Content Include="images\photo.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
@@ -251,8 +259,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Proposal\Index.cshtml" />
-    <Content Include="Views\Proposal\Create.cshtml" />
+    <Content Include="Views\New_Policy\Index.cshtml" />
+    <Content Include="Views\New_Policy\Proposal.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\admin\Customer.cshtml" />
     <Content Include="Views\admin\Employee.cshtml" />
@@ -260,6 +268,15 @@
     <Content Include="Views\admin\Policy.cshtml" />
     <Content Include="Views\admin\Insurance.cshtml" />
     <Content Include="Views\admin\InsuranceProduct.cshtml" />
+    <Content Include="Views\Policy_Endorsement\Proposal.cshtml" />
+    <Content Include="Views\Daily_Activity_report\Daily_Activity_report.cshtml" />
+    <Content Include="Views\Sales_Target\Sales_Target.cshtml" />
+    <Content Include="Views\Sales_Achievement_report\Sales_Achievement_report.cshtml" />
+    <Content Include="Views\Customer_Invoice\Customer_Invoice.cshtml" />
+    <Content Include="Views\Policy_Endorsement\Issue.cshtml" />
+    <Content Include="Views\New_Policy\Issue.cshtml" />
+    <Content Include="Views\Policy_Renewal\Proposal.cshtml" />
+    <Content Include="Views\Policy_Renewal\Issue.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

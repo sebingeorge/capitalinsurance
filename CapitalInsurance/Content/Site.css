@@ -113,7 +113,7 @@ textarea {
     border-radius:5px;
     -moz-border-radius:5px;
     background-color:#fff;
-    margin-top:40px;
+    margin-top:30px;
     /*min-height:300px;*/
 }
 
@@ -150,6 +150,8 @@ textarea {
        color:#000;
        font-size:12px;
        font-style:normal;
+       margin-bottom: 5px;
+       margin-top: 0;
     }
 .navbar-nav img 
 {
@@ -160,8 +162,8 @@ textarea {
 .form_input 
 {
     background: /*url(../images/form-text.jpg) repeat-x*/#fff;
-    height:20px;
-    line-height:20px;
+    height:18px;
+    line-height:18px;
     width:100%;
     border:1px solid #959595;
     color:#909090;
@@ -170,7 +172,12 @@ textarea {
 }
 .text-area 
 {
-    height:50px;
+    height:40px;
+}
+.blue 
+{
+    font-weight:bold;
+    color:#10a4d4;
 }
 /*.form-button
 {
@@ -237,7 +244,7 @@ margin-bottom:20px;
 .main-check 
 {
     margin-bottom: 16px;
-    margin-top: 16px;
+    margin-top: 0;
 }
 .check 
 {
@@ -260,6 +267,49 @@ margin-bottom:20px;
 .content-in .col-md-0
 {
     margin:0;
+}
+.content-in .grid_heading
+{
+    background-color:#1da2cd !important;
+    height:20px;
+}
+.content-in .grid_heading h1 
+{
+    color:#fff;
+    background-image:none;
+    height:10px;
+    line-height:19px;
+    padding-left:5px;
+}
+.content-in tr
+{
+    height:15px;
+}
+.content-in td 
+{
+    padding-left:5px;
+    padding-right:5px;
+    color:#5a5c5c;
+}
+.photo 
+{
+    width:80px;
+    height:90px;
+    background-color:#10a4d4;
+    border-radius: 5px;
+    height: 95px;
+    padding: 3px;
+    width: 98px;
+}
+.photo img
+    {
+    border-radius:5px;
+    -moz-border-radius:5px;
+
+    }
+.mtop 
+{
+    margin-top:-20px;
 }
 /*.text-outer 
 {
@@ -406,5 +456,15 @@ margin-bottom:20px;
     #wrapper.toggled #page-content-wrapper {
         position: relative;
         margin-right: 0;
+    }
+}
+
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .menu-icon
+    {
+        left:6px !important;
     }
 }
