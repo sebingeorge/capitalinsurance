@@ -17,6 +17,10 @@
                     <label>Invoice No.</label>
                     <input type="text" class="form_input" />
                 </div>
+                <div class="col-md-6">
+                    <label>Date</label>
+                    <input type="text" class="form_input" />
+                </div>
             </div>
         </div>
     </div>
@@ -25,14 +29,12 @@
 
                 <div class="col-md-3">
                     <div class="row form-group">
-                        <div class="col-md-6">
-                            <label>Date</label>
+
+                        <div class="col-md-12">
+                            <label>Customer</label>
                             <input type="text" class="form_input" />
                         </div>
-                        <div class="col-md-6">
-                            <label>Bill Due Date</label>
-                            <input type="text" class="form_input" />
-                        </div>
+
                         </div>
                     </div>
 
@@ -40,8 +42,10 @@
 
                 <div class="row form-group">
 
-                    <div class="col-md-12">
-                        <label>Customer</label>
+
+
+                    <div class="col-md-6">
+                        <label> Customer Order Ref</label>
                         <input type="text" class="form_input" />
                     </div>
 
@@ -52,10 +56,7 @@
 
             <div class="row form-group">
 
-                <div class="col-md-7">
-                    <label> Customer Order Ref.</label>
-                    <input type="text" class="form_input" />
-                </div>
+
 
             </div>
 
@@ -180,6 +181,20 @@
 
 
                 </tr>
+                <tr>
+
+                    <td>10001</td>
+                    <td>Policy 2</td>
+                    <td class="text-right">45</td>
+                    <td>Nos</td>
+                    <td class="text-right">10000</td>
+                    <td class="text-right">10%</td>
+                    <td class="text-right">10000</td>
+
+
+
+
+                </tr>
 
 
 
@@ -187,11 +202,22 @@
             </tbody>
 
         </table>
+        <table class="table table-bordered mtop" id="tab_logic">
+            <tr class="grid_heading footer">
+                <th width="65%">&nbsp;</th>
+                <th width="35%">Total</th>
+            </tr>
+        </table>
     </div>
     <hr />
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="row form-group">
+
+
+
+
+
                 <div class="col-md-12">
                     <label>Special Remarks</label>
                     <textarea class="form_input text-area"></textarea>
@@ -201,24 +227,35 @@
                     <input type="text" class="form_input" />
                 </div>
 
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group">
+
+
+
+
+                <div class="col-md-4">
+                    <label>Additional Remarks</label>
+                    <input type="text" class="form_input" />
+                </div>
                 <div class="col-md-2">
-                    <label class="text-right">Additional Amount</label>
+                    <label class="text-right">Amount</label>
                     <input type="text" class="form_input text-right" />
                 </div>
 
                 <div class="col-md-4">
-                    <label>Remarks</label>
+                    <label>Deduction Remarks</label>
                     <input type="text" class="form_input" />
                 </div>
                 <div class="col-md-2">
-                    <label class="text-right">Deduction Amount</label>
+                    <label class="text-right">Amount</label>
                     <input type="text" class="form_input text-right" />
                 </div>
-                <div class="col-md-4">
-                    <label>Remarks</label>
+                <div class="col-md-3">
+                    <label>Bill Due Date</label>
                     <input type="text" class="form_input" />
                 </div>
-
 
 
 

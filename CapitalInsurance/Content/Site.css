@@ -209,7 +209,7 @@ margin-bottom:20px;
     padding-left:5px;
     padding-right:5px;
     border:0;
-    margin-right:10px;
+    margin-left:10px;
     min-width:80px;
     margin-bottom:10px;
 
@@ -227,8 +227,8 @@ margin-bottom:20px;
     color:#fff;
     border-radius:4px;
     -moz-border-radius:4px;
-    padding-left:10px;
-    padding-right:10px;
+    padding-left:7px;
+    padding-right:7px;
     border:0;
 
 }
@@ -246,10 +246,21 @@ margin-bottom:20px;
     margin-bottom: 16px;
     margin-top: 0;
 }
+.main-check1 
+{
+    margin-bottom:3px;
+    margin-top: 0;
+}
 .check 
 {
     display:unset;
     margin-right: 11px;
+
+}
+.check1 
+{
+    display:unset;
+    margin-right: 1px;
 
 }
 .nzero 
@@ -321,6 +332,21 @@ table thead tr th
 .mtop 
 {
     margin-top:-20px;
+}
+.scroll1 
+{
+    overflow:auto;
+    height:183px;
+}
+.scroll2 
+{
+    overflow:auto;
+    max-height:183px;
+}
+.scroll3 
+{
+    overflow:auto;
+    max-height:360px;
 }
 /*.text-outer 
 {

@@ -6,7 +6,7 @@
 
 <div class="container content-in">
     <div class="row">
-        <h1>Policy Issue</h1>
+        <h1>Renewal Policy Issue</h1>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -22,10 +22,7 @@
     <div class="row">
         <div class="col-md-3">
             <label>Client Name</label>
-            <select class="form_input">
-                <option value="">Client 1</option>
-                <option value="">Client 2</option>
-            </select>
+            <input type="text" class="form_input" />
         </div>
         <div class="col-md-3">
             <div class="row form-group">
@@ -59,34 +56,30 @@
             <div class="row form-group">
                 <div class="col-md-12">
                     <label>Company</label>
-                    <select class="form_input">
-                        <option value="">Company 1</option>
-                        <option value="">Company 2</option>
-                    </select>
-                </div>
-                <div class="col-md-12">
-                    <label>Product</label>
-                    <select class="form_input">
-                        <option value="">Product 1</option>
-                        <option value="">Product 2</option>
-                    </select>
+                    <input type="text" class="form_input" />
                 </div>
 
+                <div class="col-md-6">
+                    <label>Premium Amount</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+
+                <div class="col-md-6">
+                    <label>Policy Fees</label>
+                    <input type="text" class="form_input" />
+                </div>
 
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="row form-group">
-                <div class="col-md-6">
-                    <label>Policy Sub Date</label>
+                <div class="col-md-12">
+                    <label>Product</label>
                     <input type="text" class="form_input" />
                 </div>
 
-                <div class="col-md-6">
-                    <label>Effective Date</label>
-                    <input type="text" class="form_input" />
-                </div>
                 <div class="col-md-6">
                     <label>Addition Fees</label>
                     <input type="text" class="form_input" />
@@ -104,15 +97,15 @@
             <div class="row form-group">
 
                 <div class="col-md-6">
-                    <label>Premium Amount</label>
+                    <label>Policy Sub Date</label>
                     <input type="text" class="form_input" />
                 </div>
-
 
                 <div class="col-md-6">
-                    <label>Policy Fees</label>
+                    <label>Effective Date</label>
                     <input type="text" class="form_input" />
                 </div>
+
 
                 <div class="col-md-6">
                     <label>Commi. Percentage</label>
@@ -130,27 +123,32 @@
 
         <div class="col-md-3">
             <div class="row form-group">
-                <div class="col-md-12">
-                    <label>Excecutive</label>
+                <div class="col-md-6">
+                    <label>Renewal Date</label>
                     <input type="text" class="form_input" />
                 </div>
 
-                <div class="col-md-12">
-                    <label>Reference</label>
-                    <input type="text" class="form_input" />
-                </div>
+
             </div>
         </div>
     </div>
 
     <hr />
-
-
-
+    <h2>OPERATION</h2>
     <div class="row">
         <div class="col-md-3">
-            <h2>OPERATION</h2>
             <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Operation Manager</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row form-group">
+
                 <div class="col-md-6">
                     <label>Policy No.</label>
                     <input type="text" class="form_input" />
@@ -162,82 +160,83 @@
 
 
 
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <hr />
+    <h2>FINANCE</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Finance Manager</label>
+                    <input type="text" class="form_input" />
+                </div>
 
             </div>
         </div>
 
         <div class="col-md-3">
-            <h2>FINANCE</h2>
             <div class="row form-group">
 
-                <div class="col-md-12">
-                    <label class="blue">Payment to</label>
-                    <div class="row">
-                        <div class="col-md-4 main-check">
-                            <label class="check">CIB</label>
-                            <input type="checkbox" name="" value="">
-                        </div>
-                        <div class="col-md-6 main-check">
-                            <label class="check">Insurance Co</label>
-                            <input type="checkbox" name="" value="" checked>
-                        </div>
-                    </div>
-
-
+                <div class="col-md-6">
+                    <label>Payment to</label>
+                    <select class="form_input">
+                        <option value="">CIB</option>
+                        <option value="">Insurance Co</option>
+                    </select>
                 </div>
 
+                <div class="col-md-6">
+                    <label>Mode of Payment</label>
+                    <select class="form_input">
+                        <option value="">Cheque</option>
+                        <option value="">Cash</option>
+                        <option value="">Bank Transfer</option>
+                    </select>
 
+                </div>
 
             </div>
+
         </div>
-        <div class="col-md-5">
-            <h2>&nbsp;</h2>
-            <div class="row form-group">
-
-                <div class="col-md-12">
-                    <label class="blue">Mode of Payment</label>
-                    <div class="row">
-                        <div class="col-md-3 main-check">
-                            <label class="check">Cheque</label>
-                            <input type="checkbox" name="" value="">
-                        </div>
-                        <div class="col-md-3 main-check">
-                            <label class="check">Cash</label>
-                            <input type="checkbox" name="" value="" checked>
-                        </div>
-                        <div class="col-md-4 main-check">
-                            <label class="check">Bank Transfer</label>
-                            <input type="checkbox" name="" value="" checked>
-                        </div>
-                    </div>
 
 
-                </div>
+        <div class="table-responsive scroll2 col-md-6">
+            <table class="table table-bordered" id="tab_logic">
+                <thead>
+                    <tr class="grid_heading">
+                        <th>Cheque No</th>
+                        <th>Cheque Date</th>
+                        <th>Bank Name</th>
+                        <th>Cheque Amount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+
+                        <td><input type="text" class="form_input" /></td>
+                        <td><input type="text" class="form_input" /></td>
+                        <td><input type="text" class="form_input" /></td>
+                        <td><input type="text" class="form_input" /></td>
+                        <td><img src="~/Images/Plus.png" /></td>
+
+                    </tr>
 
 
 
-            </div>
+
+                </tbody>
+
+            </table>
         </div>
-        <div class="col-md-7">
-            <div class="row form-group">
-                <div class="col-md-3">
-                    <label>Cheque No</label>
-                    <input type="text" class="form_input" />
-                </div>
-                <div class="col-md-3">
-                    <label>Cheque Date</label>
-                    <input type="text" class="form_input" />
-                </div>
-                <div class="col-md-3">
-                    <label>Bank Name</label>
-                    <input type="text" class="form_input" />
-                </div>
-                <div class="col-md-3">
-                    <label>Cheque Amount</label>
-                    <input type="text" class="form_input" />
-                </div>
-            </div>
-        </div>
+
 
 
     </div>
