@@ -1477,7 +1477,7 @@ th {
 
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
-  border-bottom-width: 2px;
+  /*border-bottom-width: 2px;*/
 }
 
 .table-striped > tbody > tr:nth-child(odd) > td,
@@ -3238,7 +3238,7 @@ input[type="button"].btn-block {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  left:-36px;;
   z-index: 1000;
   display: none;
   float: left;

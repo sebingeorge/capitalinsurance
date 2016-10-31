@@ -72,7 +72,7 @@
                     <div id="first-level-3" class="collapse">
                         <ul>
                             <li>
-                                <a href="@Url.Action("Proposal", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-3">Proposal</a>
+                                <a href="@Url.Action("RenewalList", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-3">Proposal</a>
                                 <a href="@Url.Action("Issue", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-3">Issue</a>
                             </li>
                         </ul>
@@ -91,6 +91,7 @@
                                     <a href="@Url.Action("Sales_Target", "Sales_Target")" data-toggle="collapse" data-target="#first-level-6">Sales Target</a>
                                     <a href="@Url.Action("Sales_Achievement_report", "Sales_Achievement_report")" data-toggle="collapse" data-target="#first-level-7">Sales Achievement report</a>
                                     <a href="@Url.Action("Customer_Invoice", "Customer_Invoice")" data-toggle="collapse" data-target="#first-level-8">Customer Invoice</a>
+                                    <a href="@Url.Action("MeetingSchedule", "MeetingSchedule")" data-toggle="collapse" data-target="#first-level-8">Meeting Schedule</a>
                                     @*<div id="first-level-2" class="collapse">
                         <ul>
                             <li>
@@ -139,7 +140,7 @@
                     @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
 
                 </ul>
-                @*@Html.Partial("_LoginPartial")*@
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>

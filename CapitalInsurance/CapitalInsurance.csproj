@@ -171,6 +171,7 @@
     <Compile Include="Controllers\adminController.cs" />
     <Compile Include="Controllers\Customer_InvoiceController.cs" />
     <Compile Include="Controllers\Daily_Activity_reportController.cs" />
+    <Compile Include="Controllers\MeetingScheduleController.cs" />
     <Compile Include="Controllers\New_PolicyController.cs" />
     <Compile Include="Controllers\PolicyIssueController.cs" />
     <Compile Include="Controllers\Policy_EndorsementController.cs" />
@@ -282,6 +283,9 @@
     <Content Include="Views\Policy_Endorsement\Proposal.cshtml" />
     <Content Include="Views\Policy_Renewal\Proposal.cshtml" />
     <Content Include="Views\Policy_Renewal\Issue.cshtml" />
+    <Content Include="Views\Policy_Renewal\PendingProposal.cshtml" />
+    <Content Include="Views\Policy_Renewal\RenewalList.cshtml" />
+    <Content Include="Views\MeetingSchedule\MeetingSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

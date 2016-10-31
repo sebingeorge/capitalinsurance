@@ -21,5 +21,9 @@ namespace CapitalInsurance.Controllers
         {
             return View();
         }
+        public ActionResult RenewalList()
+        {
+            return View();
+        }
     }
 }

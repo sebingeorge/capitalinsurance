@@ -3,20 +3,34 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
     }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    @*<ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>*@
 }
+<ul class="nav navbar-nav right">
+    <li class="top6">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="glyphicon glyphicon-bell" style="top:7px;"></i><span class="badge1"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="@Url.Action("Proposal", "New_Policy")">New Policy</a></li>
+            <li><a href="@Url.Action("RenewalList", "Policy_Renewal")">Renewal List</a></li>
+            <li><a href="@Url.Action("Proposal", "Policy_Endorsement")">Policy Endorsement</a></li>
+            <li><a href="@Url.Action("Daily_Activity_report", "Daily_Activity_report")">Daily Activity Report</a></li>
+            <li><a href="@Url.Action("Sales_Target", "Sales_Target")">Sales Target</a></li>
+            <li><a href="@Url.Action("Sales_Achievement_report", "Sales_Achievement_report")">Sales Achievement report</a></li>
+            <li><a href="@Url.Action("MeetingSchedule", "MeetingSchedule")">Meeting Schedule</a></li>
+        </ul>
+    </li>
+</ul>
