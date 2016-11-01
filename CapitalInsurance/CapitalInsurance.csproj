@@ -173,11 +173,13 @@
     <Compile Include="Controllers\Daily_Activity_reportController.cs" />
     <Compile Include="Controllers\MeetingScheduleController.cs" />
     <Compile Include="Controllers\New_PolicyController.cs" />
+    <Compile Include="Controllers\PayableReportController.cs" />
     <Compile Include="Controllers\PolicyIssueController.cs" />
     <Compile Include="Controllers\Policy_EndorsementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Policy_RenewalController.cs" />
+    <Compile Include="Controllers\ReceivableReportController.cs" />
     <Compile Include="Controllers\Sales_Achievement_reportController.cs" />
     <Compile Include="Controllers\Sales_TargetController.cs" />
     <Compile Include="Global.asax.cs">
@@ -283,10 +285,28 @@
     <Content Include="Views\Policy_Endorsement\Proposal.cshtml" />
     <Content Include="Views\Policy_Renewal\Proposal.cshtml" />
     <Content Include="Views\Policy_Renewal\Issue.cshtml" />
-    <Content Include="Views\Policy_Renewal\PendingProposal.cshtml" />
     <Content Include="Views\Policy_Renewal\RenewalList.cshtml" />
     <Content Include="Views\MeetingSchedule\MeetingSchedule.cshtml" />
     <Content Include="Views\New_Policy\PolicyList.cshtml" />
+    <Content Include="Views\New_Policy\Pendingissue.cshtml" />
+    <Content Include="Views\Policy_Renewal\Pendingissue.cshtml" />
+    <Content Include="Views\Policy_Endorsement\PendingProposal.cshtml" />
+    <Content Include="Views\Policy_Endorsement\Pendingissue.cshtml" />
+    <Content Include="Views\Customer_Invoice\PendingCustomerInvoice.cshtml" />
+    <Content Include="Views\ReceivableReport\PendingReceivableReport.cshtml" />
+    <Content Include="Views\ReceivableReport\ReceivableReport.cshtml" />
+    <Content Include="Views\PayableReport\PayableReport.cshtml" />
+    <Content Include="Views\PayableReport\Payment.cshtml" />
+    <Content Include="Views\admin\PreviousCustomer.cshtml" />
+    <Content Include="Views\admin\PreviousEmployee.cshtml" />
+    <Content Include="Views\admin\PreviousInsurance.cshtml" />
+    <Content Include="Views\admin\PreviousInsuranceProduct.cshtml" />
+    <Content Include="Views\New_Policy\PreviousProposal.cshtml" />
+    <Content Include="Views\New_Policy\PreviousIssue.cshtml" />
+    <Content Include="Views\Policy_Renewal\PreviousProposal.cshtml" />
+    <Content Include="Views\Policy_Renewal\PreviousIssue.cshtml" />
+    <Content Include="Views\Policy_Endorsement\PreviousProposal.cshtml" />
+    <Content Include="Views\Policy_Endorsement\PreviousIssue.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

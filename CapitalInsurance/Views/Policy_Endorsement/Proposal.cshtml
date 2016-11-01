@@ -14,21 +14,18 @@
         <div class="col-md-12">
             <div class="row form-group">
                 <div class="col-md-3">
-                    <label>Date</label>
-                    <input type="text" class="form_input half" />
+                    <label>Client Name</label>
+                    <select class="form_input">
+                        <option value="">Client 1</option>
+                        <option value="">Client 2</option>
+                    </select>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-3">
-            <label>Client Name</label>
-            <select class="form_input">
-                <option value="">Client 1</option>
-                <option value="">Client 2</option>
-            </select>
-        </div>
+
         <div class="col-md-3">
             <div class="row form-group">
                 <div class="col-md-12">
@@ -68,11 +65,15 @@
                     <input type="text" class="form_input" />
                 </div>
 
-                <div class="col-md-12">
-                    <label>Client Name</label>
+                <div class="col-md-6">
+                    <label>Addition No.</label>
                     <input type="text" class="form_input" />
                 </div>
 
+                <div class="col-md-6">
+                    <label>Deletion No.</label>
+                    <input type="text" class="form_input" />
+                </div>
 
 
             </div>
@@ -87,6 +88,46 @@
                         <option value="">Insurance Company 2</option>
                     </select>
                 </div>
+
+
+
+                <div class="col-md-6">
+                    <label>Policy Fee</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-6">
+                    <label>Addition Fees</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row form-group">
+
+                <div class="col-md-12">
+                    <label>Product</label>
+                    <select class="form_input">
+                        <option value="">Product 1</option>
+                        <option value="">Product 2</option>
+                    </select>
+                </div>
+
+
+                <div class="col-md-6">
+                    <label>Commi. Percentage</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-6">
+                    <label>Policy Premium</label>
+                    <input type="text" class="form_input" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row form-group">
 
                 <div class="col-md-6">
                     <label>Type of Insurance</label>
@@ -104,44 +145,8 @@
                     </select>
                 </div>
 
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="row form-group">
 
 
-                <div class="col-md-6">
-                    <label>Addition No.</label>
-                    <input type="text" class="form_input" />
-                </div>
-
-                <div class="col-md-6">
-                    <label>Deletion No.</label>
-                    <input type="text" class="form_input" />
-                </div>
-                <div class="col-md-6">
-                    <label>Commi. Percentage</label>
-                    <input type="text" class="form_input" />
-                </div>
-                <div class="col-md-6">
-                    <label>Policy Premium</label>
-                    <input type="text" class="form_input" />
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="row form-group">
-
-
-                <div class="col-md-6">
-                    <label>Policy Fee</label>
-                    <input type="text" class="form_input" />
-                </div>
-                <div class="col-md-6">
-                    <label>Addition Fees</label>
-                    <input type="text" class="form_input" />
-                </div>
                 <div class="col-md-6">
                     <label>Total Amount</label>
                     <input type="text" class="form_input" />
@@ -206,12 +211,32 @@
 
             </div>
         </div>
+        <div class="col-md-3">
+            <div class="row form-group">
+
+                <div class="col-md-12">
+                    <label>Sales Manager</label>
+                    <select class="form_input">
+                        <option value="">Company 1</option>
+                        <option value="">Company 2</option>
+                    </select>
+                </div>
+
+                <div class="col-md-12">
+                    <label>Reference</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
 
     <div class="row">
         <hr />
-        <div class="col-md-offset-8 col-md-4">
+        <div class="col-md-12">
+            <button type="button" class="form-button" onclick="Previous()">Previous</button>
             <button type="button" class="form-button right">Save</button>
             <button type="button" class="form-button right" onclick="Exit()">Exit</button>
         </div>
@@ -220,4 +245,12 @@
 
 
 </div>
+
+<script>
+    function Previous() {
+        var url = '@Url.Action("PreviousProposal", "Policy_Endorsement")'
+        window.location = url;
+    }
+
+</script>
 

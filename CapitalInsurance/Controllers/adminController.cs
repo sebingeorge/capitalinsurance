@@ -37,5 +37,21 @@ namespace CapitalInsurance.Controllers
         {
             return View();
         }
+        public ActionResult PreviousCustomer()
+        {
+            return View();
+        }
+        public ActionResult PreviousEmployee()
+        {
+            return View();
+        }
+        public ActionResult PreviousInsurance()
+        {
+            return View();
+        }
+                public ActionResult PreviousInsuranceProduct()
+        {
+            return View();
+        }
     }
 }

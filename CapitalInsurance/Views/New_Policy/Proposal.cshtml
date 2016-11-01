@@ -218,10 +218,18 @@
 
             <div class="row">
                 <hr />
-                <div class="col-md-offset-8 col-md-4">
+                <div class="col-md-12">
+                    <button type="button" class="form-button" onclick="Previous()">Previous</button>
                     <button type="button" class="form-button right">Save</button>
                     <button type="button" class="form-button right" onclick="Exit()">Exit</button>
                 </div>
 
             </div>
         </div>
+<script>
+    function Previous() {
+        var url = '@Url.Action("PreviousProposal", "New_policy")'
+        window.location = url;
+    }
+
+</script>

@@ -386,6 +386,10 @@ table thead tr th
     min-width: 100%;
     overflow:scroll;
 }
+.cheque 
+{
+    font-size:11px;
+}
 /*.text-outer 
 {
     border:3px solid #f1f5f8;
