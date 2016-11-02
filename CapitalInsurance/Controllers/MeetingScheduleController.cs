@@ -17,5 +17,9 @@ namespace CapitalInsurance.Controllers
         {
             return View();
         }
+        public ActionResult PreviousMeetingSchedule()
+        {
+            return View();
+        }
     }
 }

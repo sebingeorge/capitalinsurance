@@ -307,6 +307,11 @@
     <Content Include="Views\Policy_Renewal\PreviousIssue.cshtml" />
     <Content Include="Views\Policy_Endorsement\PreviousProposal.cshtml" />
     <Content Include="Views\Policy_Endorsement\PreviousIssue.cshtml" />
+    <Content Include="Views\Daily_Activity_report\PreviousDaily_Activity.cshtml" />
+    <Content Include="Views\MeetingSchedule\PreviousMeetingSchedule.cshtml" />
+    <Content Include="Views\Customer_Invoice\PreviousCustomerInvoice.cshtml" />
+    <Content Include="Views\ReceivableReport\PreviousReceivable.cshtml" />
+    <Content Include="Views\PayableReport\PreviousPayable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

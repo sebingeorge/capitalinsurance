@@ -17,5 +17,9 @@ namespace CapitalInsurance.Controllers
         {
             return View();
         }
+        public ActionResult PreviousDaily_Activity()
+        {
+            return View();
+        }
     }
 }

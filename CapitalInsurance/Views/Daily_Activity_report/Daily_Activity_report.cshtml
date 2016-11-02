@@ -154,7 +154,7 @@
     <div class="row">
         <hr />
         <div class="col-md-12">
-            <button type="button" class="form-button">Previous DAR</button>
+            <button type="button" class="form-button" onclick="Previous()">Previous DAR</button>
             <button type="button" class="form-button">New Prospective Client</button>
             <button type="button" class="form-button right">Save</button>
             <button type="button" class="form-button right" onclick="Exit()">Exit</button>
@@ -166,5 +166,13 @@
 
 
 </div>
+
+<script>
+    function Previous() {
+        var url = '@Url.Action("PreviousDaily_Activity", "Daily_Activity_report")'
+        window.location = url;
+    }
+
+</script>
 
 
