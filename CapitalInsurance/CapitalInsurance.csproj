@@ -214,6 +214,7 @@
     <Content Include="images\m-logo.png" />
     <Content Include="images\manhand.png" />
     <Content Include="images\photo.jpg" />
+    <Content Include="images\plus.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
