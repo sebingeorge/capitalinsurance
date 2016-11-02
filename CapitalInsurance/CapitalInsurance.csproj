@@ -230,12 +230,30 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\admin\PreviousCustomer.cshtml" />
+    <Content Include="Views\admin\PreviousEmployee.cshtml" />
+    <Content Include="Views\admin\PreviousInsurance.cshtml" />
+    <Content Include="Views\admin\PreviousInsuranceProduct.cshtml" />
     <Content Include="Views\Customer_Invoice\Customer_Invoice.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Customer_Invoice\PendingCustomerInvoice.cshtml" />
     <Content Include="Views\Daily_Activity_report\Daily_Activity_report.cshtml" />
     <Content Include="Views\New_Policy\Issue.cshtml" />
+    <Content Include="Views\New_Policy\Pendingissue.cshtml" />
+    <Content Include="Views\New_Policy\PreviousIssue.cshtml" />
+    <Content Include="Views\New_Policy\PreviousProposal.cshtml" />
+    <Content Include="Views\PayableReport\PayableReport.cshtml" />
+    <Content Include="Views\PayableReport\Payment.cshtml" />
     <Content Include="Views\Policy_Endorsement\Issue.cshtml" />
+    <Content Include="Views\Policy_Endorsement\Pendingissue.cshtml" />
+    <Content Include="Views\Policy_Endorsement\PendingProposal.cshtml" />
+    <Content Include="Views\Policy_Endorsement\PreviousProposal.cshtml" />
+    <Content Include="Views\Policy_Renewal\Pendingissue.cshtml" />
+    <Content Include="Views\Policy_Renewal\PreviousIssue.cshtml" />
+    <Content Include="Views\Policy_Renewal\PreviousProposal.cshtml" />
+    <Content Include="Views\ReceivableReport\PendingReceivableReport.cshtml" />
+    <Content Include="Views\ReceivableReport\ReceivableReport.cshtml" />
     <Content Include="Views\Sales_Achievement_report\Sales_Achievement_report.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -289,24 +307,6 @@
     <Content Include="Views\Policy_Renewal\RenewalList.cshtml" />
     <Content Include="Views\MeetingSchedule\MeetingSchedule.cshtml" />
     <Content Include="Views\New_Policy\PolicyList.cshtml" />
-    <Content Include="Views\New_Policy\Pendingissue.cshtml" />
-    <Content Include="Views\Policy_Renewal\Pendingissue.cshtml" />
-    <Content Include="Views\Policy_Endorsement\PendingProposal.cshtml" />
-    <Content Include="Views\Policy_Endorsement\Pendingissue.cshtml" />
-    <Content Include="Views\Customer_Invoice\PendingCustomerInvoice.cshtml" />
-    <Content Include="Views\ReceivableReport\PendingReceivableReport.cshtml" />
-    <Content Include="Views\ReceivableReport\ReceivableReport.cshtml" />
-    <Content Include="Views\PayableReport\PayableReport.cshtml" />
-    <Content Include="Views\PayableReport\Payment.cshtml" />
-    <Content Include="Views\admin\PreviousCustomer.cshtml" />
-    <Content Include="Views\admin\PreviousEmployee.cshtml" />
-    <Content Include="Views\admin\PreviousInsurance.cshtml" />
-    <Content Include="Views\admin\PreviousInsuranceProduct.cshtml" />
-    <Content Include="Views\New_Policy\PreviousProposal.cshtml" />
-    <Content Include="Views\New_Policy\PreviousIssue.cshtml" />
-    <Content Include="Views\Policy_Renewal\PreviousProposal.cshtml" />
-    <Content Include="Views\Policy_Renewal\PreviousIssue.cshtml" />
-    <Content Include="Views\Policy_Endorsement\PreviousProposal.cshtml" />
     <Content Include="Views\Policy_Endorsement\PreviousIssue.cshtml" />
     <Content Include="Views\Daily_Activity_report\PreviousDaily_Activity.cshtml" />
     <Content Include="Views\MeetingSchedule\PreviousMeetingSchedule.cshtml" />
