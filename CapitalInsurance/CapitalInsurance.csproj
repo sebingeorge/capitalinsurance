@@ -253,18 +253,11 @@
     </Content>
     <Content Include="Views\Customer_Invoice\PendingCustomerInvoice.cshtml" />
     <Content Include="Views\Daily_Activity_report\Daily_Activity_report.cshtml" />
-    <Content Include="Views\New_Policy\Issue.cshtml" />
-    <Content Include="Views\New_Policy\Pendingissue.cshtml" />
-    <Content Include="Views\New_Policy\PreviousIssue.cshtml" />
     <Content Include="Views\New_Policy\PreviousProposal.cshtml" />
     <Content Include="Views\PayableReport\PayableReport.cshtml" />
     <Content Include="Views\PayableReport\Payment.cshtml" />
-    <Content Include="Views\Policy_Endorsement\Issue.cshtml" />
-    <Content Include="Views\Policy_Endorsement\Pendingissue.cshtml" />
     <Content Include="Views\Policy_Endorsement\PendingProposal.cshtml" />
     <Content Include="Views\Policy_Endorsement\PreviousProposal.cshtml" />
-    <Content Include="Views\Policy_Renewal\Pendingissue.cshtml" />
-    <Content Include="Views\Policy_Renewal\PreviousIssue.cshtml" />
     <Content Include="Views\Policy_Renewal\PreviousProposal.cshtml" />
     <Content Include="Views\ReceivableReport\PendingReceivableReport.cshtml" />
     <Content Include="Views\ReceivableReport\ReceivableReport.cshtml" />
@@ -317,11 +310,9 @@
     <Content Include="Views\admin\InsuranceProduct.cshtml" />
     <Content Include="Views\Policy_Endorsement\Proposal.cshtml" />
     <Content Include="Views\Policy_Renewal\Proposal.cshtml" />
-    <Content Include="Views\Policy_Renewal\Issue.cshtml" />
     <Content Include="Views\Policy_Renewal\RenewalList.cshtml" />
     <Content Include="Views\MeetingSchedule\MeetingSchedule.cshtml" />
     <Content Include="Views\New_Policy\PolicyList.cshtml" />
-    <Content Include="Views\Policy_Endorsement\PreviousIssue.cshtml" />
     <Content Include="Views\Daily_Activity_report\PreviousDaily_Activity.cshtml" />
     <Content Include="Views\MeetingSchedule\PreviousMeetingSchedule.cshtml" />
     <Content Include="Views\Customer_Invoice\PreviousCustomerInvoice.cshtml" />

@@ -13,18 +13,35 @@
         <div class="col-md-12">
             <div class="row form-group">
                 <div class="col-md-3">
+                    <label>Transaction No</label>
+                    <input type="text" class="form_input half" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
                     <label>Client Name</label>
                     <select class="form_input">
                         <option value="">Client 1</option>
                         <option value="">Client 2</option>
                     </select>
                 </div>
-
             </div>
         </div>
-    </div>
 
-    <div class="row">
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Insured Name</label>
+                    <input type="text" class="form_input" />
+                </div>
+            </div>
+        </div>
         <div class="col-md-3">
             <div class="row form-group">
                 <div class="col-md-12">
@@ -37,14 +54,6 @@
             <div class="row form-group">
                 <div class="col-md-12">
                     <label>Address 2</label>
-                    <input type="text" class="form_input" />
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="row form-group">
-                <div class="col-md-12">
-                    <label>Address 3</label>
                     <input type="text" class="form_input" />
                 </div>
             </div>
@@ -88,11 +97,11 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label>Addition Fees</label>
+                    <label>Additional Premium</label>
                     <input type="text" class="form_input" />
                 </div>
                 <div class="col-md-6">
-                    <label>Total Amount</label>
+                    <label>Total Premium</label>
                     <input type="text" class="form_input" />
                 </div>
 
@@ -104,12 +113,17 @@
             <div class="row form-group">
 
                 <div class="col-md-6">
-                    <label>Policy Sub Date</label>
-                    <input type="text" class="form_input" />
+                    <label>Product Type</label>
+                    <select class="form_input">
+                        <option value="">CC</option>
+                        <option value="">FC</option>
+                        <option value="">FA</option>
+                        <option value="">SC</option>
+                    </select>
                 </div>
 
                 <div class="col-md-6">
-                    <label>Effective Date</label>
+                    <label>Policy Sub Date</label>
                     <input type="text" class="form_input" />
                 </div>
 
@@ -130,14 +144,29 @@
 
         <div class="col-md-3">
             <div class="row form-group">
+
+                <div class="col-md-6">
+                    <label>Effective Date</label>
+                    <input type="text" class="form_input" />
+                </div>
+
                 <div class="col-md-6">
                     <label>Renewal Date</label>
                     <input type="text" class="form_input" />
                 </div>
 
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row form-group">
+
+
+
 
             </div>
         </div>
+
     </div>
 
     <hr />
@@ -164,12 +193,14 @@
 
         <div class="col-md-3">
             <div class="row form-group">
+
                 <div class="col-md-12">
-                    <label>Payment Option</label>
+                    <label>Designation</label>
                     <input type="text" class="form_input" />
                 </div>
+
                 <div class="col-md-12">
-                    <label>RM's</label>
+                    <label>Payment Option</label>
                     <input type="text" class="form_input" />
                 </div>
 
@@ -179,10 +210,7 @@
         <div class="col-md-3">
             <div class="row form-group">
 
-                <div class="col-md-12">
-                    <label>Designation</label>
-                    <input type="text" class="form_input" />
-                </div>
+
 
                 <div class="col-md-12">
                     <label>Email</label>
@@ -204,12 +232,121 @@
                 </div>
 
                 <div class="col-md-12">
-                    <label>Reference</label>
+                    <label>Remarks</label>
                     <input type="text" class="form_input" />
                 </div>
 
             </div>
         </div>
+    </div>
+
+
+
+    <hr />
+    <h2>OPERATION</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Operation Manager</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row form-group">
+
+                <div class="col-md-6">
+                    <label>Policy No.</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <hr />
+    <h2>FINANCE</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Finance Manager</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row form-group">
+
+                <div class="col-md-6">
+                    <label>Payment to</label>
+                    <select class="form_input">
+                        <option value="">CIB</option>
+                        <option value="">Insurance Co</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label>Mode of Payment</label>
+                    <select class="form_input">
+                        <option value="">Cheque</option>
+                        <option value="">Cash</option>
+                        <option value="">Bank Transfer</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-responsive scroll2 col-md-6">
+            <table class="table table-bordered" id="tab_logic">
+                <thead>
+                    <tr class="grid_heading cheque">
+                        <th>Cheque No</th>
+                        <th>Cheque Date</th>
+                        <th>Bank Name</th>
+                        <th>Cheque Amount</th>
+                        <th>PDC Date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+
+                        <td><input type="text" class="form_input" /></td>
+                        <td><input type="text" class="form_input" /></td>
+                        <td><input type="text" class="form_input" /></td>
+                        <td><input type="text" class="form_input" /></td>
+                        <td><input type="text" class="form_input" /></td>
+                        <td><img src="~/Images/Plus.png" /></td>
+
+                    </tr>
+
+
+
+
+                </tbody>
+
+            </table>
+        </div>
+
+
+
     </div>
 
 
