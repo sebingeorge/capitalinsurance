@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CapitalInsurance.Models;
+using System.Web.Security;
+using System.Configuration;
+using Capital.Domain;
 
 namespace CapitalInsurance.Controllers
 {
@@ -73,13 +76,17 @@ namespace CapitalInsurance.Controllers
                 return View(model);
             }
 
+            string salt = ConfigurationManager.AppSettings["salt"].ToString();
+            string saltpassword = String.Concat(salt, model.Password);
+            string hashedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(saltpassword, "sha1");
+
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToLocal(returnUrl);  
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

@@ -1,13 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapitalInsurance", "CapitalInsurance\CapitalInsurance.csproj", "{8E70995C-920E-438F-85A0-1421089F4D17}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capital.Domain", "Capital.Domain\Capital.Domain.csproj", "{159E5253-970E-4988-BE31-F635F98E6907}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capital.DAL", "Capital.DAL\Capital.DAL.csproj", "{E721CD6B-5BB8-4650-8D4D-A9F5249DA1DD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{159E5253-970E-4988-BE31-F635F98E6907} = {159E5253-970E-4988-BE31-F635F98E6907}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
