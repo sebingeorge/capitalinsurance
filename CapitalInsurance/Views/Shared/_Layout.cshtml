@@ -58,52 +58,69 @@
                         </ul>
                     </div>
 
-                    <a href="#" data-toggle="collapse" data-target="#first-level-2">New Policy<span class="caret arrow"></span></a>
+                    <a href="#" data-toggle="collapse" data-target="#first-level-2">Operation<span class="caret arrow"></span></a>
                     <div id="first-level-2" class="collapse">
                         <ul>
                             <li>
-                                <a href="@Url.Action("Proposal", "New_Policy")" data-toggle="collapse" data-target="#second-level-2">Proposal</a>
-                                <a href="@Url.Action("Pendingissue", "New_Policy")" data-toggle="collapse" data-target="#second-level-2">Issue</a>
+                                <a href="@Url.Action("Proposal", "New_Policy")" data-toggle="collapse" data-target="#second-level-1">New Policy</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("RenewalList", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-2">Policy Renewal</a>
+
+                            </li>
+                            <li>
+                                <a href="@Url.Action("PendingProposal", "Policy_Endorsement")" data-toggle="collapse" data-target="#second-level-3">Policy Endorsement</a>
                             </li>
                         </ul>
                       </div>
 
-                    <a href="#" data-toggle="collapse" data-target="#first-level-3">Policy Renewal<span class="caret arrow"></span></a>
+                    <a href="#" data-toggle="collapse" data-target="#first-level-3">MIS Reports<span class="caret arrow"></span></a>
                     <div id="first-level-3" class="collapse">
                         <ul>
+
                             <li>
-                                <a href="@Url.Action("RenewalList", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-3">Proposal</a>
-                                <a href="@Url.Action("Pendingissue", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-3">Issue</a>
+                                <a href="@Url.Action("Sales_Target", "Sales_Target")" data-toggle="collapse" data-target="#second-level-2">Sales Target</a>
+
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Sales_Achievement_report", "Sales_Achievement_report")" data-toggle="collapse" data-target="#second-level-3">Sales Achievement report</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("MeetingSchedule", "MeetingSchedule")" data-toggle="collapse" data-target="#second-level-4">Meeting Schedule</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("PendingReceivableReport", "ReceivableReport")" data-toggle="collapse" data-target="#second-level-5">Receivable Report</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("PayableReport", "PayableReport")" data-toggle="collapse" data-target="#second-level-6">Payable Report</a>
                             </li>
                         </ul>
                     </div>
 
-                    <a href="#" data-toggle="collapse" data-target="#first-level-4">Policy Endorsement<span class="caret arrow"></span></a>
+
+                    <a href="#" data-toggle="collapse" data-target="#first-level-4">Finance<span class="caret arrow"></span></a>
                     <div id="first-level-4" class="collapse">
                         <ul>
                             <li>
-                                <a href="@Url.Action("PendingProposal", "Policy_Endorsement")" data-toggle="collapse" data-target="#second-level-4">Proposal</a>
-                                <a href="@Url.Action("Pendingissue", "Policy_Endorsement")" data-toggle="collapse" data-target="#second-level-4">Issue</a>
+                                <a href="@Url.Action("PendingReceivableReport", "ReceivableReport")" data-toggle="collapse" data-target="#second-level-5">Receivable</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("PayableReport", "PayableReport")" data-toggle="collapse" data-target="#second-level-6">Payable</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("PendingCustomerInvoice", "Customer_Invoice")" data-toggle="collapse" data-target="#second-level-6">Customer Invoice</a>
                             </li>
                         </ul>
                     </div>
-                                    <a href="@Url.Action("Daily_Activity_report", "Daily_Activity_report")" data-toggle="collapse" data-target="#first-level-5">Daily Activity Report</a>
-                                    <a href="@Url.Action("Sales_Target", "Sales_Target")" data-toggle="collapse" data-target="#first-level-6">Sales Target</a>
-                                    <a href="@Url.Action("Sales_Achievement_report", "Sales_Achievement_report")" data-toggle="collapse" data-target="#first-level-7">Sales Achievement report</a>
-                                    <a href="@Url.Action("PendingCustomerInvoice", "Customer_Invoice")" data-toggle="collapse" data-target="#first-level-8">Customer Invoice</a>
-                                    <a href="@Url.Action("MeetingSchedule", "MeetingSchedule")" data-toggle="collapse" data-target="#first-level-9">Meeting Schedule</a>
-                                    <a href="@Url.Action("PendingReceivableReport", "ReceivableReport")" data-toggle="collapse" data-target="#first-level-10">Receivable Report</a>
-                                    <a href="@Url.Action("PayableReport", "PayableReport")" data-toggle="collapse" data-target="#first-level-10">Payable Report</a>
-                                    @*<div id="first-level-2" class="collapse">
-                        <ul>
-                            <li>
 
-                                <a href="@Url.Action("Create", "Proposal")" data-toggle="collapse" data-target="#second-level-2">Proposal<span class="caret arrow"></span></a>
 
-                            </li>
 
-                        </ul>
-                    </div>*@
+
+
+
+                    <a href="@Url.Action("Daily_Activity_report", "Daily_Activity_report")" data-toggle="collapse" data-target="#first-level-5">Daily Activity Report</a>
+                                  
+
 
                                 </ul>
                             </div>

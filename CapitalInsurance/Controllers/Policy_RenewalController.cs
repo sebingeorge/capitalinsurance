@@ -17,14 +17,7 @@ namespace CapitalInsurance.Controllers
         {
             return View();
         }
-        public ActionResult Issue()
-        {
-            return View();
-        }
-        public ActionResult Pendingissue()
-        {
-            return View();
-        }
+
         public ActionResult RenewalList()
         {
             return View();
@@ -33,10 +26,7 @@ namespace CapitalInsurance.Controllers
         {
             return View();
         }
-                public ActionResult PreviousIssue()
-                {
-                    return View();
-                }
+
     }
 
 }
