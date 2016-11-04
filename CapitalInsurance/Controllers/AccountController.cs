@@ -12,6 +12,9 @@ using CapitalInsurance.Models;
 using System.Web.Security;
 using System.Configuration;
 using Capital.Domain;
+using Capital.DAL;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace CapitalInsurance.Controllers
 {
@@ -80,24 +83,53 @@ namespace CapitalInsurance.Controllers
             string saltpassword = String.Concat(salt, model.Password);
             string hashedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(saltpassword, "sha1");
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            var user = (new UserRepository()).GetUserByUserNameAndPassword(model.Username, hashedPassword);
+
+            if (user == null || user.UserName == null)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);  
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                ModelState.AddModelError("", "Invalid User name or Password. Please try again.");
+                return View(model);
+            }
+            else
+            {
+                SignIn(user, model.OrganizationId, model.RememberMe, HttpContext.Response.Cookies);
+                return RedirectToLocal(returnUrl);
             }
         }
 
+        private void SignIn(User user, int OrganizationId, bool isPersistent, HttpCookieCollection cookiecollection)
+        {
+            var userData = String.Format("{0}|{1}|{2}|{3}",
+                user.UserId, user.UserName, user.UserPassword, user.UserEmail);
+            var ticket = new FormsAuthenticationTicket(1, userData, DateTime.UtcNow, DateTime.UtcNow.AddMinutes(30), isPersistent, userData, FormsAuthentication.FormsCookiePath);
+            var encryptedTicket = FormsAuthentication.Encrypt(ticket);
+            var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket) { HttpOnly = true };
+            cookiecollection.Add(authCookie);
+
+            HttpCookie userCookie = new HttpCookie("userCookie") { HttpOnly = true };
+            userCookie.Values.Add("UserId", user.UserId.ToString());
+            userCookie.Values.Add("UserName", user.UserName.ToString());
+            userCookie.Values.Add("publicKey", ConvertPasswordToPublicKey(user.UserPassword));
+            userCookie.Values.Add("UserEmail", user.UserEmail.ToString());
+            cookiecollection.Add(userCookie);
+            Session.Add("user", userCookie);
+
+            UserRepository repo = new UserRepository();
+            string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            repo.InsertLoginHistory(user, Session.SessionID.ToString(), ip, OrganizationId.ToString());
+            //return userCookie;
+        }
+        public string ConvertPasswordToPublicKey(string encrytedpwd)
+        {
+            return GetMD5CryptoString(encrytedpwd);
+        }
+        protected string GetMD5CryptoString(string original)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            Byte[] originalBytes = ASCIIEncoding.Default.GetBytes(original);
+            Byte[] encodedBytes = md5.ComputeHash(originalBytes);
+            return BitConverter.ToString(encodedBytes);
+        }
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]

@@ -30,7 +30,7 @@ namespace CapitalInsurance.Helpers
 
                     var _userId = _userdata[0];
                     var _username = _userdata[1];
-                    var _OrganizationId = Convert.ToInt32(_userdata[5].ToString());
+                    //var _OrganizationId = Convert.ToInt32(_userdata[5].ToString());
                     string _action = filterContext.ActionDescriptor.ActionName;
                     string _controller = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
 
@@ -68,8 +68,7 @@ namespace CapitalInsurance.Helpers
                             {
                                 if (userCookie["UserId"] != null && userCookie["UserId"] == _userdata[0]
                                     && userCookie["UserName"] != null && userCookie["UserName"] == _userdata[1]
-                                    && userCookie["UserEmail"] != null && userCookie["UserEmail"] == _userdata[3]
-                                    && userCookie["UserRole"] != null && userCookie["UserRole"] == _userdata[4])
+                                    && userCookie["UserEmail"] != null && userCookie["UserEmail"] == _userdata[3])
                                 {
                                     return true;
                                 }
