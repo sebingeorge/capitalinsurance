@@ -180,6 +180,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\adminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\Customer_InvoiceController.cs" />
     <Compile Include="Controllers\Daily_Activity_reportController.cs" />
     <Compile Include="Controllers\MeetingScheduleController.cs" />
@@ -332,6 +333,8 @@
     <Content Include="Views\Customer_Invoice\PreviousCustomerInvoice.cshtml" />
     <Content Include="Views\ReceivableReport\PreviousReceivable.cshtml" />
     <Content Include="Views\PayableReport\PreviousPayable.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\_Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

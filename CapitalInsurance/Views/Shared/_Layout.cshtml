@@ -24,37 +24,11 @@
                     <div id="first-level-1" class="collapse">
                         <ul>
                             <li>
-                                <a href="@Url.Action("Customer","admin")" data-toggle="collapse" data-target="#second-level-1">Customer</a>
-                                @*<a href="@Url.Action("Designation", "admin")" data-toggle="collapse" data-target="#second-level-1">Employee Designation</a>*@
+                                <a href="@Url.Action("Create","Customer")" data-toggle="collapse" data-target="#second-level-1">Customer</a>
                                 <a href="@Url.Action("Employee", "admin")" data-toggle="collapse" data-target="#second-level-1">Sales Manager</a>
                                 <a href="@Url.Action("Insurance", "admin")" data-toggle="collapse" data-target="#second-level-1">Insurance Company</a>
                                 <a href="@Url.Action("InsuranceProduct", "admin")" data-toggle="collapse" data-target="#second-level-1">Insurance Product</a>
-                                @*<a href="@Url.Action("Policy", "admin")" data-toggle="collapse" data-target="#second-level-1">Insurance Type</a>*@
-                                @*<div id="second-level-1" class="collapse">
-                            <ul>
-                                <li>
-                                    <a href="#">Second Level Menu 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Menu 2</a>
-                                </li>
-                            </ul>
-                        </div>*@
-
-
-                                @*<div id="second-level-2" class="collapse">
-                            <ul>
-                                <li>
-                                    <a href="#">Second Level Menu 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Menu 2</a>
-                                </li>
-                            </ul>
-                        </div>*@
                             </li>
-                            @*<li class="aa"><a href="#">Sub Menu Item 1</a></li>
-                    <li class="aa"><a href="#">Sub Menu Item 2</a></li>*@
                         </ul>
                     </div>
 
@@ -77,10 +51,8 @@
                     <a href="#" data-toggle="collapse" data-target="#first-level-3">MIS Reports<span class="caret arrow"></span></a>
                     <div id="first-level-3" class="collapse">
                         <ul>
-
                             <li>
                                 <a href="@Url.Action("Sales_Target", "Sales_Target")" data-toggle="collapse" data-target="#second-level-2">Sales Target</a>
-
                             </li>
                             <li>
                                 <a href="@Url.Action("Sales_Achievement_report", "Sales_Achievement_report")" data-toggle="collapse" data-target="#second-level-3">Sales Achievement report</a>
@@ -96,8 +68,6 @@
                             </li>
                         </ul>
                     </div>
-
-
                     <a href="#" data-toggle="collapse" data-target="#first-level-4">Finance<span class="caret arrow"></span></a>
                     <div id="first-level-4" class="collapse">
                         <ul>
@@ -112,30 +82,9 @@
                             </li>
                         </ul>
                     </div>
-
-
-
-
-
-
-                    <a href="@Url.Action("Daily_Activity_report", "Daily_Activity_report")" data-toggle="collapse" data-target="#first-level-5">Daily Activity Report</a>
-                                  
-
-
+                        <a href="@Url.Action("Daily_Activity_report", "Daily_Activity_report")" data-toggle="collapse" data-target="#first-level-5">Daily Activity Report</a>
                                 </ul>
                             </div>
-                            <!-- /#sidebar-wrapper -->
-                            <!-- Page Content -->
-                            @*<div id="page-content-wrapper">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-
-                        </div>
-                    </div>
-                </div>
-            </div>*@
-                            <!-- /#page-content-wrapper -->
 </div>
 
 
@@ -147,25 +96,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
                     <a href="#menu-toggle" class="menu-icon" id="menu-toggle"></a>
-               
-                @*@Html.ActionLink("Capital Insurance", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" width="60" /></a></li>
                     <li><a href="@Url.Action("Index", "Home")"><img src="~/Images/home.png" /></a></li>
-                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
-
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
-        
+        @RenderBody()        
     </div>
 
     @Scripts.Render("~/bundles/jquery")
