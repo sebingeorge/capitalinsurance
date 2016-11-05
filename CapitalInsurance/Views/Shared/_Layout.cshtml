@@ -110,8 +110,11 @@
     <div class="container body-content">
         @RenderBody()        
     </div>
-
+    <div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script>

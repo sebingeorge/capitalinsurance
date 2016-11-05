@@ -1,9 +1,12 @@
-﻿<div class="row">
+﻿@model Capital.Domain.Customer
+@{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(); }
+<div class="row">
     <div class="col-md-12">
         <div class="row form-group">
             <div class="col-md-3">
                 <label>Customer Name</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.CusName, new { @class = "form_input"})
+                @Html.ValidationMessageFor(m => m.CusName, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -14,7 +17,8 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Customer Short Name</label>
-                <input type="text" class="form_input half" />
+                @Html.TextBoxFor(m => m.CusShortName, new { @class = "form_input half" })
+                @Html.ValidationMessageFor(m => m.CusShortName, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-12">
                 <label>Customer Category</label>
@@ -23,14 +27,10 @@
                     <option value="">Customer Category 2</option>
                 </select>
             </div>
-
         </div>
     </div>
-
     <div class="col-md-3">
         <div class="row form-group">
-
-
             <div class="col-md-12">
                 <label>Region</label>
                 <select class="form_input">
@@ -38,22 +38,18 @@
                     <option value="">Region 2</option>
                 </select>
             </div>
-
             <div class="col-md-6">
                 <label>No of Employees</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.EmployeeNo, new { @class = "form_input" })
             </div>
             <div class="col-md-6">
                 <label>No of Premises</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.PremisNo, new { @class = "form_input" })
             </div>
-
-
         </div>
     </div>
     <div class="col-md-3">
         <div class="row form-group">
-
             <div class="col-md-12">
                 <label>Sales Manager</label>
                 <select class="form_input">
@@ -61,35 +57,24 @@
                     <option value="">Sales Manager 2</option>
                 </select>
             </div>
-
-
-
-
-
         </div>
     </div>
-
-
     <div class="col-md-3">
         <div class="row form-group">
-
             <div class="col-md-12">
                 <label>prospective client</label>
                 <div class="row">
+                    @Html.HiddenFor(m => m.IsProspectiveClient, new { @value="Yes"})
                     <div class="col-md-12 main-check1">
                         <label class="check1">Yes</label>
-                        <input type="checkbox" name="" value="">
+                        <input type="checkbox" name="" value="" id="YesChkBox" onchange="IsProspectiveClientChecked()" checked="checked">
                         <label class="check1">No</label>
-                        <input type="checkbox" name="" value="" checked>
+                        <input type="checkbox" name="" value="" id="NoChkBox"  onchange="NotProspectiveClient()">
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     </div>
-
 </div>
 
 <hr />
@@ -99,12 +84,8 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Name</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.ContactName, new { @class = "form_input" })
             </div>
-
-
-
-
         </div>
     </div>
 
@@ -112,44 +93,32 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Designation</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.Designation, new { @class = "form_input" })
             </div>
-
-
-
         </div>
     </div>
     <div class="col-md-3">
         <div class="row form-group">
             <div class="col-md-6">
                 <label>Office No.</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.OfficeNo, new { @class = "form_input" })
             </div>
-
             <div class="col-md-6">
                 <label>Mobile No.</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.MobileNo, new { @class = "form_input" })
             </div>
-
         </div>
     </div>
-
-
     <div class="col-md-3">
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Email ID</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.EmailId, new { @class = "form_input" })
             </div>
-
-
-
         </div>
     </div>
-
     <div class="col-md-3">
         <div class="row form-group">
-
             <div class="col-md-6">
                 <label>State</label>
                 <select class="form_input">
@@ -165,13 +134,9 @@
                     <option value="">Country 2</option>
                 </select>
             </div>
-
-
         </div>
     </div>
-
 </div>
-
 
 <hr />
 <h2>Billing Address</h2>
@@ -180,13 +145,8 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Address 1</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.Address1, new { @class = "form_input" })
             </div>
-
-
-
-
-
         </div>
     </div>
 
@@ -194,51 +154,44 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Address 2</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.Address2, new { @class = "form_input" })
             </div>
-
-
-
-
         </div>
     </div>
     <div class="col-md-3">
         <div class="row form-group">
-
             <div class="col-md-12">
                 <label>Address 3</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.Address3, new { @class = "form_input" })
             </div>
-
-
         </div>
     </div>
-
     <div class="col-md-3">
         <div class="row form-group">
-
-
-
             <div class="col-md-6">
                 <label>Credit Period</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.CreditPeriod, new { @class = "form_input" })
             </div>
-
             <div class="col-md-6">
                 <label>Credit Amount</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.CreditAmount, new { @class = "form_input" })
             </div>
-
         </div>
     </div>
-
 </div>
-
-<div class="row">
-    <hr />
-    <div class="col-md-12">
-        <button type="button" class="form-button" onclick="Previous()">Previous</button>
-        <button type="button" class="form-button right">Save</button>
-        <button type="button" class="form-button right" onclick="Exit()">Exit</button>
-    </div>
-</div>
+<script>
+    function IsProspectiveClientChecked()
+    {
+        if ($('#YesChkBox').attr('checked')) {
+            $("#IsProspectiveClient").val("Yes");
+        }        
+        $('#NoChkBox').attr('checked', false);
+    }
+    function NotProspectiveClient()
+    {
+        if ($('#NoChkBox').attr('checked')) {
+            $("#IsProspectiveClient").val("No");
+        }        
+        $('#YesChkBox').attr('checked', false);
+    }
+</script>
