@@ -223,6 +223,14 @@
     <Content Include="images\content-head.jpg" />
     <Content Include="images\form-text.jpg" />
     <Content Include="images\home.png" />
+    <Content Include="images\icon\admin.png" />
+    <Content Include="images\icon\customer.png" />
+    <Content Include="images\icon\insurancecompany.png" />
+    <Content Include="images\icon\insuranceproduct.png" />
+    <Content Include="images\icon\newpolicy.png" />
+    <Content Include="images\icon\operation.png" />
+    <Content Include="images\icon\policyrenewal.png" />
+    <Content Include="images\icon\sales-Manager.png" />
     <Content Include="images\icon_nav.png" />
     <Content Include="images\login-head.png" />
     <Content Include="images\logo.png" />
