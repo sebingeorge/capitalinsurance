@@ -24,7 +24,6 @@ namespace Capital.DAL
                                    ,CusShortName
                                    ,RegionId
                                    ,SalesMgId
-                                   ,IsProspectiveClient
                                    ,CusCatId
                                    ,EmployeeNo
                                    ,PremisNo
@@ -45,7 +44,6 @@ namespace Capital.DAL
                                    ,@CusShortName
                                    ,@RegionId
                                    ,@SalesMgId
-                                   ,@IsProspectiveClient
                                    ,@CusCatId
                                    ,@EmployeeNo
                                    ,@PremisNo

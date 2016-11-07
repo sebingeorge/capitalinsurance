@@ -22,7 +22,6 @@ namespace Capital.Domain
         public string CusShortName { get; set; }
         public int? RegionId { get; set; }
         public int? SalesMgId { get; set; }
-        public string IsProspectiveClient { get; set; }
         public int? CusCatId { get; set; }
         public int? EmployeeNo { get; set; }
         public int? PremisNo { get; set; }
