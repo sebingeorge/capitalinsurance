@@ -25,7 +25,15 @@
         var url = '@Url.Action("PreviousCustomer", "Admin")'
         window.location = url;
     }
-
+    function Previous()
+    {
+        var url = '@Url.Action("Index")';
+        location.href = url;
+    }
+    function Exit() {
+        var url = '@Url.Action("Index","Home")';
+        location.href = url;
+    }
 </script>
 
 

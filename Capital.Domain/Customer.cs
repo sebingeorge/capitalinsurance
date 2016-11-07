@@ -21,8 +21,11 @@ namespace Capital.Domain
         [System.ComponentModel.DataAnnotations.Display(Name = "Customer Short Name")]
         public string CusShortName { get; set; }
         public int? RegionId { get; set; }
+        public string RegionName { get; set; }
         public int? SalesMgId { get; set; }
+        public string SalesMgName { get; set; }
         public int? CusCatId { get; set; }
+        public string CusCategory { get; set; }
         public int? EmployeeNo { get; set; }
         public int? PremisNo { get; set; }
         public string ContactName { get; set; }
@@ -30,8 +33,10 @@ namespace Capital.Domain
         public string OfficeNo { get; set; }
         public string MobileNo { get; set; }
         public string EmailId { get; set; }
-        public string StateId { get; set; }
+        public int? StateId { get; set; }
+        public string StateName { get; set; }
         public int? CountryId { get; set; }
+        public string CountryName { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string Address3 { get; set; }

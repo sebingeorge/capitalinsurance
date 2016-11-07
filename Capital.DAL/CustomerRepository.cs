@@ -72,5 +72,23 @@ namespace Capital.DAL
             }
             return res;
         }
+        public List<Customer> GetCustomer()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string query = @"select C.CusId, C.CusName, C.CusShortName,
+                R.RegionName, SM.SalesMgName, CC.CusCategory, S.StateName,
+                CT.CountryName, C.ContactName, C.Designation, C.OfficeNo, C.MobileNo,
+                C.EmailId
+                from Customer C
+                left join Region R on R.RegionId = C.RegionId
+                left join SalesManager SM on SM.SalesMgId = C.SalesMgId
+                left join CustomerCategory CC on CC.CusCatId = C.CusCatId
+                left join [State] S on S.StateId = C.StateId
+                left join Country CT on CT.CountryId = C.CountryId
+                order by C.CusName";
+                return connection.Query<Customer>(query).ToList();
+            }
+        }
     }
 }

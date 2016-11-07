@@ -13,7 +13,8 @@ namespace CapitalInsurance.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            return View();
+            List<Customer> lstCustomer = (new CustomerRepository()).GetCustomer();
+            return View(lstCustomer);
         }
         public ActionResult Create()
         {
@@ -57,7 +58,7 @@ namespace CapitalInsurance.Controllers
                 return View(model);
             }
             Result res = new CustomerRepository().Insert(model);
-            return View();
+            return RedirectToAction("Create");
         }
     }
 }
