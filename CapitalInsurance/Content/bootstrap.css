@@ -1655,7 +1655,7 @@ legend {
 label {
   display: inline-block;
   margin-bottom: 5px;
-  color:/*5a5c5c*/#222323;
+  color:/*#222323*/#0185b0;
   width:100%;
   /*font-weight: bold;*/
 }
@@ -4511,7 +4511,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   background-color: #fff;
   border-color: #080808;
   padding:5px;
-  height:70px;
+  height:27px;
 }
 
 .navbar-inverse .navbar-brand {

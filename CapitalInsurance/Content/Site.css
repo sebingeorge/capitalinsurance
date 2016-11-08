@@ -105,7 +105,7 @@ textarea {
      height:34px;
      position:fixed;
      left:34px;
-     top:13px;
+     top:7px;
     }
 
 .content-in 
@@ -113,7 +113,7 @@ textarea {
     border-radius:5px;
     -moz-border-radius:5px;
     background-color:#fff;
-    margin-top:25px;
+    margin-top:18px;
     /*min-height:300px;*/
 }
 
@@ -166,10 +166,10 @@ textarea {
     height:17px;
     line-height:17px;
     width:100%;
-    border:1px solid #3f3f3f;
-    color:#6b6b6b;
+    border:1px solid #d8d5d6;
+    color:#101010;
     margin-bottom:3px;
-    font-size:11px;
+    font-size:12px;
     border-radius:2px;
     -moz-border-radus:2px;
 }
@@ -360,7 +360,7 @@ table thead tr th
 {
    position: absolute;
     right: 127px;
-    top: 134px;
+    top: 125px;
 
 }
     .filter img 
@@ -421,7 +421,7 @@ table thead tr th
     border-radius:4px;
     -moz-border-radius:4px;
     padding:4px;
-    margin-top:12px;
+    margin-top:5px;
 }
     .top-button a 
     {
@@ -435,7 +435,7 @@ table thead tr th
 {
 
     float:right;
-    margin-top:20px;
+    margin-top:13px;
 }
     .alert1 .navbar-nav > li > a
     {
@@ -536,7 +536,7 @@ table thead tr th
 
 .sidebar-nav {
     position: absolute;
-    top:-7px;
+    top:-27px;
     width: 250px;
     margin: 0;
     padding: 0;
