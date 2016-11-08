@@ -345,6 +345,30 @@ table thead tr th
     padding-right:5px;
     color:#5a5c5c;
 }
+.grid-header
+{
+    border-radius:5px 5px 0 0;
+    -moz-border-radius:5px 5px 0 0;
+    color:#fff;
+    background:#10a4d4;
+    height:18px;
+    /*line-height:18px;*/
+    padding-left:5px;
+    padding-right:5px;
+}
+.filter 
+{
+   position: absolute;
+    right: 127px;
+    top: 134px;
+
+}
+    .filter img 
+    {
+    border-radius:5px;
+    -moz-border-radius:5px;
+    }
+ 
 .photo 
 {
     width:80px;
@@ -390,6 +414,52 @@ table thead tr th
 {
     font-size:11px;
 }
+.top-button
+{
+    background-color:#10a4d4;
+    font-size:12px;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    padding:4px;
+    margin-top:12px;
+}
+    .top-button a 
+    {
+        color:#fff !important;
+    }
+        .top-button a:hover 
+    {
+        color:#4dcdf7 !important;
+    }
+.alert1
+{
+
+    float:right;
+    margin-top:20px;
+}
+    .alert1 .navbar-nav > li > a
+    {
+    background-color:#10a4d4;
+    font-size:11px;
+    border-radius:20px;
+    -moz-border-radius:20px;
+    color:#fff !important;
+    text-decoration:none;
+    color:#fff !important;
+    line-height:13px;
+    padding:1px 5px !important;
+    }
+        .alert1 .navbar-nav > li > a:hover, .alert1 .navbar-nav > li > a:active, .alert1 .navbar-nav > li > a:focus
+    {
+    background-color:#4dcdf7;
+    font-size:11px;
+    border-radius:20px;
+    -moz-border-radius:20px;
+    color:#fff !important;
+    text-decoration:none;
+    color:#fff !important;
+    line-height:13px;
+    }
 /*.text-outer 
 {
     border:3px solid #f1f5f8;
@@ -466,7 +536,7 @@ table thead tr th
 
 .sidebar-nav {
     position: absolute;
-    top:-16px;;
+    top:-7px;
     width: 250px;
     margin: 0;
     padding: 0;

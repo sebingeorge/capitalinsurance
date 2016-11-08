@@ -232,6 +232,7 @@
     <Content Include="images\icon\customer.png" />
     <Content Include="images\icon\dailyactivityreport.png" />
     <Content Include="images\icon\endorsement.png" />
+    <Content Include="images\icon\filter.png" />
     <Content Include="images\icon\finance.png" />
     <Content Include="images\icon\insurancecompany.png" />
     <Content Include="images\icon\insuranceproduct.png" />

@@ -103,7 +103,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" width="60" /></a></li>
-                    <li><a href="@Url.Action("Index", "Home")"><img src="~/Images/home.png" /></a></li>
+                    <li class="top-button"><a href="@Url.Action("Index", "Home")">@*<img src="~/Images/home.png" />*@Home</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
