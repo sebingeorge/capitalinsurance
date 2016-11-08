@@ -195,6 +195,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Policy_RenewalController.cs" />
     <Compile Include="Controllers\ReceivableReportController.cs" />
+    <Compile Include="Controllers\SalesManagerController.cs" />
     <Compile Include="Controllers\Sales_Achievement_reportController.cs" />
     <Compile Include="Controllers\Sales_TargetController.cs" />
     <Compile Include="Global.asax.cs">
@@ -368,6 +369,8 @@
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\Customer\_CustomerGrid.cshtml" />
+    <Content Include="Views\SalesManager\Create.cshtml" />
+    <Content Include="Views\SalesManager\_Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
