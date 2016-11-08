@@ -1,0 +1,23 @@
+﻿@model Capital.Domain.SalesManager
+@{
+    ViewBag.Title = "Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container content-in">
+    <div class="row">
+        <h1>Sales Manager</h1>
+    </div>
+    @Html.Partial("_Form")
+</div>
+
+
+<script>
+    function Previous() {
+        var url = '@Url.Action("PreviousEmployee", "Admin")'
+        window.location = url;
+    }
+
+</script>
+
+
