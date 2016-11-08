@@ -9,6 +9,9 @@ namespace Capital.Domain
     public class SalesManager
     {
         public int SalesMgId { get; set; }
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Sales Manager Code is Required")]
+        [System.ComponentModel.DataAnnotations.Display(Name = "Sales Manager Code")]
+        public string SalesMgCode { get; set; }
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Sales Manager Name is Required")]
         [System.ComponentModel.DataAnnotations.Display(Name = "Sales Manager")]
         public string SalesMgName { get; set; }

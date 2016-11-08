@@ -8,9 +8,19 @@
     <div class="row">
         <h1>Sales Manager</h1>
     </div>
-    @Html.Partial("_Form")
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
+    {
+        @Html.Partial("_Form")
+        <div class="row">
+            <hr />
+            <div class="col-md-12">
+                <button type="button" class="form-button" onclick="Previous()">Previous</button>
+                <button type="submit" class="form-button right">Save</button>
+                <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+            </div>
+        </div>
+    }    
 </div>
-
 
 <script>
     function Previous() {
