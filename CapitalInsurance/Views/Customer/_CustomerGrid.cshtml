@@ -1,0 +1,21 @@
+﻿@model List<Capital.Domain.Customer>
+@using GridMvc.Html
+<div class="table-responsive scroll3">
+    @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(m => m.CusName).Titled("Customer").SetWidth(12);
+        columns.Add(m => m.CusShortName).Titled("Short Name").SetWidth(10);
+        columns.Add(m => m.RegionName).Titled("Region").SetWidth(7);
+        columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(7);
+        columns.Add(m => m.CusCategory).Titled("Category").SetWidth(7);
+        columns.Add(m => m.StateName).Titled("State").SetWidth(7);
+        columns.Add(m => m.CountryName).Titled("Country").SetWidth(7);
+        columns.Add(m => m.ContactName).Titled("Contact").SetWidth(7);
+        columns.Add(m => m.Designation).Titled("Designation").SetWidth(7);
+        columns.Add(m => m.OfficeNo).Titled("Office No.").SetWidth(7);
+        columns.Add(m => m.MobileNo).Titled("Mobile No.").SetWidth(7);
+        columns.Add(m => m.EmailId).Titled("Email").SetWidth(7);
+        @*columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(o => @<a href="@Url.Action("Edit", new { Id = o.ItemId})">Edit</a>);
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(o => @<a href="@Url.Action("Delete", new { Id = o.ItemId})">Delete</a>);*@
+    }).WithPaging(15)
+    </div>
