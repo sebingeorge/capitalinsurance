@@ -19,7 +19,8 @@
         </div>
     </div>
     <hr />
-    <div class="table-responsive scroll3">
+    @Html.Partial("_CustomerGrid", Model)
+    @*<div class="table-responsive scroll3">
         <table class="table table-bordered" id="tab_logic">
             <thead>
                 <tr class="grid_heading">
@@ -63,7 +64,7 @@
                 }                
             </tbody>
         </table>
-    </div>
+    </div>*@
     <div class="row">
         <hr />
         <div class="col-md-offset-8 col-md-4">
