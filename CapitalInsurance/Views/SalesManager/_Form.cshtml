@@ -4,7 +4,8 @@
         <div class="row form-group">
             <div class="col-md-3">
                 <label>Employee ID</label>
-                <input type="text" class="form_input half" />
+                @Html.TextBoxFor(m => m.SalesMgCode, new { @class = "form_input half" })
+                @Html.ValidationMessageFor(m => m.SalesMgCode, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -15,7 +16,8 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Employee Name</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.SalesMgName, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.SalesMgName, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -48,10 +50,10 @@
     </div>
     <div class="col-md-3">
         <div class="row form-group">
-            <div class="col-md-6">
+            @*<div class="col-md-6">
                 <label>Designation ID</label>
                 <input type="text" class="form_input" />
-            </div>
+            </div>*@
             <div class="col-md-6">
                 <label>Nationality</label>
                 <select class="form_input">
@@ -91,7 +93,8 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Address 1</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.CurrentAddress1, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.CurrentAddress1, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -99,7 +102,8 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Address 2</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.CurrentAddress2, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.CurrentAddress2, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -107,7 +111,8 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Address 3</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.CurrentAddress1, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.CurrentAddress2, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -140,7 +145,8 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Address 1</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.PermanantAddress1, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.PermanantAddress1, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -148,7 +154,8 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Address 2</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.PermanantAddress2, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.PermanantAddress2, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -156,7 +163,8 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Address 3</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.PermanantAddress3, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.PermanantAddress3, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -164,10 +172,8 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label>State</label>
-                <select class="form_input">
-                    <option value="">State 1</option>
-                    <option value="">State 2</option>
-                </select>
+                @Html.TextBoxFor(m => m.PermanantState, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.PermanantState, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-md-6">
@@ -189,11 +195,13 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Qatar contact number</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.QuatarContactNo, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.QuatarContactNo, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-12">
                 <label>Official Email</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.OfficeEmail, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.OfficeEmail, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -201,11 +209,13 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Home country contact number</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.HomeCountryContactNo, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.HomeCountryContactNo, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-12">
                 <label>Personal Email</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.PersonalEmail, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.PersonalEmail, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -215,11 +225,13 @@
 
             <div class="col-md-6">
                 <label>Passport No.</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.PassportNo, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.PassportNo, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-6">
                 <label>Visa / Residence ID</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.VisaOrResId, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.VisaOrResId, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-3">
                 <label>Issue Date</label>
@@ -244,11 +256,13 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Date of Joining</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.DateOfJoining, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.DateOfJoining, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-12">
                 <label>Date of Birth</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -257,11 +271,4 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <hr />
-    <div class="col-md-12">
-        <button type="button" class="form-button" onclick="Previous()">Previous</button>
-        <button type="button" class="form-button right">Save</button>
-        <button type="button" class="form-button right" onclick="Exit()">Exit</button>
-    </div>
-</div>
+

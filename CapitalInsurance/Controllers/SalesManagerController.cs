@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace CapitalInsurance.Controllers
 {
-    public class SalesManagerController : Controller
+    public class SalesManagerController : BaseController
     {
         // GET: SalesManager
         public ActionResult Index()
@@ -17,6 +17,16 @@ namespace CapitalInsurance.Controllers
         public ActionResult Create()
         {
             return View(new SalesManager());
+        }
+        [HttpPost]
+        public ActionResult Create(SalesManager model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return View(model);
+            }
+            return RedirectToAction("Create");
         }
     }
 }
