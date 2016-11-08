@@ -1655,7 +1655,7 @@ legend {
 label {
   display: inline-block;
   margin-bottom: 5px;
-  color:/*#222323*/#0185b0;
+  color:/*#222323*/#d74138;
   width:100%;
   /*font-weight: bold;*/
 }
@@ -3282,7 +3282,7 @@ input[type="button"].btn-block {
 .dropdown-menu > li > a:focus {
   color: #ffffff;
   text-decoration: none;
-  background-color: #41bde5;
+  background-color: #eac6c2/*#41bde5*/;
   border-radius:6px;
   -moz-border-radius:10px;
   margin-left:8px;
@@ -4014,13 +4014,13 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .nav .caret {
-  border-top-color: #428bca;
-  border-bottom-color: #428bca;
+  border-top-color:#fff /*#428bca*/;
+  border-bottom-color:#fff /*#428bca*/;
 }
 
 .nav a:hover .caret {
-  border-top-color: #2a6496;
-  border-bottom-color: #2a6496;
+  border-top-color:#93241e /*#2a6496*/;
+  border-bottom-color:#93241e /*#2a6496*/;
 }
 
 .nav-tabs .dropdown-menu {
