@@ -29,6 +29,7 @@ namespace CapitalInsurance.Controllers
             return View("Create", objCustomer);
            
         }
+
         void FillDropdowns()
         {
             FillRegion();
@@ -67,6 +68,17 @@ namespace CapitalInsurance.Controllers
             }
             Result res = new CustomerRepository().Insert(model);
             return RedirectToAction("Create");
+        }
+        [HttpPost]
+        public ActionResult Edit(Customer model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return View(model);
+            }
+            Result res = new CustomerRepository().Update(model);
+            return RedirectToAction("Index");
         }
     }
 }

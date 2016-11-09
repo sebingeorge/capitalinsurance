@@ -107,5 +107,47 @@ namespace Capital.DAL
 
 
         }
+
+        public Result Update(Customer model)
+        {
+            Result res = new Result(false);
+            try
+            {
+                using (IDbConnection connection = OpenConnection(dataConnection))
+                {
+                    string sql = @" UPDATE Customer SET 
+                                   CusName=@CusName
+                                   ,CusShortName=@CusShortName
+                                   ,RegionId=@RegionId
+                                   ,SalesMgId=@SalesMgId
+                                   ,CusCatId=@CusCatId
+                                   ,EmployeeNo=@EmployeeNo
+                                   ,PremisNo=@PremisNo
+                                   ,ContactName=@ContactName
+                                   ,Designation=@Designation
+                                   ,OfficeNo=@OfficeNo
+                                   ,MobileNo=@MobileNo
+                                   ,EmailId=@EmailId
+                                   ,StateId=@StateId
+                                   ,CountryId=@CountryId
+                                   ,Address1=@Address1
+                                   ,Address2=@Address2
+                                   ,Address3=@Address3
+                                   ,CreditPeriod=@CreditPeriod
+                                   ,CreditAmount=@CreditAmount WHERE CusId=@CusId";
+                    int id = connection.Execute(sql, model);
+                    //int id = connection.Query<int>(sql, model).Single();
+                    if (id > 0)
+                    {
+                        return (new Result(true));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return (new Result(false, ex.InnerException == null ? ex.Message : ex.InnerException.Message));
+            }
+            return res;
+        }
     }
 }

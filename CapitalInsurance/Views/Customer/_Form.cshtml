@@ -5,6 +5,7 @@
         <div class="row form-group">
             <div class="col-md-3">
                 <label>Customer Name</label>
+                @Html.HiddenFor(m => m.CusId)
                 @Html.TextBoxFor(m => m.CusName, new { @class = "form_input"})
                 @Html.ValidationMessageFor(m => m.CusName, "", new { @class = "text-danger" })
             </div>
