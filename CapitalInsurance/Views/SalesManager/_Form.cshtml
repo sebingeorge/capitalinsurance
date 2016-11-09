@@ -1,4 +1,15 @@
 ﻿@model Capital.Domain.SalesManager
+
+<script>
+    function ShowDepartment() {
+        var x = screen.width / 2 - 600 / 2;
+        var y = screen.height / 2 - 300 / 2;
+        var url = '@Url.Action("DepartmentPopup", "SalesManager")';
+        var popup = window.open(url, "DepartmentPopup", 'width=500,height=300,menubar=no,status=no,titlebar=no,location=no,scrollbars=no,left=' + x + ',top=' + y);
+        popup.focus();
+        return false;
+    }
+</script>
 <div class="row">
     <div class="col-md-12">
         <div class="row form-group">
@@ -29,7 +40,7 @@
                 <input type="checkbox" name="" value=""> Female
             </div>
             <div class="col-md-6">
-                <label>marital status</label>
+                <label>Marital Status</label>
                 <select class="form_input">
                     <option value="">Single</option>
                     <option value="">Married</option>
@@ -39,13 +50,10 @@
     </div>
     <div class="col-md-3">
         <div class="row form-group">
-            <div class="col-md-12">
-                <label>Designation</label>
-                <select class="form_input">
-                    <option value="">Designation 1</option>
-                    <option value="">Designation 2</option>
-                </select>
-            </div>
+            <div class="col-md-6">
+            <label>Designation</label>
+            @Html.DropDownListFor(m => Model.DsgId, (SelectList)ViewBag.Designation, "Select Designation", new { @class = "form_input", autocomplete = "off" })
+        </div>
         </div>
     </div>
     <div class="col-md-3">
@@ -54,12 +62,9 @@
                 <label>Designation ID</label>
                 <input type="text" class="form_input" />
             </div>*@
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label>Nationality</label>
-                <select class="form_input">
-                    <option value="">India</option>
-                    <option value="">Qatar</option>
-                </select>
+                @Html.DropDownListFor(m => Model.CountryId, (SelectList)ViewBag.Country, "Select Nationality", new { @class = "form_input", autocomplete = "off" })
             </div>
         </div>
     </div>
@@ -69,8 +74,9 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Department</label>
-                <input type="text" class="form_input nzero" />
-                <button type="button" class="create right">...</button>
+                @*<input type="text" class="form_input nzero" />*@
+                @Html.TextBoxFor(m => m.Deptment, new { @class = "form_input nzero", autocomplete = "off" })
+                <button type="button" class="create right" onclick="ShowDepartment()">...</button>
             </div>
         </div>
     </div>
@@ -120,18 +126,20 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label>State</label>
-                <select class="form_input">
+                @Html.DropDownListFor(m => Model.StateId, (SelectList)ViewBag.State, "Select State", new { @class = "form_input", autocomplete = "off" })
+                @*<select class="form_input">
                     <option value="">State 1</option>
                     <option value="">State 2</option>
-                </select>
+                </select>*@
             </div>
 
             <div class="col-md-6">
                 <label>Country</label>
-                <select class="form_input">
+                @Html.DropDownListFor(m => Model.CountryId, (SelectList)ViewBag.Country, "Select Country", new { @class = "form_input", autocomplete = "off" })
+                @*<select class="form_input">
                     <option value="">Country 1</option>
                     <option value="">Country 2</option>
-                </select>
+                </select>*@
             </div>
         </div>
     </div>
@@ -178,10 +186,8 @@
 
             <div class="col-md-6">
                 <label>Country</label>
-                <select class="form_input">
-                    <option value="">Country 1</option>
-                    <option value="">Country 2</option>
-                </select>
+                @Html.TextBoxFor(m => m.PermanantCountry, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.PermanantCountry, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -194,7 +200,7 @@
     <div class="col-md-3">
         <div class="row form-group">
             <div class="col-md-12">
-                <label>Qatar contact number</label>
+                <label>Qatar Contact Number</label>
                 @Html.TextBoxFor(m => m.QuatarContactNo, new { @class = "form_input" })
                 @Html.ValidationMessageFor(m => m.QuatarContactNo, "", new { @class = "text-danger" })
             </div>
@@ -208,7 +214,7 @@
     <div class="col-md-3">
         <div class="row form-group">
             <div class="col-md-12">
-                <label>Home country contact number</label>
+                <label>Home Country Contact Number</label>
                 @Html.TextBoxFor(m => m.HomeCountryContactNo, new { @class = "form_input" })
                 @Html.ValidationMessageFor(m => m.HomeCountryContactNo, "", new { @class = "text-danger" })
             </div>

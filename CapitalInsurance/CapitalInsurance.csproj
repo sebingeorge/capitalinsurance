@@ -375,6 +375,8 @@
     <Content Include="Views\SalesManager\_Form.cshtml" />
     <Content Include="Views\InsuranceCompany\Create.cshtml" />
     <Content Include="Views\InsuranceCompany\_Form.cshtml" />
+    <Content Include="Views\SalesManager\DepartmentPopup.cshtml" />
+    <Content Include="Views\Shared\_LayoutPopup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
