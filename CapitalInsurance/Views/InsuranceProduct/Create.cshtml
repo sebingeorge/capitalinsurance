@@ -1,0 +1,32 @@
+﻿@model Capital.Domain.InsuranceProduct
+@{
+    ViewBag.Title = "InsuranceProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container content-in">
+    <div class="row">
+        <h1>Insurance Product</h1>
+    </div>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
+    {
+        @Html.Partial("_Form", Model)
+        <div class="row">
+            <hr />
+            <div class="col-md-12">
+                <button type="submit" class="form-button" onclick="Previous()">Previous</button>
+                <button type="button" class="form-button right">Save</button>
+                <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+            </div>
+        </div>
+    }    
+</div>
+
+<script>
+    function Previous() {
+        var url = '@Url.Action("PreviousInsuranceProduct", "Admin")'
+        window.location = url;
+    }
+
+</script>
+
+
