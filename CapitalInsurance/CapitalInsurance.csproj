@@ -377,11 +377,12 @@
     <Content Include="Views\InsuranceCompany\_Form.cshtml" />
     <Content Include="Views\SalesManager\DepartmentPopup.cshtml" />
     <Content Include="Views\Shared\_LayoutPopup.cshtml" />
+    <Content Include="Views\InsuranceProduct\Create.cshtml" />
+    <Content Include="Views\InsuranceProduct\_Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\InsuranceProduct\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
