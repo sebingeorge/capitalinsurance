@@ -49,6 +49,8 @@
     <Compile Include="EmailAddress.cs" />
     <Compile Include="InsuranceCompany.cs" />
     <Compile Include="InsuranceProduct.cs" />
+    <Compile Include="InsuranceProductParameter.cs" />
+    <Compile Include="InsuranceProductVsParameter.cs" />
     <Compile Include="InsuranceType.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
