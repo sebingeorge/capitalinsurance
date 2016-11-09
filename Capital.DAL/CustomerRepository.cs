@@ -107,7 +107,6 @@ namespace Capital.DAL
 
 
         }
-
         public Result Update(Customer model)
         {
             Result res = new Result(false);
@@ -136,7 +135,6 @@ namespace Capital.DAL
                                    ,CreditPeriod=@CreditPeriod
                                    ,CreditAmount=@CreditAmount WHERE CusId=@CusId";
                     int id = connection.Execute(sql, model);
-                    //int id = connection.Query<int>(sql, model).Single();
                     if (id > 0)
                     {
                         return (new Result(true));
@@ -149,5 +147,27 @@ namespace Capital.DAL
             }
             return res;
         }
+        public Result Delete(Customer model)
+        {
+            Result res = new Result(false);
+            try
+            {
+                using (IDbConnection connection = OpenConnection(dataConnection))
+                {
+                    string sql = @" Delete from Customer WHERE CusId=@CusId";
+                    int id = connection.Execute(sql, model);
+                    if (id > 0)
+                    {
+                        return (new Result(true));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return (new Result(false, ex.InnerException == null ? ex.Message : ex.InnerException.Message));
+            }
+            return res;
+        }
+
     }
 }

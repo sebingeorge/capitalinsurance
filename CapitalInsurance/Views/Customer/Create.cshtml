@@ -18,7 +18,12 @@
             <div class="col-md-12">
                 <button type="button" class="form-button" onclick="Previous()">Previous</button>
                 @if (actionName == "Edit")
-                { <button type="submit" class="form-button right">Update</button>
+                { 
+                    <button type="submit" class="form-button right">Update</button>
+                }
+                else if (actionName == "Delete")
+                { 
+                    <button type="submit" class="form-button right">Delete</button>
                 }
                 else
                 {
