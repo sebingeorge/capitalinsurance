@@ -70,7 +70,7 @@ namespace CapitalInsurance.Controllers
 
             if (res.Value)
             {
-                TempData["notice"] = "Updated Successfully"; 
+                TempData["Success"] = "Updated Successfully!";
             }
             else
             {
