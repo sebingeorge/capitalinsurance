@@ -90,5 +90,22 @@ namespace Capital.DAL
                 return connection.Query<Customer>(query).ToList();
             }
         }
+        public Customer GetCustomer(int Id)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"select * from Customer where CusId=@Id";
+                       
+
+                var objCustomer = connection.Query<Customer>(sql, new
+                {
+                    Id = Id
+                }).First<Customer>();
+
+                return objCustomer;
+            }
+
+
+        }
     }
 }

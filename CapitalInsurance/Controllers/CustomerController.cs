@@ -21,6 +21,14 @@ namespace CapitalInsurance.Controllers
             FillDropdowns();
             return View(new Customer());
         }
+        public ActionResult Edit(int Id)
+        {
+            ViewBag.Title = "Edit";
+            FillDropdowns();
+            Customer objCustomer = new CustomerRepository().GetCustomer(Id);
+            return View("Create", objCustomer);
+           
+        }
         void FillDropdowns()
         {
             FillRegion();

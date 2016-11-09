@@ -13,7 +13,7 @@ namespace Capital.Domain
         {
            
         }
-        public int CustomerId { get; set; }
+        public int CusId { get; set; }
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage="Customer Name is Required")]
         [System.ComponentModel.DataAnnotations.Display(Name = "Customer Name")]
         public string CusName { get; set; }

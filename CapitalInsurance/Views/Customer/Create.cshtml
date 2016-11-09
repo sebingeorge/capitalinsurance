@@ -2,7 +2,10 @@
 @{
     ViewBag.Title = "Customer";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+  }
+
+    @{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(); }
+
 <div class="container content-in">
     <div class="row">
         <h1>Customer</h1>
@@ -14,7 +17,14 @@
             <hr />
             <div class="col-md-12">
                 <button type="button" class="form-button" onclick="Previous()">Previous</button>
-                <button type="submit" class="form-button right">Save</button>
+                @if (actionName == "Edit")
+                { <button type="submit" class="form-button right">Update</button>
+                }
+                else
+                {
+                    <button type="submit" class="form-button right">Save</button>
+                }                                                                
+               
                 <button type="button" class="form-button right" onclick="Exit()">Exit</button>
             </div>
         </div>
