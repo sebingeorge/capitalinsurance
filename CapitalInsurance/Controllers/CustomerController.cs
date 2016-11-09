@@ -21,6 +21,21 @@ namespace CapitalInsurance.Controllers
             FillDropdowns();
             return View(new Customer());
         }
+        public ActionResult Edit(int Id)
+        {
+            ViewBag.Title = "Edit";
+            FillDropdowns();
+            Customer objCustomer = new CustomerRepository().GetCustomer(Id);
+            return View("Create", objCustomer);
+           
+        }
+        public ActionResult Delete(int Id)
+        {
+            ViewBag.Title = "Delete";
+            FillDropdowns();
+            Customer objCustomer = new CustomerRepository().GetCustomer(Id);
+            return View("Create", objCustomer);
+        }
         void FillDropdowns()
         {
             FillRegion();
@@ -28,6 +43,47 @@ namespace CapitalInsurance.Controllers
             FillState();
             FillCustomerCategory();
             FillCountry();
+        }
+      
+        [HttpPost]
+        public ActionResult Create(Customer model)
+        {
+            if(!ModelState.IsValid)
+            {
+                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return View(model);
+            }
+            Result res = new CustomerRepository().Insert(model);
+            return RedirectToAction("Create");
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Customer model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return View(model);
+            }
+            Result res = new CustomerRepository().Update(model);
+           
+
+            if (res.Value)
+            {
+                TempData["notice"] = "Updated Successfully"; 
+            }
+            else
+            {
+
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Customer model)
+        {
+            Result res = new CustomerRepository().Delete(model);
+            return RedirectToAction("Index");
         }
         void FillRegion()
         {
@@ -48,17 +104,6 @@ namespace CapitalInsurance.Controllers
         void FillCountry()
         {
             ViewBag.Country = new SelectList((new CountryRepository()).GetCountry(), "CountryId", "CountryName");
-        }
-        [HttpPost]
-        public ActionResult Create(Customer model)
-        {
-            if(!ModelState.IsValid)
-            {
-                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
-                return View(model);
-            }
-            Result res = new CustomerRepository().Insert(model);
-            return RedirectToAction("Create");
         }
     }
 }
