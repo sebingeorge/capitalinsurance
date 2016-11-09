@@ -186,6 +186,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\Customer_InvoiceController.cs" />
     <Compile Include="Controllers\Daily_Activity_reportController.cs" />
+    <Compile Include="Controllers\InsuranceCompanyController.cs" />
     <Compile Include="Controllers\MeetingScheduleController.cs" />
     <Compile Include="Controllers\New_PolicyController.cs" />
     <Compile Include="Controllers\PayableReportController.cs" />
@@ -371,6 +372,8 @@
     <Content Include="Views\Customer\_CustomerGrid.cshtml" />
     <Content Include="Views\SalesManager\Create.cshtml" />
     <Content Include="Views\SalesManager\_Form.cshtml" />
+    <Content Include="Views\InsuranceCompany\Create.cshtml" />
+    <Content Include="Views\InsuranceCompany\_Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

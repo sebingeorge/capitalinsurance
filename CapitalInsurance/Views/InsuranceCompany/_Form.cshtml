@@ -1,0 +1,64 @@
+﻿@model Capital.Domain.InsuranceCompany
+<div class="row">
+    <div class="col-md-12">
+        <div class="row form-group">
+            <div class="col-md-3">
+                <label>Company Name</label>
+                @Html.TextBoxFor(m => m.InsCmpName, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.InsCmpName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="row form-group">
+            <div class="col-md-12">
+                <label>Address 1</label>
+                @Html.TextBoxFor(m => m.Address1, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-12">
+                <label>Contact Person</label>
+                @Html.TextBoxFor(m => m.ContactPerson, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.ContactPerson, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="row form-group">
+            <div class="col-md-12">
+                <label>Address 2</label>
+                @Html.TextBoxFor(m => m.Address2, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-12">
+                <label>Contact No.</label>
+                @Html.TextBoxFor(m => m.ContactNo, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.ContactNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="row form-group">
+            <div class="col-md-12">
+                <label>Address 3</label>
+                @Html.TextBoxFor(m => m.Address3, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.Address3, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="row form-group">
+            <div class="col-md-12">
+                <label>Email</label>
+                <input type="text" class="form_input" />
+            </div>
+            <div class="col-md-12">
+                <label>Designation</label>
+                <input type="text" class="form_input" />
+            </div>
+        </div>
+    </div>
+</div>
