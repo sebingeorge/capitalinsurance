@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Capital.Domain;
+using Capital.DAL;
 
 namespace CapitalInsurance.Controllers
 {
-    public class InsuranceCompanyController : Controller
+    public class InsuranceCompanyController : BaseController
     {
         // GET: InsuranceCompany
         public ActionResult Index()
@@ -26,7 +27,7 @@ namespace CapitalInsurance.Controllers
                 var allErrors = ModelState.Values.SelectMany(v => v.Errors);
                 return View(model);
             }
-            //Result res = new SalesManagerRepository().Insert(model);
+            Result res = new InsuranceCompanyRepository().Insert(model);
             return RedirectToAction("Create");
         }
     }

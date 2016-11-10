@@ -47,18 +47,21 @@
                 @Html.TextBoxFor(m => m.Address3, new { @class = "form_input" })
                 @Html.ValidationMessageFor(m => m.Address3, "", new { @class = "text-danger" })
             </div>
+            <div class="col-md-12">
+                <label>Designation</label>
+                @Html.TextBoxFor(m => m.Designation, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.Designation, "", new { @class = "text-danger" })
+            </div>
         </div>
     </div>
     <div class="col-md-3">
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Email</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.Email, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-12">
-                <label>Designation</label>
-                <input type="text" class="form_input" />
-            </div>
+          
         </div>
     </div>
 </div>
