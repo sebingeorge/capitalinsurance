@@ -21,8 +21,8 @@ namespace Capital.Domain
         public string MaritalStatus { get; set; }
         public int? DsgId { get; set; }
         public int? CountryId { get; set; }
-        public int? Deptment { get; set; }
-        public int? Location { get; set; }
+        public string Deptment { get; set; }
+        public string Location { get; set; }
         public string CurrentAddress1 { get; set; }
         public string CurrentAddress2 { get; set; }
         public string CurrentAddress3 { get; set; }
@@ -31,7 +31,7 @@ namespace Capital.Domain
         public string PermanantAddress2 { get; set; }
         public string PermanantAddress3 { get; set; }
         public string PermanantState { get; set; }
-        public int? PermanantCountry { get; set; }
+        public string PermanantCountry { get; set; }
         public string QuatarContactNo { get; set; }
         public string HomeCountryContactNo { get; set; }
         public string PassportNo { get; set; }

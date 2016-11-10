@@ -61,6 +61,7 @@ namespace Capital.DAL
                                    (@SalesMgCode
                                    ,@SalesMgName
                                    ,@Gender
+                                   ,@MaritalStatus
                                    ,@DsgId
                                    ,@CountryId
                                    ,@Deptment
@@ -107,6 +108,14 @@ namespace Capital.DAL
             {
 
                 return connection.Query<Department>("SELECT DeptId ,DeptName  FROM Department").ToList();
+            }
+        }
+        public IEnumerable<Location> FillLocationList()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+
+                return connection.Query<Location>("SELECT LoctId,LoctName FROM Location").ToList();
             }
         }
     }

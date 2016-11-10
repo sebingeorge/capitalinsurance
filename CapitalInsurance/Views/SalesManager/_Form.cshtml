@@ -9,6 +9,15 @@
         popup.focus();
         return false;
     }
+    function ShowLocation() {
+        var x = screen.width / 2 - 600 / 2;
+        var y = screen.height / 2 - 300 / 2;
+        var url = '@Url.Action("LocationPopup", "SalesManager")';
+        var popup = window.open(url, "LocationPopup", 'width=500,height=300,menubar=no,status=no,titlebar=no,location=no,scrollbars=no,left=' + x + ',top=' + y);
+        popup.focus();
+        return false;
+    }
+
 </script>
 <div class="row">
     <div class="col-md-12">
@@ -36,15 +45,18 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label>Gender</label>
-                <input type="checkbox" name="" value=""> Male
-                <input type="checkbox" name="" value=""> Female
+                @*<input type="checkbox" name="" value=""> Male
+                <input type="checkbox" name="" value=""> Female*@
+                @Html.DropDownListFor(m => Model.Gender, (SelectList)ViewBag.Gender, "Select Gender", new { @class = "form_input", autocomplete = "off" })
             </div>
             <div class="col-md-6">
                 <label>Marital Status</label>
-                <select class="form_input">
+                @*<select class="form_input">
                     <option value="">Single</option>
                     <option value="">Married</option>
-                </select>
+                </select>*@
+                @Html.DropDownListFor(m => Model.MaritalStatus, (SelectList)ViewBag.MaritalStatus, "Select Marital Status", new { @class = "form_input", autocomplete = "off" })
+                @*@Html.TextBoxFor(m => m.MaritalStatus, new { @class = "form_input" })*@
             </div>
         </div>
     </div>
@@ -52,17 +64,14 @@
         <div class="row form-group">
             <div class="col-md-6">
             <label>Designation</label>
+              
             @Html.DropDownListFor(m => Model.DsgId, (SelectList)ViewBag.Designation, "Select Designation", new { @class = "form_input", autocomplete = "off" })
         </div>
         </div>
     </div>
     <div class="col-md-3">
         <div class="row form-group">
-            @*<div class="col-md-6">
-                <label>Designation ID</label>
-                <input type="text" class="form_input" />
-            </div>*@
-            <div class="col-md-12">
+                <div class="col-md-12">
                 <label>Nationality</label>
                 @Html.DropDownListFor(m => Model.CountryId, (SelectList)ViewBag.Country, "Select Nationality", new { @class = "form_input", autocomplete = "off" })
             </div>
@@ -74,7 +83,6 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Department</label>
-                @*<input type="text" class="form_input nzero" />*@
                 @Html.TextBoxFor(m => m.Deptment, new { @class = "form_input nzero", autocomplete = "off" })
                 <button type="button" class="create right" onclick="ShowDepartment()">...</button>
             </div>
@@ -84,8 +92,10 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Location</label>
-                <input type="text" class="form_input nzero" />
-                <button type="button" class="create right">...</button>
+                @Html.TextBoxFor(m => m.Location, new { @class = "form_input nzero", autocomplete = "off" })
+                <button type="button" class="create right" onclick="ShowLocation()">...</button>
+                @*<input type="text" class="form_input nzero" />
+                <button type="button" class="create right">...</button>*@
             </div>
         </div>
     </div>
@@ -117,8 +127,8 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Address 3</label>
-                @Html.TextBoxFor(m => m.CurrentAddress1, new { @class = "form_input" })
-                @Html.ValidationMessageFor(m => m.CurrentAddress2, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(m => m.CurrentAddress3, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.CurrentAddress3, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -241,19 +251,27 @@
             </div>
             <div class="col-md-3">
                 <label>Issue Date</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.PassportIssueDate, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.PassportIssueDate, "", new { @class = "text-danger" })
+                @*<input type="text" class="form_input" />*@
             </div>
             <div class="col-md-3">
                 <label>End Date</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.PassportEndDate, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.PassportEndDate, "", new { @class = "text-danger" })
+                @*<input type="text" class="form_input" />*@
             </div>
             <div class="col-md-3">
                 <label>Issue Date</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.VisaIssueDate, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.VisaIssueDate, "", new { @class = "text-danger" })
+                @*<input type="text" class="form_input" />*@
             </div>
             <div class="col-md-3">
                 <label>End Date</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.VisaEndDate, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.VisaEndDate, "", new { @class = "text-danger" })
+                @*<input type="text" class="form_input" />*@
             </div>
         </div>
     </div>

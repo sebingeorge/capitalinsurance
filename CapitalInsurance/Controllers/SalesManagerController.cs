@@ -25,10 +25,19 @@ namespace CapitalInsurance.Controllers
             FillDesignation();
             FillState();
             FillCountry();
+            FillMaritalStatus();
+            FillGender();
         }
         [HttpPost]
         public ActionResult Create(SalesManager model)
         {
+
+            model.DateOfBirth = System.DateTime.Now;
+            model.DateOfJoining = System.DateTime.Now;
+            model.PassportEndDate = System.DateTime.Now;
+            model.PassportIssueDate = System.DateTime.Now;
+            model.VisaEndDate = System.DateTime.Now;
+            model.VisaIssueDate = System.DateTime.Now;
 
             if (!ModelState.IsValid)
             {
@@ -52,9 +61,29 @@ namespace CapitalInsurance.Controllers
         {
             ViewBag.Country = new SelectList((new CountryRepository()).GetCountry(), "CountryId", "CountryName");
         }
+        void FillMaritalStatus()
+        {
+            List<Dropdown> types = new List<Dropdown>();
+            types.Add(new Dropdown { Id = 1, Name = "Single" });
+            types.Add(new Dropdown { Id = 2, Name = "Married" });
+            ViewBag.MaritalStatus = new SelectList(types, "Id", "Name");
+        }
+        void FillGender()
+        {
+            List<Dropdown> types = new List<Dropdown>();
+            types.Add(new Dropdown { Id = 1, Name = "Male" });
+            types.Add(new Dropdown { Id = 2, Name = "Female" });
+            ViewBag.Gender = new SelectList(types, "Id", "Name");
+        }
+
         public ActionResult DepartmentPopup()
         {
             var List = new SalesManagerRepository().FillDepartmentList();
+            return View(List);
+        }
+        public ActionResult LocationPopup()
+        {
+            var List = new SalesManagerRepository().FillLocationList();
             return View(List);
         }
     }
