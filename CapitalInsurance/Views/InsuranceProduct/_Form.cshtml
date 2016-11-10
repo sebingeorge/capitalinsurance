@@ -4,7 +4,9 @@
         <div class="row form-group">
             <div class="col-md-3">
                 <label>Insurance Name</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.InsPrdName, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.InsPrdName, "", new { @class = "text-danger" })
+               
             </div>
         </div>
     </div>
@@ -14,7 +16,8 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Insurance Short Name</label>
-                <input type="text" class="form_input half" />
+              @Html.TextBoxFor(m => m.InsPrdShortName, new { @class = "form_input" })
+            @Html.ValidationMessageFor(m => m.InsPrdShortName, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -22,10 +25,7 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Insurance Type</label>
-                <select class="form_input">
-                    <option value="">Insurance Type 1</option>
-                    <option value="">Insurance Type 2</option>
-                </select>
+                @Html.DropDownListFor(m => Model.InsTypeId, (SelectList)ViewBag.InsuranceType, "Select Insurance Type", new { @class = "form_input", autocomplete = "off" })
             </div>
         </div>
     </div>
@@ -33,10 +33,7 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Insurance Company</label>
-                <select class="form_input">
-                    <option value="">Insurance Company 1</option>
-                    <option value="">Insurance Company 2</option>
-                </select>
+                @Html.DropDownListFor(m => Model.InsCmpId, (SelectList)ViewBag.InsuranceCompany, "Select Insurance Company", new { @class = "form_input", autocomplete = "off" })
             </div>
         </div>
     </div>
@@ -45,50 +42,35 @@
 
             <div class="col-md-6">
                 <label>Active Date</label>
-                <input type="text" class="form_input" />
+                @Html.TextBoxFor(m => m.InsActiveDate, new { @class = "form_input" })
+                @Html.ValidationMessageFor(m => m.InsActiveDate, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
 </div>
 <hr />
-<h2>Insurance Product Parametre&nbsp;<button type="button" class="create">...</button></h2>
+<h2>Insurance Product Parameter&nbsp;<button type="button" class="create">...</button></h2>
 <div class="table-responsive scroll1">
-    <table class="table table-bordered" id="tab_logic">
-        <thead>
-            <tr class="grid_heading">
-                <th>Parametres</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
+     <table class="table table-bordered " id="tab_logic">
+        <tr class="grid_heading">
+          
+            <th width="40%"><h1>Parametres</h1></th>
+            <th width="60%"><h1>Description</h1></th>
+           
+
+        </tr>
+        @for (int i = 0; i < Model.ProductParameters.Count(); i++)
+        {
             <tr>
-                <td>10001</td>
-                <td>Description</td>
+             
+                <td width="40%">
+                @Html.TextBoxFor(model => Model.ProductParameters[i].InsPrdParamName, new { @class = "form_input", autocomplete = "off", @readonly = "readonly" })
+                @Html.HiddenFor(m => m.ProductParameters[i].InsPrdParamId)
+                </td>
+                <td width="60%">@Html.TextBoxFor(model => Model.ProductParameters[i].InsParamValue, new { @class = "form_input", autocomplete = "off" })</td>
+              
             </tr>
-            <tr>
-                <td>10001</td>
-                <td>Description</td>
-            </tr>
-            <tr>
-                <td>10001</td>
-                <td>Description</td>
-            </tr>
-            <tr>
-                <td>10001</td>
-                <td>Description</td>
-            </tr>
-            <tr>
-                <td>10001</td>
-                <td>Description</td>
-            </tr>
-            <tr>
-                <td>10001</td>
-                <td>Description</td>
-            </tr>
-            <tr>
-                <td>10001</td>
-                <td>Description</td>
-            </tr>
-        </tbody>
+        }
     </table>
+
 </div>

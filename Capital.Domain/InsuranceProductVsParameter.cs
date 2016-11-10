@@ -13,5 +13,7 @@ namespace Capital.Domain
         public int? InsPrdParamId { get; set; }
         public string InsParamValue { get; set; }
         public string InsPrdParamName { get; set; }
+
+      
     }
 }
