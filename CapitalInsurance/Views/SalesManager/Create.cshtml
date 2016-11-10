@@ -3,6 +3,12 @@
     ViewBag.Title = "Employee";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@*<link href="~/Content/bootstrap-datepicker3.min.css" rel="stylesheet" />*@
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="~/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="~/scripts/moment.min.js"></script>
+<script type="text/javascript" src="~/scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="~/scripts/bootstrap-datetimepicker.*js"></script>
 
 <div class="container content-in">
     <div class="row">
@@ -19,7 +25,7 @@
                 <button type="button" class="form-button right" onclick="Exit()">Exit</button>
             </div>
         </div>
-    }    
+    }
 </div>
 
 <script>
@@ -27,7 +33,12 @@
         var url = '@Url.Action("PreviousEmployee", "Admin")'
         window.location = url;
     }
-
+</script>
+<script>
+    $(function () {
+        $("#DateOfJoining").datepicker({ dateFormat: "dd-MM-yy" });
+        $("#DateOfBirth").datepicker({ dateFormat: "dd-MM-yy" });
+    });
 </script>
 
 
