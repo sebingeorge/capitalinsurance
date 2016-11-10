@@ -32,14 +32,7 @@ namespace CapitalInsurance.Controllers
         public ActionResult Create(SalesManager model)
         {
 
-            model.DateOfBirth = System.DateTime.Now;
-            model.DateOfJoining = System.DateTime.Now;
-            model.PassportEndDate = System.DateTime.Now;
-            model.PassportIssueDate = System.DateTime.Now;
-            model.VisaEndDate = System.DateTime.Now;
-            model.VisaIssueDate = System.DateTime.Now;
-
-            if (!ModelState.IsValid)
+             if (!ModelState.IsValid)
             {
                 var allErrors = ModelState.Values.SelectMany(v => v.Errors);
                 return View(model);

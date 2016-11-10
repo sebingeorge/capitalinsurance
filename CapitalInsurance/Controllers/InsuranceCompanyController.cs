@@ -26,6 +26,7 @@ namespace CapitalInsurance.Controllers
                 var allErrors = ModelState.Values.SelectMany(v => v.Errors);
                 return View(model);
             }
+            //Result res = new SalesManagerRepository().Insert(model);
             return RedirectToAction("Create");
         }
     }
