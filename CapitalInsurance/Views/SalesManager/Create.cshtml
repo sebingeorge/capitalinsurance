@@ -6,11 +6,11 @@
 @{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(); }
 @*<link href="~/Content/bootstrap-datepicker3.min.css" rel="stylesheet" />*@
 <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="~/scripts/jquery.min.js"></script>
+@*<script type="text/javascript" src="~/scripts/jquery-3.1.1.min.js"></script>*@
 <script type="text/javascript" src="~/scripts/moment.min.js"></script>
 <script type="text/javascript" src="~/scripts/bootstrap.min.js"></script>
-<script type="text/javascript" src="~/scripts/bootstrap-datetimepicker.*js"></script>
-
+<script type="text/javascript" src="~/scripts/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="~/scripts/bootstrap-datetimepicker.min.js"></script>
 <div class="container content-in">
     <div class="row">
         <h1>Sales Manager</h1>
@@ -49,8 +49,12 @@
 </script>
 <script>
     $(function () {
-        $("#DateOfJoining").datepicker({ dateFormat: "dd-MM-yy" });
+        $("#DateOfJoining").datepicker({ dateFormat: "dd-MMM-yyyy" });
         $("#DateOfBirth").datepicker({ dateFormat: "dd-MM-yy" });
+        $("#PassportIssueDate").datepicker({ dateFormat: "dd-MM-yy" });
+        $("#PassportEndDate").datepicker({ dateFormat: "dd-MM-yy" });
+        $("#VisaIssueDate").datepicker({ dateFormat: "dd-MM-yy" });
+        $("#VisaEndDate").datepicker({ dateFormat: "dd-MM-yy" });
     });
 </script>
 

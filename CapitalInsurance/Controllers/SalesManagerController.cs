@@ -28,6 +28,7 @@ namespace CapitalInsurance.Controllers
              if (!ModelState.IsValid)
             {
                 var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                FillDropdowns();
                 return View(model);
             }
             Result res = new SalesManagerRepository().Insert(model);

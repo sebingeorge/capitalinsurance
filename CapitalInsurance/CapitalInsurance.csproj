@@ -216,9 +216,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\datetimepicker\bootstrap-datetimepicker.css" />
-    <Content Include="Content\datetimepicker\bootstrap-datetimepicker.js" />
-    <Content Include="Content\datetimepicker\moment-with-locales.js" />
+    <Content Include="Content\datetimepicker\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\datetimepicker\bootstrap-theme.css" />
+    <Content Include="Content\datetimepicker\bootstrap-theme.min.css" />
+    <Content Include="Content\datetimepicker\bootstrap.css" />
+    <Content Include="Content\datetimepicker\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\images\back.png" />
@@ -356,6 +358,12 @@
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\datetimepicker\bootstrap-datetimepicker.es.js" />
+    <Content Include="Scripts\datetimepicker\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\datetimepicker\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\datetimepicker\bootstrap.js" />
+    <Content Include="Scripts\datetimepicker\bootstrap.min.js" />
+    <Content Include="Scripts\datetimepicker\jquery-1.8.3.min.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
     <Content Include="Scripts\gridmvc.min.js" />
