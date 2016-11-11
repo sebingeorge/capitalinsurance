@@ -163,12 +163,12 @@ textarea {
 .form_input 
 {
     background: /*url(../images/form-text.jpg) repeat-x*/#fff;
-    height:17px;
-    line-height:17px;
+    height:20px;
+    line-height:20px;
     width:100%;
     border:1px solid #d8d5d6;
     color:#101010;
-    margin-bottom:3px;
+    /*margin-bottom:3px;*/
     font-size:12px;
     border-radius:2px;
     -moz-border-radus:2px;
