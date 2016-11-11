@@ -32,14 +32,7 @@ namespace CapitalInsurance.Controllers
         public ActionResult Create(SalesManager model)
         {
 
-            model.DateOfBirth = System.DateTime.Now;
-            model.DateOfJoining = System.DateTime.Now;
-            model.PassportEndDate = System.DateTime.Now;
-            model.PassportIssueDate = System.DateTime.Now;
-            model.VisaEndDate = System.DateTime.Now;
-            model.VisaIssueDate = System.DateTime.Now;
-
-            if (!ModelState.IsValid)
+             if (!ModelState.IsValid)
             {
                 var allErrors = ModelState.Values.SelectMany(v => v.Errors);
                 FillDropdowns();
@@ -48,6 +41,41 @@ namespace CapitalInsurance.Controllers
             Result res = new SalesManagerRepository().Insert(model);
             return RedirectToAction("Create");
         }
+        public ActionResult Edit(int Id)
+        {
+            ViewBag.Title = "Edit";
+            FillDropdowns();
+            SalesManager objCustomer = new SalesManagerRepository().GetSalesManager(Id);
+            return View("Create", objCustomer);
+
+        }
+        [HttpPost]
+        public ActionResult Edit(SalesManager model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return View(model);
+            }
+            Result res = new SalesManagerRepository().Update(model);
+
+
+            if (res.Value)
+            {
+                TempData["Success"] = "Updated Successfully!";
+            }
+            else
+            {
+
+            }
+            return RedirectToAction("Index");
+        }
+        //[HttpPost]
+        //public ActionResult Delete(SalesManager model)
+        //{
+        //    Result res = new SalesManagerRepository().Delete(model);
+        //    return RedirectToAction("Index");
+        //}
          void FillDesignation()
         {
 

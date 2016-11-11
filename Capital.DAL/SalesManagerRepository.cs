@@ -118,5 +118,73 @@ namespace Capital.DAL
                 return connection.Query<Location>("SELECT LoctId,LoctName FROM Location").ToList();
             }
         }
+        public SalesManager GetSalesManager(int Id)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"select * from SalesManager where SalesMgId=@Id";
+
+
+                var objSalesManager = connection.Query<SalesManager>(sql, new
+                {
+                    Id = Id
+                }).First<SalesManager>();
+
+                return objSalesManager;
+            }
+
+
+        }
+        public Result Update(SalesManager model)
+        {
+            Result res = new Result(false);
+            try
+            {
+                using (IDbConnection connection = OpenConnection(dataConnection))
+                {
+                    string sql = @" UPDATE SalesManager SET 
+                                   SalesMgCode=@CusName
+                                   ,SalesMgName=@CusShortName
+                                   ,Gender=@RegionId
+                                   ,MaritalStatus=@SalesMgId
+                                   ,DsgId=@DsgId
+                                   ,CountryId=@CountryId
+                                   ,Deptment=@Deptment
+                                   ,Location=@Location
+                                   ,CurrentAddress1=@CurrentAddress1
+                                   ,CurrentAddress2=@CurrentAddress2
+                                   ,CurrentAddress3=@CurrentAddress3
+                                   ,StateId=@StateId
+                                   ,PermanantAddress1=@PermanantAddress1
+                                   ,PermanantAddress2=@PermanantAddress2
+                                   ,PermanantAddress3=@PermanantAddress3
+                                   ,PermanantState=@PermanantState
+                                   ,PermanantCountry=@PermanantCountry
+                                   ,QuatarContactNo=@QuatarContactNo
+                                   ,HomeCountryContactNo=@
+                                   ,PassportNo=@PassportNo
+                                   ,PassportIssueDate=@PassportIssueDate
+                                   ,PassportEndDate=@PassportEndDate
+                                   ,VisaOrResId=@VisaOrResId
+                                   ,VisaIssueDate=@VisaIssueDate
+                                   ,VisaEndDate=@VisaEndDate
+                                   ,DateOfJoining=@DateOfJoining
+                                   ,DateOfBirth=@DateOfBirth
+                                   ,OfficeEmail=@OfficeEmail
+                                   ,PersonalEmail=@PersonalEmail WHERE SalesMgId=@SalesMgId";
+                    int id = connection.Execute(sql, model);
+                    if (id > 0)
+                    {
+                        return (new Result(true));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return (new Result(false, ex.InnerException == null ? ex.Message : ex.InnerException.Message));
+            }
+            return res;
+        }
+
     }
 }

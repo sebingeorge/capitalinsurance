@@ -1,4 +1,5 @@
-﻿using Capital.Domain;
+﻿using Capital.DAL;
+using Capital.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Web.Mvc;
 
 namespace CapitalInsurance.Controllers
 {
-    public class InsuranceProductController : Controller
+    public class InsuranceProductController : BaseController
     {
         // GET: InsuranceProduct
         public ActionResult Index()
@@ -16,7 +17,44 @@ namespace CapitalInsurance.Controllers
         }
         public ActionResult Create()
         {
-            return View(new InsuranceProduct());
+            FillDropdowns();
+            InsuranceProduct objProd = new InsuranceProduct();
+            objProd.ProductParameters = new InsuranceProductRepository().GetProductionParameterList();
+            return View(objProd);
         }
+
+        [HttpPost]
+        public ActionResult Create(InsuranceProduct model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return View(model);
+            }
+            Result res = new InsuranceProductRepository().Insert(model);
+            return RedirectToAction("Create");
+        }
+
+
+
+        void FillDropdowns()
+        {
+            FillInsuranceType();
+            FillInsuranceCompany();
+        }
+
+        void FillInsuranceType()
+        {
+
+            ViewBag.InsuranceType = new SelectList((new DropdownRepository()).GetInsuranceType(), "Id", "Name");
+
+        }
+        void FillInsuranceCompany()
+        {
+
+            ViewBag.InsuranceCompany = new SelectList((new DropdownRepository()).GetInsuranceCompany(), "Id", "Name");
+
+        }
+
     }
 }

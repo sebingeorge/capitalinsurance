@@ -16,6 +16,7 @@ namespace Capital.Domain
         public int InsTypeId { get; set; }
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Product Company is Required")]
         public int InsCmpId { get; set; }
+        public DateTime? InsActiveDate{get;set;}
         public List<InsuranceProductVsParameter> ProductParameters { get; set; }
     }
 }
