@@ -1,0 +1,66 @@
+﻿
+
+@model List<Capital.Domain.InsuranceProduct>
+@{
+    ViewBag.Title = "Index";
+}
+<script>
+    function Create() {
+        var url = '@Url.Action("Create")';
+        location.href = url;
+    }
+    function Exit() {
+        var url = '@Url.Action("Index","Home")';
+        location.href = url;
+    }
+    $(document).ready(function () {
+
+
+        toastr.options = {
+            "closeButton": true,
+            "positionClass": "toast-bottom-full-width",
+            "preventDuplicates": false,
+            "onclick": null,
+
+            "timeOut": "0",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        if ('@TempData["success"]' != "") {
+            toastr.success('@TempData["success"]');
+        }
+        else if ('@TempData["error"]' != "") {
+            toastr.error('@TempData["error"]');
+        }
+    });
+
+
+</script>
+<div class="container content-in">
+    <div class="row">
+        <h1>Insurance Product List</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <label>Insurance Product Name</label>
+                    <input type="text" class="form_input" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    @Html.Partial("_InsuranceProductGrid", Model)
+
+    <div class="row">
+        <hr />
+        <div class="col-md-offset-8 col-md-4">
+            <button type="button" class="form-button right" onclick="Create()">Add</button>
+            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+        </div>
+    </div>
+</div>
