@@ -39,15 +39,24 @@
     </div>
     <div class="col-md-3">
         <div class="row form-group">
-
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <label>Active Date</label>
-                @Html.TextBoxFor(m => m.InsActiveDate, new { @class = "form_input" })
+                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    @Html.TextBoxFor(m => m.InsActiveDate, new { @class = "form_input" })
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>                
                 @Html.ValidationMessageFor(m => m.InsActiveDate, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
 </div>
+@*<div class="form-group">
+    <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+        <input class="form_input" size="16" type="text" value="" readonly>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    </div>
+</div>*@
 <hr />
 <h2>Insurance Product Parameter&nbsp;<button type="button" class="create">...</button></h2>
 <div class="table-responsive scroll1">
