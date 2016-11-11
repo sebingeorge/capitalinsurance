@@ -35,12 +35,12 @@ namespace Capital.DAL
                                    (InsPrdName
                                    ,InsPrdShortName
                                    ,InsTypeId
-                                   ,InsCmpId)
+                                   ,InsCmpId,InsActiveDate)
                                    VALUES
                                    (@InsPrdName
                                    ,@InsPrdShortName
                                    ,@InsTypeId
-                                   ,@InsCmpId);SELECT CAST(SCOPE_IDENTITY() as int);";
+                                   ,@InsCmpId,@InsActiveDate);SELECT CAST(SCOPE_IDENTITY() as int);";
                                                              
                   model.InsPrdId = connection.Query<int>(sql, model).Single();
 
