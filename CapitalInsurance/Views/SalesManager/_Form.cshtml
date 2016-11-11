@@ -251,25 +251,37 @@
             </div>
             <div class="col-md-3">
                 <label>Issue Date</label>
-                @Html.TextBoxFor(m => m.PassportIssueDate, new { @class = "form_input" })
+                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    @Html.TextBoxFor(m => m.PassportIssueDate, new { @class = "form_input" })
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
                 @Html.ValidationMessageFor(m => m.PassportIssueDate, "", new { @class = "text-danger" })
                 @*<input type="text" class="form_input" />*@
             </div>
             <div class="col-md-3">
                 <label>End Date</label>
-                @Html.TextBoxFor(m => m.PassportEndDate, new { @class = "form_input" })
+                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    @Html.TextBoxFor(m => m.PassportEndDate, new { @class = "form_input" })
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
                 @Html.ValidationMessageFor(m => m.PassportEndDate, "", new { @class = "text-danger" })
                 @*<input type="text" class="form_input" />*@
             </div>
             <div class="col-md-3">
                 <label>Issue Date</label>
-                @Html.TextBoxFor(m => m.VisaIssueDate, new { @class = "form_input" })
+                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    @Html.TextBoxFor(m => m.VisaIssueDate, new { @class = "form_input" })
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div> 
                 @Html.ValidationMessageFor(m => m.VisaIssueDate, "", new { @class = "text-danger" })
                 @*<input type="text" class="form_input" />*@
             </div>
             <div class="col-md-3">
                 <label>End Date</label>
-                @Html.TextBoxFor(m => m.VisaEndDate, new { @class = "form_input" })
+                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    @Html.TextBoxFor(m => m.VisaEndDate, new { @class = "form_input" })
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div> 
                 @Html.ValidationMessageFor(m => m.VisaEndDate, "", new { @class = "text-danger" })
                 @*<input type="text" class="form_input" />*@
             </div>
@@ -280,12 +292,18 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Date of Joining</label>
-                @Html.TextBoxFor(m => m.DateOfJoining, new { @class = "form_input" })
+                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    @Html.TextBoxFor(m => m.DateOfJoining, new { @class = "form_input" })
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div> 
                 @Html.ValidationMessageFor(m => m.DateOfJoining, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-12">
                 <label>Date of Birth</label>
-                @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form_input" })
+                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form_input" })
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div> 
                 @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-danger" })
             </div>
         </div>
