@@ -42,16 +42,17 @@ namespace Capital.DAL
                                    ,@InsTypeId
                                    ,@InsCmpId);SELECT CAST(SCOPE_IDENTITY() as int);";
                                                              
-                   connection.Query<int>(sql, model).Single();
+                  model.InsPrdId = connection.Query<int>(sql, model).Single();
 
                     foreach (var item in model.ProductParameters)
                     {
+                        item.InsPrdId = model.InsPrdId;
                         sql = @"INSERT INTO InsProductVsParameter
-                                   (InsPrdParamId
-                                   ,InsParamValue );SELECT CAST(SCOPE_IDENTITY() as int);";
+                                   (InsPrdId,InsPrdParamId
+                                   ,InsParamValue )VALUES(@InsPrdId,@InsPrdParamId,@InsParamValue);SELECT CAST(SCOPE_IDENTITY() as int);";
                                 
                     }
-                    int id = connection.Query<int>(sql, model).Single();
+                    int id = connection.Execute(sql, model.ProductParameters);
                     if (id > 0)
                     {
                         return (new Result(true));
