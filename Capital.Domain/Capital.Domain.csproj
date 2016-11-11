@@ -56,6 +56,7 @@
     <Compile Include="InsuranceType.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="LoginViewModel.cs" />
+    <Compile Include="PolicyIssue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Region.cs" />
     <Compile Include="Required.cs" />
