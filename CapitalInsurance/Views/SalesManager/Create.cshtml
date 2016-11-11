@@ -3,6 +3,7 @@
     ViewBag.Title = "Employee";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(); }
 @*<link href="~/Content/bootstrap-datepicker3.min.css" rel="stylesheet" />*@
 <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="~/scripts/jquery.min.js"></script>
@@ -21,7 +22,19 @@
             <hr />
             <div class="col-md-12">
                 <button type="button" class="form-button" onclick="Previous()">Previous</button>
-                <button type="submit" class="form-button right">Save</button>
+                @if (actionName == "Edit")
+                {
+                    <button type="submit" class="form-button right">Update</button>
+                }
+                else if (actionName == "Delete")
+                {
+                    <button type="submit" class="form-button right">Delete</button>
+                }
+                else
+                {
+                    <button type="submit" class="form-button right">Save</button>
+                }
+
                 <button type="button" class="form-button right" onclick="Exit()">Exit</button>
             </div>
         </div>
@@ -30,7 +43,7 @@
 
 <script>
     function Previous() {
-        var url = '@Url.Action("PreviousEmployee", "Admin")'
+        var url = '@Url.Action("Index", "SalesManager")'
         window.location = url;
     }
 </script>

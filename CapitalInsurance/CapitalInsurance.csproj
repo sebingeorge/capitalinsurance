@@ -469,6 +469,8 @@
     <Content Include="Views\InsuranceProduct\Create.cshtml" />
     <Content Include="Views\InsuranceProduct\_Form.cshtml" />
     <Content Include="Views\SalesManager\LocationPopup.cshtml" />
+    <Content Include="Views\SalesManager\Index.cshtml" />
+    <Content Include="Views\SalesManager\_SalesManagerGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
