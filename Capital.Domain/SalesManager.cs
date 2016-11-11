@@ -35,13 +35,13 @@ namespace Capital.Domain
         public string QuatarContactNo { get; set; }
         public string HomeCountryContactNo { get; set; }
         public string PassportNo { get; set; }
-        public DateTime PassportIssueDate { get; set; }
-        public DateTime PassportEndDate { get; set; }
+        public DateTime? PassportIssueDate { get; set; }
+        public DateTime? PassportEndDate { get; set; }
         public string VisaOrResId { get; set; }
-        public DateTime VisaIssueDate { get; set; }
-        public DateTime VisaEndDate { get; set; }
-        public DateTime DateOfJoining { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? VisaIssueDate { get; set; }
+        public DateTime? VisaEndDate { get; set; }
+        public DateTime? DateOfJoining { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         public string OfficeEmail { get; set; }
         public string PersonalEmail { get; set; }
 
