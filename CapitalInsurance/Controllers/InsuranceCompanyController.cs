@@ -13,7 +13,8 @@ namespace CapitalInsurance.Controllers
         // GET: InsuranceCompany
         public ActionResult Index()
         {
-            return View();
+            List<InsuranceCompany> lstInsurCmpy = (new InsuranceCompanyRepository()).GetCompany();
+            return View(lstInsurCmpy);
         }
         public ActionResult Create()
         {
@@ -29,6 +30,47 @@ namespace CapitalInsurance.Controllers
             }
             Result res = new InsuranceCompanyRepository().Insert(model);
             return RedirectToAction("Create");
+        }
+        public ActionResult Edit(int Id)
+        {
+            ViewBag.Title = "Edit";
+            InsuranceCompany objCompany = new InsuranceCompanyRepository().GetCompany(Id);
+            return View("Create", objCompany);
+
+        }
+        [HttpPost]
+        public ActionResult Edit(InsuranceCompany model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return View(model);
+            }
+            Result res = new InsuranceCompanyRepository().Update(model);
+
+
+            if (res.Value)
+            {
+                TempData["Success"] = "Updated Successfully!";
+            }
+            else
+            {
+
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(int Id)
+        {
+            ViewBag.Title = "Delete";
+            InsuranceCompany objCompany = new InsuranceCompanyRepository().GetCompany(Id);
+            return View("Create", objCompany);
+        }
+        [HttpPost]
+        public ActionResult Delete(InsuranceCompany model)
+        {
+            Result res = new InsuranceCompanyRepository().Delete(model);
+            return RedirectToAction("Index");
         }
     }
 }

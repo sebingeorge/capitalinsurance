@@ -1,0 +1,17 @@
+﻿@model List<Capital.Domain.InsuranceCompany>
+@using GridMvc.Html
+<div class="table-responsive scroll3">
+    <span class="filter"><img src="~/Images/icon/filter.png" /></span>
+    @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(m => m.InsCmpName).Titled("Company Name").SetWidth(12);
+        columns.Add(m => m.Address1).Titled("Address").SetWidth(12);
+        columns.Add(m => m.Email).Titled("Email").SetWidth(10);
+        columns.Add(m => m.ContactPerson).Titled("Contact Person").SetWidth(7);
+        columns.Add(m => m.Designation).Titled("Designation").SetWidth(7);
+      
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.InsCmpId })">Edit</a>);
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Delete", new { Id = m.InsCmpId })">Delete</a>);
+
+    }).WithPaging(15)
+</div>

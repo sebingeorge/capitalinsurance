@@ -5,6 +5,7 @@
             <div class="col-md-3">
                 <label>Company Name</label>
                 @Html.TextBoxFor(m => m.InsCmpName, new { @class = "form_input" })
+                @Html.HiddenFor(m => m.InsCmpId)
                 @Html.ValidationMessageFor(m => m.InsCmpName, "", new { @class = "text-danger" })
             </div>
         </div>
