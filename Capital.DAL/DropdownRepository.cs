@@ -21,6 +21,21 @@ namespace Capital.DAL
             }
         }
 
-      
+        public List<Dropdown> GetInsuranceType()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                return connection.Query<Dropdown>("SELECT InsTypeId Id, insTypeName Name FROM InsuranceType").ToList();
+            }
+        }
+        public List<Dropdown> GetInsuranceCompany()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                return connection.Query<Dropdown>("SELECT InsCmpId Id, InsCmpName Name FROM InsuranceCompany").ToList();
+            }
+        }
+
+
     }
 }
