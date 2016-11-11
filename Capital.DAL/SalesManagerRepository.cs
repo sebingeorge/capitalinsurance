@@ -16,7 +16,12 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                return connection.Query<SalesManager>("select SalesMgId, SalesMgName from SalesManager").ToList();
+                string query = @"select S.SalesMgId,S.SalesMgName,S.Deptment,S.Location,S.QuatarContactNo,
+                D.DsgName
+                from SalesManager S
+                left join Designation D on D.DsgId = S.DsgId
+                order by S.SalesMgName";
+                return connection.Query<SalesManager>(query).ToList();
             }
         }
         public Result Insert(SalesManager model)
@@ -143,10 +148,10 @@ namespace Capital.DAL
                 using (IDbConnection connection = OpenConnection(dataConnection))
                 {
                     string sql = @" UPDATE SalesManager SET 
-                                   SalesMgCode=@CusName
-                                   ,SalesMgName=@CusShortName
-                                   ,Gender=@RegionId
-                                   ,MaritalStatus=@SalesMgId
+                                   SalesMgCode=@SalesMgCode
+                                   ,SalesMgName=@SalesMgName
+                                   ,Gender=@Gender
+                                   ,MaritalStatus=@MaritalStatus
                                    ,DsgId=@DsgId
                                    ,CountryId=@CountryId
                                    ,Deptment=@Deptment
@@ -161,7 +166,7 @@ namespace Capital.DAL
                                    ,PermanantState=@PermanantState
                                    ,PermanantCountry=@PermanantCountry
                                    ,QuatarContactNo=@QuatarContactNo
-                                   ,HomeCountryContactNo=@
+                                   ,HomeCountryContactNo=@HomeCountryContactNo
                                    ,PassportNo=@PassportNo
                                    ,PassportIssueDate=@PassportIssueDate
                                    ,PassportEndDate=@PassportEndDate
@@ -186,5 +191,26 @@ namespace Capital.DAL
             return res;
         }
 
+        public Result Delete(SalesManager model)
+        {
+            Result res = new Result(false);
+            try
+            {
+                using (IDbConnection connection = OpenConnection(dataConnection))
+                {
+                    string sql = @" Delete from SalesManager WHERE SalesMgId=@SalesMgId";
+                    int id = connection.Execute(sql, model);
+                    if (id > 0)
+                    {
+                        return (new Result(true));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return (new Result(false, ex.InnerException == null ? ex.Message : ex.InnerException.Message));
+            }
+            return res;
+        }
     }
 }

@@ -24,6 +24,7 @@
         <div class="row form-group">
             <div class="col-md-3">
                 <label>Employee ID</label>
+                @Html.HiddenFor(m => m.SalesMgId)
                 @Html.TextBoxFor(m => m.SalesMgCode, new { @class = "form_input half" })
                 @Html.ValidationMessageFor(m => m.SalesMgCode, "", new { @class = "text-danger" })
             </div>
@@ -45,27 +46,19 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label>Gender</label>
-                @*<input type="checkbox" name="" value=""> Male
-                <input type="checkbox" name="" value=""> Female*@
                 @Html.DropDownListFor(m => Model.Gender, (SelectList)ViewBag.Gender, "Select Gender", new { @class = "form_input", autocomplete = "off" })
             </div>
             <div class="col-md-6">
                 <label>Marital Status</label>
-                @*<select class="form_input">
-                    <option value="">Single</option>
-                    <option value="">Married</option>
-                </select>*@
                 @Html.DropDownListFor(m => Model.MaritalStatus, (SelectList)ViewBag.MaritalStatus, "Select Marital Status", new { @class = "form_input", autocomplete = "off" })
-                @*@Html.TextBoxFor(m => m.MaritalStatus, new { @class = "form_input" })*@
             </div>
         </div>
     </div>
     <div class="col-md-3">
         <div class="row form-group">
             <div class="col-md-6">
-            <label>Designation</label>
-              
-            @Html.DropDownListFor(m => Model.DsgId, (SelectList)ViewBag.Designation, "Select Designation", new { @class = "form_input", autocomplete = "off" })
+                <label>Designation</label>
+                @Html.DropDownListFor(m => Model.DsgId, (SelectList)ViewBag.Designation, "Select Designation", new { @class = "form_input", autocomplete = "off" })
         </div>
         </div>
     </div>

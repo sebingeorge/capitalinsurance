@@ -13,20 +13,13 @@ namespace CapitalInsurance.Controllers
         // GET: SalesManager
         public ActionResult Index()
         {
-            return View();
+            List<SalesManager> lstSalesManager = (new SalesManagerRepository()).GetSalesManagers();
+            return View(lstSalesManager);
         }
         public ActionResult Create()
         {
             FillDropdowns();
             return View(new SalesManager());
-        }
-        void FillDropdowns()
-        {
-            FillDesignation();
-            FillState();
-            FillCountry();
-            FillMaritalStatus();
-            FillGender();
         }
         [HttpPost]
         public ActionResult Create(SalesManager model)
@@ -45,8 +38,8 @@ namespace CapitalInsurance.Controllers
         {
             ViewBag.Title = "Edit";
             FillDropdowns();
-            SalesManager objCustomer = new SalesManagerRepository().GetSalesManager(Id);
-            return View("Create", objCustomer);
+            SalesManager objSalesManager = new SalesManagerRepository().GetSalesManager(Id);
+            return View("Create", objSalesManager);
 
         }
         [HttpPost]
@@ -70,13 +63,28 @@ namespace CapitalInsurance.Controllers
             }
             return RedirectToAction("Index");
         }
-        //[HttpPost]
-        //public ActionResult Delete(SalesManager model)
-        //{
-        //    Result res = new SalesManagerRepository().Delete(model);
-        //    return RedirectToAction("Index");
-        //}
-         void FillDesignation()
+        public ActionResult Delete(int Id)
+        {
+            ViewBag.Title = "Delete";
+            FillDropdowns();
+            SalesManager objSalesManager = new SalesManagerRepository().GetSalesManager(Id);
+            return View("Create", objSalesManager);
+        }
+        [HttpPost]
+        public ActionResult Delete(SalesManager model)
+        {
+            Result res = new SalesManagerRepository().Delete(model);
+            return RedirectToAction("Index");
+        }
+        void FillDropdowns()
+        {
+            FillDesignation();
+            FillState();
+            FillCountry();
+            FillMaritalStatus();
+            FillGender();
+        }
+        void FillDesignation()
         {
 
             ViewBag.Designation = new SelectList((new DropdownRepository()).GetDesignation(), "Id", "Name");
@@ -104,7 +112,6 @@ namespace CapitalInsurance.Controllers
             types.Add(new Dropdown { Id = 2, Name = "Female" });
             ViewBag.Gender = new SelectList(types, "Id", "Name");
         }
-
         public ActionResult DepartmentPopup()
         {
             var List = new SalesManagerRepository().FillDepartmentList();

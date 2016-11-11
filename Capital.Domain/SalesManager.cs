@@ -20,6 +20,7 @@ namespace Capital.Domain
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Marrital Status is Required")]
         public string MaritalStatus { get; set; }
         public int? DsgId { get; set; }
+        public string DsgName { get; set; }
         public int? CountryId { get; set; }
         public string Deptment { get; set; }
         public string Location { get; set; }
