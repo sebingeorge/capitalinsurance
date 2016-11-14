@@ -140,9 +140,10 @@ namespace Capital.DAL
                     IDbTransaction txn = connection.BeginTransaction();
                   
                     string query = @"DELETE FROM InsProductVsParameter WHERE InsPrdId = @InsPrdId;
-                                     DELETE FROM InsuranceProduct WHERE InsPrdId = @InsPrdId;";
-                     int id = connection.Execute(query, model);
-                      txn.Commit();
+                                     DELETE FROM InsuranceProduct  OUTPUT deleted.InsPrdId WHERE InsPrdId = @InsPrdId;";
+                     //int id = connection.Execute(query, model);
+                    int id = connection.Query<int>(query, model, txn).First();
+                     txn.Commit();
                  
                 }
             }
