@@ -3,6 +3,7 @@
     ViewBag.Title = "InsuranceProduct";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(); }
 <div class="container content-in">
     <div class="row">
         <h1>Insurance Product</h1>
@@ -13,8 +14,19 @@
         <div class="row">
             <hr />
             <div class="col-md-12">
-                <button type="submit" class="form-button" onclick="Previous()">Previous</button>
-                <button type="submit" class="form-button right">Save</button>
+                <button type="button" class="form-button" onclick="Previous()">Previous</button>
+                @if (actionName == "Edit")
+                {
+                    <button type="submit" class="form-button right">Update</button>
+                }
+                else if (actionName == "Delete")
+                {
+                    <button type="submit" class="form-button right">Delete</button>
+                }
+                else
+                {
+                    <button type="submit" class="form-button right">Save</button>
+                }
                 <button type="button" class="form-button right" onclick="Exit()">Exit</button>
             </div>
         </div>
@@ -23,7 +35,7 @@
 
 <script>
     function Previous() {
-        var url = '@Url.Action("PreviousInsuranceProduct", "Admin")'
+        var url = '@Url.Action("Index", "InsuranceProduct")'
         window.location = url;
     }
 

@@ -46,11 +46,11 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label>Gender</label>
-                @Html.DropDownListFor(m => Model.Gender, (SelectList)ViewBag.Gender, "Select Gender", new { @class = "form_input", autocomplete = "off" })
+                @Html.DropDownListFor(m => Model.GenderId, (SelectList)ViewBag.Gender, "Select Gender", new { @class = "form_input", autocomplete = "off" })
             </div>
             <div class="col-md-6">
                 <label>Marital Status</label>
-                @Html.DropDownListFor(m => Model.MaritalStatus, (SelectList)ViewBag.MaritalStatus, "Select Marital Status", new { @class = "form_input", autocomplete = "off" })
+                @Html.DropDownListFor(m => Model.MaritalStatusId, (SelectList)ViewBag.MaritalStatus, "Select Marital Status", new { @class = "form_input", autocomplete = "off" })
             </div>
         </div>
     </div>

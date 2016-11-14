@@ -16,7 +16,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string query = @"select S.SalesMgId,S.SalesMgName,S.Deptment,S.Location,S.QuatarContactNo,
+                string query = @"select S.SalesMgCode,S.SalesMgId,S.SalesMgName,S.Deptment,S.Location,S.QuatarContactNo,
                 D.DsgName
                 from SalesManager S
                 left join Designation D on D.DsgId = S.DsgId
@@ -34,8 +34,8 @@ namespace Capital.DAL
                     string sql = @"INSERT INTO SalesManager
                                    (SalesMgCode
                                    ,SalesMgName
-                                   ,Gender
-                                   ,MaritalStatus
+                                   ,GenderId
+                                   ,MaritalStatusId
                                    ,DsgId
                                    ,CountryId
                                    ,Deptment
@@ -65,8 +65,8 @@ namespace Capital.DAL
                                    VALUES
                                    (@SalesMgCode
                                    ,@SalesMgName
-                                   ,@Gender
-                                   ,@MaritalStatus
+                                   ,@GenderId
+                                   ,@MaritalStatusId
                                    ,@DsgId
                                    ,@CountryId
                                    ,@Deptment
@@ -150,8 +150,8 @@ namespace Capital.DAL
                     string sql = @" UPDATE SalesManager SET 
                                    SalesMgCode=@SalesMgCode
                                    ,SalesMgName=@SalesMgName
-                                   ,Gender=@Gender
-                                   ,MaritalStatus=@MaritalStatus
+                                   ,GenderId=@GenderId
+                                   ,MaritalStatusId=@MaritalStatusId
                                    ,DsgId=@DsgId
                                    ,CountryId=@CountryId
                                    ,Deptment=@Deptment

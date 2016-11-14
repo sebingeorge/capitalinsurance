@@ -480,6 +480,10 @@
     <Content Include="Views\SalesManager\LocationPopup.cshtml" />
     <Content Include="Views\SalesManager\Index.cshtml" />
     <Content Include="Views\SalesManager\_SalesManagerGrid.cshtml" />
+    <Content Include="Views\InsuranceCompany\Index.cshtml" />
+    <Content Include="Views\InsuranceCompany\_InsuranceCmpyGrid.cshtml" />
+    <Content Include="Views\InsuranceProduct\Index.cshtml" />
+    <Content Include="Views\InsuranceProduct\_InsuranceProductGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

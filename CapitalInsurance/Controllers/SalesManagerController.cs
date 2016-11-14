@@ -19,7 +19,6 @@ namespace CapitalInsurance.Controllers
         public ActionResult Create()
         {
             FillDropdowns();
-            FillMaritalStatus("");
             return View(new SalesManager());
         }
         [HttpPost]
@@ -30,7 +29,6 @@ namespace CapitalInsurance.Controllers
             {
                 var allErrors = ModelState.Values.SelectMany(v => v.Errors);
                 FillDropdowns();
-                FillMaritalStatus("");
                 return View(model);
             }
             Result res = new SalesManagerRepository().Insert(model);
@@ -41,7 +39,6 @@ namespace CapitalInsurance.Controllers
             ViewBag.Title = "Edit";
             FillDropdowns();
             SalesManager objSalesManager = new SalesManagerRepository().GetSalesManager(Id);
-            FillMaritalStatus(objSalesManager.MaritalStatus);
             return View("Create", objSalesManager);
 
         }
@@ -84,7 +81,7 @@ namespace CapitalInsurance.Controllers
             FillDesignation();
             FillState();
             FillCountry();
-          
+            FillMaritalStatus();
             FillGender();
         }
         void FillDesignation()
@@ -101,26 +98,22 @@ namespace CapitalInsurance.Controllers
         {
             ViewBag.Country = new SelectList((new CountryRepository()).GetCountry(), "CountryId", "CountryName");
         }
-        void FillMaritalStatus(string STATUS)
+        void FillMaritalStatus()
         {
             List<Dropdown> types = new List<Dropdown>();
             types.Add(new Dropdown { Id = 1, Name = "Single" });
             types.Add(new Dropdown { Id = 2, Name = "Married" });
-            if (STATUS == "")
-            {
-                ViewBag.MaritalStatus = new SelectList(types, "Name", "Name");
-            }
-          else
-            {
-                ViewBag.MaritalStatus = new SelectList(types, "Name", "Name", STATUS);
-            }
+
+            ViewBag.MaritalStatus = new SelectList(types, "Id", "Name");
+          
+            
         }
         void FillGender()
         {
             List<Dropdown> types = new List<Dropdown>();
             types.Add(new Dropdown { Id = 1, Name = "Male" });
             types.Add(new Dropdown { Id = 2, Name = "Female" });
-            ViewBag.Gender = new SelectList(types, "Name", "Name");
+            ViewBag.Gender = new SelectList(types, "Id", "Name");
         }
         public ActionResult DepartmentPopup()
         {

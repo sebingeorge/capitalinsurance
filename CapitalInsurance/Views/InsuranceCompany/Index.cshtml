@@ -1,4 +1,4 @@
-﻿@model List<Capital.Domain.SalesManager>
+﻿@model List<Capital.Domain.InsuranceCompany>
 @{
     ViewBag.Title = "Index";
 }
@@ -39,21 +39,21 @@
 </script>
 <div class="container content-in">
     <div class="row">
-        <h1>Sales Manager List</h1>
+        <h1>Insurance Company List</h1>
     </div>
     <div class="row">
         <div class="col-md-3">
             <div class="row">
                 <div class="col-md-12">
-                    <label>Sales Manager Name</label>
+                    <label>Insurance Company Name</label>
                     <input type="text" class="form_input" />
                 </div>
             </div>
         </div>
     </div>
     <hr />
-    @Html.Partial("_SalesManagerGrid", Model)
-  
+    @Html.Partial("_InsuranceCmpyGrid", Model)
+
     <div class="row">
         <hr />
         <div class="col-md-offset-8 col-md-4">
@@ -62,3 +62,5 @@
         </div>
     </div>
 </div>
+
+

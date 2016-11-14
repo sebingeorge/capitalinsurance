@@ -16,9 +16,9 @@ namespace Capital.Domain
         [System.ComponentModel.DataAnnotations.Display(Name = "Sales Manager")]
         public string SalesMgName { get; set; }
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Gender is Required")]
-        public string Gender { get; set; }
+        public int GenderId { get; set; }
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Marrital Status is Required")]
-        public string MaritalStatus { get; set; }
+        public int MaritalStatusId { get; set; }
         public int? DsgId { get; set; }
         public string DsgName { get; set; }
         public int? CountryId { get; set; }
