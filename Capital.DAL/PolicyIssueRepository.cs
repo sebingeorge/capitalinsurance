@@ -22,15 +22,25 @@ namespace Capital.DAL
                     string sql = @"INSERT INTO PolicyIssue
                                    (TranPrefix,TranNumber,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
                                     PremiumAmount,PolicyFee,ExtraPremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
-                                    PaymentOption,SalesMgId,OperationManager,PolicyNo,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorcementDate,AdditionEmpNo,
+                                    PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorcementDate,AdditionEmpNo,
                                     DeletionEmpNo,EndorcementTypeId,TranType,CreatedBy,CreatedDate)
                                     VALUES
                                     (@TranPrefix,@TranNumber,@TranDate,@CusId,@InsuredName,@Address1,@Address2,@InsCmpId,@InsPrdId,@InsCoverId,@PolicySubDate,@EffectiveDate,@RenewalDate,
                                     @PremiumAmount,@PolicyFee,@ExtraPremium,@CommissionPerc,@CommissionAmount,@CustContPersonName,@CustContDesignation,@CustContEmail,@CustContMobile,
-                                    @PaymentOption,@SalesMgId,@OperationManager,@PolicyNo,@FinanceManager,@PaymentTo,@PayModeId,@OldPolicyId,@CIBEffectiveDate,@EndorcementDate,@AdditionEmpNo,
+                                    @PaymentOption,@SalesMgId,@OperationManager,@PolicyNo,@Remarks,@FinanceManager,@PaymentTo,@PayModeId,@OldPolicyId,@CIBEffectiveDate,@EndorcementDate,@AdditionEmpNo,
                                     @DeletionEmpNo,@EndorcementTypeId,'New Policy',@CreatedBy,@CreatedDate);
                                     SELECT CAST(SCOPE_IDENTITY() as int);";
-                    int id = connection.Query<int>(sql, model).Single();
+                    model.PolicyId = connection.Query<int>(sql, model).Single();
+
+                    foreach (var item in model.Cheque)
+                    {
+                        item.PolicyId = model.PolicyId;
+                        sql = @"INSERT INTO PolicyIssueChequeReceived
+                                   (PolicyId,ChequeNo,ChequeDate,BankName
+                                   ,BankBranch )VALUES(@PolicyId,@ChequeNo,@ChequeDate,@BankName,@BankBranch);SELECT CAST(SCOPE_IDENTITY() as int);";
+
+                    }
+                    int id = connection.Execute(sql, model.Cheque);
                     if (id > 0)
                     {
                         return (new Result(true));

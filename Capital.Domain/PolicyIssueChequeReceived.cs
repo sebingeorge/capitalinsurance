@@ -11,7 +11,7 @@ namespace Capital.Domain
         public int? InsChqRowId { get; set; }
         public int? PolicyId { get; set; }
         public string ChequeNo { get; set; }
-        public DateTime ChequeDate { get; set; }
+        public DateTime? ChequeDate { get; set; }
         public string BankName { get; set; }
         public string BankBranch { get; set; }
     }

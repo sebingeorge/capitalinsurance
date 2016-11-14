@@ -76,14 +76,14 @@
 
                 <div class="col-md-6">
                     <label>Premium Amount</label>
-                    @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input" })
+                    @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input", @style = "text-align:right" })
                     @Html.ValidationMessageFor(m => m.PremiumAmount, "", new { @class = "text-danger" })
                 </div>
 
 
                 <div class="col-md-6">
                     <label>Policy Fees</label>
-                    @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input" })
+                    @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input", @style = "text-align:right" })
                     @Html.ValidationMessageFor(m => m.PolicyFee, "", new { @class = "text-danger" })
                 </div>
 
@@ -99,7 +99,7 @@
 
                 <div class="col-md-6">
                     <label>Additional Premium</label>
-                    @Html.TextBoxFor(m => m.ExtraPremium, new { @class = "form_input" })
+                    @Html.TextBoxFor(m => m.ExtraPremium, new { @class = "form_input", @style = "text-align:right" })
                     @Html.ValidationMessageFor(m => m.ExtraPremium, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">
@@ -131,12 +131,12 @@
 
                 <div class="col-md-6">
                     <label>Commi. Percentage</label>
-                    @Html.TextBoxFor(m => m.CommissionPerc, new { @class = "form_input" })
+                    @Html.TextBoxFor(m => m.CommissionPerc, new { @class = "form_input", @style = "text-align:right" })
                     @Html.ValidationMessageFor(m => m.CommissionPerc, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">
                     <label>Commi. Amount</label>
-                    @Html.TextBoxFor(m => m.CommissionAmount, new { @class = "form_input" })
+                    @Html.TextBoxFor(m => m.CommissionAmount, new { @class = "form_input", @style = "text-align:right" })
                     @Html.ValidationMessageFor(m => m.CommissionAmount, "", new { @class = "text-danger" })
                 </div>
 
@@ -232,7 +232,11 @@
                             @Html.TextBoxFor(m => m.CustContEmail, new { @class = "form_input" })
                             @Html.ValidationMessageFor(m => m.CustContEmail, "", new { @class = "text-danger" })
                         </div>
-
+                        <div class="col-md-12">
+                            <label>Remarks</label>
+                            @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input" })
+                            @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
 
@@ -244,11 +248,8 @@
                             @Html.DropDownListFor(m => Model.SalesMgId, (SelectList)ViewBag.SalesManager, "Select Sales Manager", new { @class = "form_input", autocomplete = "off" })
                         </div>
 
-                        <div class="col-md-12">
-                            <label>Remarks</label>
-                            <input type="text" class="form_input" />
-                        </div>
-
+                   
+                        
                     </div>
                 </div>
             </div>
@@ -325,37 +326,42 @@
 
 
         <div class="table-responsive scroll2 col-md-6">
-            <table class="table table-bordered" id="tab_logic">
-                <thead>
-                    <tr class="grid_heading cheque">
-                        <th>Cheque No</th>
-                        <th>Cheque Date</th>
-                        <th>Bank Name</th>
-                        <th>Branch</th>
-                        <th>Cheque Amount</th>
-                       
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-
+         
+            <table class="table table-bordered " id="tab_logic">
+                <tr class="grid_heading">
+                    <th>Cheque No.</th>
+                    <th>Cheque Date</th>
+                    <th>Bank Name</th>
+                    <th>Branch</th>
+                    <th>Cheque Amount</th>
+                    <th></th>
+                </tr>
+                @for (int i = 0; i < Model.Cheque.Count; i++)
+                {
                     <tr>
-
-                        <td><input type="text" class="form_input" /></td>
-                        <td><input type="text" class="form_input" /></td>
-                        <td><input type="text" class="form_input" /></td>
-                        <td><input type="text" class="form_input" /></td>
-                        <td><input type="text" class="form_input" /></td>
+                        <td>
+                        @Html.TextBoxFor(model => Model.Cheque[i].ChequeNo, new { @class = "form_input", autocomplete = "off" })
+                        </td>
+                        <td>
+                        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                        </td>
+                        <td>
+                        @Html.TextBoxFor(model => Model.Cheque[i].BankName, new { @class = "form_input", autocomplete = "off" })
+                        </td>
+                        <td>
+                        @Html.TextBoxFor(model => Model.Cheque[i].BankBranch, new { @class = "form_input", autocomplete = "off" })
+                        </td>
+                        <td>
+                        @Html.TextBoxFor(model => Model.Cheque[i].BankBranch, new { @class = "form_input", autocomplete = "off" })
+                        </td>
                         <td><img src="~/Images/Plus.png" /></td>
-
                     </tr>
-
-
-
-
-                </tbody>
-
+                }
             </table>
+
         </div>
 
 

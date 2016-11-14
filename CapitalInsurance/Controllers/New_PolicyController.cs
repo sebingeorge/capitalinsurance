@@ -20,7 +20,10 @@ namespace CapitalInsurance.Controllers
         public ActionResult Proposal()
         {
             FillDropdowns();
-            return View();
+            PolicyIssue model = new PolicyIssue();
+            model.Cheque = new List<PolicyIssueChequeReceived>();
+            model.Cheque.Add(new PolicyIssueChequeReceived());
+            return View(model);
         }
         [HttpPost]
         public ActionResult Proposal(PolicyIssue model)
