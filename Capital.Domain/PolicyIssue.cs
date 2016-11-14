@@ -47,6 +47,6 @@ namespace Capital.Domain
         public string TranType { get; set; }
         public int? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
-
+        public List<PolicyIssueChequeReceived> Cheque { get; set; }
     }
 }
