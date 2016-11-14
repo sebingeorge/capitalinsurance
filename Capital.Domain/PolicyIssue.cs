@@ -18,7 +18,7 @@ namespace Capital.Domain
         public string Address2 { get; set; }
         public int? InsCmpId { get; set; }
         public int? InsPrdId { get; set; }
-        public int? InsSubTypeId { get; set; }
+        public int? InsCoverId { get; set; }
         public DateTime? PolicySubDate { get; set; }
         public DateTime? EffectiveDate { get; set; }
         public DateTime? RenewalDate { get; set; }
