@@ -451,7 +451,7 @@ table thead tr th
     }
         .alert1 .navbar-nav > li > a:hover, .alert1 .navbar-nav > li > a:active, .alert1 .navbar-nav > li > a:focus
     {
-    background-color:##93241e;
+    background-color:#93241e;
     font-size:11px;
     border-radius:20px;
     -moz-border-radius:20px;
