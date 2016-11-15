@@ -34,14 +34,10 @@ namespace Capital.Domain
         public DateTime? EffectiveDate { get; set; }
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Renewal Date is Required")]
         public DateTime? RenewalDate { get; set; }
-         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Premium Amount is Required")]
         public decimal PremiumAmount { get; set; }
-         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Policy Fee is Required")]
         public decimal PolicyFee { get; set; }
-         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Extra Premium is Required")]
         public decimal ExtraPremium { get; set; }
         public decimal TotalPremium { get; set; }
-         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Commission Percentage is Required")]
         public decimal CommissionPerc { get; set; }
         public decimal CommissionAmount { get; set; }
         public string CustContPersonName { get; set; }
@@ -49,6 +45,7 @@ namespace Capital.Domain
         public string CustContEmail { get; set; }
         public string CustContMobile { get; set; }
         public string PaymentOption { get; set; }
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Sales Manager is Required")]
         public int? SalesMgId { get; set; }
         public string OperationManager { get; set; }
         public string PolicyNo { get; set; }
@@ -65,6 +62,11 @@ namespace Capital.Domain
         public string TranType { get; set; }
         public int? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
+        public string CusName { get; set; }
+        public string InsPrdName { get; set; }
+        public string InsCoverName { get; set; }
+        public string InsCmpName { get; set; }
+        public string SalesMgName { get; set; }
         public List<PolicyIssueChequeReceived> Cheque { get; set; }
     }
 }

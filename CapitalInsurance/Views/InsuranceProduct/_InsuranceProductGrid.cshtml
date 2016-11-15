@@ -8,7 +8,7 @@
     columns.Add(m => m.InsPrdName).Titled("Insurance Name").SetWidth(12);
     columns.Add(m => m.insTypeName).Titled("Insurance Type").SetWidth(12);
     columns.Add(m => m.InsCmpName).Titled("Insurance Company").SetWidth(12);
-    columns.Add(m => m.InsActiveDate).Titled("Active Date").SetWidth(10);
+    columns.Add(m => m.InsActiveDate).Format("{0:dd/MM/yyyy}").Titled("Active Date").SetWidth(10);
     columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.InsPrdId })">Edit</a>);
     columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Delete", new { Id = m.InsPrdId })">Delete</a>);
 

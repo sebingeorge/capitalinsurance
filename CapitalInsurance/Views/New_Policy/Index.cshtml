@@ -1,7 +1,62 @@
-﻿
+﻿@model List<Capital.Domain.PolicyIssue>
 @{
     ViewBag.Title = "Index";
 }
+<script>
+    function Create() {
+        var url = '@Url.Action("Create")';
+        location.href = url;
+    }
+    function Exit() {
+        var url = '@Url.Action("Index","Home")';
+        location.href = url;
+    }
+</script>
+<div class="container content-in">
+    <div class="row">
+        <h1>Policy List</h1>
+    </div>
+    <div class="row">
 
-<h2>Index</h2>
+        <div class="col-md-2">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <label>From</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-6">
+                    <label>To</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <label>Client Name</label>
+                    <input type="text" class="form_input" />
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <hr />
+    @Html.Partial("_NewPolicyGrid", Model)
+     <div class="row">
+        <hr />
+        <div class="col-md-offset-8 col-md-4">
+            <button type="button" class="form-button right" onclick="Create()">Add</button>
+            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+        </div>
+    </div>
+</div>
 

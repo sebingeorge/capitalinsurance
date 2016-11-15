@@ -4,9 +4,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script>
+    function Exit() {
+        var url = '@Url.Action("Index","Home")';
+        location.href = url;
+    }
     function Previous() {
-        var url = '@Url.Action("PreviousProposal", "New_policy")'
-        window.location = url;
+        var url = '@Url.Action("Index")';
+        location.href = url;
     }
     function Total_Premium() {
       
@@ -104,10 +108,22 @@
          format: 'dd-M-yyyy',
      });
     }
+    $(document).ready(function ()
+    {
+        $(".numbers-only").keypress(function (e) {
+            if (e.which == 8 || (e.which == 45 && $(this).val().indexOf('-') == -1) || (e.which == 46 && $(this).val().indexOf('.') == -1) || (e.which > 47 && e.which < 58)) {
+            }
+            else {
+                return false;
+            }
+        });
+
+    })
+ 
 </script>
 <div class="container content-in">
     <div class="row">
-        <h1>New Proposal (PSF)</h1>
+        <h1>New Policy (PSF)</h1>
     </div>
 @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
     {
@@ -174,14 +190,14 @@
 
                 <div class="col-md-6">
                     <label>Premium Amount</label>
-                    @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input", @style = "text-align:right", @onkeyup = "Total_Premium()" })
+                    @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()" })
                     @Html.ValidationMessageFor(m => m.PremiumAmount,"",new { @class = "text-danger" })
                 </div>
 
 
                 <div class="col-md-6">
                     <label>Policy Fees</label>
-                    @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input", @style = "text-align:right", @onkeyup = "Total_Premium()" })
+                    @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()" })
                     @Html.ValidationMessageFor(m => m.PolicyFee, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -195,7 +211,7 @@
                 </div>
                 <div class="col-md-6">
                     <label>Additional Premium</label>
-                    @Html.TextBoxFor(m => m.ExtraPremium, new { @class = "form_input", @style = "text-align:right", @onkeyup = "Total_Premium()" })
+                    @Html.TextBoxFor(m => m.ExtraPremium, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()" })
                     @Html.ValidationMessageFor(m => m.ExtraPremium, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">
@@ -221,7 +237,7 @@
                 </div>
                 <div class="col-md-6">
                     <label>Commi. Percentage</label>
-                    @Html.TextBoxFor(m => m.CommissionPerc, new { @class = "form_input", @style = "text-align:right", @onkeyup = "Total_Premium()" })
+                    @Html.TextBoxFor(m => m.CommissionPerc, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()" })
                     @Html.ValidationMessageFor(m => m.CommissionPerc, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">
@@ -306,6 +322,7 @@
                         <div class="col-md-12">
                             <label>Sales Manager</label>
                             @Html.DropDownListFor(m => Model.SalesMgId, (SelectList)ViewBag.SalesManager, "Select Sales Manager", new { @class = "form_input", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.SalesMgId, "", new { @class = "text-danger" })
                         </div>
                       </div>
                 </div>
@@ -348,10 +365,7 @@
             <div class="row form-group">
                 <div class="col-md-6">
                     <label>Payment to</label>
-                    <select class="form_input">
-                        <option value="">CIB</option>
-                        <option value="">Insurance Co</option>
-                    </select>
+                    @Html.DropDownListFor(m => Model.PaymentTo, (SelectList)ViewBag.PaymentTo, "Select Payment To", new { @class = "form_input", autocomplete = "off" })
                 </div>
                 <div class="col-md-6">
                     <label>Mode of Payment</label>
@@ -391,7 +405,7 @@
                             @Html.TextBoxFor(model => Model.Cheque[i].BankBranch, new { @class = "form_input", autocomplete = "off" })
                         </td>
                         <td>
-                            @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input", autocomplete = "off", @style = "text-align:right" })
+                            @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
                         </td>
                         <td style="vertical-align:middle"><a id="add_row" class="glyphicon glyphicon-plus del" style="top:0px" onclick="AddRow()"></a></td>
                         @*<td><img src="~/Images/Plus.png" /></td>*@

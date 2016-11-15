@@ -14,8 +14,9 @@ namespace CapitalInsurance.Controllers
         // GET: Proposal
         public ActionResult Index()
         {
-           
-            return View();
+
+            List<PolicyIssue> lstNewPolicy = (new PolicyIssueRepository()).GetNewPolicy();
+            return View(lstNewPolicy);
         }
         public ActionResult Create()
         {
@@ -40,6 +41,7 @@ namespace CapitalInsurance.Controllers
             Result res = new PolicyIssueRepository().Insert(model);
             return RedirectToAction("Create");
         }
+
         public ActionResult PolicyList()
         {
             return View();
@@ -57,6 +59,7 @@ namespace CapitalInsurance.Controllers
             FillInsuranceProduct();
             FillProductType();
             FillPaymentMode();
+            FillPaymentTo();
         }
         void FillSalesManager()
         {
@@ -81,6 +84,13 @@ namespace CapitalInsurance.Controllers
         void FillPaymentMode()
         {
             ViewBag.PaymentMode = new SelectList((new DropdownRepository()).GetPaymentMode(), "Id", "Name");
+        }
+        void FillPaymentTo()
+        {
+            List<Dropdown> types = new List<Dropdown>();
+            types.Add(new Dropdown { Id = 1, Name = "CIB" });
+            types.Add(new Dropdown { Id = 2, Name = "Insurance Co" });
+            ViewBag.PaymentTo = new SelectList(types, "Id", "Name");
         }
 
     }
