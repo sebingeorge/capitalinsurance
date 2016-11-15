@@ -17,7 +17,7 @@ namespace CapitalInsurance.Controllers
            
             return View();
         }
-        public ActionResult Proposal()
+        public ActionResult Create()
         {
             FillDropdowns();
             PolicyIssue model = new PolicyIssue();
@@ -26,7 +26,7 @@ namespace CapitalInsurance.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Proposal(PolicyIssue model)
+        public ActionResult Create(PolicyIssue model)
         {
             model.TranPrefix = "PSF";
             model.TranDate = System.DateTime.Now;
@@ -38,7 +38,7 @@ namespace CapitalInsurance.Controllers
                 return View(model);
             }
             Result res = new PolicyIssueRepository().Insert(model);
-            return RedirectToAction("Proposal");
+            return RedirectToAction("Create");
         }
         public ActionResult PolicyList()
         {

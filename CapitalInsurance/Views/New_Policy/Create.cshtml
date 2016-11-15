@@ -3,6 +3,38 @@
     ViewBag.Title = "CreateProposal";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script>
+    function Previous() {
+        var url = '@Url.Action("PreviousProposal", "New_policy")'
+        window.location = url;
+    }
+    function Total_Premium() {
+      
+        var PremiumAmount = parseFloat($("#PremiumAmount").val());
+        var PolicyFee = parseFloat($("#PolicyFee").val());
+        var AdditionalPreminum = parseFloat($("#ExtraPremium").val());
+
+        if (isNaN(PremiumAmount)) {
+            PremiumAmount = 0;
+        }
+        if (isNaN(PolicyFee)) {
+            PolicyFee = 0;
+        }
+        if (isNaN(AdditionalPreminum)) {
+            AdditionalPreminum = 0;
+        }
+
+        var TotalPremium = PremiumAmount + PolicyFee + AdditionalPreminum;
+        $("#TotalPremium").val(TotalPremium);
+
+        var commissionperc = parseFloat($("#CommissionPerc").val());
+        var commissionAmt = (TotalPremium * (commissionperc / 100));
+        $("#CommissionAmount").val(commissionAmt);
+
+    }
+</script>
+
+
 
 
 
@@ -24,9 +56,7 @@
             </div>
         </div>
     </div>
-
     <div class="row">
-
         <div class="col-md-3">
             <div class="row form-group">
                 <div class="col-md-12">
@@ -35,7 +65,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-md-3">
             <div class="row form-group">
                 <div class="col-md-12">
@@ -76,49 +105,41 @@
 
                 <div class="col-md-6">
                     <label>Premium Amount</label>
-                    @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input", @style = "text-align:right" })
+                    @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input", @style = "text-align:right", @onkeyup = "Total_Premium()" })
                     @Html.ValidationMessageFor(m => m.PremiumAmount, "", new { @class = "text-danger" })
                 </div>
 
 
                 <div class="col-md-6">
                     <label>Policy Fees</label>
-                    @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input", @style = "text-align:right" })
+                    @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input", @style = "text-align:right", @onkeyup = "Total_Premium()" })
                     @Html.ValidationMessageFor(m => m.PolicyFee, "", new { @class = "text-danger" })
                 </div>
-
             </div>
         </div>
-
         <div class="col-md-3">
             <div class="row form-group">
                 <div class="col-md-12">
                     <label>Product</label>
                     @Html.DropDownListFor(m => Model.InsPrdId, (SelectList)ViewBag.InsuranceProduct, "Select Product", new { @class = "form_input", autocomplete = "off" })
                 </div>
-
                 <div class="col-md-6">
                     <label>Additional Premium</label>
-                    @Html.TextBoxFor(m => m.ExtraPremium, new { @class = "form_input", @style = "text-align:right" })
+                    @Html.TextBoxFor(m => m.ExtraPremium, new { @class = "form_input", @style = "text-align:right", @onkeyup = "Total_Premium()" })
                     @Html.ValidationMessageFor(m => m.ExtraPremium, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">
                     <label>Total Premium</label>
-                    <input type="text" class="form_input" />
+                    @Html.TextBoxFor(m => m.TotalPremium, new { @class = "form_input", @style = "text-align:right",@readonly="readonly" })
                 </div>
-
-
-
             </div>
         </div>
         <div class="col-md-3">
             <div class="row form-group">
-
                 <div class="col-md-6">
                     <label>Product Type</label>
                     @Html.DropDownListFor(m => Model.InsCoverId, (SelectList)ViewBag.ProductType, "Select Product", new { @class = "form_input", autocomplete = "off" })
                 </div>
-
                 <div class="col-md-6">
                     <label>Policy Sub Date</label>
                     <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -127,27 +148,20 @@
                     </div>
                     @Html.ValidationMessageFor(m => m.PolicySubDate, "", new { @class = "text-danger" })
                 </div>
-
-
                 <div class="col-md-6">
                     <label>Commi. Percentage</label>
-                    @Html.TextBoxFor(m => m.CommissionPerc, new { @class = "form_input", @style = "text-align:right" })
+                    @Html.TextBoxFor(m => m.CommissionPerc, new { @class = "form_input", @style = "text-align:right", @onkeyup = "Total_Premium()" })
                     @Html.ValidationMessageFor(m => m.CommissionPerc, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">
                     <label>Commi. Amount</label>
-                    @Html.TextBoxFor(m => m.CommissionAmount, new { @class = "form_input", @style = "text-align:right" })
+                    @Html.TextBoxFor(m => m.CommissionAmount, new { @class = "form_input", @style = "text-align:right",@readonly="readonly"})
                     @Html.ValidationMessageFor(m => m.CommissionAmount, "", new { @class = "text-danger" })
                 </div>
-
-
-
             </div>
         </div>
-
         <div class="col-md-3">
             <div class="row form-group">
-
                 <div class="col-md-6">
                     <label>Effective Date</label>
                     <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -156,7 +170,6 @@
                     </div>
                     @Html.ValidationMessageFor(m => m.EffectiveDate, "", new { @class = "text-danger" })
                 </div>
-
                 <div class="col-md-6">
                     <label>Renewal Date</label>
                     <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -165,26 +178,16 @@
                     </div>
                     @Html.ValidationMessageFor(m => m.RenewalDate, "", new { @class = "text-danger" })
                 </div>
-
             </div>
         </div>
-
         <div class="col-md-3">
             <div class="row form-group">
-
-
-
-
             </div>
         </div>
-
             </div>
-
             <hr />
-
-            <h2>Customer Contact Persons Details</h2>
-
-            <div class="row">
+           <h2>Customer Contact Persons Details</h2>
+                <div class="row">
                 <div class="col-md-3">
                     <div class="row form-group">
                         <div class="col-md-12">
@@ -197,36 +200,24 @@
                             @Html.TextBoxFor(m => m.CustContMobile, new { @class = "form_input" })
                             @Html.ValidationMessageFor(m => m.CustContMobile, "", new { @class = "text-danger" })
                         </div>
-
-
-
-
                     </div>
                 </div>
-
                 <div class="col-md-3">
                     <div class="row form-group">
-
                         <div class="col-md-12">
                             <label>Designation</label>
                             @Html.TextBoxFor(m => m.CustContDesignation, new { @class = "form_input" })
                             @Html.ValidationMessageFor(m => m.CustContDesignation, "", new { @class = "text-danger" })
                         </div>
-
                         <div class="col-md-12">
                             <label>Payment Option</label>
                             @Html.TextBoxFor(m => m.PaymentOption, new { @class = "form_input" })
                             @Html.ValidationMessageFor(m => m.PaymentOption, "", new { @class = "text-danger" })
                         </div>
-
-
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="row form-group">
-
-
-
                         <div class="col-md-12">
                             <label>Email</label>
                             @Html.TextBoxFor(m => m.CustContEmail, new { @class = "form_input" })
@@ -239,24 +230,16 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-3">
                     <div class="row form-group">
-
                         <div class="col-md-12">
                             <label>Sales Manager</label>
                             @Html.DropDownListFor(m => Model.SalesMgId, (SelectList)ViewBag.SalesManager, "Select Sales Manager", new { @class = "form_input", autocomplete = "off" })
                         </div>
-
-                   
-                        
-                    </div>
+                      </div>
                 </div>
             </div>
-
-
-
-    <hr />
+        <hr />
     <h2>OPERATION</h2>
     <div class="row">
         <div class="col-md-3">
@@ -266,30 +249,19 @@
                     @Html.TextBoxFor(m => m.OperationManager, new { @class = "form_input" })
                     @Html.ValidationMessageFor(m => m.OperationManager, "", new { @class = "text-danger" })
                 </div>
-
             </div>
         </div>
-
-        <div class="col-md-3">
+                <div class="col-md-3">
             <div class="row form-group">
-
                 <div class="col-md-6">
                     <label>Policy No.</label>
                     @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
                     @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
                 </div>
-
-
-
-
             </div>
         </div>
-
-
     </div>
-
-
-    <hr />
+        <hr />
     <h2>FINANCE</h2>
     <div class="row">
         <div class="col-md-3">
@@ -299,13 +271,10 @@
                     @Html.TextBoxFor(m => m.FinanceManager, new { @class = "form_input" })
                     @Html.ValidationMessageFor(m => m.FinanceManager, "", new { @class = "text-danger" })
                 </div>
-
             </div>
         </div>
-
         <div class="col-md-3">
             <div class="row form-group">
-
                 <div class="col-md-6">
                     <label>Payment to</label>
                     <select class="form_input">
@@ -313,21 +282,14 @@
                         <option value="">Insurance Co</option>
                     </select>
                 </div>
-
                 <div class="col-md-6">
                     <label>Mode of Payment</label>
                     @Html.DropDownListFor(m => Model.PayModeId, (SelectList)ViewBag.PaymentMode, "Select Payment Mode", new { @class = "form_input", autocomplete = "off" })
-
                 </div>
-
             </div>
-
         </div>
-
-
         <div class="table-responsive scroll2 col-md-6">
-         
-            <table class="table table-bordered " id="tab_logic">
+                <table class="table table-bordered " id="tab_logic">
                 <tr class="grid_heading">
                     <th>Cheque No.</th>
                     <th>Cheque Date</th>
@@ -361,30 +323,15 @@
                     </tr>
                 }
             </table>
-
         </div>
-
-
-
     </div>
-
-
-
-            <div class="row">
+                <div class="row">
                 <hr />
                 <div class="col-md-12">
                     <button type="button" class="form-button" onclick="Previous()">Previous</button>
                     <button type="submit" class="form-button right">Save</button>
                     <button type="button" class="form-button right" onclick="Exit()">Exit</button>
                 </div>
-
             </div>
 }
         </div>
-<script>
-    function Previous() {
-        var url = '@Url.Action("PreviousProposal", "New_policy")'
-        window.location = url;
-    }
-
-</script>

@@ -25,6 +25,7 @@ namespace Capital.Domain
         public decimal PremiumAmount { get; set; }
         public decimal PolicyFee { get; set; }
         public decimal ExtraPremium { get; set; }
+        public decimal TotalPremium { get; set; }
         public decimal CommissionPerc { get; set; }
         public decimal CommissionAmount { get; set; }
         public string CustContPersonName { get; set; }
