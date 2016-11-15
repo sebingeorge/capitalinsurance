@@ -16,7 +16,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string query = @"select P.TranNumber,C.CusName,P.InsuredName,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,P.RenewalDate,
+                string query = @"select P.PolicyId,P.TranNumber,C.CusName,P.InsuredName,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,P.RenewalDate,
                                     P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionAmount, S.SalesMgName,P.PolicyNo
                                     from PolicyIssue P
                                     left join Customer C on C.CusId = P.CusId
@@ -61,6 +61,69 @@ namespace Capital.DAL
                     {
                         return (new Result(true));
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                return (new Result(false, ex.InnerException == null ? ex.Message : ex.InnerException.Message));
+            }
+            return res;
+        }
+        public PolicyIssue GetNewPolicy(int Id)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"select * from PolicyIssue where PolicyId=@Id";
+
+
+                var objPolicy = connection.Query<PolicyIssue>(sql, new
+                {
+                    Id = Id
+                }).First<PolicyIssue>();
+
+                return objPolicy;
+            }
+
+
+        }
+        public List<PolicyIssueChequeReceived> GetChequeDetails(int id)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"SELECT * from PolicyIssueChequeReceived P
+                               where P.PolicyId=@id ORDER BY InsChqRowId";
+                var objCheque = connection.Query<PolicyIssueChequeReceived>(sql, new { id = id }).ToList<PolicyIssueChequeReceived>();
+                return objCheque;
+            }
+        }
+        public Result Update(PolicyIssue model)
+        {
+            Result res = new Result(false);
+            try
+            {
+               
+            }
+            catch (Exception ex)
+            {
+                return (new Result(false, ex.InnerException == null ? ex.Message : ex.InnerException.Message));
+            }
+            return res;
+        }
+        public Result Delete(PolicyIssue model)
+        {
+            Result res = new Result(false);
+            try
+            {
+                using (IDbConnection connection = OpenConnection(dataConnection))
+                {
+                    IDbTransaction txn = connection.BeginTransaction();
+
+                    string query = @"DELETE FROM PolicyIssueChequeReceived WHERE PolicyId = @PolicyId;
+                                     DELETE FROM PolicyIssue  OUTPUT deleted.PolicyId WHERE PolicyId = @PolicyId;";
+                 
+                    int id = connection.Query<int>(query, model, txn).First();
+                    txn.Commit();
+
                 }
             }
             catch (Exception ex)

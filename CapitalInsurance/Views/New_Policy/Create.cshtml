@@ -3,6 +3,7 @@
     ViewBag.Title = "Issue New Policy";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(); }
 <script>
     function Exit() {
         var url = '@Url.Action("Index","Home")';
@@ -252,7 +253,7 @@
                 <div class="col-md-6">
                     <label>Effective Date</label>
                     <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                        @Html.TextBoxFor(m => m.EffectiveDate, new { @class = "form_input" })
+                     @Html.TextBoxFor(m => m.EffectiveDate, new { @class = "form_input " })
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                     @Html.ValidationMessageFor(m => m.EffectiveDate, "", new { @class = "text-danger" })
@@ -365,7 +366,7 @@
             <div class="row form-group">
                 <div class="col-md-6">
                     <label>Payment to</label>
-                    @Html.DropDownListFor(m => Model.PaymentTo, (SelectList)ViewBag.PaymentTo, "Select Payment To", new { @class = "form_input", autocomplete = "off" })
+                    @Html.DropDownListFor(m => Model.PaymentTo, (SelectList)ViewBag.Payment,"Select Payment To", new { @class = "form_input", autocomplete = "off" })
                 </div>
                 <div class="col-md-6">
                     <label>Mode of Payment</label>
@@ -418,7 +419,18 @@
                 <hr />
                 <div class="col-md-12">
                     <button type="button" class="form-button" onclick="Previous()">Previous</button>
-                    <button type="submit" class="form-button right">Save</button>
+                    @if (actionName == "Edit")
+                    {
+                        <button type="submit" class="form-button right">Update</button>
+                    }
+                    else if (actionName == "Delete")
+                    {
+                        <button type="submit" class="form-button right">Delete</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="form-button right">Save</button>
+                    }            
                     <button type="button" class="form-button right" onclick="Exit()">Exit</button>
                 </div>
             </div>

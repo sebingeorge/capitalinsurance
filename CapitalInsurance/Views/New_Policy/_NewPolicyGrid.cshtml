@@ -18,7 +18,7 @@
         columns.Add(m => m.TotalPremium).Titled("Total Premium").SetWidth(7);
         columns.Add(m => m.CommissionAmount).Titled("Commi.Amt.").SetWidth(7);
         columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(7);
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.PolicyId })">Edit</a>);
+        @*columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.PolicyId })">Edit</a>);*@
         columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Delete", new { Id = m.PolicyId })">Delete</a>);
 
     }).WithPaging(15)

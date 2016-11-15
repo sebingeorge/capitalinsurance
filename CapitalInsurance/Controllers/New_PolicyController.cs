@@ -41,15 +41,49 @@ namespace CapitalInsurance.Controllers
             Result res = new PolicyIssueRepository().Insert(model);
             return RedirectToAction("Create");
         }
-
-        public ActionResult PolicyList()
+        public ActionResult Edit(int Id)
         {
-            return View();
+            ViewBag.Title = "Edit";
+            FillDropdowns();
+            PolicyIssue objPolicy = new PolicyIssueRepository().GetNewPolicy(Id);
+            objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
+            return View("Create", objPolicy);
+
         }
-
-        public ActionResult PreviousProposal()
+        [HttpPost]
+        public ActionResult Edit(PolicyIssue model)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return View(model);
+            }
+            Result res = new PolicyIssueRepository().Update(model);
+
+
+            if (res.Value)
+            {
+                TempData["Success"] = "Updated Successfully!";
+            }
+            else
+            {
+
+            }
+            return RedirectToAction("Index");
+        }
+        public ActionResult Delete(int Id)
+        {
+            ViewBag.Title = "Delete";
+            FillDropdowns();
+            PolicyIssue objPolicy = new PolicyIssueRepository().GetNewPolicy(Id);
+            objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
+            return View("Create", objPolicy);
+        }
+        [HttpPost]
+        public ActionResult Delete(PolicyIssue model)
+        {
+            Result res = new PolicyIssueRepository().Delete(model);
+            return RedirectToAction("Index");
         }
         void FillDropdowns()
         {
@@ -90,7 +124,7 @@ namespace CapitalInsurance.Controllers
             List<Dropdown> types = new List<Dropdown>();
             types.Add(new Dropdown { Id = 1, Name = "CIB" });
             types.Add(new Dropdown { Id = 2, Name = "Insurance Co" });
-            ViewBag.PaymentTo = new SelectList(types, "Id", "Name");
+            ViewBag.Payment = new SelectList(types, "Id", "Name");
         }
 
     }
