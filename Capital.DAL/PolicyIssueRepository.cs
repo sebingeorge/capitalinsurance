@@ -37,7 +37,7 @@ namespace Capital.DAL
                         item.PolicyId = model.PolicyId;
                         sql = @"INSERT INTO PolicyIssueChequeReceived
                                    (PolicyId,ChequeNo,ChequeDate,BankName
-                                   ,BankBranch )VALUES(@PolicyId,@ChequeNo,@ChequeDate,@BankName,@BankBranch);SELECT CAST(SCOPE_IDENTITY() as int);";
+                                   ,BankBranch,ChequeAmt )VALUES(@PolicyId,@ChequeNo,@ChequeDate,@BankName,@BankBranch,@ChequeAmt);SELECT CAST(SCOPE_IDENTITY() as int);";
 
                     }
                     int id = connection.Execute(sql, model.Cheque);

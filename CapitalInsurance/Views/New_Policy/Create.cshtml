@@ -32,6 +32,78 @@
         $("#CommissionAmount").val(commissionAmt);
 
     }
+    function AddRow()
+    {
+  
+        var i = 0;
+        var no = 1;
+        $('tr[id^="Row_"]').each(function () {
+            var id = this.id;
+            no++;
+            var row = Number(id.replace("Row_", ""));
+            if (row > i) {
+                i = row;
+            }
+        });
+        i++;
+       
+        var index = (new Date()).getTime(); // unique indexer
+        var clone = $('#Row_0').clone(); // clone the BatchProducts item
+        //Update the index of the clone
+      
+        clone.html($(clone).html().replace(/\Cheque_0__/g, 'Cheque_' + i + '__'));
+        clone.html($(clone).html().replace(/\Cheque[0]./g, 'Cheque[' + i + '].'));
+        clone.html($(clone).html().replace(/\[0\]/g, '[' + i + ']'));
+        clone.html($(clone).html().replace(/\(0\)/g, '(' + i + ')'));
+        clone.html($(clone).html().replace(/Row_0/, 'Row_' + i));
+        clone.html($(clone).html().replace(/this,0/, 'this,' + i + ''));
+        $("#tab_logic").append('<tr id="Row_' + i + '">' + clone.html() + '  </tr>');
+        Append_Date();
+        }
+    function Delete(index) {
+        var i = 0;
+        var no = 1;
+        $('tr[id^="Row_"]').each(function () {
+            var id = this.id;
+            no++;
+            var row = Number(id.replace("Row_", ""));
+            if (row > i) {
+                i = row;
+            }
+        });
+        i++;
+        if (i > 1) {
+            $("#Row_" + index).remove();
+            for (var j = index + 1; j < i; j++) {
+                alert("hi");
+                var clone = $("#Row_" + j).clone(true, true);
+                alert(clone);
+                clone.html($(clone).html().replace(new RegExp("Cheque_" + j + "__", "g"), 'Cheque_' + (j - 1) + '__'));
+                clone.html($(clone).html().replace(new RegExp("\\[" + j + "].", "g"), "[" + (j - 1) + "]."));
+                              clone.html($(clone).html().replace("Delete(" + j, "Delete(" + (j - 1)));
+                clone.html($(clone).html().replace("Row_" + j, "Row_" + (j - 1)));
+
+                clone.html($(clone).html().replace("this," + j, "this," + (j - 1)));
+                alert($(clone).html());
+                $("#Row_" + j).html(clone.html());
+                $("#Row_" + (j)).attr('id', (j - 1));
+            }
+        }
+    }
+    function Append_Date()
+    {
+     $('.form_date').datetimepicker({
+         language: 'fr',
+         weekStart: 1,
+         todayBtn: 1,
+         autoclose: 1,
+         todayHighlight: 1,
+         startView: 2,
+         minView: 2,
+         forceParse: 0,
+         format: 'dd-M-yyyy',
+     });
+    }
 </script>
 
 
@@ -289,8 +361,9 @@
             </div>
         </div>
         <div class="table-responsive scroll2 col-md-6">
-                <table class="table table-bordered " id="tab_logic">
+            <table class="table table-bordered " id="tab_logic">
                 <tr class="grid_heading">
+                    <th></th>
                     <th>Cheque No.</th>
                     <th>Cheque Date</th>
                     <th>Bank Name</th>
@@ -300,26 +373,29 @@
                 </tr>
                 @for (int i = 0; i < Model.Cheque.Count; i++)
                 {
-                    <tr>
+                    <tr id="Row_@i">
+
+                        <td style="vertical-align:middle"><a class="glyphicon glyphicon-minus del" style="top:0px" onclick="Delete(@i)"></a></td>
                         <td>
-                        @Html.TextBoxFor(model => Model.Cheque[i].ChequeNo, new { @class = "form_input", autocomplete = "off" })
+                            @Html.TextBoxFor(model => Model.Cheque[i].ChequeNo, new { @class = "form_input", autocomplete = "off" })
                         </td>
                         <td>
-                        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                        @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                        </div>
+                            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
                         </td>
                         <td>
-                        @Html.TextBoxFor(model => Model.Cheque[i].BankName, new { @class = "form_input", autocomplete = "off" })
+                            @Html.TextBoxFor(model => Model.Cheque[i].BankName, new { @class = "form_input", autocomplete = "off" })
                         </td>
                         <td>
-                        @Html.TextBoxFor(model => Model.Cheque[i].BankBranch, new { @class = "form_input", autocomplete = "off" })
+                            @Html.TextBoxFor(model => Model.Cheque[i].BankBranch, new { @class = "form_input", autocomplete = "off" })
                         </td>
                         <td>
-                        @Html.TextBoxFor(model => Model.Cheque[i].BankBranch, new { @class = "form_input", autocomplete = "off" })
+                            @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input", autocomplete = "off", @style = "text-align:right" })
                         </td>
-                        <td><img src="~/Images/Plus.png" /></td>
+                        <td style="vertical-align:middle"><a id="add_row" class="glyphicon glyphicon-plus del" style="top:0px" onclick="AddRow()"></a></td>
+                        @*<td><img src="~/Images/Plus.png" /></td>*@
                     </tr>
                 }
             </table>

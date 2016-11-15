@@ -14,5 +14,6 @@ namespace Capital.Domain
         public DateTime? ChequeDate { get; set; }
         public string BankName { get; set; }
         public string BankBranch { get; set; }
+        public decimal ChequeAmt { get; set; }
     }
 }
