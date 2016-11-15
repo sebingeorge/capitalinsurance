@@ -1,0 +1,54 @@
+﻿@model List<Capital.Domain.PolicyIssue>
+<div class="table-responsive scroll3">
+        <span class="filter"><img src="~/Images/icon/filter.png" /></span>
+        <table class="table table-bordered" id="tab_logic">
+            <thead>
+                <tr class="grid_heading">
+                    @*<th width="2%">#</th>*@
+                    <th width="13%">Transaction No.</th>
+                    <th width="13%">Client</th>
+                    <th width="15%">Contact Name</th>
+                    <th width="12%">Insured Name</th>
+                    <th width="7%">Company</th>
+                    <th width="7%">Product</th>
+                    <th width="8%">Product Type</th>
+                    <th width="7%" class="text-right">Total Premium</th>
+                    <th width="5%">Renewal Date</th>
+                    <th width="10%">Sales Manager</th>
+
+                </tr>
+            <tbody class="grid_row">
+                @if (Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td class="grid-cell">@item.TranNumber</td>
+                            <td class="grid-cell">@item.CusName</td>
+                            <td class="grid-cell">@item.CustContPersonName</td>
+                            <td class="grid-cell">@item.InsuredName</td>
+                            <td class="grid-cell">@item.InsCmpName</td>
+                            <td class="grid-cell">@item.InsPrdName</td>
+                            <td class="grid-cell">@item.InsCoverName</td>
+                            <td class="grid-cell">@item.TotalPremium</td>
+                            <td class="grid-cell">@item.RenewalDate</td>
+                            <td class="grid-cell">@item.SalesMgName</td>
+                            @*<td><center>@Html.ActionLink("Select", "CreateQuerySheetUnit", "QuerySheet", new { QuerySheetid = @item.QuerySheetId, type = @ViewBag.Type }, new { @class = "form-button5", @style = "text-align:center" })</center></td>*@
+                        </tr>
+
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7">
+                            <center><em>No items found!</em></center>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+            </thead>
+           </table>
+    </div>

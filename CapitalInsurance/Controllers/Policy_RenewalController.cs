@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Capital.DAL;
+using Capital.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +27,12 @@ namespace CapitalInsurance.Controllers
                 public ActionResult PreviousProposal()
         {
             return View();
+        }
+        public ActionResult PendingPolicyList()
+        {
+
+            List<PolicyIssue> lstNewPolicy = (new PolicyIssueRepository()).GetNewPolicy();
+            return View(lstNewPolicy);
         }
 
     }

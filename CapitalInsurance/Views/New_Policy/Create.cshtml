@@ -144,7 +144,7 @@
         <div class="col-md-3">
             <div class="row form-group">
                 <div class="col-md-12">
-                    <label>Client Name</label>
+                    <label>Client</label>
                     @Html.DropDownListFor(m => Model.CusId, (SelectList)ViewBag.Customer, "Select Client", new { @class = "form_input", autocomplete = "off" })
                     @Html.ValidationMessageFor(m => m.CusId, "", new { @class = "text-danger" })
                 </div>
@@ -225,7 +225,7 @@
             <div class="row form-group">
                 <div class="col-md-6">
                     <label>Product Type</label>
-                    @Html.DropDownListFor(m => Model.InsCoverId, (SelectList)ViewBag.ProductType, "Select Product", new { @class = "form_input", autocomplete = "off" })
+                    @Html.DropDownListFor(m => Model.InsCoverId, (SelectList)ViewBag.ProductType, "Select Product Type", new { @class = "form_input", autocomplete = "off" })
                     @Html.ValidationMessageFor(m => m.InsCoverId, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">

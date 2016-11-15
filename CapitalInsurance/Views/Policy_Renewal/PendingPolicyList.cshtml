@@ -1,0 +1,48 @@
+﻿@model List<Capital.Domain.PolicyIssue>
+@{
+    ViewBag.Title = "PendingPolicyList";
+}
+
+
+<div class="container content-in">
+    <div class="row">
+        <h1>Pending Renewal List</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>From</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-6">
+                    <label>To</label>
+                    <input type="text" class="form_input" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Client Name</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-6">
+                    <label>Excecutive</label>
+                    <input type="text" class="form_input" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    @Html.Partial("_PolicyListGrid", Model)
+       <div class="row">
+        <hr />
+        <div class="col-md-offset-8 col-md-4">
+            <button type="button" class="form-button right" onclick="Proceed()">Proceed</button>
+            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+        </div>
+    </div>
+</div>
+
+
