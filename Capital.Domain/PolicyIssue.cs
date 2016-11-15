@@ -11,26 +11,37 @@ namespace Capital.Domain
     {
         public int? PolicyId { get; set; }
         public string TranPrefix { get; set; }
-
-        //[System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Transaction Number is Required")]
-      
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Transaction Number is Required")]
         public int? TranNumber { get; set; }
         public DateTime? TranDate { get; set; }
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Client Name is Required")]
         public int? CusId { get; set; }
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Insured Name is Required")]
         public string InsuredName { get; set; }
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Address1 is Required")]
         public string Address1 { get; set; }
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Address2 is Required")]
         public string Address2 { get; set; }
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Company is Required")]
         public int? InsCmpId { get; set; }
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Product is Required")]
         public int? InsPrdId { get; set; }
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Product Type is Required")]
         public int? InsCoverId { get; set; }
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Policy Sub Date is Required")]
         public DateTime? PolicySubDate { get; set; }
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Effective Date is Required")]
         public DateTime? EffectiveDate { get; set; }
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Renewal Date is Required")]
         public DateTime? RenewalDate { get; set; }
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Premium Amount is Required")]
         public decimal PremiumAmount { get; set; }
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Policy Fee is Required")]
         public decimal PolicyFee { get; set; }
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Extra Premium is Required")]
         public decimal ExtraPremium { get; set; }
         public decimal TotalPremium { get; set; }
+         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Commission Percentage is Required")]
         public decimal CommissionPerc { get; set; }
         public decimal CommissionAmount { get; set; }
         public string CustContPersonName { get; set; }

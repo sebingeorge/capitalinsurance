@@ -129,6 +129,7 @@
                 <div class="col-md-12">
                     <label>Client Name</label>
                     @Html.DropDownListFor(m => Model.CusId, (SelectList)ViewBag.Customer, "Select Client", new { @class = "form_input", autocomplete = "off" })
+                    @Html.ValidationMessageFor(m => m.CusId, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -168,12 +169,13 @@
                 <div class="col-md-12">
                     <label>Company</label>
                     @Html.DropDownListFor(m => Model.InsCmpId, (SelectList)ViewBag.Company, "Select Company", new { @class = "form_input", autocomplete = "off" })
+                    @Html.ValidationMessageFor(m => m.InsCmpId, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="col-md-6">
                     <label>Premium Amount</label>
                     @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input", @style = "text-align:right", @onkeyup = "Total_Premium()" })
-                    @Html.ValidationMessageFor(m => m.PremiumAmount, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(m => m.PremiumAmount,"",new { @class = "text-danger" })
                 </div>
 
 
@@ -189,6 +191,7 @@
                 <div class="col-md-12">
                     <label>Product</label>
                     @Html.DropDownListFor(m => Model.InsPrdId, (SelectList)ViewBag.InsuranceProduct, "Select Product", new { @class = "form_input", autocomplete = "off" })
+                    @Html.ValidationMessageFor(m => m.InsPrdId, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">
                     <label>Additional Premium</label>
@@ -206,6 +209,7 @@
                 <div class="col-md-6">
                     <label>Product Type</label>
                     @Html.DropDownListFor(m => Model.InsCoverId, (SelectList)ViewBag.ProductType, "Select Product", new { @class = "form_input", autocomplete = "off" })
+                    @Html.ValidationMessageFor(m => m.InsCoverId, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">
                     <label>Policy Sub Date</label>
