@@ -32,7 +32,15 @@ namespace CapitalInsurance.Controllers
                 return View(model);
             }
             Result res = new InsuranceProductRepository().Insert(model);
-            return RedirectToAction("Create");
+            if (res.Value)
+            {
+                TempData["Success"] = "Saved Successfully!";
+            }
+            else
+            {
+
+            }
+            return RedirectToAction("Index");
         }
         public ActionResult Edit(int Id)
         {
@@ -76,6 +84,14 @@ namespace CapitalInsurance.Controllers
         public ActionResult Delete(InsuranceProduct model)
         {
             Result res = new InsuranceProductRepository().Delete(model);
+            if (res.Value)
+            {
+                TempData["Success"] = "Deleted Successfully!";
+            }
+            else
+            {
+
+            }
             return RedirectToAction("Index");
         }
         void FillDropdowns()

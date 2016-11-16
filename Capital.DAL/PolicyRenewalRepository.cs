@@ -25,7 +25,7 @@ namespace Capital.DAL
                                     left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                    where P.OldPolicyId IS NULL and P.TranType = 'New Policy'
+                                   	where P.PolicyId not in (select isnull(OldPolicyId,0) from PolicyIssue)
                                     order by P.TranNumber";
                 return connection.Query<PolicyIssue>(query).ToList();
             }

@@ -29,7 +29,15 @@ namespace CapitalInsurance.Controllers
                 return View(model);
             }
             Result res = new InsuranceCompanyRepository().Insert(model);
-            return RedirectToAction("Create");
+            if (res.Value)
+            {
+                TempData["Success"] = "Saved Successfully!";
+            }
+            else
+            {
+
+            }
+            return RedirectToAction("Index");
         }
         public ActionResult Edit(int Id)
         {
@@ -70,6 +78,14 @@ namespace CapitalInsurance.Controllers
         public ActionResult Delete(InsuranceCompany model)
         {
             Result res = new InsuranceCompanyRepository().Delete(model);
+            if (res.Value)
+            {
+                TempData["Success"] = "Deleted Successfully!";
+            }
+            else
+            {
+
+            }
             return RedirectToAction("Index");
         }
     }

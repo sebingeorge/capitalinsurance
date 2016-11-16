@@ -54,7 +54,15 @@ namespace CapitalInsurance.Controllers
                 return View(model);
             }
             Result res = new CustomerRepository().Insert(model);
-            return RedirectToAction("Create");
+            if (res.Value)
+            {
+                TempData["Success"] = "Saved Successfully!";
+            }
+            else
+            {
+
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -83,6 +91,14 @@ namespace CapitalInsurance.Controllers
         public ActionResult Delete(Customer model)
         {
             Result res = new CustomerRepository().Delete(model);
+            if (res.Value)
+            {
+                TempData["Success"] = "Deleted Successfully!";
+            }
+            else
+            {
+
+            }
             return RedirectToAction("Index");
         }
         void FillRegion()

@@ -2,7 +2,17 @@
 @{
     ViewBag.Title = "Create";
 }
-@{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(); }
+@{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
+  if (actionName == "Create")
+  {
+      ViewBag.actionName = "Create";
+  }
+  else
+  {
+      ViewBag.actionName = actionName;
+  }
+  }
+
 <script>
     function Exit() {
         var url = '@Url.Action("PendingPolicyList")';
@@ -115,8 +125,11 @@
         });
     }
     $(document).ready(function () {
-        $("#TranNumber").focus();
-        $(".numbers-only").keypress(function (e) {
+        if ('@ViewBag.actionName.ToString()' == "Create")
+        {
+            $("#TranNumber").focus();
+        }
+    $(".numbers-only").keypress(function (e) {
             if (e.which == 8 || (e.which == 45 && $(this).val().indexOf('-') == -1) || (e.which == 46 && $(this).val().indexOf('.') == -1) || (e.which > 47 && e.which < 58)) {
             }
             else {
@@ -130,7 +143,14 @@
 
 <div class="container content-in">
     <div class="row">
-        <h1>Policy Renewal</h1>
+    @if (actionName == "Create")
+    {
+            <h1>Policy Renewal</h1>
+    }
+    else
+    {
+        <h1>Policy Endorsement</h1>
+    }
     </div>
     @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
     {

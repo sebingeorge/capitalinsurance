@@ -14,6 +14,7 @@
         columns.Add(m => m.TotalPremium).Titled("Total Premium").SetWidth(7);
         columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("Renewal Date").SetWidth(7);
         columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(7);
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Create", new { Id = m.PolicyId })">Proceed</a>);
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Create", new { Id = m.PolicyId })">Renew</a>);
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("CreateEndrose", new { Id = m.PolicyId })">Endorse</a>);
     }).WithPaging(15)
 </div>

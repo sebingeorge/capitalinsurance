@@ -39,17 +39,23 @@ namespace CapitalInsurance.Controllers
             Result res = new PolicyRenewalRepository().Insert(model);
             return RedirectToAction("PendingPolicyList");
         }
+        public ActionResult CreateEndrose(int Id)
+        {
+            FillDropdowns();
+            PolicyIssue objPolicy = new PolicyIssueRepository().GetNewPolicy(Id);
+            objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
+            return View("Create", objPolicy);
+        }
         public ActionResult RenewalList()
         {
             return View();
         }
-                public ActionResult PreviousProposal()
+        public ActionResult PreviousProposal()
         {
             return View();
         }
         public ActionResult PendingPolicyList()
         {
-
             List<PolicyIssue> lstNewPolicy = (new PolicyRenewalRepository()).GetNewPolicyForRenewal();
             return View(lstNewPolicy);
         }
