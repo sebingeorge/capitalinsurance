@@ -124,7 +124,10 @@ namespace Capital.DAL
                  
                     int id = connection.Query<int>(query, model, txn).First();
                     txn.Commit();
-
+                    if (id > 0)
+                    {
+                        return (new Result(true));
+                    }
                 }
             }
             catch (Exception ex)

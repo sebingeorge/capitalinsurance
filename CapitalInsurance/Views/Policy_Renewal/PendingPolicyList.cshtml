@@ -5,10 +5,10 @@
 
 <script type="text/javascript">
 
-    function Previous() {
+    @*function Previous() {
         var url = '@Url.Action("Index")';
         window.location = url;
-    }
+    }*@
     function Exit() {
         var url = '@Url.Action("Index","Home")';
         window.location = url;
@@ -51,7 +51,7 @@
         <div class="row">
             <hr />
             <div class="col-md-12 hrpart">
-                <input type="button" class="form-button" onclick="Previous()" value="Previous" title="Previous Policy Renewal">
+                @*<input type="button" class="form-button" onclick="Previous()" value="Previous" title="Previous Policy Renewal">*@
                 <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
             </div>
         </div>

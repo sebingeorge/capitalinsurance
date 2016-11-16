@@ -44,7 +44,6 @@ namespace CapitalInsurance.Controllers
             FillCustomerCategory();
             FillCountry();
         }
-      
         [HttpPost]
         public ActionResult Create(Customer model)
         {

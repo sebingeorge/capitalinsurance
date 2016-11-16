@@ -29,7 +29,7 @@ namespace CapitalInsurance.Controllers
         [HttpPost]
         public ActionResult Create(PolicyIssue model)
         {
-            model.TranPrefix = "PSF";
+            model.TranPrefix = "CIB/PSF";
             model.TranDate = System.DateTime.Now;
             model.CreatedDate = System.DateTime.Now;
             model.CreatedBy = UserID;
@@ -39,7 +39,15 @@ namespace CapitalInsurance.Controllers
                 return View(model);
             }
             Result res = new PolicyIssueRepository().Insert(model);
-            return RedirectToAction("Create");
+            if (res.Value)
+            {
+                TempData["Success"] = "Saved Successfully!";
+            }
+            else
+            {
+
+            }
+            return RedirectToAction("Index");
         }
         public ActionResult Edit(int Id)
         {
@@ -83,6 +91,14 @@ namespace CapitalInsurance.Controllers
         public ActionResult Delete(PolicyIssue model)
         {
             Result res = new PolicyIssueRepository().Delete(model);
+            if (res.Value)
+            {
+                TempData["Success"] = "Deleted Successfully!";
+            }
+            else
+            {
+
+            }
             return RedirectToAction("Index");
         }
         void FillDropdowns()
@@ -126,6 +142,5 @@ namespace CapitalInsurance.Controllers
             types.Add(new Dropdown { Id = 2, Name = "Insurance Co" });
             ViewBag.Payment = new SelectList(types, "Id", "Name");
         }
-
     }
 }
