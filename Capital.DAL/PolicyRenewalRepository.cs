@@ -25,7 +25,7 @@ namespace Capital.DAL
                                     left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                    where OldPolicyId IS NULL
+                                    where P.OldPolicyId IS NULL and P.TranType = 'New Policy'
                                     order by P.TranNumber";
                 return connection.Query<PolicyIssue>(query).ToList();
             }
@@ -66,7 +66,7 @@ namespace Capital.DAL
                                     (@TranPrefix,@TranNumber,@TranDate,@CusId,@InsuredName,@Address1,@Address2,@InsCmpId,@InsPrdId,@InsCoverId,@PolicySubDate,@EffectiveDate,@RenewalDate,
                                     @PremiumAmount,@PolicyFee,@ExtraPremium,@Totalpremium,@CommissionPerc,@CommissionAmount,@CustContPersonName,@CustContDesignation,@CustContEmail,@CustContMobile,
                                     @PaymentOption,@SalesMgId,@OperationManager,@PolicyNo,@Remarks,@FinanceManager,@PaymentTo,@PayModeId,@PolicyId,@CIBEffectiveDate,@EndorcementDate,@AdditionEmpNo,
-                                    @DeletionEmpNo,@EndorcementTypeId,'New Policy',@CreatedBy,@CreatedDate);
+                                    @DeletionEmpNo,@EndorcementTypeId,'Renew Policy',@CreatedBy,@CreatedDate);
                                     SELECT CAST(SCOPE_IDENTITY() as int);";
                     model.PolicyId = connection.Query<int>(sql, model).Single();
 
@@ -103,7 +103,7 @@ namespace Capital.DAL
                                     left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                    where OldPolicyId IS NOT NULL 
+                                    where P.OldPolicyId IS NOT NULL and P.TranType = 'Renew Policy'
                                     order by P.TranNumber";
                 return connection.Query<PolicyIssue>(query).ToList();
             }

@@ -37,7 +37,7 @@ namespace CapitalInsurance.Controllers
                 return View(model);
             }
             Result res = new PolicyRenewalRepository().Insert(model);
-            return RedirectToAction("Create");
+            return RedirectToAction("PendingPolicyList");
         }
         public ActionResult RenewalList()
         {
