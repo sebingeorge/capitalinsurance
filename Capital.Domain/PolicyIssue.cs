@@ -30,11 +30,11 @@ namespace Capital.Domain
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Product Type is Required")]
         public int? InsCoverId { get; set; }
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Policy Sub Date is Required")]
-        public DateTime? PolicySubDate { get; set; }
+        public DateTime PolicySubDate { get; set; }
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Effective Date is Required")]
-        public DateTime? EffectiveDate { get; set; }
+        public DateTime EffectiveDate { get; set; }
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Renewal Date is Required")]
-        public DateTime? RenewalDate { get; set; }
+        public DateTime RenewalDate { get; set; }
         public decimal PremiumAmount { get; set; }
         public decimal PolicyFee { get; set; }
         public decimal ExtraPremium { get; set; }

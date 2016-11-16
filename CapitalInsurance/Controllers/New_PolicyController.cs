@@ -24,6 +24,9 @@ namespace CapitalInsurance.Controllers
             PolicyIssue model = new PolicyIssue();
             model.Cheque = new List<PolicyIssueChequeReceived>();
             model.Cheque.Add(new PolicyIssueChequeReceived());
+            model.PolicySubDate = DateTime.Now;
+            model.EffectiveDate = DateTime.Now;
+            model.RenewalDate = DateTime.Now;
             return View(model);
         }
         [HttpPost]
