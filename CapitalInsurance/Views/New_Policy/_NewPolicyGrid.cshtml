@@ -1,9 +1,20 @@
 ﻿@model List<Capital.Domain.PolicyIssue>
 @using GridMvc.Html
+@*<style type="text/css">
+    .webgrid-header
+    {
+        
+        text-align: right;
+    }
+</style>*@
+
+
 <div class="table-responsive scroll3">
+   
     <span class="filter"><img src="~/Images/icon/filter.png" /></span>
     @Html.Grid(Model).Columns(columns =>
     {
+
         columns.Add(m => m.TranNumber).Titled("Transaction No.").SetWidth(12);
         columns.Add(m => m.PolicyNo).Titled("Policy No.").SetWidth(10);
         columns.Add(m => m.CusName).Titled("Client").SetWidth(10);
