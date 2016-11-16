@@ -26,6 +26,12 @@ namespace CapitalInsurance
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/toasterScript").Include(
+              "~/Content/toastr/build/toastr.min.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/toasterStyle").Include(
+                "~/Content/toastr/build/toastr.min.css"));
         }
     }
 }

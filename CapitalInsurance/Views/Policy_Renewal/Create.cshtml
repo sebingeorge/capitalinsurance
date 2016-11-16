@@ -61,7 +61,15 @@
         clone.html($(clone).html().replace(/Row_0/, 'Row_' + i));
         clone.html($(clone).html().replace(/this,0/, 'this,' + i + ''));
         $("#tab_logic").append('<tr id="Row_' + i + '">' + clone.html() + '  </tr>');
+        resetValues(i);
         Append_Date();
+    }
+    function resetValues(index) {
+        $("#Cheque_" + index + "__ChequeNo").val('');
+        $("#Cheque_" + index + "__BankName").val('');
+        $("#Cheque_" + index + "__BankBranch").val('');
+        $("#Cheque_" + index + "__ChequeAmt").val('');
+        $("#Cheque_" + index + "__ChequeDate").val('');
     }
     function Delete(index) {
         var i = 0;

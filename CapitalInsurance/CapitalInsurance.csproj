@@ -227,6 +227,7 @@
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\m-logo.png" />
     <Content Include="Content\images\manhand.png" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -386,6 +387,7 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\admin\PreviousCustomer.cshtml" />
     <Content Include="Views\admin\PreviousEmployee.cshtml" />
