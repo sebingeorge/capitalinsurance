@@ -3,6 +3,123 @@
     ViewBag.Title = "Create";
 }
 @{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(); }
+<script>
+    function Exit() {
+        var url = '@Url.Action("Index","Home")';
+        location.href = url;
+    }
+    function Previous() {
+        var url = '@Url.Action("Index")';
+        location.href = url;
+    }
+    function Total_Premium() {
+
+        var PremiumAmount = parseFloat($("#PremiumAmount").val());
+        var PolicyFee = parseFloat($("#PolicyFee").val());
+        var AdditionalPreminum = parseFloat($("#ExtraPremium").val());
+
+        if (isNaN(PremiumAmount)) {
+            PremiumAmount = 0;
+        }
+        if (isNaN(PolicyFee)) {
+            PolicyFee = 0;
+        }
+        if (isNaN(AdditionalPreminum)) {
+            AdditionalPreminum = 0;
+        }
+
+        var TotalPremium = PremiumAmount + PolicyFee + AdditionalPreminum;
+        $("#TotalPremium").val(TotalPremium);
+
+        var commissionperc = parseFloat($("#CommissionPerc").val());
+        var commissionAmt = (TotalPremium * (commissionperc / 100));
+        $("#CommissionAmount").val(commissionAmt);
+
+    }
+    function AddRow() {
+
+        var i = 0;
+        var no = 1;
+        $('tr[id^="Row_"]').each(function () {
+            var id = this.id;
+            no++;
+            var row = Number(id.replace("Row_", ""));
+            if (row > i) {
+                i = row;
+            }
+        });
+        i++;
+
+        var index = (new Date()).getTime(); // unique indexer
+        var clone = $('#Row_0').clone(); // clone the BatchProducts item
+        //Update the index of the clone
+
+        clone.html($(clone).html().replace(/\Cheque_0__/g, 'Cheque_' + i + '__'));
+        clone.html($(clone).html().replace(/\Cheque[0]./g, 'Cheque[' + i + '].'));
+        clone.html($(clone).html().replace(/\[0\]/g, '[' + i + ']'));
+        clone.html($(clone).html().replace(/\(0\)/g, '(' + i + ')'));
+        clone.html($(clone).html().replace(/Row_0/, 'Row_' + i));
+        clone.html($(clone).html().replace(/this,0/, 'this,' + i + ''));
+        $("#tab_logic").append('<tr id="Row_' + i + '">' + clone.html() + '  </tr>');
+        Append_Date();
+    }
+    function Delete(index) {
+        var i = 0;
+        var no = 1;
+        $('tr[id^="Row_"]').each(function () {
+            var id = this.id;
+            no++;
+            var row = Number(id.replace("Row_", ""));
+            if (row > i) {
+                i = row;
+            }
+        });
+        i++;
+        if (i > 1) {
+            $("#Row_" + index).remove();
+            for (var j = index + 1; j < i; j++) {
+                alert("hi");
+                var clone = $("#Row_" + j).clone(true, true);
+                alert(clone);
+                clone.html($(clone).html().replace(new RegExp("Cheque_" + j + "__", "g"), 'Cheque_' + (j - 1) + '__'));
+                clone.html($(clone).html().replace(new RegExp("\\[" + j + "].", "g"), "[" + (j - 1) + "]."));
+                clone.html($(clone).html().replace("Delete(" + j, "Delete(" + (j - 1)));
+                clone.html($(clone).html().replace("Row_" + j, "Row_" + (j - 1)));
+
+                clone.html($(clone).html().replace("this," + j, "this," + (j - 1)));
+                alert($(clone).html());
+                $("#Row_" + j).html(clone.html());
+                $("#Row_" + (j)).attr('id', (j - 1));
+            }
+        }
+    }
+    function Append_Date() {
+        $('.form_date').datetimepicker({
+            language: 'fr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            format: 'dd-M-yyyy',
+        });
+    }
+    $(document).ready(function () {
+        $("#TranNumber").focus();
+        $(".numbers-only").keypress(function (e) {
+            if (e.which == 8 || (e.which == 45 && $(this).val().indexOf('-') == -1) || (e.which == 46 && $(this).val().indexOf('.') == -1) || (e.which > 47 && e.which < 58)) {
+            }
+            else {
+                return false;
+            }
+        });
+
+    })
+
+</script>
+
 <div class="container content-in">
     <div class="row">
         <h1>Policy Renewal</h1>

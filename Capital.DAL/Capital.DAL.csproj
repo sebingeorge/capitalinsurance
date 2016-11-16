@@ -83,6 +83,7 @@
     <Compile Include="InsuranceCompanyRepository.cs" />
     <Compile Include="InsuranceProductRepository.cs" />
     <Compile Include="PolicyIssueRepository.cs" />
+    <Compile Include="PolicyRenewalRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegionRepository.cs" />
     <Compile Include="SalesManagerRepository.cs" />

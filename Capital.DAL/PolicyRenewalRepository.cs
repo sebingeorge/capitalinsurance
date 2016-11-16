@@ -9,10 +9,11 @@ using Dapper;
 
 namespace Capital.DAL
 {
-    public class PolicyIssueRepository : BaseRepository
+  public  class PolicyRenewalRepository : BaseRepository
+   
     {
         static string dataConnection = GetConnectionString("CibConnection");
-        public List<PolicyIssue> GetNewPolicy()
+        public List<PolicyIssue> GetNewPolicyForRenewal()
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
@@ -24,10 +25,30 @@ namespace Capital.DAL
                                     left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                    where OldPolicyId IS NULL 
+                                    where OldPolicyId IS NULL
                                     order by P.TranNumber";
                 return connection.Query<PolicyIssue>(query).ToList();
             }
+        }
+        public PolicyIssue GetNewPolicyForRenewal(int Id)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"select PolicyId,TranPrefix,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
+                                    PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
+                                    PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorcementDate,AdditionEmpNo,
+                                    DeletionEmpNo,EndorcementTypeId,TranType,CreatedBy,CreatedDate from PolicyIssue where PolicyId=@Id";
+
+
+                var objPolicy = connection.Query<PolicyIssue>(sql, new
+                {
+                    Id = Id
+                }).First<PolicyIssue>();
+
+                return objPolicy;
+            }
+
+
         }
         public Result Insert(PolicyIssue model)
         {
@@ -44,7 +65,7 @@ namespace Capital.DAL
                                     VALUES
                                     (@TranPrefix,@TranNumber,@TranDate,@CusId,@InsuredName,@Address1,@Address2,@InsCmpId,@InsPrdId,@InsCoverId,@PolicySubDate,@EffectiveDate,@RenewalDate,
                                     @PremiumAmount,@PolicyFee,@ExtraPremium,@Totalpremium,@CommissionPerc,@CommissionAmount,@CustContPersonName,@CustContDesignation,@CustContEmail,@CustContMobile,
-                                    @PaymentOption,@SalesMgId,@OperationManager,@PolicyNo,@Remarks,@FinanceManager,@PaymentTo,@PayModeId,@OldPolicyId,@CIBEffectiveDate,@EndorcementDate,@AdditionEmpNo,
+                                    @PaymentOption,@SalesMgId,@OperationManager,@PolicyNo,@Remarks,@FinanceManager,@PaymentTo,@PayModeId,@PolicyId,@CIBEffectiveDate,@EndorcementDate,@AdditionEmpNo,
                                     @DeletionEmpNo,@EndorcementTypeId,'New Policy',@CreatedBy,@CreatedDate);
                                     SELECT CAST(SCOPE_IDENTITY() as int);";
                     model.PolicyId = connection.Query<int>(sql, model).Single();
@@ -62,69 +83,6 @@ namespace Capital.DAL
                     {
                         return (new Result(true));
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                return (new Result(false, ex.InnerException == null ? ex.Message : ex.InnerException.Message));
-            }
-            return res;
-        }
-        public PolicyIssue GetNewPolicy(int Id)
-        {
-            using (IDbConnection connection = OpenConnection(dataConnection))
-            {
-                string sql = @"select * from PolicyIssue where PolicyId=@Id";
-
-
-                var objPolicy = connection.Query<PolicyIssue>(sql, new
-                {
-                    Id = Id
-                }).First<PolicyIssue>();
-
-                return objPolicy;
-            }
-
-
-        }
-        public List<PolicyIssueChequeReceived> GetChequeDetails(int id)
-        {
-            using (IDbConnection connection = OpenConnection(dataConnection))
-            {
-                string sql = @"SELECT * from PolicyIssueChequeReceived P
-                               where P.PolicyId=@id ORDER BY InsChqRowId";
-                var objCheque = connection.Query<PolicyIssueChequeReceived>(sql, new { id = id }).ToList<PolicyIssueChequeReceived>();
-                return objCheque;
-            }
-        }
-        public Result Update(PolicyIssue model)
-        {
-            Result res = new Result(false);
-            try
-            {
-               
-            }
-            catch (Exception ex)
-            {
-                return (new Result(false, ex.InnerException == null ? ex.Message : ex.InnerException.Message));
-            }
-            return res;
-        }
-        public Result Delete(PolicyIssue model)
-        {
-            Result res = new Result(false);
-            try
-            {
-                using (IDbConnection connection = OpenConnection(dataConnection))
-                {
-                    IDbTransaction txn = connection.BeginTransaction();
-
-                    string query = @"DELETE FROM PolicyIssueChequeReceived WHERE PolicyId = @PolicyId;
-                                     DELETE FROM PolicyIssue  OUTPUT deleted.PolicyId WHERE PolicyId = @PolicyId;";
-                 
-                    int id = connection.Query<int>(query, model, txn).First();
-                    txn.Commit();
-
                 }
             }
             catch (Exception ex)

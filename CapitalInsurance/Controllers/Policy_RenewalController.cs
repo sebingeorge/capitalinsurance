@@ -18,11 +18,26 @@ namespace CapitalInsurance.Controllers
         public ActionResult Create(int Id)
         {
             FillDropdowns();
-            PolicyIssue objPolicy = new PolicyIssueRepository().GetNewPolicy(Id);
+            PolicyIssue objPolicy = new PolicyRenewalRepository().GetNewPolicyForRenewal(Id);
+            objPolicy.PolicySubDate = DateTime.Now;
             objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
             return View("Create", objPolicy);
         }
-
+        [HttpPost]
+        public ActionResult Create(PolicyIssue model)
+        {
+            model.TranPrefix = "RENEWPSF";
+            model.TranDate = System.DateTime.Now;
+            model.CreatedDate = System.DateTime.Now;
+            model.CreatedBy = UserID;
+            if (!ModelState.IsValid)
+            {
+                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return View(model);
+            }
+            Result res = new PolicyRenewalRepository().Insert(model);
+            return RedirectToAction("Create");
+        }
         public ActionResult RenewalList()
         {
             return View();
@@ -34,7 +49,7 @@ namespace CapitalInsurance.Controllers
         public ActionResult PendingPolicyList()
         {
 
-            List<PolicyIssue> lstNewPolicy = (new PolicyIssueRepository()).GetNewPolicy();
+            List<PolicyIssue> lstNewPolicy = (new PolicyRenewalRepository()).GetNewPolicyForRenewal();
             return View(lstNewPolicy);
         }
         void FillDropdowns()
