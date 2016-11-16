@@ -13,7 +13,8 @@ namespace CapitalInsurance.Controllers
         // GET: Policy_Renewal
         public ActionResult Index()
         {
-            return View();
+            List<PolicyIssue> lstNewPolicy = (new PolicyRenewalRepository()).GetRenewalPolicy();
+            return View(lstNewPolicy);
         }
         public ActionResult Create(int Id)
         {

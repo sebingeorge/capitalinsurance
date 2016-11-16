@@ -490,6 +490,8 @@
     <Content Include="Views\Policy_Renewal\PendingPolicyList.cshtml" />
     <Content Include="Views\Policy_Renewal\_PolicyListGrid.cshtml" />
     <Content Include="Views\Policy_Renewal\Create.cshtml" />
+    <Content Include="Views\Policy_Renewal\Index.cshtml" />
+    <Content Include="Views\Policy_Renewal\_RenewalPolicyGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

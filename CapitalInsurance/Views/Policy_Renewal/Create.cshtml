@@ -5,7 +5,7 @@
 @{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(); }
 <script>
     function Exit() {
-        var url = '@Url.Action("Index","Home")';
+        var url = '@Url.Action("PendingPolicyList")';
         location.href = url;
     }
     function Previous() {
@@ -424,7 +424,7 @@
         <div class="row">
             <hr />
             <div class="col-md-12">
-                <button type="button" class="form-button" onclick="Previous()">Previous</button>
+             
                 @if (actionName == "Edit")
                 {
                     <button type="submit" class="form-button right">Update</button>
