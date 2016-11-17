@@ -1,0 +1,38 @@
+﻿
+@model List<Capital.Domain.SalesTarget>
+<div class="table-responsive scroll3">
+    <span class="filter"><img src="~/Images/icon/filter.png" /></span>
+    <table class="table table-bordered" id="tab_logic">
+        <thead>
+            <tr class="grid_heading">
+                <th width="5%" class="text-center">#</th>
+                <th width="45%">Employee Name</th>
+                <th width="10%" class="text-right">Quarter 1</th>
+                <th width="10%" class="text-right">Quarter 2</th>
+                <th width="10%" class="text-right">Quarter 3</th>
+                <th width="10%" class="text-right">Quarter 4</th>
+                <th width="10%" class="text-right">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+              @for(int i = 0; i < Model.Count(); i++)
+              {
+                    <tr>
+                        <td width="5%" class="grid-cell"text-center">1</td>
+                        <td width="45%">@Html.TextBoxFor(m => Model[i].SalesMgName, new { @class = "form_input", autocomplete = "off", @readonly = "readonly" })</td>
+                        <td width="10%">@Html.TextBoxFor(m => Model[i].Quarer1, new { @class = "form_input", autocomplete = "off", @style = "text-align:right" })</td>
+                        <td width="10%">@Html.TextBoxFor(m => Model[i].Quarer2, new { @class = "form_input", autocomplete = "off", @style = "text-align:right"})</td>
+                        <td width="10%">@Html.TextBoxFor(m => Model[i].Quarer3, new { @class = "form_input", autocomplete = "off", @style = "text-align:right" })</td>
+                        <td width="10%">@Html.TextBoxFor(m => Model[i].Quarer4, new { @class = "form_input", autocomplete = "off", @style = "text-align:right" })</td>
+                        <td width="10%">@Html.TextBoxFor(m => Model[i].Quarer4, new { @class = "form_input", autocomplete = "off", @readonly = "readonly", @style = "text-align:right" })</td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+    <table class="table table-bordered" id="tab_logic">
+        <tr class="grid_heading footer">
+            <th>&nbsp;</th>
+            <th width="15%">Total</th>
+        </tr>
+    </table>
+</div>

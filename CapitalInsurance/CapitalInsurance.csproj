@@ -488,6 +488,8 @@
     <Content Include="Views\Policy_Renewal\Create.cshtml" />
     <Content Include="Views\Policy_Renewal\Index.cshtml" />
     <Content Include="Views\Policy_Renewal\_RenewalPolicyGrid.cshtml" />
+    <Content Include="Views\Sales_Target\Create.cshtml" />
+    <Content Include="Views\Sales_Target\_SalesTargetGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

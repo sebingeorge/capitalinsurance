@@ -62,5 +62,12 @@ namespace Capital.DAL
                 return connection.Query<Dropdown>("SELECT PayModeId Id, PayModeName Name FROM PaymentMode").ToList();
             }
         }
+        public List<Dropdown> FillFinYear()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                return connection.Query<Dropdown>("SELECT FyId Id, FyName Name FROM FinancialYear").ToList();
+            }
+        }
         }
 }
