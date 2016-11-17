@@ -245,6 +245,7 @@
     <Content Include="images\icon\endorsement.png" />
     <Content Include="images\icon\filter.png" />
     <Content Include="images\icon\finance.png" />
+    <Content Include="images\icon\ihits.png" />
     <Content Include="images\icon\insurancecompany.png" />
     <Content Include="images\icon\insuranceproduct.png" />
     <Content Include="images\icon\invoice.png" />
