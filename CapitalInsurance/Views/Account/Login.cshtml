@@ -5,25 +5,17 @@
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <img src="~/Images/m-logo.png" />
-        </div>
-        <div class="col-md-6">
 
 
 
-        </div>
-        <div class="col-md-4">
+    <section class="outer-login col-md-offset-2 col-md-6 col-sm-11 col-xs-10" id="loginForm">
+        <div class="row">
+            <div class="col-md-2 col-sm-2">
+                <center><img src="~/Images/logo.png" width="48" /></center>
+            </div>
             <section id="socialLoginForm"></section>
+            <h2>Login to Capital Insurance Brokers</h2>
         </div>
-    </div>
-</div>
-
-<section class=" outer-login col-md-3" id="loginForm">
-    <div class="row">
-        <h2>Login to Capital Insurance Brokers</h2>
-    </div>
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
@@ -34,8 +26,8 @@
                     <div class="text-outer">
                         @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "Username" })
                         @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
-                        </div>
                     </div>
+                </div>
             </div>
             <div class="form-group">
                 @*@Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })*@
@@ -45,7 +37,7 @@
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="col-md-offset-8 col-md-4">
+                <div class="col-md-offset-10 col-md-2 col-sm-offset-10 col-sm-2">
                     <input type="submit" value="Log in" class="btn btn-default" />
                 </div>
 
@@ -57,13 +49,18 @@
                     @Html.ActionLink("Forgot your password?", "ForgotPassword")
                 </p>*@
         }
- 
-</section>
+
+    </section>
 
 
+</div>
+<div class="clearfix"></div>
+<div class="container login-footer">
+    <div class="row">
+        <div class="col-md-offset-4 col-md-8">Developed By&nbsp;<img src="~/Content/Images/ihits.png" width="48" /></div>
+    </div>
+</div>
 
-
-    
 
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")

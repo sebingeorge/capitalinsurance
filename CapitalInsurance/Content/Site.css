@@ -44,24 +44,34 @@ textarea {
     border-radius:4px;
     -moz-border-radius:4px;
     position:absolute;
-    right:106px;
+    margin-top:138px;
+    /*right:106px;*/
 
 }
+    .outer-login img 
+    {
+        margin-top:8px;
+    }
     .outer-login h2 {
         font-size:18px;
         color:#585a59;
-        text-align:center;
-        height:52px;
-        line-height:52px;
-        background: url(../images/login-head.png) repeat-x;
+        text-align:left;
+        height:60px;
+        line-height:60px;
+        background:#fff /*url(../images/login-head.png) repeat-x*/;
         border-bottom:1px solid #c2c3c5; 
         margin:0;
         border-radius:4px 4px 0 0;
         -moz-border-radius:4px 4px 0 0;
         margin-bottom:20px;
+        padding-left:10px;
 
 
     }
+.logb 
+{
+    background-color:#93241e;
+}
 
     .outer-login .form-control 
     {
@@ -69,6 +79,7 @@ textarea {
         height:35px;
         border-radius:3px;
         -moz-border-radius:3px;
+        m
     }
 
     .outer-login input, select, textarea 
@@ -78,6 +89,7 @@ textarea {
 .text-outer 
 {
     border:3px solid #f1f5f8;
+    margin-bottom:5px;
 }
 .outer-login .btn 
 {
@@ -107,6 +119,13 @@ textarea {
      left:34px;
      top:7px;
     }
+
+.login-footer 
+{
+  bottom:220px;
+    position: absolute;
+    right: 330px;
+}
 
 .content-in 
 {
@@ -630,6 +649,26 @@ table thead tr th
     padding: 11px;
 }
 
+    .outer-login 
+    {
+        margin-top:0 !important;
+    }
+
 .my-datepicker .btn {
     padding: 1px 2px;
+}
+
+@media (min-width: 320px) and (max-width: 650px) {
+    .outer-login h2 
+    {
+        font-size:16px !important;
+    }
+    .outer-login 
+    {
+        margin-top:0 !important;
+    }
+    .outer-login img 
+    {
+        text-align:center;
+    }
 }
