@@ -68,6 +68,16 @@ namespace Capital.Domain
         public string InsCoverName { get; set; }
         public string InsCmpName { get; set; }
         public string SalesMgName { get; set; }
+        public string OldPolicyNo { get; set; }
+        public string OldCompany { get; set; }
+        public string OldProductType { get; set; }
+        public decimal OldPremiumAmt { get; set; }
+        public string MobileNo { get; set; }
+        public string EmailId { get; set; }
+        public string CusAddress { get; set; }
+        public string OfficeEmail { get; set; }
+        public string QuatarContactNo { get; set; }
+        public int Aging { get; set; }
         public List<PolicyIssueChequeReceived> Cheque { get; set; }
     }
 }

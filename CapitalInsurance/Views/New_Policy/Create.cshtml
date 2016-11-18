@@ -4,6 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(); }
+<style>
+    .divHidden {
+        visibility: hidden;
+    }
+
+    .divShow {
+        visibility: visible;
+    }
+</style>
 <script>
     function Exit() {
         var url = '@Url.Action("Index","Home")';
@@ -109,6 +118,21 @@
          format: 'dd-M-yyyy',
      });
     }
+    function OptionChanged() {
+        var opt = $("#Policy_type").val();
+        $("#TranType").val(opt);
+        $("#Policy_type").val(opt);
+        if (opt == "NewPolicy") {
+            $("#policy_details").removeClass("divShow");
+            $("#policy_details").addClass("divHidden");
+        }
+        if (opt == "RenewPolicy") {
+            $("#policy_details").addClass("divShow");
+           }
+        if (opt == "EndorsePolicy") {
+            $("#policy_details").addClass("divShow");
+        }
+    }
     $(document).ready(function ()
     {
         $(".numbers-only").keypress(function (e) {
@@ -129,13 +153,53 @@
 @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
     {
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-3">
             <div class="row form-group">
-                <div class="col-md-3">
+                <div class="col-md-12">
                     <label>Transaction No.</label>
                     @Html.HiddenFor(m => m.PolicyId)
                     @Html.TextBoxFor(m => m.TranNumber, new { @class = "form_input" })
                     @Html.ValidationMessageFor(m => m.TranNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Type</label>
+                    @Html.HiddenFor(m => m.TranType)
+                    <select class="form_input" id="Policy_type" onchange="OptionChanged()">
+                        <option value="NewPolicy">New Policy</option>
+                        <option value="RenewPolicy">Renew Policy</option>
+                        <option value="EndorsePolicy">Endorse Policy</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="divHidden" id="policy_details">
+            <div class="col-md-3">
+                <div class="row form-group " >
+                    <div class="col-md-6">
+                        <label>Old Policy No.</label>
+                        @Html.TextBoxFor(m => m.OldPolicyNo, new {@class = "form_input "})
+                    </div>
+                    <div class="col-md-6">
+                        <label>Company</label>
+                        @Html.TextBoxFor(m => m.OldCompany, new { @class = "form_input " })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row form-group ">
+                    <div class="col-md-6">
+                        <label>Product Type</label>
+                        @Html.TextBoxFor(m => m.OldProductType, new { @class = "form_input" })
+                    </div>
+                    <div class="col-md-6">
+                        <label>Premium</label>
+                        @Html.TextBoxFor(m => m.OldPremiumAmt, new { @class = "form_input numbers-only", @style = "text-align:right" })
+                    </div>
                 </div>
             </div>
         </div>
@@ -194,8 +258,6 @@
                     @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()" })
                     @Html.ValidationMessageFor(m => m.PremiumAmount,"",new { @class = "text-danger" })
                 </div>
-
-
                 <div class="col-md-6">
                     <label>Policy Fees</label>
                     @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()" })

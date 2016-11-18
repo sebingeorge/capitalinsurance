@@ -1,0 +1,55 @@
+﻿
+@model List<Capital.Domain.PolicyIssue>
+@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript">
+      function Exit() {
+        var url = '@Url.Action("Index","Home")';
+        window.location = url;
+    }
+</script>
+
+
+<div class="container content-in">
+    <div class="row">
+        <h1>Business View</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Company</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-6">
+                    <label>Product</label>
+                    <input type="text" class="form_input" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Client</label>
+                    <input type="text" class="form_input" />
+                </div>
+                <div class="col-md-6">
+                    <label>Sales Manager</label>
+                    <input type="text" class="form_input" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    @Html.Partial("_BussinessViewDetails", Model)
+    <div class="row">
+        <hr />
+        <div class="col-md-12 hrpart">
+            @*<input type="button" class="form-button" onclick="Previous()" value="Previous" title="Previous Policy Renewal">*@
+            <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
+        </div>
+    </div>
+</div>
+

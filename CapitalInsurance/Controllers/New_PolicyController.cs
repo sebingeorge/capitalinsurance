@@ -14,7 +14,6 @@ namespace CapitalInsurance.Controllers
         // GET: Proposal
         public ActionResult Index()
         {
-
             List<PolicyIssue> lstNewPolicy = (new PolicyIssueRepository()).GetNewPolicy();
             return View(lstNewPolicy);
         }
@@ -27,6 +26,7 @@ namespace CapitalInsurance.Controllers
             model.PolicySubDate = DateTime.Now;
             model.EffectiveDate = DateTime.Now;
             model.RenewalDate = DateTime.Now;
+            model.TranType = "NewPolicy";
             return View(model);
         }
         [HttpPost]

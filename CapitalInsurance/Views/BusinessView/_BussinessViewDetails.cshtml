@@ -1,0 +1,25 @@
+﻿
+@model List<Capital.Domain.PolicyIssue>
+@using GridMvc.Html
+<div class="table-responsive scroll3">
+    <span class="filter"><img src="~/Images/icon/filter.png" /></span>
+    @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(m => m.InsCmpName).Titled("Company").SetWidth(5);
+        columns.Add(m => m.InsPrdName).Titled("Product").SetWidth(10);
+        columns.Add(m => m.InsCoverName).Titled("Product Type").SetWidth(10);
+        columns.Add(m => m.TotalPremium).Titled("Premium Amount").SetWidth(5);
+        columns.Add(m => m.CusName).Titled("Client").SetWidth(20);
+        columns.Add(m => m.CusAddress).Titled("Address").SetWidth(20);
+        columns.Add(m => m.MobileNo).Titled("Contact No.").SetWidth(20);
+        columns.Add(m => m.EmailId).Titled("Email").SetWidth(20);
+        columns.Add(m => m.PolicySubDate).Format("{0:dd/MM/yyyy}").Titled("Policy Sub Date").SetWidth(20);
+        columns.Add(m => m.EffectiveDate).Format("{0:dd/MM/yyyy}").Titled("Effective Date").SetWidth(5);
+        columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("Renewal Date").SetWidth(5);
+        columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(5);
+        columns.Add(m => m.QuatarContactNo).Titled("Contact No.").SetWidth(20);
+        columns.Add(m => m.OfficeEmail).Titled("Email").SetWidth(20);
+        columns.Add(m => m.Aging).Titled("Ageing").SetWidth(20);
+      
+    }).WithPaging(15)
+</div>
