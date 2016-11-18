@@ -1,11 +1,55 @@
-﻿
-@model List<Capital.Domain.SalesTarget>
+﻿@model Capital.Domain.SalesTarget
+<script>
+   
+    function Total(index)
+    {
+       
+        var Q1 = parseFloat($("#SalesTargetItems_" + index + "__Quarer1").val());
+        var Q2 = parseFloat($("#SalesTargetItems_" + index + "__Quarer2").val());
+        var Q3 = parseFloat($("#SalesTargetItems_" + index + "__Quarer3").val());
+        var Q4 = parseFloat($("#SalesTargetItems_" + index + "__Quarer4").val());
+        if (isNaN(Q1))
+        {
+            Q1 = 0;
+        }
+        if (isNaN(Q2))
+        {
+            Q2 = 0;
+        }
+        if (isNaN(Q3))
+        {
+            Q3 = 0;
+        }
+        if (isNaN(Q4))
+        {
+            Q4 = 0;
+        }
+        var total = Q1 + Q2 + Q3 + Q4;
+        $("#SalesTargetItems_" + index + "__Total").val(total);
+        Cal_Summary();
+    }
+        function Cal_Summary()
+    {
+            var Total = parseFloat("0");
+            $('.ClTotal').each(function (i, obj) {      
+            var tot = parseFloat($(obj).val());
+            if (isNaN(tot)) {
+                tot = Number("0");
+            }
+            Total = (Total + tot);
+            $("#TotalAmt").text(Total);
+            });
+        }
+    $(document).ready(function ()
+    {
+        Cal_Summary()
+    })
+   </script>
 <div class="table-responsive scroll3">
     <span class="filter"><img src="~/Images/icon/filter.png" /></span>
     <table class="table table-bordered" id="tab_logic">
         <thead>
             <tr class="grid_heading">
-                <th width="5%" class="text-center">#</th>
                 <th width="45%">Employee Name</th>
                 <th width="10%" class="text-right">Quarter 1</th>
                 <th width="10%" class="text-right">Quarter 2</th>
@@ -15,24 +59,26 @@
             </tr>
         </thead>
         <tbody>
-              @for(int i = 0; i < Model.Count(); i++)
+              @for (int i = 0; i < Model.SalesTargetItems.Count; i++)
               {
                     <tr>
-                        <td width="5%" class="grid-cell"text-center">1</td>
-                        <td width="45%">@Html.TextBoxFor(m => Model[i].SalesMgName, new { @class = "form_input", autocomplete = "off", @readonly = "readonly" })</td>
-                        <td width="10%">@Html.TextBoxFor(m => Model[i].Quarer1, new { @class = "form_input", autocomplete = "off", @style = "text-align:right" })</td>
-                        <td width="10%">@Html.TextBoxFor(m => Model[i].Quarer2, new { @class = "form_input", autocomplete = "off", @style = "text-align:right"})</td>
-                        <td width="10%">@Html.TextBoxFor(m => Model[i].Quarer3, new { @class = "form_input", autocomplete = "off", @style = "text-align:right" })</td>
-                        <td width="10%">@Html.TextBoxFor(m => Model[i].Quarer4, new { @class = "form_input", autocomplete = "off", @style = "text-align:right" })</td>
-                        <td width="10%">@Html.TextBoxFor(m => Model[i].Quarer4, new { @class = "form_input", autocomplete = "off", @readonly = "readonly", @style = "text-align:right" })</td>
+                        <td width="45%">
+                        @Html.TextBoxFor(m => m.SalesTargetItems[i].SalesMgName, new { @class = "form_input", autocomplete = "off", @readonly = "readonly" })
+                        @Html.HiddenFor(m => m.SalesTargetItems[i].SalesMgId)
+                        </td>
+                        <td width="10%">@Html.TextBoxFor(m => m.SalesTargetItems[i].Quarer1, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @onkeyup = "Total(" + i + ")" })</td>
+                        <td width="10%">@Html.TextBoxFor(m => m.SalesTargetItems[i].Quarer2, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @onkeyup = "Total(" + i + ")" })</td>
+                        <td width="10%">@Html.TextBoxFor(m => m.SalesTargetItems[i].Quarer3, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @onkeyup = "Total(" + i + ")" })</td>
+                        <td width="10%">@Html.TextBoxFor(m => m.SalesTargetItems[i].Quarer4, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @onkeyup = "Total(" + i + ")" })</td>
+                        <td width="10%">@Html.TextBoxFor(m => m.SalesTargetItems[i].Total, new { @class = "form_input ClTotal", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
                     </tr>
                 }
             </tbody>
     </table>
     <table class="table table-bordered" id="tab_logic">
         <tr class="grid_heading footer">
-            <th>&nbsp;</th>
-            <th width="15%">Total</th>
+            <th class ="text-right">Total:</th>
+            <th width="15%" class="text-right"><span id="TotalAmt"></span></th>
         </tr>
     </table>
 </div>

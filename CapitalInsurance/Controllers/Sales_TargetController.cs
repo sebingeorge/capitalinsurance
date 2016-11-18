@@ -15,19 +15,45 @@ namespace CapitalInsurance.Controllers
         {
             return View();
         }
-        public ActionResult Sales_Target()
-        {
-            return View();
-        }
         public ActionResult Create()
         {
             FillFinYear();
             return View();
         }
-        public ActionResult SalesTarget()
+        public ActionResult SalesTarget(int? FyId)
         {
+            SalesTarget Model = new SalesTarget();
+            if (FyId == null || FyId == 0)
+            {
+                Model.SalesTargetItems = new SalesTargetRepository().GetEmployees();
+            }
+            else
+            {
+                Model.SalesTargetItems = new SalesTargetRepository().GetEmployees(FyId);
+            }
+            if (Model.SalesTargetItems.Count == 0)
+                Model.SalesTargetItems = new SalesTargetRepository().GetEmployees();
+            
+            return PartialView("_SalesTargetGrid", Model);
+        }
+        [HttpPost]
+        public ActionResult Create(SalesTarget model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return View(model);
+            }
+            Result res = new SalesTargetRepository().Insert(model);
+            if (res.Value)
+            {
+                TempData["Success"] = "Saved Successfully!";
+            }
+            else
+            {
 
-            return PartialView("_SalesTargetGrid", new SalesTargetRepository().GetEmployees());
+            }
+            return RedirectToAction("Create");
         }
         void FillFinYear()
         {

@@ -2,16 +2,32 @@
 @{
     ViewBag.Title = "Create";
 }
+<script>
+    function Exit()
+    {
+        var url = '@Url.Action("Index", "Home")';
+        location.href = url;
+    }
+    function Filter()
+    {
+        var id = $("#FyId").val();
+        var url = '@Url.Action("SalesTarget")';
+        url += "?FyId=" + id;
+        $("#Sales_Target").load(url);
+    }
+</script>
 <div class="container content-in">
     <div class="row">
         <h1>Sales Target</h1>
     </div>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
+    {
     <div class="row">
         <div class="col-md-3">
             <div class="row form-group">
                 <div class="col-md-6">
                     <label>Year</label>
-                    @Html.DropDownListFor(m => Model.FyId, (SelectList)ViewBag.FinYear, "Select Year", new { @class = "form_input", autocomplete = "off" })
+                    @Html.DropDownListFor(m => Model.FyId, (SelectList)ViewBag.FinYear, "Select Year", new { @class = "form_input", autocomplete = "off", onchange="Filter()"})
                     @Html.ValidationMessageFor(m => m.FyId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -22,12 +38,15 @@
         </div>
     </div>
     <hr />
-     @Html.Action("SalesTarget")
-    <div class="row">
-        <hr />
-        <div class="col-md-12">
-            <button type="submit" class="form-button right">Save</button>
-            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
-        </div>
+    <div class="table-responsive" id="Sales_Target">
+        @Html.Action("SalesTarget", new { FyId = 0 })
     </div>
-</div>
+        <div class="row">
+            <hr />
+            <div class="col-md-12">
+                <button type="submit" class="form-button right">Save</button>
+                <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+            </div>
+        </div>
+        }
+    </div>

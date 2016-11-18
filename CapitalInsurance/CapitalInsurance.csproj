@@ -407,7 +407,6 @@
     <Content Include="Views\Sales_Achievement_report\Sales_Achievement_report.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Views\Sales_Target\Sales_Target.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
