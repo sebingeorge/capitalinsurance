@@ -401,7 +401,6 @@
     <Content Include="Views\Daily_Activity_report\Daily_Activity_report.cshtml" />
     <Content Include="Views\PayableReport\PayableReport.cshtml" />
     <Content Include="Views\PayableReport\Payment.cshtml" />
-    <Content Include="Views\Policy_Endorsement\PendingProposal.cshtml" />
     <Content Include="Views\Policy_Endorsement\PreviousProposal.cshtml" />
     <Content Include="Views\ReceivableReport\PendingReceivableReport.cshtml" />
     <Content Include="Views\ReceivableReport\ReceivableReport.cshtml" />
@@ -490,6 +489,9 @@
     <Content Include="Views\Policy_Renewal\_RenewalPolicyGrid.cshtml" />
     <Content Include="Views\Sales_Target\Create.cshtml" />
     <Content Include="Views\Sales_Target\_SalesTargetGrid.cshtml" />
+    <Content Include="Views\Policy_Endorsement\PendingPolicyList.cshtml" />
+    <Content Include="Views\Policy_Endorsement\_PolicyListGrid.cshtml" />
+    <Content Include="Views\Policy_Endorsement\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

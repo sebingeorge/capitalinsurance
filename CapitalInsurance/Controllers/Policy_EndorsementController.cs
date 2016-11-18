@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Capital.DAL;
+using Capital.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,26 +8,89 @@ using System.Web.Mvc;
 
 namespace CapitalInsurance.Controllers
 {
-    public class Policy_EndorsementController : Controller
+    public class Policy_EndorsementController : BaseController
     {
         // GET: Endorsement
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Proposal()
+        public ActionResult Create(int Id)
         {
-            return View();
+            FillDropdowns();
+            PolicyIssue objPolicy = new PolicyEndorsementRepository().GetNewPolicyForEndorse(Id);
+            objPolicy.PolicySubDate = DateTime.Now;
+            objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
+            return View("Create", objPolicy);
         }
-        public ActionResult PendingProposal()
+        [HttpPost]
+        public ActionResult Create(PolicyIssue model)
         {
-            return View();
-        }
+            model.TranPrefix = "CIB/END";
+            model.TranDate = System.DateTime.Now;
+            model.CreatedDate = System.DateTime.Now;
+            model.CreatedBy = UserID;
+            if (!ModelState.IsValid)
+            {
+                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return View(model);
+            }
+            Result res = new PolicyEndorsementRepository().Insert(model);
+            if (res.Value)
+            {
+                TempData["Success"] = "Saved Successfully!";
+            }
+            else
+            {
 
-                public ActionResult PreviousProposal()
-        {
-            return View();
+            }
+            return RedirectToAction("PendingPolicyList");
         }
-
-    }
+        public ActionResult PendingPolicyList()
+        {
+            List<PolicyIssue> lstNewPolicy = (new PolicyEndorsementRepository()).GetNewPolicyForEndorse();
+            return View(lstNewPolicy);
+        }
+        void FillDropdowns()
+        {
+            FillCustomer();
+            FillSalesManager();
+            FillCompany();
+            FillInsuranceProduct();
+            FillProductType();
+            FillPaymentMode();
+            FillPaymentTo();
+        }
+        void FillSalesManager()
+        {
+            ViewBag.SalesManager = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName");
+        }
+        void FillCustomer()
+        {
+            ViewBag.Customer = new SelectList((new DropdownRepository()).GetCustomer(), "Id", "Name");
+        }
+        void FillCompany()
+        {
+            ViewBag.Company = new SelectList((new DropdownRepository()).GetInsuranceCompany(), "Id", "Name");
+        }
+        void FillInsuranceProduct()
+        {
+            ViewBag.InsuranceProduct = new SelectList((new DropdownRepository()).GetInsuranceProduct(), "Id", "Name");
+        }
+        void FillProductType()
+        {
+            ViewBag.ProductType = new SelectList((new DropdownRepository()).GetProductType(), "Id", "Name");
+        }
+        void FillPaymentMode()
+        {
+            ViewBag.PaymentMode = new SelectList((new DropdownRepository()).GetPaymentMode(), "Id", "Name");
+        }
+        void FillPaymentTo()
+        {
+            List<Dropdown> types = new List<Dropdown>();
+            types.Add(new Dropdown { Id = 1, Name = "CIB" });
+            types.Add(new Dropdown { Id = 2, Name = "Insurance Co" });
+            ViewBag.Payment = new SelectList(types, "Id", "Name");
+        }
+        }
     }

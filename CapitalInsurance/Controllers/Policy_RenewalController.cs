@@ -47,41 +47,7 @@ namespace CapitalInsurance.Controllers
             }
             return RedirectToAction("PendingPolicyList");
         }
-        public ActionResult CreateEndorse(int Id)
-        {
-            FillDropdowns();
-            PolicyIssue objPolicy = new PolicyIssueRepository().GetNewPolicy(Id);
-            objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
-            return View("Create", objPolicy);
-        }
-        [HttpPost]
-        public ActionResult CreateEndorse(PolicyIssue model)
-        {
-            model.TranPrefix = "CIB/END";
-            model.TranDate = System.DateTime.Now;
-            model.CreatedDate = System.DateTime.Now;
-            model.CreatedBy = UserID;
-            if (!ModelState.IsValid)
-            {
-                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
-                return View(model);
-            }
-            Result res = new PolicyRenewalRepository().InsertEndorse(model);
-            if (res.Value)
-            {
-                TempData["Success"] = "Saved Successfully!";
-            }
-            else
-            {
-
-            }
-            return RedirectToAction("PendingPolicyList");
-        }
         public ActionResult RenewalList()
-        {
-            return View();
-        }
-        public ActionResult PreviousProposal()
         {
             return View();
         }

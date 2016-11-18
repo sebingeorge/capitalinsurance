@@ -39,7 +39,6 @@
                             </li>
                         </ul>
                     </div>
-
                     <a href="#" data-toggle="collapse" data-target="#first-level-2"><span><img src="~/Images/icon/operation.png" /></span>Operation<span class="caret arrow"></span></a>
                     <div id="first-level-2" class="collapse">
                         <ul>
@@ -47,8 +46,10 @@
                                 <a href="@Url.Action("Create", "New_Policy")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/newpolicy.png" /></span>New Policy</a>
                             </li>
                             <li>
-                                <a href="@Url.Action("PendingPolicyList", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-2"><span><img src="~/Images/icon/policyrenewal.png" /></span>Policy Renewal/Endorsement</a>
-
+                                <a href="@Url.Action("PendingPolicyList", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-2"><span><img src="~/Images/icon/policyrenewal.png" /></span>Policy Renewal</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("PendingPolicyList", "Policy_Endorsement")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/endorsement.png" /></span>Policy Endorsement</a>
                             </li>
                             <li>
                                 <a href="@Url.Action("Create", "Sales_Target")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/salestarget.png" /></span>Sales Target</a>
@@ -56,12 +57,8 @@
                             <li>
                                 <a href="@Url.Action("PendingCustomerInvoice", "Customer_Invoice")" data-toggle="collapse" data-target="#second-level-4"><span><img src="~/Images/icon/invoice.png" /></span>Customer Invoice</a>
                             </li>
-                            @*<li>
-                                <a href="@Url.Action("PendingProposal", "Policy_Endorsement")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/endorsement.png" /></span>Policy Endorsement</a>
-                            </li>*@
                         </ul>
                       </div>
-
                     <a href="#" data-toggle="collapse" data-target="#first-level-3"><span><img src="~/Images/icon/mis.png" /></span>Reports<span class="caret arrow"></span></a>
                     <div id="first-level-3" class="collapse">
                         <ul>
