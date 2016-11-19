@@ -5,7 +5,7 @@
     <span class="filter"><img src="~/Images/icon/filter.png" /></span>
     @Html.Grid(Model).Columns(columns =>
     {
-        columns.Add(m => m.InsCmpName).Titled("Company").SetWidth(5);
+        columns.Add(m => m.InsCmpName).Titled("Insurance Company").SetWidth(5);
         columns.Add(m => m.InsPrdName).Titled("Product").SetWidth(10);
         columns.Add(m => m.InsCoverName).Titled("Product Type").SetWidth(10);
         columns.Add(m => m.TotalPremium).Titled("Premium Amount").SetWidth(5);

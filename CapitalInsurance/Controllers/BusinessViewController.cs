@@ -13,14 +13,13 @@ namespace CapitalInsurance.Controllers
         // GET: BusinessView
         public ActionResult Index()
         {
-            List<PolicyIssue> lstBusinessView = (new BusinessViewRepository()).GetBusinessViewDetails();
-            return View(lstBusinessView);
+            return View();
         }
-        //public ActionResult BussinessViewDetails()
-        //{
-        //    List<PolicyIssue> lstBusinessView = (new BusinessViewRepository()).GetBusinessViewDetails();
-        //    return View(lstBusinessView);
-           
-        //}
+        public ActionResult BusinessViewDetails(string Company = "", string Product = "", string Client = "", string SalesManager="")
+        {
+            return PartialView("_BussinessViewDetails", new BusinessViewRepository().GetBusinessViewDetails(Company, Product, Client, SalesManager));
+        }
+
+
     }
 }

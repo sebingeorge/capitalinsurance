@@ -12,7 +12,7 @@ namespace Capital.DAL
     public class BusinessViewRepository : BaseRepository
     {
         static string dataConnection = GetConnectionString("CibConnection");
-        public List<PolicyIssue> GetBusinessViewDetails()
+        public List<PolicyIssue> GetBusinessViewDetails(string Company = "", string Product = "", string Client = "", string SalesManager = "")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
@@ -25,8 +25,9 @@ namespace Capital.DAL
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
                                    	where P.PolicyId not in (select isnull(OldPolicyId,0) from PolicyIssue) and P.RenewalDate < (select dateadd(day, 30, getdate()))
+                                    AND I.InsCmpName LIKE '%'+@Company+'%' and IP.InsPrdName LIKE '%'+@Product+'%' and C.CusName LIKE '%'+@Client+'%' and  S.SalesMgName LIKE '%'+@SalesManager+'%'
                                     order by P.RenewalDate ";
-                return connection.Query<PolicyIssue>(query).ToList();
+                return connection.Query<PolicyIssue>(query, new { Company = Company, Product = Product, Client = Client, SalesManager = SalesManager }).ToList();
             }
         }
     }

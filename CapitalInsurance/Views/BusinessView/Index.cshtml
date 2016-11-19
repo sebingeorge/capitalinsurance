@@ -8,6 +8,18 @@
       function Exit() {
         var url = '@Url.Action("Index","Home")';
         window.location = url;
+      }
+    function Filter() {
+        $("#Bussiness_View").addClass("fade");
+        var Cmpy = $("#compy").val().trim();
+        var Prod = $("#product").val().trim();
+        var Client = $("#client").val().trim();
+        var SalesManager = $("#salesmanager").val().trim();
+        var url = '@Url.Action("BusinessViewDetails")';
+        url += "?Company=" + encodeURIComponent(Cmpy) + "&Product=" + encodeURIComponent(Prod) + "&Client=" + encodeURIComponent(Client) + "&SalesManager=" + encodeURIComponent(SalesManager);
+        $("#Bussiness_View").load(url, function () {
+        $("#Bussiness_View").removeClass("fade");
+        });
     }
 </script>
 
@@ -21,11 +33,11 @@
             <div class="row">
                 <div class="col-md-6">
                     <label>Company</label>
-                    <input type="text" class="form_input" />
+                    <input id="compy" class="form_input" placeholder="Search for Company" onkeyup="Filter()" />
                 </div>
                 <div class="col-md-6">
                     <label>Product</label>
-                    <input type="text" class="form_input" />
+                    <input id="product" class="form_input" placeholder="Search for Product" onkeyup="Filter()" />
                 </div>
             </div>
         </div>
@@ -33,18 +45,20 @@
             <div class="row">
                 <div class="col-md-6">
                     <label>Client</label>
-                    <input type="text" class="form_input" />
+                    <input id="client" class="form_input" placeholder="Search for Client" onkeyup="Filter()" />
                 </div>
                 <div class="col-md-6">
                     <label>Sales Manager</label>
-                    <input type="text" class="form_input" />
+                    <input id="salesmanager" class="form_input" placeholder="Search for Sales Manager" onkeyup="Filter()" />
                 </div>
             </div>
         </div>
     </div>
     <hr />
-    @Html.Partial("_BussinessViewDetails", Model)
-    <div class="row">
+    <div id="Bussiness_View">
+        @Html.Action("BusinessViewDetails")
+       </div>
+       <div class="row">
         <hr />
         <div class="col-md-12 hrpart">
             @*<input type="button" class="form-button" onclick="Previous()" value="Previous" title="Previous Policy Renewal">*@
