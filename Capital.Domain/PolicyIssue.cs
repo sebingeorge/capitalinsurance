@@ -67,6 +67,9 @@ namespace Capital.Domain
         public string InsPrdName { get; set; }
         public string InsCoverName { get; set; }
         public string InsCmpName { get; set; }
+        public string Month { get; set; }
+        public string Year { get; set; }
+        public string SalesMgCode { get; set; }
         public string SalesMgName { get; set; }
         public string OldPolicyNo { get; set; }
         public string OldCompany { get; set; }

@@ -5,21 +5,34 @@
     <span class="filter"><img src="~/Images/icon/filter.png" /></span>
     @Html.Grid(Model).Columns(columns =>
     {
-        columns.Add(m => m.InsCmpName).Titled("Insurance Company").SetWidth(5);
-        columns.Add(m => m.InsPrdName).Titled("Product").SetWidth(10);
-        columns.Add(m => m.InsCoverName).Titled("Product Type").SetWidth(10);
-        columns.Add(m => m.TotalPremium).Titled("Premium Amount").SetWidth(5);
-        columns.Add(m => m.CusName).Titled("Client").SetWidth(20);
-        columns.Add(m => m.CusAddress).Titled("Address").SetWidth(20);
-        columns.Add(m => m.MobileNo).Titled("Contact No.").SetWidth(20);
-        columns.Add(m => m.EmailId).Titled("Email").SetWidth(20);
-        columns.Add(m => m.PolicySubDate).Format("{0:dd/MM/yyyy}").Titled("Policy Sub Date").SetWidth(20);
-        columns.Add(m => m.EffectiveDate).Format("{0:dd/MM/yyyy}").Titled("Effective Date").SetWidth(5);
-        columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("Renewal Date").SetWidth(5);
-        columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(5);
-        columns.Add(m => m.QuatarContactNo).Titled("Contact No.").SetWidth(20);
-        columns.Add(m => m.OfficeEmail).Titled("Email").SetWidth(20);
-        columns.Add(m => m.Aging).Titled("Ageing").SetWidth(20);
+        columns.Add(m => m.Month).Titled("MONTH").SetWidth(5);
+        columns.Add(m => m.Year).Titled("YEAR").SetWidth(10);
+        columns.Add(m => m.SalesMgCode).Titled("EMP NO").SetWidth(10);
+        columns.Add(m => m.SalesMgName).Titled("MANAGER NAME").SetWidth(5);
+        columns.Add(m => m.InsuredName).Titled("INSURED NAME").SetWidth(5);
+        columns.Add(m => m.CusName).Titled("CUSTOMER NAME").SetWidth(20);
+        columns.Add(m => m.CustContPersonName).Titled("DESIGNATED NAME").SetWidth(20);
+        columns.Add(m => m.CustContDesignation).Titled("DESIGNATION").SetWidth(20);
+        columns.Add(m => m.MobileNo).Titled("MOBILE NO").SetWidth(20);
+        columns.Add(m => m.EmailId).Titled("EMAIL").SetWidth(20);
+        columns.Add(m => m.TranType).Titled("TYPE OF BIZ").SetWidth(20);
+        //columns.Add(m => m.EmailId).Titled("RENEWAL STATUS").SetWidth(20);
+        columns.Add(m => m.InsCoverName).Titled("TYPE OF COVER").SetWidth(10);
+        columns.Add(m => m.InsCmpName).Titled("INS COMPANY").SetWidth(5);
+        columns.Add(m => m.PolicyNo).Titled("POLICY NO").SetWidth(5);
+        columns.Add(m => m.PolicySubDate).Format("{0:dd/MM/yyyy}").Titled("INCEPTION DATE").SetWidth(20);
+        columns.Add(m => m.EffectiveDate).Format("{0:dd/MM/yyyy}").Titled("EXPIRY DATE").SetWidth(5);
+        columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("RENEWAL DATE").SetWidth(5);
+        columns.Add(m => m.AdditionEmpNo).Titled("NO OF MEMBERS ADDED").SetWidth(10);
+        columns.Add(m => m.DeletionEmpNo).Titled("NO OF MEMBERS DELETED").SetWidth(10);
+        columns.Add(m => m.PremiumAmount).Titled("BASIC PREMIUM").SetWidth(10);
+        columns.Add(m => m.PolicyFee).Titled("POLICY FEE").SetWidth(10);
+        columns.Add(m => m.CommissionPerc).Titled("COMMISSION PERCENTAGE").SetWidth(10);
+        columns.Add(m => m.ExtraPremium).Titled("EXTRA PREMIUM").SetWidth(10);
+        columns.Add(m => m.TotalPremium).Titled("TOTAL PREMIUM").SetWidth(10);
+        columns.Add(m => m.CommissionAmount).Titled("TOTAL COMMISSION").SetWidth(10);
+        //columns.Add(m => m.InsPrdName).Titled("PAYMENT STATUS").SetWidth(10);
+        columns.Add(m => m.Aging).Titled("AGEING").SetWidth(20);
       
     }).WithPaging(15)
 </div>
