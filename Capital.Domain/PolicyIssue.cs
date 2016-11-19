@@ -56,7 +56,7 @@ namespace Capital.Domain
         public int? PayModeId { get; set; }
         public int? OldPolicyId { get; set; }
         public DateTime? CIBEffectiveDate { get; set; }
-        public DateTime? EndorcementDate { get; set; }
+        public DateTime EndorcementDate { get; set; }
         public int? AdditionEmpNo { get; set; }
         public int? DeletionEmpNo { get; set; }
         public int? EndorcementTypeId { get; set; }
@@ -78,6 +78,10 @@ namespace Capital.Domain
         public string OfficeEmail { get; set; }
         public string QuatarContactNo { get; set; }
         public int Aging { get; set; }
+        //Endorsement
+
+        public int EmployeeNo { get; set; }
+        public int TotalEmployes { get; set; }
         public List<PolicyIssueChequeReceived> Cheque { get; set; }
     }
 }

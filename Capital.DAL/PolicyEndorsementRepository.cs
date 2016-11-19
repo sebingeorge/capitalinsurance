@@ -34,12 +34,12 @@ namespace Capital.DAL
      {
          using (IDbConnection connection = OpenConnection(dataConnection))
          {
-             string sql = @"select PolicyId,TranNumber,TranPrefix,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
+             string sql = @"select PolicyId,TranNumber,TranPrefix,TranDate,P.CusId,C.EmployeeNo,InsuredName,P.Address1,P.Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
                                     PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
-                                    PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorcementDate,AdditionEmpNo,
-                                    DeletionEmpNo,EndorcementTypeId,TranType,CreatedBy,CreatedDate from PolicyIssue where PolicyId=@Id";
-
-
+                                    PaymentOption,P.SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorcementDate,AdditionEmpNo,
+                                    DeletionEmpNo,(C.EmployeeNo+AdditionEmpNo-DeletionEmpNo)TotalEmployes,EndorcementTypeId,TranType,CreatedBy,CreatedDate from PolicyIssue P
+                                    inner join Customer C on C.CusId=P.CusId
+                                    where PolicyId=@Id";
              var objPolicy = connection.Query<PolicyIssue>(sql, new
              {
                  Id = Id
@@ -47,8 +47,6 @@ namespace Capital.DAL
 
              return objPolicy;
          }
-
-
      }
      public Result Insert(PolicyIssue model)
      {

@@ -20,6 +20,7 @@ namespace CapitalInsurance.Controllers
             FillDropdowns();
             PolicyIssue objPolicy = new PolicyEndorsementRepository().GetNewPolicyForEndorse(Id);
             objPolicy.PolicySubDate = DateTime.Now;
+            objPolicy.EndorcementDate = DateTime.Now;
             objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
             return View("Create", objPolicy);
         }

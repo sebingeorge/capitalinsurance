@@ -35,6 +35,22 @@
         $("#CommissionAmount").val(commissionAmt);
 
     }
+    function Total_Employees() {
+        var NoofEmployees = parseFloat($("#EmployeeNo").val());
+        var Addition = parseFloat($("#AdditionEmpNo").val());
+        var Deletion = parseFloat($("#DeletionEmpNo").val());
+        if (isNaN(NoofEmployees)) {
+            NoofEmployees = 0;
+        }
+        if (isNaN(Addition)) {
+            Addition = 0;
+        }
+        if (isNaN(Deletion)) {
+            Deletion = 0;
+        }
+        var TotalEmployees = NoofEmployees + Addition - Deletion;
+        $("#TotalEmployes").val(TotalEmployees);
+    }
     function AddRow() {
 
         var i = 0;
@@ -133,13 +149,25 @@
     @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
     {
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-3">
                 <div class="row form-group">
-                    <div class="col-md-3">
+                    <div class="col-md-12">
                         <label>Transaction No.</label>
                         @Html.HiddenFor(m => m.PolicyId)
                         @Html.TextBoxFor(m => m.TranNumber, new { @class = "form_input" })
                         @Html.ValidationMessageFor(m => m.TranNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+           <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Endorcement Date</label>
+                        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            @Html.TextBoxFor(m => m.EndorcementDate, new { @class = "form_input", @Value = Model.EndorcementDate.ToString("dd-MMM-yyyy") })
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.EndorcementDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -192,18 +220,23 @@
                         @Html.DropDownListFor(m => Model.InsCmpId, (SelectList)ViewBag.Company, "Select Company", new { @class = "form_input", autocomplete = "off" })
                         @Html.ValidationMessageFor(m => m.InsCmpId, "", new { @class = "text-danger" })
                     </div>
-
                     <div class="col-md-6">
                         <label>Premium Amount</label>
                         @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()" })
                         @Html.ValidationMessageFor(m => m.PremiumAmount, "", new { @class = "text-danger" })
                     </div>
-
-
                     <div class="col-md-6">
                         <label>Policy Fees</label>
                         @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()" })
                         @Html.ValidationMessageFor(m => m.PolicyFee, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6">
+                        <label>No of Employees</label>
+                        @Html.TextBoxFor(m => m.EmployeeNo, new { @class = "form_input numbers-only", @style = "text-align:right", @readonly = "readonly" })
+                    </div>
+                    <div class="col-md-6">
+                        <label>Addition</label>
+                        @Html.TextBoxFor(m => m.AdditionEmpNo, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Employees()" })
                     </div>
                 </div>
             </div>
@@ -223,6 +256,14 @@
                         <label>Total Premium</label>
                         @Html.TextBoxFor(m => m.TotalPremium, new { @class = "form_input", @style = "text-align:right", @readonly = "readonly" })
                     </div>
+                    <div class="col-md-6">
+                        <label>Deletion</label>
+                        @Html.TextBoxFor(m => m.DeletionEmpNo, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Employees()" })
+                    </div>
+                    <div class="col-md-6">
+                        <label>Total Employees</label>
+                        @Html.TextBoxFor(m => m.TotalEmployes, new { @class = "form_input numbers-only", @style = "text-align:right", @readonly = "readonly" })
+                   </div>
                 </div>
             </div>
             <div class="col-md-3">
