@@ -1,146 +1,145 @@
-﻿@model Capital.Domain.BussinessView
+﻿@model Capital.Domain.PolicyIssue
 @{
     ViewBag.Title = "AddingFields";
 }
 <script>
-    function Proceed() {
-        var url = '@Url.Action("Index", "BusinessView")';
-        window.location = url;
-    }
 </script>
 <div class="container content-in">
+
+
     <div class="row">
         <h1>Business View</h1>
     </div>
+    @using (Html.BeginForm("Index", null, FormMethod.Post, new { @class = "createFrom", @id = "Item_form" }))
+    {
     <div class="row">
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.Year, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="Year" name="tags" type="checkbox" value=Model.Year  />
             <label for="name" class="left1">YEAR</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.Month, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="Month" name="tags" type="checkbox" value=Model.Month />
             <label for="name" class="left1">MONTH</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.Day, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="Day" name="tags" type="checkbox" value=Model.Day />
             <label for="name" class="left1">DAY</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.EMPNO, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="EmployeeNo" name="tags" type="checkbox" value=Model.EmployeeNo />
             <label for="name" class="left1">EMP NO</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.MANAGER, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="SalesMgName" name="tags" type="checkbox" value=Model.SalesMgName />
             <label for="name" class="left1">MANAGER</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.INSUREDNAME, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="InsuredName" name="tags" type="checkbox" value=Model.InsuredName />
             <label for="name" class="left1">INSURED NAME</label>
         </div>
     </div>
     <div class="row">
-          
         <div class="part4 col-md-2">
-                @Html.CheckBoxFor(model => model.CUSTOMER, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="CusName" name="tags"  type="checkbox" />
                 <label for="name" class="left1">CUSTOMER</label>
             </div>
         <div class="part4 col-md-2">
-                @Html.CheckBoxFor(model => model.DESIGNATEDNAME, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="CustContPersonName" name="tags" type="checkbox" value=Model.CustContPersonName />
                 <label for="name" class="left1">DESIGNATED NAME</label>
             </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.DESIGNATION, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="CustContDesignation" name="tags" type="checkbox" value=Model.CustContDesignation />
             <label for="name" class="left1">DESIGNATION</label>
             </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.MOBILENO, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="CustContMobile" name="tags" type="checkbox" value=Model.CustContMobile />
             <label for="name" class="left1">MOBILE NO</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.EMAIL, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="EmailId" name="tags" type="checkbox" value=Model.EmailId />
             <label for="name" class="left1">EMAIL</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.TYPEOFBIZ, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="CusName" name="tags" type="checkbox" value=Model.CusName />
             <label for="name" class="left1">TYPE OF BIZ</label>
         </div>
         </div>
     <div class="row">
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.INSCOMPANY, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="InsCoverName" name="tags" type="checkbox" value=Model.InsCoverName />
             <label for="name" class="left1">TYPE OF COVER</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.INSCOMPANY, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="InsCmpName" name="tags" type="checkbox" value=Model.InsCmpName />
             <label for="name" class="left1">INS COMPANY</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.POLICYNO, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="InsPrdName" name="tags" type="checkbox" value=Model.InsPrdName />
             <label for="name" class="left1">PRODUCT</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.POLICYNO, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="PolicyNo" name="tags" type="checkbox" value=Model.PolicyNo />
             <label for="name" class="left1">POLICY NO</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.INCEPTIONDATE, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="PolicySubDate" name="tags" type="checkbox" value=Model.PolicySubDate />
             <label for="name" class="left1">INCEPTION DATE</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.EXPIRYDATE, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="EffectiveDate" name="tags" type="checkbox" value=Model.EffectiveDate />
             <label for="name" class="left1">EXPIRY DATE</label>
         </div>
      
     </div>
     <div class="row">
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.RENEWALDATE, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="RenewalDate" name="tags" type="checkbox" value=Model.RenewalDate />
             <label for="name" class="left1">RENEWAL DATE</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.ADDED, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="AdditionEmpNo" name="tags" type="checkbox" value=Model.AdditionEmpNo />
             <label for="name" class="left1">ADDED</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.DELETED, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="DeletionEmpNo" name="tags" type="checkbox" value=Model.DeletionEmpNo />
             <label for="name" class="left1">DELETED</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.BASICPREMIUM, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="PremiumAmount" name="tags" type="checkbox" value=Model.PremiumAmount />
             <label for="name" class="left1">BASIC PREMIUM</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.POLICYFEE, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="PolicyFee" name="tags" type="checkbox" value=Model.PolicyFee />
             <label for="name" class="left1">POLICY FEE</label>
     </div>
     <div class="part4 col-md-2">
-        @Html.CheckBoxFor(model => model.COMMISSIONPERCENTAGE, new { @class = "left1", autocomplete = "off" })
+        <input class="left1" id="CommissionPerc" name="tags" type="checkbox" value=Model.CommissionPerc />
         <label for="name" class="left1">COMMISSION %</label>
     </div>
- 
 </div>
     <div class="row">
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.EXTRAPREMIUM, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="ExtraPremium" name="tags" type="checkbox" value=Model.ExtraPremium />
             <label for="name" class="left1">EXTRA PREMIUM</label>
         </div>
         <div class="part4 col-md-2">
-            @Html.CheckBoxFor(model => model.TOTALPREMIUM, new { @class = "left1", autocomplete = "off" })
+            <input class="left1" id="TotalPremium" name="tags" type="checkbox" value=Model.TotalPremium />
             <label for="name" class="left1">TOTAL PREMIUM</label>
         </div>
     <div class="part4 col-md-2">
-        @Html.CheckBoxFor(model => model.TOTALCOMMISSION, new { @class = "left1", autocomplete = "off" })
+        <input class="left1" id="CommissionAmount" name="tags" type="checkbox" value=Model.CommissionAmount />
         <label for="name" class="left1">TOTAL COMMISSION</label>
     </div>
     <div class="part4 col-md-2">
-        @Html.CheckBoxFor(model => model.AGEING, new { @class = "left1", autocomplete = "off" })
+        <input class="left1" id="Aging" name="tags" type="checkbox" value=Model.Aging />
         <label for="name" class="left1">AGEING</label>
     </div>
     </div>
     <div class="row">
         <div class="col-md-12 hrpart">
-        <input type="button" class=" form-button right" onclick="Proceed()" value="Proceed" />
-    </div>
+            <button type="submit" class="form-button right">Proceed</button>
+       </div>
 </div>
+    }
 </div>
 

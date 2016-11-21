@@ -12,7 +12,7 @@ namespace Capital.DAL
     public class BusinessViewRepository : BaseRepository
     {
         static string dataConnection = GetConnectionString("CibConnection");
-        public List<PolicyIssue> GetBusinessViewDetails(string Company = "", string Product = "", string Client = "", string SalesManager = "")
+        public List<PolicyIssue> GetBusinessViewDetails(string[] tags,string Company = "", string Product = "", string Client = "", string SalesManager = "")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
