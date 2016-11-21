@@ -69,6 +69,7 @@ namespace Capital.Domain
         public string InsCmpName { get; set; }
         public string Month { get; set; }
         public string Year { get; set; }
+        public string Day { get; set; }
         public string SalesMgCode { get; set; }
         public string SalesMgName { get; set; }
         public string OldPolicyNo { get; set; }
@@ -82,7 +83,7 @@ namespace Capital.Domain
         public string QuatarContactNo { get; set; }
         public int Aging { get; set; }
         //Endorsement
-
+     
         public int EmployeeNo { get; set; }
         public int TotalEmployes { get; set; }
         public List<PolicyIssueChequeReceived> Cheque { get; set; }

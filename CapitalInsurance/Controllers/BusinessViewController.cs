@@ -19,7 +19,9 @@ namespace CapitalInsurance.Controllers
         {
             return PartialView("_BussinessViewDetails", new BusinessViewRepository().GetBusinessViewDetails(Company, Product, Client, SalesManager));
         }
-
-
+        public ActionResult AddingFields()
+        {
+            return View();
+        }
     }
 }

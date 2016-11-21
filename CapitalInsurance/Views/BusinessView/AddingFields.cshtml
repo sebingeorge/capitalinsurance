@@ -1,0 +1,133 @@
+﻿@model Capital.Domain.BussinessView
+@{
+    ViewBag.Title = "AddingFields";
+}
+<div class="container content-in">
+    <div class="row">
+        <h1>Business View</h1>
+    </div>
+    <div class="row">
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.Year)
+            <label for="name">YEAR</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.Month)
+            <label for="name">MONTH</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.Day)
+            <label for="name">DAY</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.EMPNO)
+            <label for="name">EMP NO</label>
+        </div>
+    </div>
+    <div class="row">
+            <div class="part4 col-md-3">
+                @Html.CheckBoxFor(model => model.MANAGER)
+                <label for="name">MANAGER</label>
+            </div>
+            <div class="part4 col-md-3">
+                @Html.CheckBoxFor(model => model.INSUREDNAME)
+                <label for="name">INSURED NAME</label>
+            </div>
+            <div class="part4 col-md-3">
+                @Html.CheckBoxFor(model => model.CUSTOMER)
+                <label for="name">CUSTOMER</label>
+            </div>
+            <div class="part4 col-md-3">
+                @Html.CheckBoxFor(model => model.DESIGNATEDNAME)
+                <label for="name">DESIGNATED NAME</label>
+            </div>
+        </div>
+    <div class="row">
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.DESIGNATION)
+            <label for="name">DESIGNATION</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.MOBILENO)
+            <label for="name">MOBILE NO</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.EMAIL)
+            <label for="name">EMAIL</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.TYPEOFBIZ)
+            <label for="name">TYPE OF BIZ</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.INSCOMPANY)
+            <label for="name">INS COMPANY</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.POLICYNO)
+            <label for="name">POLICY NO</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.INCEPTIONDATE)
+            <label for="name">INCEPTION DATE</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.EXPIRYDATE)
+            <label for="name">EXPIRY DATE</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.RENEWALDATE)
+            <label for="name">RENEWAL DATE</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.ADDED)
+            <label for="name">ADDED</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.DELETED)
+            <label for="name">DELETED</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.BASICPREMIUM)
+            <label for="name">BASIC PREMIUM</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.POLICYFEE)
+            <label for="name">POLICY FEE</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.COMMISSIONPERCENTAGE)
+            <label for="name">COMMISSION PERCENTAGE</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.EXTRAPREMIUM)
+            <label for="name">EXTRA PREMIUM</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.TOTALPREMIUM)
+            <label for="name">TOTAL PREMIUM</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.TOTALCOMMISSION)
+            <label for="name">TOTAL COMMISSION</label>
+        </div>
+        <div class="part4 col-md-3">
+            @Html.CheckBoxFor(model => model.AGEING)
+            <label for="name">AGEING</label>
+        </div>
+        </div>
+    <div class="row">
+            <div class="col-md-12 hrpart">
+            <input type="button" class=" form-button right" onclick="Proceed()" value="Proceed" />
+        </div>
+    </div>
+</div>
+
