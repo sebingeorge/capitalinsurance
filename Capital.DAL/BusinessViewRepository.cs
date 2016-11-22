@@ -16,7 +16,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string query = @"select P.PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)StrTranNumber,convert(char(3), TranDate, 0)Month,year(TranDate)Year,day(TranDate)Day,C.CusName,C.Address1 CusAddress,C.EmailId,C.OfficeNo,C.MobileNo,P.CustContPersonName,P.InsuredName,P.CustContDesignation,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,P.RenewalDate,
+                string query = @"select P.PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)StrTranNumber,convert(char(3), TranDate, 0)Month,year(TranDate)Year,day(TranDate)Day,C.CusName,C.Address1 CusAddress,C.EmailId,C.OfficeNo,C.MobileNo,(C.EmployeeNo + ISNULL(P.AdditionEmpNo,0) - ISNULL(P.DeletionEmpNo,0))EmployeeNo,P.CustContPersonName,P.InsuredName,P.CustContDesignation,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,P.RenewalDate,
                                     P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionPerc,P.CommissionAmount, S.SalesMgName,S.SalesMgCode,S.QuatarContactNo,S.OfficeEmail,P.PolicyNo,P.PaymentTo,P.PolicySubDate,P.TranType,P.EndorcementDate,
                                     (select A.PolicyNo from PolicyIssue A  where P.TranType='EndorsePolicy' and P.PolicyId=A.PolicyId)EndorcementNo,P.AdditionEmpNo,
                                     CASE WHEN (P.DeletionEmpNo IS NOT NULL) and (P.DeletionEmpNo IS NOT NULL) THEN 'ADD/DEL'

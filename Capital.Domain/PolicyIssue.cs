@@ -41,7 +41,7 @@ namespace Capital.Domain
         public decimal PolicyFee { get; set; }
         public decimal ExtraPremium { get; set; }
         public decimal TotalPremium { get; set; }
-        public decimal CommissionPerc { get; set; }
+        public int CommissionPerc { get; set; }
         public decimal CommissionAmount { get; set; }
         public string CustContPersonName { get; set; }
         public string CustContDesignation { get; set; }
