@@ -123,18 +123,22 @@
         $("#TranType").val(opt);
         $("#Policy_type").val(opt);
         if (opt == "NewPolicy") {
+            $("#againstId").text("Policy No.");
             $("#policy_details").removeClass("divShow");
             $("#policy_details").addClass("divHidden");
         }
         if (opt == "RenewPolicy") {
+           
             $("#policy_details").addClass("divShow");
            }
         if (opt == "EndorsePolicy") {
+            $("#againstId").text("Endorsement No.");
             $("#policy_details").addClass("divShow");
         }
     }
     $(document).ready(function ()
     {
+        $("#againstId").text("Policy No.");
         $(".numbers-only").keypress(function (e) {
             if (e.which == 8 || (e.which == 45 && $(this).val().indexOf('-') == -1) || (e.which == 46 && $(this).val().indexOf('.') == -1) || (e.which > 47 && e.which < 58)) {
             }
@@ -373,11 +377,6 @@
                             @Html.TextBoxFor(m => m.CustContEmail, new { @class = "form_input" })
                             @Html.ValidationMessageFor(m => m.CustContEmail, "", new { @class = "text-danger" })
                         </div>
-                        <div class="col-md-12">
-                            <label>Remarks</label>
-                            @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input" })
-                            @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -396,19 +395,25 @@
         <div class="col-md-3">
             <div class="row form-group">
                 <div class="col-md-12">
-                    <label>Operation Manager</label>
-                    @Html.TextBoxFor(m => m.OperationManager, new { @class = "form_input" })
-                    @Html.ValidationMessageFor(m => m.OperationManager, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-                <div class="col-md-3">
-            <div class="row form-group">
-                <div class="col-md-6">
-                    <label>Policy No.</label>
+                    <label id="againstId"></label>
                     @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
                     @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
                 </div>
+                @*<div class="col-md-12">
+                    <label>Operation Manager</label>
+                    @Html.TextBoxFor(m => m.OperationManager, new { @class = "form_input" })
+                    @Html.ValidationMessageFor(m => m.OperationManager, "", new { @class = "text-danger" })
+                </div>*@
+            </div>
+        </div>
+                <div class="col-md-9">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Remarks</label>
+                    @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input" })
+                    @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
+                </div>
+                
             </div>
         </div>
     </div>
@@ -428,7 +433,7 @@
             <div class="row form-group">
                 <div class="col-md-6">
                     <label>Payment to</label>
-                    @Html.DropDownListFor(m => Model.PaymentTo, (SelectList)ViewBag.Payment,"Select Payment To", new { @class = "form_input", autocomplete = "off" })
+                    @Html.DropDownListFor(m => m.PaymentTo, Model.PaymentToList)
                 </div>
                 <div class="col-md-6">
                     <label>Mode of Payment</label>

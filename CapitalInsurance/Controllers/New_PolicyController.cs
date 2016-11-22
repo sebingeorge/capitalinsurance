@@ -112,7 +112,6 @@ namespace CapitalInsurance.Controllers
             FillInsuranceProduct();
             FillProductType();
             FillPaymentMode();
-            FillPaymentTo();
         }
         void FillSalesManager()
         {
@@ -138,12 +137,5 @@ namespace CapitalInsurance.Controllers
         {
             ViewBag.PaymentMode = new SelectList((new DropdownRepository()).GetPaymentMode(), "Id", "Name");
         }
-        void FillPaymentTo()
-        {
-            List<Dropdown> types = new List<Dropdown>();
-            types.Add(new Dropdown { Id = 1, Name = "CIB" });
-            types.Add(new Dropdown { Id = 2, Name = "Insurance Co" });
-            ViewBag.Payment = new SelectList(types, "Id", "Name");
-        }
-    }
+     }
 }

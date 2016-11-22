@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Capital.Domain
 {
@@ -52,13 +54,14 @@ namespace Capital.Domain
         public string PolicyNo { get; set; }
         public string Remarks { get; set; }
         public string FinanceManager { get; set; }
-        public string PaymentTo { get; set; }
         public int? PayModeId { get; set; }
         public int? OldPolicyId { get; set; }
         public DateTime? CIBEffectiveDate { get; set; }
         public DateTime EndorcementDate { get; set; }
+        public string EndorcementNo { get; set; }
         public int? AdditionEmpNo { get; set; }
         public int? DeletionEmpNo { get; set; }
+        public string EndType { get; set; }
         public int? EndorcementTypeId { get; set; }
         public string TranType { get; set; }
         public int? CreatedBy { get; set; }
@@ -76,6 +79,7 @@ namespace Capital.Domain
         public string OldCompany { get; set; }
         public string OldProductType { get; set; }
         public decimal OldPremiumAmt { get; set; }
+        public string OfficeNo{ get; set; }
         public string MobileNo { get; set; }
         public string EmailId { get; set; }
         public string CusAddress { get; set; }
@@ -87,5 +91,14 @@ namespace Capital.Domain
         public int EmployeeNo { get; set; }
         public int TotalEmployes { get; set; }
         public List<PolicyIssueChequeReceived> Cheque { get; set; }
+        public string PaymentTo { get; set; }
+        public IEnumerable<SelectListItem> PaymentToList
+        {
+            get
+            {
+                yield return new SelectListItem { Text = "CIB", Value = "CIB" };
+                yield return new SelectListItem { Text = "Insurance Co", Value = "Insurance Co" };
+            }
+        }
     }
 }

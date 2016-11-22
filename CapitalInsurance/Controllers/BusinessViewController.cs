@@ -19,7 +19,8 @@ namespace CapitalInsurance.Controllers
        
         public ActionResult BusinessViewDetails(string[] tags,string Company = "", string Product = "", string Client = "", string SalesManager="")
         {
-            return PartialView("_BussinessViewDetails", new BusinessViewRepository().GetBusinessViewDetails(tags,Company, Product, Client, SalesManager));
+            ViewBag.tags = tags;
+            return PartialView("_BussinessViewDetails", new BusinessViewRepository().GetBusinessViewDetails(Company, Product, Client, SalesManager));
         }
         public ActionResult AddingFields()
         {
