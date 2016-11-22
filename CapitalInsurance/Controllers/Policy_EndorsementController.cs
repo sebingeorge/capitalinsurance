@@ -21,6 +21,7 @@ namespace CapitalInsurance.Controllers
             PolicyIssue objPolicy = new PolicyEndorsementRepository().GetNewPolicyForEndorse(Id);
             objPolicy.PolicySubDate = DateTime.Now;
             objPolicy.EndorcementDate = DateTime.Now;
+            objPolicy.ICActualDate = DateTime.Now;
             objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
             return View("Create", objPolicy);
         }

@@ -26,6 +26,7 @@ namespace CapitalInsurance.Controllers
             model.PolicySubDate = DateTime.Now;
             model.EffectiveDate = DateTime.Now;
             model.RenewalDate = DateTime.Now;
+            model.ICActualDate = DateTime.Now;
             model.TranType = "NewPolicy";
             return View(model);
         }

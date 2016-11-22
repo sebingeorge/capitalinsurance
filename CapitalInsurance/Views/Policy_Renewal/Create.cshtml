@@ -356,26 +356,27 @@
         </div>
         <hr />
         <h2>OPERATION</h2>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="row form-group">
-                    <div class="col-md-12">
-                        <label>Operation Manager</label>
-                        @Html.TextBoxFor(m => m.OperationManager, new { @class = "form_input" })
-                        @Html.ValidationMessageFor(m => m.OperationManager, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="row form-group">
-                    <div class="col-md-6">
-                        <label>Policy No.</label>
-                        @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
-                        @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
-                    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>PolicyNo</label>
+                    @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
+                    @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
+        <div class="col-md-9">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Remarks</label>
+                    @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input" })
+                    @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+        </div>
+    </div>
         <hr />
         <h2>FINANCE</h2>
         <div class="row">

@@ -40,12 +40,12 @@ namespace Capital.DAL
                                    (TranPrefix,TranNumber,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
                                     PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
                                     PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,AdditionEmpNo,
-                                    DeletionEmpNo,EndorcementTypeId,TranType,OldPolicyNo,OldCompany,OldProductType,OldPremiumAmt,CreatedBy,CreatedDate)
+                                    DeletionEmpNo,EndorcementTypeId,TranType,OldPolicyNo,OldCompany,OldProductType,OldPremiumAmt,CreatedBy,CreatedDate,ICActualDate )
                                     VALUES
                                     (@TranPrefix,@TranNumber,@TranDate,@CusId,@InsuredName,@Address1,@Address2,@InsCmpId,@InsPrdId,@InsCoverId,@PolicySubDate,@EffectiveDate,@RenewalDate,
                                     @PremiumAmount,@PolicyFee,@ExtraPremium,@Totalpremium,@CommissionPerc,@CommissionAmount,@CustContPersonName,@CustContDesignation,@CustContEmail,@CustContMobile,
                                     @PaymentOption,@SalesMgId,@OperationManager,@PolicyNo,@Remarks,@FinanceManager,@PaymentTo,@PayModeId,@OldPolicyId,@CIBEffectiveDate,@AdditionEmpNo,
-                                    @DeletionEmpNo,@EndorcementTypeId,@TranType,@OldPolicyNo,@OldCompany,@OldProductType,@OldPremiumAmt,@CreatedBy,@CreatedDate);
+                                    @DeletionEmpNo,@EndorcementTypeId,@TranType,@OldPolicyNo,@OldCompany,@OldProductType,@OldPremiumAmt,@CreatedBy,@CreatedDate,@ICActualDate );
                                     SELECT CAST(SCOPE_IDENTITY() as int);";
                     model.PolicyId = connection.Query<int>(sql, model).Single();
 

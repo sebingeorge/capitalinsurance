@@ -58,6 +58,7 @@ namespace Capital.Domain
         public int? OldPolicyId { get; set; }
         public DateTime? CIBEffectiveDate { get; set; }
         public DateTime EndorcementDate { get; set; }
+        public DateTime ICActualDate { get; set; }
         public string EndorcementNo { get; set; }
         public int? AdditionEmpNo { get; set; }
         public int? DeletionEmpNo { get; set; }
