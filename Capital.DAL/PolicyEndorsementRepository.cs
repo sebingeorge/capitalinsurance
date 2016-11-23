@@ -58,12 +58,12 @@ namespace Capital.DAL
                  string sql = @"INSERT INTO PolicyIssue
                                    (TranPrefix,TranNumber,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
                                     PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
-                                    PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorcementDate,AdditionEmpNo,
+                                    PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorcementDate,ICActualDate,AdditionEmpNo,
                                     DeletionEmpNo,EndorcementTypeId,TranType,CreatedBy,CreatedDate)
                                     VALUES
                                     (@TranPrefix,@TranNumber,@TranDate,@CusId,@InsuredName,@Address1,@Address2,@InsCmpId,@InsPrdId,@InsCoverId,@PolicySubDate,@EffectiveDate,@RenewalDate,
                                     @PremiumAmount,@PolicyFee,@ExtraPremium,@Totalpremium,@CommissionPerc,@CommissionAmount,@CustContPersonName,@CustContDesignation,@CustContEmail,@CustContMobile,
-                                    @PaymentOption,@SalesMgId,@OperationManager,@PolicyNo,@Remarks,@FinanceManager,@PaymentTo,@PayModeId,@PolicyId,@CIBEffectiveDate,@EndorcementDate,@AdditionEmpNo,
+                                    @PaymentOption,@SalesMgId,@OperationManager,@PolicyNo,@Remarks,@FinanceManager,@PaymentTo,@PayModeId,@PolicyId,@CIBEffectiveDate,@EndorcementDate,@ICActualDate,@AdditionEmpNo,
                                     @DeletionEmpNo,@EndorcementTypeId,'EndorsePolicy',@CreatedBy,@CreatedDate);
                                     SELECT CAST(SCOPE_IDENTITY() as int);";
                  model.PolicyId = connection.Query<int>(sql, model).Single();

@@ -11,12 +11,15 @@ namespace CapitalInsurance.Controllers
     public class BusinessViewController :  BaseController
     {
         // GET: BusinessView
+       [HttpPost]
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult BusinessViewDetails(string Company = "", string Product = "", string Client = "", string SalesManager="")
+       
+        public ActionResult BusinessViewDetails(string[] tags,string Company = "", string Product = "", string Client = "", string SalesManager="")
         {
+            ViewBag.tags = tags;
             return PartialView("_BussinessViewDetails", new BusinessViewRepository().GetBusinessViewDetails(Company, Product, Client, SalesManager));
         }
         public ActionResult AddingFields()

@@ -16,16 +16,26 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string query = @"select P.PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)StrTranNumber,convert(char(3), TranDate, 0)Month,year(TranDate)Year,day(TranDate)Day,C.CusName,C.Address1 CusAddress,C.EmailId,C.MobileNo,P.CustContPersonName,P.InsuredName,P.CustContDesignation,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,P.RenewalDate,
-                                    P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionPerc,P.CommissionAmount, S.SalesMgName,S.SalesMgCode,S.QuatarContactNo,S.OfficeEmail,P.PolicyNo,P.PolicySubDate,P.TranType,P.AdditionEmpNo,P.DeletionEmpNo,DATEDIFF(dd,P.RenewalDate,GETDATE ()) Aging
+                string query = @"select P.PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)StrTranNumber,convert(char(3), TranDate, 0)Month,year(TranDate)Year,day(TranDate)Day,
+                                     C.CusName,C.Address1 CusAddress,C.EmailId,C.OfficeNo,C.MobileNo,
+                                    (C.EmployeeNo + ISNULL(P.AdditionEmpNo,0) - ISNULL(P.DeletionEmpNo,0))EmployeeNo,P.CustContPersonName,P.InsuredName,P.CustContDesignation,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,P.RenewalDate ExpiryDate,
+                                    (select A.RenewalDate from PolicyIssue A  where P.TranType='RenewPolicy' and P.PolicyId=A.PolicyId)RenewalDate,
+                                    P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionPerc,P.CommissionAmount, S.SalesMgName,S.SalesMgCode,S.QuatarContactNo,S.OfficeEmail,P.PolicyNo,P.PolicyFee,P.PaymentTo,P.PolicySubDate,P.TranType,P.EndorcementDate,
+                                    (select A.PolicyNo from PolicyIssue A  where P.TranType='EndorsePolicy' and P.PolicyId=A.PolicyId)EndorcementNo,P.AdditionEmpNo,
+                                    CASE WHEN (P.DeletionEmpNo IS NOT NULL) and (P.DeletionEmpNo IS NOT NULL) THEN 'ADD/DEL'
+                                    WHEN (P.AdditionEmpNo IS NOT NULL) THEN 'ADDITION'
+                                    WHEN (P.DeletionEmpNo IS NOT NULL) THEN 'DELETION'
+                                    WHEN (P.DeletionEmpNo IS  NULL ) or (P.AdditionEmpNo IS  NULL )
+                                    THEN '-' END AS EndType,
+                                    P.DeletionEmpNo,DATEDIFF(dd,P.RenewalDate,GETDATE ()) Aging,ICActualDate
                                     from PolicyIssue P
                                     left join Customer C on C.CusId = P.CusId
                                     left join InsuranceCompany I on I.InsCmpId = P.InsCmpId
                                     left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                   	where  P.RenewalDate < (select dateadd(day, 30, getdate()))
-                                    AND I.InsCmpName LIKE '%'+@Company+'%' and IP.InsPrdName LIKE '%'+@Product+'%' and C.CusName LIKE '%'+@Client+'%' and  S.SalesMgName LIKE '%'+@SalesManager+'%'
+                                   	where 
+                                    I.InsCmpName LIKE '%'+@Company+'%' and IP.InsPrdName LIKE '%'+@Product+'%' and C.CusName LIKE '%'+@Client+'%' and  S.SalesMgName LIKE '%'+@SalesManager+'%'
                                     order by P.RenewalDate ";
                 return connection.Query<PolicyIssue>(query, new { Company = Company, Product = Product, Client = Client, SalesManager = SalesManager }).ToList();
             }

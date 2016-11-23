@@ -164,7 +164,7 @@
                     <div class="col-md-12">
                         <label>Endorcement Date</label>
                         <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                            @Html.TextBoxFor(m => m.EndorcementDate, new { @class = "form_input", @Value = Model.EndorcementDate.ToString("dd-MMM-yyyy") })
+                            @Html.TextBoxFor(m => m.EndorcementDate, new { @class = "form_input", @Value = Model.EndorcementDate.Value.ToString("dd-MMM-yyyy") })
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         @Html.ValidationMessageFor(m => m.EndorcementDate, "", new { @class = "text-danger" })
@@ -306,7 +306,7 @@
                     <div class="col-md-6">
                         <label>Renewal Date</label>
                         <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                            @Html.TextBoxFor(m => m.RenewalDate, new { @class = "form_input", @Value = Model.RenewalDate.ToString("dd-MMM-yyyy") })
+                            @Html.TextBoxFor(m => m.RenewalDate, new { @class = "form_input", @Value = Model.RenewalDate.Value.ToString("dd-MMM-yyyy") })
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         @Html.ValidationMessageFor(m => m.RenewalDate, "", new { @class = "text-danger" })
@@ -356,11 +356,6 @@
                         @Html.TextBoxFor(m => m.CustContEmail, new { @class = "form_input" })
                         @Html.ValidationMessageFor(m => m.CustContEmail, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-md-12">
-                        <label>Remarks</label>
-                        @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input" })
-                        @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
-                    </div>
                 </div>
             </div>
             <div class="col-md-3">
@@ -375,26 +370,34 @@
         </div>
         <hr />
         <h2>OPERATION</h2>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="row form-group">
-                    <div class="col-md-12">
-                        <label>Operation Manager</label>
-                        @Html.TextBoxFor(m => m.OperationManager, new { @class = "form_input" })
-                        @Html.ValidationMessageFor(m => m.OperationManager, "", new { @class = "text-danger" })
-                    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Endorsement No.</label>
+                    @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
+                    @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
                 </div>
+        </div>
+        </div>
+        <div class="col-md-3">
+            <label>IC Actual Date</label>
+            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                @Html.TextBoxFor(m => m.ICActualDate, new { @class = "form_input", @Value = Model.ICActualDate.Value.ToString("dd-MMM-yyyy") })
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
             </div>
-            <div class="col-md-3">
-                <div class="row form-group">
-                    <div class="col-md-6">
-                        <label>Policy No.</label>
-                        @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
-                        @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
-                    </div>
+            </div>
+        <div class="col-md-6">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label>Remarks</label>
+                    @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input" })
+                    @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
                 </div>
+
             </div>
         </div>
+    </div>
         <hr />
         <h2>FINANCE</h2>
         <div class="row">
@@ -411,7 +414,7 @@
                 <div class="row form-group">
                     <div class="col-md-6">
                         <label>Payment to</label>
-                        @Html.DropDownListFor(m => Model.PaymentTo, (SelectList)ViewBag.Payment, "Select Payment To", new { @class = "form_input", autocomplete = "off" })
+                        @Html.DropDownListFor(m => m.PaymentTo, Model.PaymentToList)
                     </div>
                     <div class="col-md-6">
                         <label>Mode of Payment</label>
