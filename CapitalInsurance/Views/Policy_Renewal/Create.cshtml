@@ -287,7 +287,7 @@
                     <div class="col-md-6">
                         <label>Renewal Date</label>
                         <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                            @Html.TextBoxFor(m => m.RenewalDate, new { @class = "form_input", @Value = Model.RenewalDate.ToString("dd-MMM-yyyy") })
+                            @Html.TextBoxFor(m => m.RenewalDate, new { @class = "form_input", @Value = Model.RenewalDate.Value.ToString("dd-MMM-yyyy") })
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         @Html.ValidationMessageFor(m => m.RenewalDate, "", new { @class = "text-danger" })
@@ -393,7 +393,7 @@
                 <div class="row form-group">
                     <div class="col-md-6">
                         <label>Payment to</label>
-                        @Html.DropDownListFor(m => Model.PaymentTo, (SelectList)ViewBag.Payment, "Select Payment To", new { @class = "form_input", autocomplete = "off" })
+                        @Html.DropDownListFor(m => m.PaymentTo, Model.PaymentToList)
                     </div>
                     <div class="col-md-6">
                         <label>Mode of Payment</label>

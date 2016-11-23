@@ -22,6 +22,10 @@ namespace CapitalInsurance.Controllers
             PolicyIssue objPolicy = new PolicyRenewalRepository().GetNewPolicyForRenewal(Id);
             objPolicy.PolicySubDate = DateTime.Now;
             objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
+            if (objPolicy.Cheque.Count == 0)
+            {
+                objPolicy.Cheque.Add(new PolicyIssueChequeReceived());
+            }
             return View("Create", objPolicy);
         }
         [HttpPost]
@@ -64,7 +68,6 @@ namespace CapitalInsurance.Controllers
             FillInsuranceProduct();
             FillProductType();
             FillPaymentMode();
-            FillPaymentTo();
         }
         void FillSalesManager()
         {
@@ -90,13 +93,6 @@ namespace CapitalInsurance.Controllers
         {
             ViewBag.PaymentMode = new SelectList((new DropdownRepository()).GetPaymentMode(), "Id", "Name");
         }
-        void FillPaymentTo()
-        {
-            List<Dropdown> types = new List<Dropdown>();
-            types.Add(new Dropdown { Id = 1, Name = "CIB" });
-            types.Add(new Dropdown { Id = 2, Name = "Insurance Co" });
-            ViewBag.Payment = new SelectList(types, "Id", "Name");
         }
-    }
 
 }
