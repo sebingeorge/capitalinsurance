@@ -13,7 +13,7 @@ namespace Capital.DAL
     public class PolicyEndorsementRepository : BaseRepository
     {
      static string dataConnection = GetConnectionString("CibConnection");
-     public List<PolicyIssue> GetNewPolicyForEndorse()
+     public List<PolicyIssue> GetNewPolicyForEndorse(DateTime? FromDate, DateTime? ToDate, string Client = "", string SalesManager = "")
      {
          using (IDbConnection connection = OpenConnection(dataConnection))
          {
@@ -34,7 +34,7 @@ namespace Capital.DAL
      {
          using (IDbConnection connection = OpenConnection(dataConnection))
          {
-             string sql = @"select PolicyId,TranNumber,TranPrefix,TranDate,P.CusId,C.EmployeeNo,InsuredName,P.Address1,P.Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
+             string sql = @"select PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)TranNumber,TranPrefix,TranDate,P.CusId,C.EmployeeNo,InsuredName,P.Address1,P.Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
                                     PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
                                     PaymentOption,P.SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorcementDate,AdditionEmpNo,
                                     DeletionEmpNo,(C.EmployeeNo+AdditionEmpNo-DeletionEmpNo)TotalEmployes,EndorcementTypeId,TranType,CreatedBy,CreatedDate from PolicyIssue P

@@ -482,20 +482,19 @@
     <Content Include="Views\InsuranceCompany\_InsuranceCmpyGrid.cshtml" />
     <Content Include="Views\InsuranceProduct\Index.cshtml" />
     <Content Include="Views\InsuranceProduct\_InsuranceProductGrid.cshtml" />
-    <Content Include="Views\Policy_Renewal\PendingPolicyList.cshtml" />
-    <Content Include="Views\Policy_Renewal\_PolicyListGrid.cshtml" />
     <Content Include="Views\Policy_Renewal\Create.cshtml" />
     <Content Include="Views\Policy_Renewal\Index.cshtml" />
-    <Content Include="Views\Policy_Renewal\_RenewalPolicyGrid.cshtml" />
     <Content Include="Views\Sales_Target\Create.cshtml" />
     <Content Include="Views\Sales_Target\_SalesTargetGrid.cshtml" />
     <Content Include="Views\Policy_Endorsement\PendingPolicyList.cshtml" />
-    <Content Include="Views\Policy_Endorsement\_PolicyListGrid.cshtml" />
     <Content Include="Views\Policy_Endorsement\Create.cshtml" />
     <Content Include="Views\BusinessView\_BussinessViewDetails.cshtml" />
     <Content Include="Views\BusinessView\Index.cshtml" />
     <Content Include="Views\BusinessView\AddingFields.cshtml" />
     <Content Include="Views\New_Policy\_NewPolicyListGrid.cshtml" />
+    <Content Include="Views\Policy_Renewal\_PendingPolicyListGrid.cshtml" />
+    <Content Include="Views\Policy_Endorsement\_PendingPolicyListGrid.cshtml" />
+    <Content Include="Views\Policy_Endorsement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

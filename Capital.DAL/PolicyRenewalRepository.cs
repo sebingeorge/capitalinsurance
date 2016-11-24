@@ -13,7 +13,7 @@ namespace Capital.DAL
   
     {
         static string dataConnection = GetConnectionString("CibConnection");
-        public List<PolicyIssue> GetNewPolicyForRenewal()
+        public List<PolicyIssue> GetNewPolicyForRenewal(DateTime? FromDate, DateTime? ToDate, string Client = "", string SalesManager = "")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
@@ -25,9 +25,12 @@ namespace Capital.DAL
                                     left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                   	where P.PolicyId not in (select isnull(OldPolicyId,0) from PolicyIssue) and P.RenewalDate < (select dateadd(day, 30, getdate()))
+                                   	where P.PolicyId not in (select isnull(OldPolicyId,0) from PolicyIssue) 
+                                    AND CAST(P.RenewalDate AS date)  >=CAST(@FromDate AS date)  and CAST(P.RenewalDate AS date) <=CAST(@ToDate AS date)
+                                    AND C.CusName LIKE '%'+@Client+'%'
+                                    AND S.SalesMgName LIKE '%'+@SalesManager+'%'
                                     order by P.RenewalDate ";
-                return connection.Query<PolicyIssue>(query).ToList();
+                return connection.Query<PolicyIssue>(query,new { FromDate = FromDate, ToDate = ToDate, Client = Client, SalesManager = SalesManager }).ToList();
             }
         }
         public PolicyIssue GetNewPolicyForRenewal(int Id)
@@ -57,6 +60,7 @@ namespace Capital.DAL
             {
                 using (IDbConnection connection = OpenConnection(dataConnection))
                 {
+                    model.TranNumber = PolicyIssueRepository.GetNextDocNo(model.TranType);
                     string sql = @"INSERT INTO PolicyIssue
                                    (TranPrefix,TranNumber,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
                                     PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
@@ -106,6 +110,22 @@ namespace Capital.DAL
                                     where P.OldPolicyId IS NOT NULL and P.TranType = 'Renew Policy'
                                     order by P.TranNumber";
                 return connection.Query<PolicyIssue>(query).ToList();
+            }
+        }
+        public DateTime GetFromDate()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string qry = @"select dateadd(day, -30, getdate())";
+                return connection.Query<DateTime>(qry).First();
+            }
+        }
+        public DateTime GetToDate()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string qry = @"select dateadd(day, 30, getdate())";
+                return connection.Query<DateTime>(qry).First();
             }
         }
       

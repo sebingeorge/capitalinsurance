@@ -21,18 +21,18 @@
                 @Html.TextBoxFor(m => m.CusShortName, new { @class = "form_input half" })
                 @Html.ValidationMessageFor(m => m.CusShortName, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-12">
+            @*<div class="col-md-12">
                 <label>Customer Category</label>
                 @Html.DropDownListFor(m => Model.CusCatId, (SelectList)ViewBag.CustomerCategory, "Select Category", new { @class = "form_input", autocomplete = "off" })
-            </div>
+            </div>*@
         </div>
     </div>
     <div class="col-md-3">
         <div class="row form-group">
-            <div class="col-md-12">
+            @*<div class="col-md-12">
                 <label>Region</label>
                 @Html.DropDownListFor(m => Model.RegionId, (SelectList)ViewBag.Regions, "Select Region", new { @class = "form_input", autocomplete = "off" })
-            </div>
+            </div>*@
             <div class="col-md-6">
                 <label>No of Employees</label>
                 @Html.TextBoxFor(m => m.EmployeeNo, new { @class = "form_input" })

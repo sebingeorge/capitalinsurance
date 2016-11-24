@@ -127,7 +127,7 @@
     $(document).ready(function () {
         if ('@ViewBag.actionName.ToString()' == "Create")
         {
-            $("#TranNumber").focus();
+            $("#RenewalDate").focus();
         }
     $(".numbers-only").keypress(function (e) {
             if (e.which == 8 || (e.which == 45 && $(this).val().indexOf('-') == -1) || (e.which == 46 && $(this).val().indexOf('.') == -1) || (e.which > 47 && e.which < 58)) {
@@ -160,8 +160,9 @@
                     <div class="col-md-3">
                         <label>Transaction No.</label>
                         @Html.HiddenFor(m => m.PolicyId)
+                        @Html.HiddenFor(m => m.TranType)
                         @Html.TextBoxFor(m => m.TranNumber, new { @class = "form_input" })
-                        @Html.ValidationMessageFor(m => m.TranNumber, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(m => m.TranNumber, "", new { @class = "text-danger", @readonly = "readonly" })
                     </div>
                 </div>
             </div>

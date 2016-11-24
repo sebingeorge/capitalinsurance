@@ -1,7 +1,8 @@
-﻿@model List<Capital.Domain.PolicyIssue>
+﻿
 @{
     ViewBag.Title = "Index";
 }
+
 
 <script>
     function Exit() {
@@ -9,15 +10,15 @@
         window.location = url;
     }
     function Filter() {
-        $("#Renew_Policy").addClass("fade");
+        $("#Endorse_Policy").addClass("fade");
         var FromDate = $("#txtFrom").val().trim();
         var ToDate = $("#txtTo").val().trim();
         var Client = $("#client").val().trim();
         var SalesManager = $("#salesmanager").val().trim();
         var url = '@Url.Action("PendingPolicyList")';
         url += "?FromDate=" + FromDate + "&ToDate=" + ToDate + "&Client=" + encodeURIComponent(Client) + "&SalesManager=" + encodeURIComponent(SalesManager);
-        $("#Renew_Policy").load(url, function () {
-            $("#Renew_Policy").removeClass("fade");
+        $("#Endorse_Policy").load(url, function () {
+            $("#Endorse_Policy").removeClass("fade");
         });
     }
     $(document).ready(function () {
@@ -45,7 +46,7 @@
 
 <div class="container content-in">
     <div class="row">
-        <h1>Pending Renewal List</h1>
+        <h1>Pending Endorsement List</h1>
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -80,14 +81,14 @@
         </div>
     </div>
     <hr />
-    <div id="Renew_Policy">
+    <div id="Endorse_Policy">
         @Html.Action("PendingPolicyList")
     </div>
-        <div class="row">
-            <hr />
-            <div class="col-md-offset-8 col-md-4">
-                <button type="button" class="form-button right" onclick="Exit()">Exit</button>
-            </div>
+    <div class="row">
+        <hr />
+        <div class="col-md-offset-8 col-md-4">
+            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
         </div>
     </div>
+</div>
 
