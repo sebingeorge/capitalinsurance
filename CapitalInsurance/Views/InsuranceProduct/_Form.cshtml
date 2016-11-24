@@ -6,8 +6,7 @@
                 <label>Insurance Name</label>
                 @Html.HiddenFor(m => m.InsPrdId)
                 @Html.TextBoxFor(m => m.InsPrdName, new { @class = "form_input" })
-                @Html.ValidationMessageFor(m => m.InsPrdName, "", new { @class = "text-danger" })
-               
+                @Html.ValidationMessageFor(m => m.InsPrdName, "", new { @class = "text-danger" })               
             </div>
         </div>
     </div>
