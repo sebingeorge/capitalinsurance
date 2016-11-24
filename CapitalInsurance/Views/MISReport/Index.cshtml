@@ -1,0 +1,663 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    $(function () {
+        // Create the chart
+        MonthlySales();
+        SalesVsTarget();
+        SalesVsTargetMonthly();
+        MonthlyProductWiseSales();
+    });
+    function MonthlySales()
+    {
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Monthly Sales 2016'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Total Sales in AED'
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+            },
+
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'January',
+                    y: 50000.00,
+                    drilldown: 'January'
+                }, {
+                    name: 'February',
+                    y: 45000,
+                    drilldown: 'February'
+                }, {
+                    name: 'March',
+                    y: 30000,
+                    drilldown: 'March'
+                }, {
+                    name: 'April',
+                    y: 75000,
+                    drilldown: 'April'
+                }, {
+                    name: 'May',
+                    y: 70000,
+                    drilldown: 'May'
+                }, {
+                    name: 'June',
+                    y: 60000,
+                    drilldown: 'June'
+                }, {
+                    name: 'July',
+                    y: 65000,
+                    drilldown: 'July'
+                }, {
+                    name: 'August',
+                    y: 42000,
+                    drilldown: 'August'
+                }, {
+                    name: 'September',
+                    y: 41000,
+                    drilldown: 'September'
+                }, {
+                    name: 'October',
+                    y: 37500,
+                    drilldown: 'October'
+                }, {
+                    name: 'November',
+                    y: 28000,
+                    drilldown: 'November'
+                }, {
+                    name: 'December',
+                    y: 0.00,
+                    drilldown: 'December'
+                }]
+            }],
+            drilldown: {
+                series: [{
+                    name: 'Microsoft Internet Explorer',
+                    id: 'Microsoft Internet Explorer',
+                    data: [
+                        [
+                            'v11.0',
+                            24.13
+                        ],
+                        [
+                            'v8.0',
+                            17.2
+                        ],
+                        [
+                            'v9.0',
+                            8.11
+                        ],
+                        [
+                            'v10.0',
+                            5.33
+                        ],
+                        [
+                            'v6.0',
+                            1.06
+                        ],
+                        [
+                            'v7.0',
+                            0.5
+                        ]
+                    ]
+                }, {
+                    name: 'Chrome',
+                    id: 'Chrome',
+                    data: [
+                        [
+                            'v40.0',
+                            5
+                        ],
+                        [
+                            'v41.0',
+                            4.32
+                        ],
+                        [
+                            'v42.0',
+                            3.68
+                        ],
+                        [
+                            'v39.0',
+                            2.96
+                        ],
+                        [
+                            'v36.0',
+                            2.53
+                        ],
+                        [
+                            'v43.0',
+                            1.45
+                        ],
+                        [
+                            'v31.0',
+                            1.24
+                        ],
+                        [
+                            'v35.0',
+                            0.85
+                        ],
+                        [
+                            'v38.0',
+                            0.6
+                        ],
+                        [
+                            'v32.0',
+                            0.55
+                        ],
+                        [
+                            'v37.0',
+                            0.38
+                        ],
+                        [
+                            'v33.0',
+                            0.19
+                        ],
+                        [
+                            'v34.0',
+                            0.14
+                        ],
+                        [
+                            'v30.0',
+                            0.14
+                        ]
+                    ]
+                }, {
+                    name: 'Firefox',
+                    id: 'Firefox',
+                    data: [
+                        [
+                            'v35',
+                            2.76
+                        ],
+                        [
+                            'v36',
+                            2.32
+                        ],
+                        [
+                            'v37',
+                            2.31
+                        ],
+                        [
+                            'v34',
+                            1.27
+                        ],
+                        [
+                            'v38',
+                            1.02
+                        ],
+                        [
+                            'v31',
+                            0.33
+                        ],
+                        [
+                            'v33',
+                            0.22
+                        ],
+                        [
+                            'v32',
+                            0.15
+                        ]
+                    ]
+                }, {
+                    name: 'Safari',
+                    id: 'Safari',
+                    data: [
+                        [
+                            'v8.0',
+                            2.56
+                        ],
+                        [
+                            'v7.1',
+                            0.77
+                        ],
+                        [
+                            'v5.1',
+                            0.42
+                        ],
+                        [
+                            'v5.0',
+                            0.3
+                        ],
+                        [
+                            'v6.1',
+                            0.29
+                        ],
+                        [
+                            'v7.0',
+                            0.26
+                        ],
+                        [
+                            'v6.2',
+                            0.17
+                        ]
+                    ]
+                }, {
+                    name: 'Opera',
+                    id: 'Opera',
+                    data: [
+                        [
+                            'v12.x',
+                            0.34
+                        ],
+                        [
+                            'v28',
+                            0.24
+                        ],
+                        [
+                            'v27',
+                            0.17
+                        ],
+                        [
+                            'v29',
+                            0.16
+                        ]
+                    ]
+                }]
+            }
+        });
+    }
+    function SalesVsTarget()
+    {
+        Highcharts.chart('container1', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Executive Wise Sales Target Vs Acheivement 2016'
+            },
+            xAxis: {
+                categories: [
+                    'Jinju',
+                    'Santhosh',
+                    'Madhu',
+                    'Bishal',
+                    'Sarfaraj',
+                    'Kumaresan',
+                    'Karthik',
+                    'Rajul',
+                    'Amir',
+                    'Dileep',
+                    'Abdul Razzak',
+                    'Mainuddin'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Target vs Acheivement (AED)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Target',
+                data: [49900, 71500, 106400, 12920, 14400, 17600, 13560, 14850, 21640, 19410, 95600, 54400]
+
+            }, {
+                name: 'Acheivement',
+                data: [83600, 78800, 98500, 93400, 10600, 84500, 10500, 10430, 91200, 83500, 10660, 92300]
+
+            }]
+        });
+    }
+    function SalesVsTargetMonthly() {
+        Highcharts.chart('container2', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Monthly Sales Target Vs Acheivement 2016'
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Target vs Acheivement (AED)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Target',
+                data: [49900, 71500, 106400, 12920, 14400, 17600, 13560, 14850, 21640, 19410, 95600, 54400]
+
+            }, {
+                name: 'Acheivement',
+                data: [83600, 78800, 98500, 93400, 10600, 84500, 10500, 10430, 91200, 83500, 10660, 92300]
+
+            }]
+        });
+    }
+    function MonthlyProductWiseSales() {
+        Highcharts.chart('container3', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Product Wise Sales 2016'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Total Sales in AED'
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+            },
+
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'QGIRCO',
+                    y: 50000.00,
+                    drilldown: 'QGIRCO'
+                }, {
+                    name: 'BEEMA',
+                    y: 45000,
+                    drilldown: 'BEEMA'
+                }, {
+                    name: 'QIIC',
+                    y: 30000,
+                    drilldown: 'QIIC'
+                }, {
+                    name: 'SEIB',
+                    y: 75000,
+                    drilldown: 'SEIB'
+                }, {
+                    name: 'QGIRICO',
+                    y: 70000,
+                    drilldown: 'QGIRICO'
+                }]
+            }],
+            drilldown: {
+                series: [{
+                    name: 'Microsoft Internet Explorer',
+                    id: 'Microsoft Internet Explorer',
+                    data: [
+                        [
+                            'v11.0',
+                            24.13
+                        ],
+                        [
+                            'v8.0',
+                            17.2
+                        ],
+                        [
+                            'v9.0',
+                            8.11
+                        ],
+                        [
+                            'v10.0',
+                            5.33
+                        ],
+                        [
+                            'v6.0',
+                            1.06
+                        ],
+                        [
+                            'v7.0',
+                            0.5
+                        ]
+                    ]
+                }, {
+                    name: 'Chrome',
+                    id: 'Chrome',
+                    data: [
+                        [
+                            'v40.0',
+                            5
+                        ],
+                        [
+                            'v41.0',
+                            4.32
+                        ],
+                        [
+                            'v42.0',
+                            3.68
+                        ],
+                        [
+                            'v39.0',
+                            2.96
+                        ],
+                        [
+                            'v36.0',
+                            2.53
+                        ],
+                        [
+                            'v43.0',
+                            1.45
+                        ],
+                        [
+                            'v31.0',
+                            1.24
+                        ],
+                        [
+                            'v35.0',
+                            0.85
+                        ],
+                        [
+                            'v38.0',
+                            0.6
+                        ],
+                        [
+                            'v32.0',
+                            0.55
+                        ],
+                        [
+                            'v37.0',
+                            0.38
+                        ],
+                        [
+                            'v33.0',
+                            0.19
+                        ],
+                        [
+                            'v34.0',
+                            0.14
+                        ],
+                        [
+                            'v30.0',
+                            0.14
+                        ]
+                    ]
+                }, {
+                    name: 'Firefox',
+                    id: 'Firefox',
+                    data: [
+                        [
+                            'v35',
+                            2.76
+                        ],
+                        [
+                            'v36',
+                            2.32
+                        ],
+                        [
+                            'v37',
+                            2.31
+                        ],
+                        [
+                            'v34',
+                            1.27
+                        ],
+                        [
+                            'v38',
+                            1.02
+                        ],
+                        [
+                            'v31',
+                            0.33
+                        ],
+                        [
+                            'v33',
+                            0.22
+                        ],
+                        [
+                            'v32',
+                            0.15
+                        ]
+                    ]
+                }, {
+                    name: 'Safari',
+                    id: 'Safari',
+                    data: [
+                        [
+                            'v8.0',
+                            2.56
+                        ],
+                        [
+                            'v7.1',
+                            0.77
+                        ],
+                        [
+                            'v5.1',
+                            0.42
+                        ],
+                        [
+                            'v5.0',
+                            0.3
+                        ],
+                        [
+                            'v6.1',
+                            0.29
+                        ],
+                        [
+                            'v7.0',
+                            0.26
+                        ],
+                        [
+                            'v6.2',
+                            0.17
+                        ]
+                    ]
+                }, {
+                    name: 'Opera',
+                    id: 'Opera',
+                    data: [
+                        [
+                            'v12.x',
+                            0.34
+                        ],
+                        [
+                            'v28',
+                            0.24
+                        ],
+                        [
+                            'v27',
+                            0.17
+                        ],
+                        [
+                            'v29',
+                            0.16
+                        ]
+                    ]
+                }]
+            }
+        });
+    }
+</script>
+<div class="container content-in">
+    <div class="row">
+        <h1>MIS Reports</h1>
+    </div>
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</div>
