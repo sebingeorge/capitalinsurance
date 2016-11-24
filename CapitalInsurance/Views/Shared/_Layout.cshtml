@@ -15,6 +15,9 @@
     @*<link href="~/Content/datetimepicker/bootstrap.min.css" rel="stylesheet" media="screen" />*@
     <link href="~/Content/toastr.min.css" rel="stylesheet" />
     <link href="~/Content/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen" />
+
+    <script src="~/Scripts/highchart/highcharts.js"></script>
+    <script src="~/Scripts/highchart/exporting.js"></script>
 </head>
 <body>
 
@@ -80,6 +83,9 @@
                             </li>
                             <li>
                                 <a href="@Url.Action("Daily_Activity_report", "Daily_Activity_report")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Daily Activity Report</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "MISReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>MIS Report</a>
                             </li>
                         </ul>
                     </div>
