@@ -456,7 +456,6 @@
     <Content Include="Views\admin\InsuranceProduct.cshtml" />
     <Content Include="Views\Policy_Endorsement\Proposal.cshtml" />
     <Content Include="Views\MeetingSchedule\MeetingSchedule.cshtml" />
-    <Content Include="Views\New_Policy\PolicyList.cshtml" />
     <Content Include="Views\Daily_Activity_report\PreviousDaily_Activity.cshtml" />
     <Content Include="Views\MeetingSchedule\PreviousMeetingSchedule.cshtml" />
     <Content Include="Views\Customer_Invoice\PreviousCustomerInvoice.cshtml" />
@@ -483,7 +482,6 @@
     <Content Include="Views\InsuranceCompany\_InsuranceCmpyGrid.cshtml" />
     <Content Include="Views\InsuranceProduct\Index.cshtml" />
     <Content Include="Views\InsuranceProduct\_InsuranceProductGrid.cshtml" />
-    <Content Include="Views\New_Policy\_NewPolicyGrid.cshtml" />
     <Content Include="Views\Policy_Renewal\PendingPolicyList.cshtml" />
     <Content Include="Views\Policy_Renewal\_PolicyListGrid.cshtml" />
     <Content Include="Views\Policy_Renewal\Create.cshtml" />
@@ -497,6 +495,7 @@
     <Content Include="Views\BusinessView\_BussinessViewDetails.cshtml" />
     <Content Include="Views\BusinessView\Index.cshtml" />
     <Content Include="Views\BusinessView\AddingFields.cshtml" />
+    <Content Include="Views\New_Policy\_NewPolicyListGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,7 +12,7 @@ namespace Capital.DAL
     public class PolicyIssueRepository : BaseRepository
     {
         static string dataConnection = GetConnectionString("CibConnection");
-        public List<PolicyIssue> GetNewPolicy()
+        public List<PolicyIssue> GetNewPolicy(DateTime? FromDate, DateTime? ToDate, string Client = "", string SalesManager = "")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
@@ -25,8 +25,11 @@ namespace Capital.DAL
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
                                     where P.OldPolicyId IS NULL AND P.TranType='NewPolicy'
+                                    AND CAST(P.TranDate AS date)  >=CAST(@FromDate AS date)  and CAST(P.TranDate AS date) <=CAST(@ToDate AS date)
+                                    AND C.CusName LIKE '%'+@Client+'%'
+                                    AND S.SalesMgName LIKE '%'+@SalesManager+'%'
                                     order by P.TranNumber";
-                return connection.Query<PolicyIssue>(query).ToList();
+                return connection.Query<PolicyIssue>(query, new { FromDate = FromDate, ToDate = ToDate, Client = Client, SalesManager = SalesManager }).ToList();
             }
         }
         public Result Insert(PolicyIssue model)
@@ -36,6 +39,7 @@ namespace Capital.DAL
             {
                 using (IDbConnection connection = OpenConnection(dataConnection))
                 {
+                    model.TranNumber = PolicyIssueRepository.GetNextDocNo(model.TranType);
                     string sql = @"INSERT INTO PolicyIssue
                                    (TranPrefix,TranNumber,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
                                     PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
@@ -74,7 +78,10 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select * from PolicyIssue where PolicyId=@Id";
+                string sql = @"select (TranPrefix+'/'+TranNumber)TranNumber,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
+                                    PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
+                                    PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,AdditionEmpNo,
+                                    DeletionEmpNo,EndorcementTypeId,TranType,OldPolicyNo,OldCompany,OldProductType,OldPremiumAmt,CreatedBy,CreatedDate,ICActualDate from PolicyIssue where PolicyId=@Id";
 
 
                 var objPolicy = connection.Query<PolicyIssue>(sql, new
@@ -102,7 +109,7 @@ namespace Capital.DAL
             Result res = new Result(false);
             try
             {
-               
+
             }
             catch (Exception ex)
             {
@@ -121,7 +128,7 @@ namespace Capital.DAL
 
                     string query = @"DELETE FROM PolicyIssueChequeReceived WHERE PolicyId = @PolicyId;
                                      DELETE FROM PolicyIssue  OUTPUT deleted.PolicyId WHERE PolicyId = @PolicyId;";
-                 
+
                     int id = connection.Query<int>(query, model, txn).First();
                     txn.Commit();
                     if (id > 0)
@@ -136,5 +143,25 @@ namespace Capital.DAL
             }
             return res;
         }
+        public Customer GetCustomerContactDetails(int Id)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+
+                string query = "select ContactName,Designation,EmailId,MobileNo from Customer where CusId= @Id";
+                return connection.Query<Customer>(query, new { Id = Id }).First<Customer>();
+            }
+        }
+        public static string GetNextDocNo(string TYPE)
+        {
+            
+                using (IDbConnection connection = BaseRepository.OpenConnection(dataConnection))
+                {
+                    string query = @"select ISNULL(max(isnull(TranNumber,0)+1),1) from PolicyIssue WHERE TranType=@TYPE";
+                    return connection.Query<string>(query, new { TYPE = TYPE }).Single();
+                }
+            }
+        
     }
 }
+
