@@ -36,12 +36,13 @@ namespace Capital.Domain
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Effective Date is Required")]
         public DateTime EffectiveDate { get; set; }
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Renewal Date is Required")]
-        public DateTime RenewalDate { get; set; }
+        public DateTime? RenewalDate { get; set; }
+         public DateTime ExpiryDate { get; set; }
         public decimal PremiumAmount { get; set; }
         public decimal PolicyFee { get; set; }
         public decimal ExtraPremium { get; set; }
         public decimal TotalPremium { get; set; }
-        public decimal CommissionPerc { get; set; }
+        public int CommissionPerc { get; set; }
         public decimal CommissionAmount { get; set; }
         public string CustContPersonName { get; set; }
         public string CustContDesignation { get; set; }
@@ -57,7 +58,8 @@ namespace Capital.Domain
         public int? PayModeId { get; set; }
         public int? OldPolicyId { get; set; }
         public DateTime? CIBEffectiveDate { get; set; }
-        public DateTime EndorcementDate { get; set; }
+        public DateTime? EndorcementDate { get; set; }
+        public DateTime? ICActualDate { get; set; }
         public string EndorcementNo { get; set; }
         public int? AdditionEmpNo { get; set; }
         public int? DeletionEmpNo { get; set; }

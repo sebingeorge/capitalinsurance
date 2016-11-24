@@ -126,13 +126,16 @@
             $("#againstId").text("Policy No.");
             $("#policy_details").removeClass("divShow");
             $("#policy_details").addClass("divHidden");
+            $("#Actuals_Date").removeClass("divShow");
         }
         if (opt == "RenewPolicy") {
            
             $("#policy_details").addClass("divShow");
+            $("#Actuals_Date").removeClass("divShow");
            }
         if (opt == "EndorsePolicy") {
             $("#againstId").text("Endorsement No.");
+            $("#Actuals_Date").addClass("divShow");
             $("#policy_details").addClass("divShow");
         }
     }
@@ -327,7 +330,7 @@
                 <div class="col-md-6">
                     <label>Renewal Date</label>
                     <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                        @Html.TextBoxFor(m => m.RenewalDate, new { @class = "form_input", @Value = Model.RenewalDate.ToString("dd-MMM-yyyy") })
+                        @Html.TextBoxFor(m => m.RenewalDate, new { @class = "form_input", @Value = Model.RenewalDate.Value.ToString("dd-MMM-yyyy") })
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                     @Html.ValidationMessageFor(m => m.RenewalDate, "", new { @class = "text-danger" })
@@ -399,23 +402,26 @@
                     @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
                     @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
                 </div>
-                @*<div class="col-md-12">
-                    <label>Operation Manager</label>
-                    @Html.TextBoxFor(m => m.OperationManager, new { @class = "form_input" })
-                    @Html.ValidationMessageFor(m => m.OperationManager, "", new { @class = "text-danger" })
-                </div>*@
             </div>
         </div>
-                <div class="col-md-9">
+        <div class="divHidden">
+            <div class="col-md-3" id="Actuals_Date">
+                <label>IC Actual Date</label>
+                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    @Html.TextBoxFor(m => m.ICActualDate, new { @class = "form_input"})
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+            </div>
+        </div>
+                <div class="col-md-6">
             <div class="row form-group">
                 <div class="col-md-12">
                     <label>Remarks</label>
                     @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input" })
                     @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
                 </div>
-                
             </div>
-        </div>
+            </div>
     </div>
         <hr />
     <h2>FINANCE</h2>

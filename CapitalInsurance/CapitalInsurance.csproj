@@ -225,6 +225,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\images\back.png" />
+    <Content Include="Content\images\ihits.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\m-logo.png" />
     <Content Include="Content\images\manhand.png" />
