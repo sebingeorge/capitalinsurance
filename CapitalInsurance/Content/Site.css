@@ -142,7 +142,7 @@ textarea {
 {
     border-radius:5px;
     -moz-border-radius:5px;
-    background-color:#f6ff00;
+    background-color:#fbe59b;
     margin-top:18px;
     /*min-height:300px;*/
 }
@@ -330,7 +330,7 @@ table thead tr th
     border-radius:5px 5px 0 0;
     -moz-border-radius:5px 5px 0 0;
     color:#fff;
-    background:/*#10a4d4*/#93241e;
+    background:/*#10a4d4*/#0099cc;
     height:18px;
     /*line-height:18px;*/
     padding-left:5px;
@@ -344,6 +344,7 @@ table thead tr th
     {
         margin:0;
         margin-bottom:0px;
+        background-color:#fff;
     }
         }
     .content-in .grid_heading td td
@@ -477,8 +478,13 @@ table thead tr th
     text-decoration:none;
     color:#fff !important;
     line-height:13px;
+    margin-top: -16px;
     padding:1px 5px !important;
     }
+.bell1 {
+       margin-left: -18px;
+    top: -1px;
+}
         .alert1 .navbar-nav > li > a:hover, .alert1 .navbar-nav > li > a:active, .alert1 .navbar-nav > li > a:focus
     {
     background-color:#93241e;
@@ -539,12 +545,13 @@ table thead tr th
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background:#010d01;
+    background:#0099cc;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
     margin-top:-39px;
+    border-right:1px solid #fff;
 }
 
 #wrapper.toggled #sidebar-wrapper {
