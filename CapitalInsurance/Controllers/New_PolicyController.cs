@@ -132,11 +132,11 @@ namespace CapitalInsurance.Controllers
             return Json(new { Success = true, internalid = prefix + internalid }, JsonRequestBehavior.AllowGet);
         }
       
-        public ActionResult NewPolicyList(DateTime? FromDate, DateTime? ToDate, string Client = "", string SalesManager = "")
+        public ActionResult NewPolicyList(DateTime? FromDate, DateTime? ToDate,string PolicyNo="", string Client = "", string SalesManager = "")
         {
             FromDate = FromDate ?? FYStartdate;
             ToDate = ToDate ?? DateTime.Now;
-            return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetNewPolicy(FromDate, ToDate, Client, SalesManager));
+            return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetNewPolicy(FromDate, ToDate, PolicyNo,Client,SalesManager));
         }
         void FillDropdowns()
         {

@@ -5,6 +5,7 @@
     @Html.Grid(Model).Columns(columns =>
     {
         columns.Add(m => m.StrTranNumber).Titled("Transaction No.").SetWidth(12);
+        columns.Add(m => m.PolicyNo).Titled("Policy No.").SetWidth(5);
         columns.Add(m => m.CusName).Titled("Client").SetWidth(10);
         columns.Add(m => m.CustContPersonName).Titled("Contact Name").SetWidth(10);
         columns.Add(m => m.InsuredName).Titled("Insured Name").SetWidth(7);

@@ -13,10 +13,11 @@
         $("#Endorse_Policy").addClass("fade");
         var FromDate = $("#txtFrom").val().trim();
         var ToDate = $("#txtTo").val().trim();
+        var PolicyNo = $("#policyno").val().trim();
         var Client = $("#client").val().trim();
         var SalesManager = $("#salesmanager").val().trim();
         var url = '@Url.Action("PendingPolicyList")';
-        url += "?FromDate=" + FromDate + "&ToDate=" + ToDate + "&Client=" + encodeURIComponent(Client) + "&SalesManager=" + encodeURIComponent(SalesManager);
+        url += "?FromDate=" + FromDate + "&ToDate=" + ToDate + "&PolicyNo=" + encodeURIComponent(PolicyNo) + "&Client=" + encodeURIComponent(Client) + "&SalesManager=" + encodeURIComponent(SalesManager);
         $("#Endorse_Policy").load(url, function () {
             $("#Endorse_Policy").removeClass("fade");
         });
@@ -61,19 +62,24 @@
                 <div class="col-md-6">
                     <label>To</label>
                     <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                        <input id="txtTo" value="@ViewBag.Todate.ToString("dd-MMMM-yyy")" class="form_input" onchange="Filter()" />
+                        <input id="txtTo" value="@System.DateTime.Now.ToString("dd-MMMM-yyy")" class="form_input" onchange="Filter()" />
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-8">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
+                    <label>Policy No.</label>
+                    <input id="policyno" class="form_input" placeholder="Search for Policy No." onkeyup="Filter()" />
+                </div>
+
+                <div class="col-md-3">
                     <label>Client</label>
                     <input id="client" class="form_input" placeholder="Search for Client" onkeyup="Filter()" />
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label>Sales Manager</label>
                     <input id="salesmanager" class="form_input" placeholder="Search for Sales Manager" onkeyup="Filter()" />
                 </div>

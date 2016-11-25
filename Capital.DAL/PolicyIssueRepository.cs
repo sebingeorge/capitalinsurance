@@ -12,7 +12,7 @@ namespace Capital.DAL
     public class PolicyIssueRepository : BaseRepository
     {
         static string dataConnection = GetConnectionString("CibConnection");
-        public List<PolicyIssue> GetNewPolicy(DateTime? FromDate, DateTime? ToDate, string Client = "", string SalesManager = "")
+        public List<PolicyIssue> GetNewPolicy(DateTime? FromDate, DateTime? ToDate, string PolicyNo = "", string Client = "", string SalesManager = "")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
@@ -27,9 +27,10 @@ namespace Capital.DAL
                                     where P.OldPolicyId IS NULL AND P.TranType='NewPolicy'
                                     AND CAST(P.TranDate AS date)  >=CAST(@FromDate AS date)  and CAST(P.TranDate AS date) <=CAST(@ToDate AS date)
                                     AND C.CusName LIKE '%'+@Client+'%'
+                                    AND P.PolicyNo LIKE '%'+@PolicyNo+'%'
                                     AND S.SalesMgName LIKE '%'+@SalesManager+'%'
                                     order by P.TranNumber";
-                return connection.Query<PolicyIssue>(query, new { FromDate = FromDate, ToDate = ToDate, Client = Client, SalesManager = SalesManager }).ToList();
+                return connection.Query<PolicyIssue>(query, new {FromDate = FromDate,ToDate = ToDate,PolicyNo = PolicyNo,Client = Client,SalesManager = SalesManager }).ToList();
             }
         }
         public Result Insert(PolicyIssue model)

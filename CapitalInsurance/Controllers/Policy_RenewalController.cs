@@ -59,13 +59,13 @@ namespace CapitalInsurance.Controllers
         {
             return View();
         }
-        public ActionResult PendingPolicyList(DateTime? FromDate, DateTime? ToDate, string Client = "", string SalesManager = "")
+        public ActionResult PendingPolicyList(DateTime? FromDate, DateTime? ToDate,string PolicyNo="" , string Client = "", string SalesManager = "")
         {
             ViewBag.Fromdate = new PolicyRenewalRepository().GetFromDate();
             ViewBag.Todate = new PolicyRenewalRepository().GetToDate();
             FromDate = FromDate ?? ViewBag.Fromdate;
             ToDate = ToDate ?? ViewBag.Todate;
-            return PartialView("_PendingPolicyListGrid", new PolicyRenewalRepository().GetNewPolicyForRenewal(FromDate, ToDate, Client, SalesManager));
+            return PartialView("_PendingPolicyListGrid", new PolicyRenewalRepository().GetNewPolicyForRenewal(FromDate, ToDate,PolicyNo,Client, SalesManager));
         }
         void FillDropdowns()
         {

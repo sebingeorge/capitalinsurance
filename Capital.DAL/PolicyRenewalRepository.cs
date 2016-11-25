@@ -13,7 +13,7 @@ namespace Capital.DAL
   
     {
         static string dataConnection = GetConnectionString("CibConnection");
-        public List<PolicyIssue> GetNewPolicyForRenewal(DateTime? FromDate, DateTime? ToDate, string Client = "", string SalesManager = "")
+        public List<PolicyIssue> GetNewPolicyForRenewal(DateTime? FromDate, DateTime? ToDate,string PolicyNo="" ,string Client = "", string SalesManager = "")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
@@ -28,9 +28,10 @@ namespace Capital.DAL
                                    	where P.PolicyId not in (select isnull(OldPolicyId,0) from PolicyIssue) 
                                     AND CAST(P.RenewalDate AS date)  >=CAST(@FromDate AS date)  and CAST(P.RenewalDate AS date) <=CAST(@ToDate AS date)
                                     AND C.CusName LIKE '%'+@Client+'%'
+                                    AND P.PolicyNo LIKE '%'+@PolicyNo+'%'
                                     AND S.SalesMgName LIKE '%'+@SalesManager+'%'
                                     order by P.RenewalDate ";
-                return connection.Query<PolicyIssue>(query,new { FromDate = FromDate, ToDate = ToDate, Client = Client, SalesManager = SalesManager }).ToList();
+                return connection.Query<PolicyIssue>(query, new { FromDate = FromDate, ToDate = ToDate, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager }).ToList();
             }
         }
         public PolicyIssue GetNewPolicyForRenewal(int Id)
