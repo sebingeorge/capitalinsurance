@@ -8,10 +8,10 @@
 
 
 
-    <section class="outer-login col-md-offset-2 col-md-6 col-sm-11 col-xs-10" id="loginForm">
+    <section class="outer-login col-md-offset-3 col-md-3 col-sm-11 col-xs-10" id="loginForm">
         <div class="row">
             <div class="col-md-12 col-sm-12">
-                <img src="~/Images/logo.png" width="48" />
+
                 <section id="socialLoginForm"></section>
                 <h2>Login</h2>
             </div>
@@ -21,8 +21,10 @@
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-4 col-sm-2">
+        <img src="~/Images/logo.png" width="80" />
+    </div>
+    <div class="col-md-8 col-sm-10">
         <div class="form-group">
             @*@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })*@
             <div class="col-md-12">
@@ -40,8 +42,8 @@
                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="col-md-offset-10 col-md-2 col-sm-offset-10 col-sm-2">
-                <input type="submit" value="Log in" class="btn btn-default" />
+            <div class="col-md-offset-8 col-md-4 col-sm-offset-10 col-sm-2">
+                <input type="submit" value="Login" class="btn btn-default" />
             </div>
 
         </div>
