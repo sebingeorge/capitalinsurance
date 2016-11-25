@@ -16,7 +16,7 @@
         var SalesManager = $("#salesmanager").val().trim();
         var url = '@Url.Action("BusinessViewDetailsFilter")';
         url += "?Company=" + encodeURIComponent(Cmpy) + "&PolicyNo=" + encodeURIComponent(PolicyNo) + "&Client=" + encodeURIComponent(Client) + "&SalesManager=" + encodeURIComponent(SalesManager);
-        $("#Bussiness_View").load(url, function () {
+       $("#Bussiness_View").load(url, function () {
         $("#Bussiness_View").removeClass("fade");
         });
     }
@@ -56,6 +56,7 @@
     <hr />
     <div id="Bussiness_View">
         @Html.Action("BusinessViewDetails")
+
     </div>
        <div class="row">
         <hr />

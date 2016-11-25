@@ -14,18 +14,29 @@ namespace CapitalInsurance.Controllers
        [HttpPost]
         public ActionResult Index()
         {
-            return View();
+           return View();
         }
 
        public ActionResult BusinessViewDetails(string[] tags, string Company = "", string PolicyNo = "", string Client = "", string SalesManager = "")
         {
             ViewBag.tags = tags;
+           if(TempData["Tags"] ==  null)
+           {
+               TempData.Add("Tags", tags);
+           }           
+           TempData.Keep("Tags");
             return PartialView("_BussinessViewDetails", new BusinessViewRepository().GetBusinessViewDetails(Company, PolicyNo, Client, SalesManager));
         }
        public ActionResult BusinessViewDetailsFilter(string Company = "", string PolicyNo = "", string Client = "", string SalesManager = "")
         {
-
-            return PartialView("_BusinessViewDetailsFilter", new BusinessViewRepository().GetBusinessViewDetails(Company, PolicyNo, Client, SalesManager));
+            string[] tags = (string[])TempData["Tags"];
+            if (TempData["Tags"] == null)
+            {
+                TempData.Add("Tags", tags);
+            }   
+            TempData.Keep("Tags");
+            ViewBag.tags = tags;
+            return PartialView("_BussinessViewDetails", new BusinessViewRepository().GetBusinessViewDetails(Company, PolicyNo, Client, SalesManager));
         }
         public ActionResult AddingFields()
         {
