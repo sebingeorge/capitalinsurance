@@ -45,15 +45,19 @@ textarea {
     -moz-border-radius:4px;
     position:absolute;
     margin-top:138px;
+    padding-top:10px;
+    padding-bottom:10px;
     /*right:106px;*/
 
 }
     .outer-login img 
     {
         margin-top:8px;
+        float: left;
+        margin-right:23px;
     }
     .outer-login h2 {
-        font-size:18px;
+        font-size:24px;
         color:#585a59;
         text-align:left;
         height:60px;
@@ -65,6 +69,7 @@ textarea {
         -moz-border-radius:4px 4px 0 0;
         margin-bottom:20px;
         padding-left:10px;
+
 
 
     }
@@ -100,9 +105,10 @@ textarea {
     color:#fff;
     border-radius:15px;
     -moz-border-radius:15px;
-    padding-left:15px;
-    padding-right:15px;
+    padding-left: 7px;
+    padding-right: 7px;
     font-weight:bold;
+    margin-top:12px;
 
 }
     .outer-login .btn:hover 
@@ -122,9 +128,10 @@ textarea {
 
 .login-footer 
 {
-  bottom:220px;
-    position: absolute;
-    right: 330px;
+    float: right;
+    margin-right: -780px;
+    margin-top: 268px;
+    width: 100%;
 }
 
 .content-in 
