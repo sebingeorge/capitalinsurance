@@ -11,11 +11,11 @@
     function Filter() {
         $("#Bussiness_View").addClass("fade");
         var Cmpy = $("#compy").val().trim();
-        var Prod = $("#product").val().trim();
+        var PolicyNo = $("#PolicyNo").val().trim();
         var Client = $("#client").val().trim();
         var SalesManager = $("#salesmanager").val().trim();
-        var url = '@Url.Action("BusinessViewDetails")';
-        url += "?Company=" + encodeURIComponent(Cmpy) + "&Product=" + encodeURIComponent(Prod) + "&Client=" + encodeURIComponent(Client) + "&SalesManager=" + encodeURIComponent(SalesManager);
+        var url = '@Url.Action("BusinessViewDetailsFilter")';
+        url += "?Company=" + encodeURIComponent(Cmpy) + "&PolicyNo=" + encodeURIComponent(PolicyNo) + "&Client=" + encodeURIComponent(Client) + "&SalesManager=" + encodeURIComponent(SalesManager);
         $("#Bussiness_View").load(url, function () {
         $("#Bussiness_View").removeClass("fade");
         });
@@ -35,8 +35,8 @@
                     <input id="compy" class="form_input" placeholder="Search for Company" onkeyup="Filter()" />
                 </div>
                 <div class="col-md-6">
-                    <label>Product</label>
-                    <input id="product" class="form_input" placeholder="Search for Product" onkeyup="Filter()" />
+                    <label>Policy No.</label>
+                    <input id="PolicyNo" class="form_input" placeholder="Search for Policy No." onkeyup="Filter()" />
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
     <hr />
     <div id="Bussiness_View">
         @Html.Action("BusinessViewDetails")
-       </div>
+    </div>
        <div class="row">
         <hr />
         <div class="col-md-12 hrpart">

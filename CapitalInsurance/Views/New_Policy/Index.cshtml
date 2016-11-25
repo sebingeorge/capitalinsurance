@@ -21,7 +21,7 @@
         var url = '@Url.Action("NewPolicyList")';
         url += "?FromDate=" + FromDate + "&ToDate=" + ToDate + "&PolicyNo=" + encodeURIComponent(PolicyNo) + "&Client=" + encodeURIComponent(Client) + "&SalesManager=" + encodeURIComponent(SalesManager);
         $("#New_Policy").load(url, function () {
-            $("#New_Policy").removeClass("fade");
+        $("#New_Policy").removeClass("fade");
         });
     }
     $(document).ready(function () {
