@@ -499,6 +499,7 @@
     <Content Include="Views\Policy_Renewal\_PendingPolicyListGrid.cshtml" />
     <Content Include="Views\Policy_Endorsement\_PendingPolicyListGrid.cshtml" />
     <Content Include="Views\Policy_Endorsement\Index.cshtml" />
+    <Content Include="Views\BusinessView\_BusinessViewDetailsFilter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

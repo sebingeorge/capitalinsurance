@@ -1,0 +1,84 @@
+﻿@model List<Capital.Domain.PolicyIssue>
+@using GridMvc.Html
+<div class="table-responsive scroll3">
+    <span class="filter"><img src="~/Images/icon/filter.png" /></span>
+    @Html.Grid(Model).Columns(columns =>
+    {
+        
+            columns.Add(m => m.Year).Titled("YEAR").SetWidth(10);
+       
+            columns.Add(m => m.Month).Titled("MONTH").SetWidth(5);
+        
+            columns.Add(m => m.Day).Titled("DAY").SetWidth(5);
+       
+            columns.Add(m => m.SalesMgCode).Titled("EMP NO").SetWidth(10);
+      
+            columns.Add(m => m.SalesMgName).Titled("MANAGER NAME").SetWidth(5);
+       
+            columns.Add(m => m.InsuredName).Titled("INSURED NAME").SetWidth(5);
+       
+            columns.Add(m => m.CusName).Titled("CUSTOMER NAME").SetWidth(20);
+       
+            columns.Add(m => m.CustContPersonName).Titled("DESIGNATED NAME").SetWidth(20);
+       
+            columns.Add(m => m.CustContDesignation).Titled("DESIGNATION").SetWidth(20);
+       
+            columns.Add(m => m.MobileNo).Titled("MOBILE NO").SetWidth(20);
+      
+            columns.Add(m => m.OfficeNo).Titled("BOARD NO").SetWidth(20);
+       
+            columns.Add(m => m.EmailId).Titled("EMAIL").SetWidth(20);
+      
+            columns.Add(m => m.TranType).Titled("TYPE OF BIZ").SetWidth(20);
+       
+            columns.Add(m => m.InsCoverName).Titled("TYPE OF COVER").SetWidth(10);
+        
+            columns.Add(m => m.InsCmpName).Titled("INS COMPANY").SetWidth(5);
+      
+            columns.Add(m => m.InsPrdName).Titled("PRODUCT").SetWidth(5);
+      
+            columns.Add(m => m.PolicyNo).Titled("POLICY NO").SetWidth(5);
+        
+            columns.Add(m => m.EffectiveDate).Format("{0:dd/MM/yyyy}").Titled("INCEPTION DATE").SetWidth(20);
+       
+       
+            columns.Add(m => m.ExpiryDate).Format("{0:dd/MM/yyyy}").Titled("EXPIRY DATE").SetWidth(5);
+       
+
+            columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("RENEWAL DATE").SetWidth(5);
+       
+            columns.Add(m => m.EndorcementDate).Format("{0:dd/MM/yyyy}").Titled("End date_CIB COMM CALC").SetWidth(5);
+      
+            columns.Add(m => m.ICActualDate).Format("{0:dd/MM/yyyy}").Titled("End Date_IC ACTUALS").SetWidth(5);
+      
+            columns.Add(m => m.EndType).Titled("END TYPE").SetWidth(5);
+       
+       
+            columns.Add(m => m.EndorcementNo).Titled("END NUMBER").SetWidth(5);
+       
+            columns.Add(m => m.AdditionEmpNo).Titled("NO OF MEMBERS ADDED").SetWidth(10);
+       
+            columns.Add(m => m.DeletionEmpNo).Titled("NO OF MEMBERS DELETED").SetWidth(10);
+       
+            columns.Add(m => m.PremiumAmount).Titled("BASIC PREMIUM").SetWidth(10);
+      
+            columns.Add(m => m.PolicyFee).Titled("POLICY FEE").SetWidth(10);
+      
+            columns.Add(m => m.CommissionPerc).Titled("COMMISSION %").SetWidth(10);
+       
+            columns.Add(m => m.ExtraPremium).Titled("EXTRA PREMIUM").SetWidth(10);
+       
+            columns.Add(m => m.TotalPremium).Titled("TOTAL PREMIUM").SetWidth(10);
+
+            columns.Add(m => m.CommissionAmount).Titled("TOTAL COMMISSION").SetWidth(10);
+        
+       
+            columns.Add(m => m.PaymentTo).Titled("PAID TO").SetWidth(10);
+      
+      
+            columns.Add(m => m.Aging).Titled("AGEING").SetWidth(20);
+        
+
+    }).WithPaging(15)
+</div>
+
