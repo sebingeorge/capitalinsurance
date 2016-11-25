@@ -190,6 +190,7 @@
     <Compile Include="Controllers\InsuranceCompanyController.cs" />
     <Compile Include="Controllers\InsuranceProductController.cs" />
     <Compile Include="Controllers\MeetingScheduleController.cs" />
+    <Compile Include="Controllers\MISReportController.cs" />
     <Compile Include="Controllers\New_PolicyController.cs" />
     <Compile Include="Controllers\PayableReportController.cs" />
     <Compile Include="Controllers\PolicyIssueController.cs" />
@@ -372,6 +373,8 @@
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
     <Content Include="Scripts\gridmvc.min.js" />
+    <Content Include="Scripts\highchart\exporting.js" />
+    <Content Include="Scripts\highchart\highcharts.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -456,7 +459,6 @@
     <Content Include="Views\admin\InsuranceProduct.cshtml" />
     <Content Include="Views\Policy_Endorsement\Proposal.cshtml" />
     <Content Include="Views\MeetingSchedule\MeetingSchedule.cshtml" />
-    <Content Include="Views\New_Policy\PolicyList.cshtml" />
     <Content Include="Views\Daily_Activity_report\PreviousDaily_Activity.cshtml" />
     <Content Include="Views\MeetingSchedule\PreviousMeetingSchedule.cshtml" />
     <Content Include="Views\Customer_Invoice\PreviousCustomerInvoice.cshtml" />
@@ -483,20 +485,20 @@
     <Content Include="Views\InsuranceCompany\_InsuranceCmpyGrid.cshtml" />
     <Content Include="Views\InsuranceProduct\Index.cshtml" />
     <Content Include="Views\InsuranceProduct\_InsuranceProductGrid.cshtml" />
-    <Content Include="Views\New_Policy\_NewPolicyGrid.cshtml" />
-    <Content Include="Views\Policy_Renewal\PendingPolicyList.cshtml" />
-    <Content Include="Views\Policy_Renewal\_PolicyListGrid.cshtml" />
     <Content Include="Views\Policy_Renewal\Create.cshtml" />
     <Content Include="Views\Policy_Renewal\Index.cshtml" />
-    <Content Include="Views\Policy_Renewal\_RenewalPolicyGrid.cshtml" />
     <Content Include="Views\Sales_Target\Create.cshtml" />
     <Content Include="Views\Sales_Target\_SalesTargetGrid.cshtml" />
     <Content Include="Views\Policy_Endorsement\PendingPolicyList.cshtml" />
-    <Content Include="Views\Policy_Endorsement\_PolicyListGrid.cshtml" />
     <Content Include="Views\Policy_Endorsement\Create.cshtml" />
     <Content Include="Views\BusinessView\_BussinessViewDetails.cshtml" />
     <Content Include="Views\BusinessView\Index.cshtml" />
     <Content Include="Views\BusinessView\AddingFields.cshtml" />
+    <Content Include="Views\New_Policy\_NewPolicyListGrid.cshtml" />
+    <Content Include="Views\MISReport\Index.cshtml" />
+    <Content Include="Views\Policy_Renewal\_PendingPolicyListGrid.cshtml" />
+    <Content Include="Views\Policy_Endorsement\_PendingPolicyListGrid.cshtml" />
+    <Content Include="Views\Policy_Endorsement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

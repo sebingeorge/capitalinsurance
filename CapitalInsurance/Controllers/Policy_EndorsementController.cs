@@ -13,6 +13,7 @@ namespace CapitalInsurance.Controllers
         // GET: Endorsement
         public ActionResult Index()
         {
+            ViewBag.Fromdate = FYStartdate;
             return View();
         }
         public ActionResult Create(int Id)
@@ -50,12 +51,13 @@ namespace CapitalInsurance.Controllers
             {
 
             }
-            return RedirectToAction("PendingPolicyList");
+            return RedirectToAction("Index");
         }
-        public ActionResult PendingPolicyList()
+        public ActionResult PendingPolicyList(DateTime? FromDate, DateTime? ToDate, string PolicyNo = "", string Client = "", string SalesManager = "")
         {
-            List<PolicyIssue> lstNewPolicy = (new PolicyEndorsementRepository()).GetNewPolicyForEndorse();
-            return View(lstNewPolicy);
+            FromDate = FromDate ?? FYStartdate;
+            ToDate = ToDate ?? DateTime.Now;
+            return PartialView("_PendingPolicyListGrid", new PolicyEndorsementRepository().GetNewPolicyForEndorse(FromDate, ToDate, PolicyNo, Client, SalesManager));
         }
         void FillDropdowns()
         {

@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using Capital.DAL;
+using Capital.Domain;
 namespace CapitalInsurance.Controllers
 {
     [AuthorizeUser]
@@ -34,6 +35,19 @@ namespace CapitalInsurance.Controllers
             {
                 HttpCookie usr = (HttpCookie)Session["user"];
                 return usr["UserName"].ToString();
+            }
+            set
+            {
+
+            }
+        }
+        public DateTime FYStartdate
+        {
+            get
+            {
+                FinancialYearRepository repo = new FinancialYearRepository();
+                return repo.GetFinStartDate();
+
             }
             set
             {

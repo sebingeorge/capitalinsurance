@@ -14,26 +14,29 @@ namespace CapitalInsurance.Controllers
         // GET: Proposal
         public ActionResult Index()
         {
-            List<PolicyIssue> lstNewPolicy = (new PolicyIssueRepository()).GetNewPolicy();
-            return View(lstNewPolicy);
+            ViewBag.Fromdate = FYStartdate;
+            return View();
         }
         public ActionResult Create()
         {
             FillDropdowns();
             PolicyIssue model = new PolicyIssue();
+            model.TranType = "NewPolicy";
+            var internalid = PolicyIssueRepository.GetNextDocNo(model.TranType);
+            model.TranNumber = "CIB/NEW/" + internalid;
             model.Cheque = new List<PolicyIssueChequeReceived>();
             model.Cheque.Add(new PolicyIssueChequeReceived());
             model.PolicySubDate = DateTime.Now;
             model.EffectiveDate = DateTime.Now;
             model.RenewalDate = DateTime.Now;
             model.ICActualDate = null;
-            model.TranType = "NewPolicy";
+          
             return View(model);
         }
         [HttpPost]
         public ActionResult Create(PolicyIssue model)
         {
-            model.TranPrefix = "CIB/PSF";
+            model.TranPrefix = model.TranNumber.Substring(0,model.TranNumber.LastIndexOf('/'));
             model.TranDate = System.DateTime.Now;
             model.CreatedDate = System.DateTime.Now;
             model.CreatedBy = UserID;
@@ -104,6 +107,36 @@ namespace CapitalInsurance.Controllers
 
             }
             return RedirectToAction("Index");
+        }
+        
+        [HttpGet]
+        public JsonResult GetCustomerContactDetailsByKey(int Id)
+        {
+            var details = (new PolicyIssueRepository()).GetCustomerContactDetails(Id);
+            return Json(new { Success = true, ContactName = details.ContactName, Designation = details.Designation, EmailId = details.EmailId, MobileNo = details.MobileNo }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public JsonResult GetTransNum(string Id)
+        {
+            var internalid = PolicyIssueRepository.GetNextDocNo(Id);
+            string  prefix;
+            if (Id=="RenewPolicy")
+            {
+                 prefix="CIB/REN/";
+            }
+            else
+            {
+                 prefix = "CIB/NEW/";
+            }
+
+            return Json(new { Success = true, internalid = prefix + internalid }, JsonRequestBehavior.AllowGet);
+        }
+      
+        public ActionResult NewPolicyList(DateTime? FromDate, DateTime? ToDate,string PolicyNo="", string Client = "", string SalesManager = "")
+        {
+            FromDate = FromDate ?? FYStartdate;
+            ToDate = ToDate ?? DateTime.Now;
+            return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetNewPolicy(FromDate, ToDate, PolicyNo,Client,SalesManager));
         }
         void FillDropdowns()
         {

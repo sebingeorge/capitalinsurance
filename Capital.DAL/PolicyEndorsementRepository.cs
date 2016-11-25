@@ -13,7 +13,7 @@ namespace Capital.DAL
     public class PolicyEndorsementRepository : BaseRepository
     {
      static string dataConnection = GetConnectionString("CibConnection");
-     public List<PolicyIssue> GetNewPolicyForEndorse()
+     public List<PolicyIssue> GetNewPolicyForEndorse(DateTime? FromDate, DateTime? ToDate, string PolicyNo = "", string Client = "", string SalesManager = "")
      {
          using (IDbConnection connection = OpenConnection(dataConnection))
          {
@@ -26,15 +26,19 @@ namespace Capital.DAL
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
                                    	where P.PolicyId not in (select isnull(OldPolicyId,0) from PolicyIssue) 
+                                    AND CAST(P.TranDate AS date)  >=CAST(@FromDate AS date)  and CAST(P.TranDate AS date) <=CAST(@ToDate AS date)
+                                    AND C.CusName LIKE '%'+@Client+'%'
+                                    AND P.PolicyNo LIKE '%'+@PolicyNo+'%'
+                                    AND S.SalesMgName LIKE '%'+@SalesManager+'%'
                                     order by P.TranNumber desc";
-             return connection.Query<PolicyIssue>(query).ToList();
+             return connection.Query<PolicyIssue>(query, new { FromDate = FromDate, ToDate = ToDate, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager }).ToList();
          }
      }
      public PolicyIssue GetNewPolicyForEndorse(int Id)
      {
          using (IDbConnection connection = OpenConnection(dataConnection))
          {
-             string sql = @"select PolicyId,TranNumber,TranPrefix,TranDate,P.CusId,C.EmployeeNo,InsuredName,P.Address1,P.Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
+             string sql = @"select PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)TranNumber,TranPrefix,TranDate,P.CusId,C.EmployeeNo,InsuredName,P.Address1,P.Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
                                     PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
                                     PaymentOption,P.SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorcementDate,AdditionEmpNo,
                                     DeletionEmpNo,(C.EmployeeNo+AdditionEmpNo-DeletionEmpNo)TotalEmployes,EndorcementTypeId,TranType,CreatedBy,CreatedDate from PolicyIssue P

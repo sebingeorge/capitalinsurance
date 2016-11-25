@@ -14,7 +14,7 @@ namespace Capital.Domain
         public int? PolicyId { get; set; }
         public string TranPrefix { get; set; }
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Transaction Number is Required")]
-        public int? TranNumber { get; set; }
+        public string TranNumber { get; set; }
          public string StrTranNumber { get; set; }
         public DateTime? TranDate { get; set; }
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Client Name is Required")]

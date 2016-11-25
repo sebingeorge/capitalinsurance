@@ -138,7 +138,47 @@
             $("#Actuals_Date").addClass("divShow");
             $("#policy_details").addClass("divShow");
         }
+
+        $.ajax({
+            url: "@Url.Action("GetTransNum", "New_Policy")",
+            data: { Id: opt },
+        cache: false,
+        type: "GET",
+        timeout: 10000,
+        dataType: "json",
+        success: function (result) {
+            if (result.Success) { // this sets the value from the response
+                $('#TranNumber').val(result.internalid);
+               
+            } else {
+                $('#SomeOtherHtmlTextBox').val("Failed");
+            }
+        }
+    });
     }
+    function CustomerChanged(cust)
+    {
+        var cusId = cust.value;
+        $.ajax({
+            url: "@Url.Action("GetCustomerContactDetailsByKey", "New_Policy")",
+            data: { Id: cusId },
+        cache: false,
+        type: "GET",
+        timeout: 10000,
+        dataType: "json",
+        success: function (result) {
+            if (result.Success) { // this sets the value from the response
+                $('#CustContPersonName').val(result.ContactName);
+                $("#CustContDesignation").val(result.Designation);
+                $("#CustContEmail").val(result.EmailId);
+                $("#CustContMobile").val(result.MobileNo);
+            } else {
+                $('#SomeOtherHtmlTextBox').val("Failed");
+            }
+        }
+    });
+    }
+
     $(document).ready(function ()
     {
         $("#againstId").text("Policy No.");
@@ -165,7 +205,7 @@
                 <div class="col-md-12">
                     <label>Transaction No.</label>
                     @Html.HiddenFor(m => m.PolicyId)
-                    @Html.TextBoxFor(m => m.TranNumber, new { @class = "form_input" })
+                    @Html.TextBoxFor(m => m.TranNumber, new { @class = "form_input", @readonly = "readonly" })
                     @Html.ValidationMessageFor(m => m.TranNumber, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -176,10 +216,10 @@
                 <div class="col-md-12">
                     <label>Type</label>
                     @Html.HiddenFor(m => m.TranType)
-                    <select class="form_input" id="Policy_type" onchange="OptionChanged()">
+                    <select class="form_input" id="Policy_type" onchange="OptionChanged(this)">
                         <option value="NewPolicy">New Policy</option>
                         <option value="RenewPolicy">Renew Policy</option>
-                        <option value="EndorsePolicy">Endorse Policy</option>
+                        @*<option value="EndorsePolicy">Endorse Policy</option>*@
                     </select>
                 </div>
             </div>
@@ -216,7 +256,7 @@
             <div class="row form-group">
                 <div class="col-md-12">
                     <label>Client</label>
-                    @Html.DropDownListFor(m => Model.CusId, (SelectList)ViewBag.Customer, "Select Client", new { @class = "form_input", autocomplete = "off" })
+                    @Html.DropDownListFor(m => Model.CusId, (SelectList)ViewBag.Customer, "Select Client", new { @class = "form_input", autocomplete = "off", @onchange = "CustomerChanged(this)" })
                     @Html.ValidationMessageFor(m => m.CusId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -349,12 +389,12 @@
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label>Name</label>
-                            @Html.TextBoxFor(m => m.CustContPersonName, new { @class = "form_input" })
+                            @Html.TextBoxFor(m => m.CustContPersonName, new { @class = "form_input",@readonly="readonly" })
                             @Html.ValidationMessageFor(m => m.CustContPersonName, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-12">
                             <label>Mobile / Landline</label>
-                            @Html.TextBoxFor(m => m.CustContMobile, new { @class = "form_input" })
+                            @Html.TextBoxFor(m => m.CustContMobile, new { @class = "form_input", @readonly = "readonly" })
                             @Html.ValidationMessageFor(m => m.CustContMobile, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -363,7 +403,7 @@
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label>Designation</label>
-                            @Html.TextBoxFor(m => m.CustContDesignation, new { @class = "form_input" })
+                            @Html.TextBoxFor(m => m.CustContDesignation, new { @class = "form_input", @readonly = "readonly" })
                             @Html.ValidationMessageFor(m => m.CustContDesignation, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-12">
@@ -377,7 +417,7 @@
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label>Email</label>
-                            @Html.TextBoxFor(m => m.CustContEmail, new { @class = "form_input" })
+                            @Html.TextBoxFor(m => m.CustContEmail, new { @class = "form_input", @readonly = "readonly" })
                             @Html.ValidationMessageFor(m => m.CustContEmail, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -404,7 +444,7 @@
                 </div>
             </div>
         </div>
-        <div class="divHidden">
+        @*<div class="divHidden">
             <div class="col-md-3" id="Actuals_Date">
                 <label>IC Actual Date</label>
                 <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -412,8 +452,8 @@
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
             </div>
-        </div>
-                <div class="col-md-6">
+        </div>*@
+                <div class="col-md-9">
             <div class="row form-group">
                 <div class="col-md-12">
                     <label>Remarks</label>

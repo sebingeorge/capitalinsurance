@@ -15,6 +15,9 @@
     @*<link href="~/Content/datetimepicker/bootstrap.min.css" rel="stylesheet" media="screen" />*@
     <link href="~/Content/toastr.min.css" rel="stylesheet" />
     <link href="~/Content/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen" />
+
+    <script src="~/Scripts/highchart/highcharts.js"></script>
+    <script src="~/Scripts/highchart/exporting.js"></script>
 </head>
 <body>
 
@@ -36,6 +39,7 @@
                                 <a href="@Url.Action("Create", "SalesManager")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/sales-Manager.png" /></span>Sales Manager</a>
                                 <a href="@Url.Action("Create", "InsuranceCompany")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/insurancecompany.png" /></span>Insurance Company</a>
                                 <a href="@Url.Action("Create", "InsuranceProduct")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/insuranceproduct.png" /></span>Insurance Product</a>
+                                <a href="@Url.Action("Register", "Account")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/admin.png" /></span>User</a>
                             </li>
                         </ul>
                     </div>
@@ -46,10 +50,10 @@
                                 <a href="@Url.Action("Create", "New_Policy")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/newpolicy.png" /></span>New Policy</a>
                             </li>
                             <li>
-                                <a href="@Url.Action("PendingPolicyList", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-2"><span><img src="~/Images/icon/policyrenewal.png" /></span>Policy Renewal</a>
+                                <a href="@Url.Action("Index", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-2"><span><img src="~/Images/icon/policyrenewal.png" /></span>Policy Renewal</a>
                             </li>
                             <li>
-                                <a href="@Url.Action("PendingPolicyList", "Policy_Endorsement")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/endorsement.png" /></span>Policy Endorsement</a>
+                                <a href="@Url.Action("Index", "Policy_Endorsement")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/endorsement.png" /></span>Policy Endorsement</a>
                             </li>
                             <li>
                                 <a href="@Url.Action("Create", "Sales_Target")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/salestarget.png" /></span>Sales Target</a>
@@ -79,6 +83,9 @@
                             </li>
                             <li>
                                 <a href="@Url.Action("Daily_Activity_report", "Daily_Activity_report")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Daily Activity Report</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "MISReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>MIS Report</a>
                             </li>
                         </ul>
                     </div>

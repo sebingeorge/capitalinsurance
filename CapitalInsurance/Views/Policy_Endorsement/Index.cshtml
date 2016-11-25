@@ -1,31 +1,28 @@
-﻿@model List<Capital.Domain.PolicyIssue>
+﻿
 @{
     ViewBag.Title = "Index";
 }
+
+
 <script>
-    function Create() {
-        var url = '@Url.Action("Create")';
-        location.href = url;
-    }
     function Exit() {
         var url = '@Url.Action("Index","Home")';
-        location.href = url;
+        window.location = url;
     }
     function Filter() {
-        $("#New_Policy").addClass("fade");
+        $("#Endorse_Policy").addClass("fade");
         var FromDate = $("#txtFrom").val().trim();
         var ToDate = $("#txtTo").val().trim();
         var PolicyNo = $("#policyno").val().trim();
         var Client = $("#client").val().trim();
         var SalesManager = $("#salesmanager").val().trim();
-        var url = '@Url.Action("NewPolicyList")';
+        var url = '@Url.Action("PendingPolicyList")';
         url += "?FromDate=" + FromDate + "&ToDate=" + ToDate + "&PolicyNo=" + encodeURIComponent(PolicyNo) + "&Client=" + encodeURIComponent(Client) + "&SalesManager=" + encodeURIComponent(SalesManager);
-        $("#New_Policy").load(url, function () {
-            $("#New_Policy").removeClass("fade");
+        $("#Endorse_Policy").load(url, function () {
+            $("#Endorse_Policy").removeClass("fade");
         });
     }
     $(document).ready(function () {
-
         toastr.options = {
             "closeButton": true,
             "positionClass": "toast-bottom-full-width",
@@ -47,9 +44,10 @@
         }
     });
 </script>
+
 <div class="container content-in">
     <div class="row">
-        <h1>Policy List</h1>
+        <h1>Pending Endorsement List</h1>
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -76,6 +74,7 @@
                     <label>Policy No.</label>
                     <input id="policyno" class="form_input" placeholder="Search for Policy No." onkeyup="Filter()" />
                 </div>
+
                 <div class="col-md-3">
                     <label>Client</label>
                     <input id="client" class="form_input" placeholder="Search for Client" onkeyup="Filter()" />
@@ -88,14 +87,14 @@
         </div>
     </div>
     <hr />
-    <div id="New_Policy">
-        @Html.Action("NewPolicyList")
+    <div id="Endorse_Policy">
+        @Html.Action("PendingPolicyList")
     </div>
     <div class="row">
         <hr />
-        <div class="col-md-12 hrpart">
-            <button type="button" class="form-button right" onclick="Create()">Create</button>
-            <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
+        <div class="col-md-offset-8 col-md-4">
+            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
         </div>
     </div>
 </div>
+

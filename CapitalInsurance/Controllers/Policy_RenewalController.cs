@@ -13,14 +13,18 @@ namespace CapitalInsurance.Controllers
         // GET: Policy_Renewal
         public ActionResult Index()
         {
-            List<PolicyIssue> lstNewPolicy = (new PolicyRenewalRepository()).GetRenewalPolicy();
-            return View(lstNewPolicy);
+            ViewBag.Fromdate = new PolicyRenewalRepository().GetFromDate();
+            ViewBag.Todate = new PolicyRenewalRepository().GetToDate();
+            return View();
         }
         public ActionResult Create(int Id)
         {
             FillDropdowns();
             PolicyIssue objPolicy = new PolicyRenewalRepository().GetNewPolicyForRenewal(Id);
             objPolicy.PolicySubDate = DateTime.Now;
+            objPolicy.TranType = "RenewPolicy";
+            var internalid = PolicyIssueRepository.GetNextDocNo(objPolicy.TranType);
+            objPolicy.TranNumber = "CIB/REN/" + internalid;
             objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
             if (objPolicy.Cheque.Count == 0)
             {
@@ -49,16 +53,19 @@ namespace CapitalInsurance.Controllers
             {
 
             }
-            return RedirectToAction("PendingPolicyList");
+            return RedirectToAction("Index");
         }
         public ActionResult RenewalList()
         {
             return View();
         }
-        public ActionResult PendingPolicyList()
+        public ActionResult PendingPolicyList(DateTime? FromDate, DateTime? ToDate,string PolicyNo="" , string Client = "", string SalesManager = "")
         {
-            List<PolicyIssue> lstNewPolicy = (new PolicyRenewalRepository()).GetNewPolicyForRenewal();
-            return View(lstNewPolicy);
+            ViewBag.Fromdate = new PolicyRenewalRepository().GetFromDate();
+            ViewBag.Todate = new PolicyRenewalRepository().GetToDate();
+            FromDate = FromDate ?? ViewBag.Fromdate;
+            ToDate = ToDate ?? ViewBag.Todate;
+            return PartialView("_PendingPolicyListGrid", new PolicyRenewalRepository().GetNewPolicyForRenewal(FromDate, ToDate,PolicyNo,Client, SalesManager));
         }
         void FillDropdowns()
         {
