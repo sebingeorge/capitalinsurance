@@ -25,5 +25,7 @@ namespace Capital.Domain
         public string ConfirmPassword { get; set; }
         [System.ComponentModel.DataAnnotations.Required]
         public int UserRole { get; set; }
+        [System.ComponentModel.DataAnnotations.Required]
+        public int SalesMgId { get; set; }
     }
 }

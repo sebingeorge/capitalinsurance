@@ -28,7 +28,6 @@
             columns.Add(m => m.UserEmail).Titled("Email").SetWidth(12);
             columns.Add(m => m.UserRole).Titled("Role").SetWidth(12);
             columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.UserId })">Edit</a>);
-            columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Delete", new { Id = m.UserId })">Delete</a>);
 
         }).WithPaging(15)
     </div>

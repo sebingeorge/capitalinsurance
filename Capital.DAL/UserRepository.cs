@@ -25,8 +25,8 @@ namespace Capital.DAL
             {
                 try
                 {
-                    string sql = "INSERT INTO [dbo].[User](UserName, UserEmail, UserPassword, UserSalt, UserRole)";
-                    sql += " VALUES(@UserName, @UserEmail, @UserPassword, @UserSalt, @UserRole);";
+                    string sql = "INSERT INTO [dbo].[User](UserName, UserEmail, UserPassword, UserSalt, UserRole,SalesMgId)";
+                    sql += " VALUES(@UserName, @UserEmail, @UserPassword, @UserSalt, @UserRole, @SalesMgId);";
                     sql += " SELECT CAST(SCOPE_IDENTITY() as int);";
 
                     var id = connection.Query<int>(sql, user).Single();
@@ -46,7 +46,7 @@ namespace Capital.DAL
             {
                 try
                 {
-                    string sql = "Update [User] set UserEmail = @UserEmail";
+                    string sql = "Update [User] set UserEmail = @UserEmail, UserRole = @UserRole, SalesMgId = @SalesMgId";
                     if (user.UserPassword != null && user.UserPassword != "")
                     {
                         sql += ", UserPassword = @UserPassword, @UserSalt = UserSalt";
@@ -67,6 +67,23 @@ namespace Capital.DAL
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
                 string sql = "select * from [User] where UserName='" + username + "' and UserPassword='" + password + "'";
+                var user = new User();
+                try
+                {
+                    user = connection.Query<User>(sql).Single();
+                }
+                catch
+                {
+
+                }
+                return user;
+            }
+        }
+        public User GetUserById(int Id)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = "select * from [User] where UserId=" + Id.ToString();
                 var user = new User();
                 try
                 {
