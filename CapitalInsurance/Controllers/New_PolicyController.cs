@@ -57,12 +57,19 @@ namespace CapitalInsurance.Controllers
             }
             return RedirectToAction("Index");
         }
-        public ActionResult Edit(int Id)
+        public ActionResult Edit(int Id,int ? type)
+          
         {
+          
+            ViewBag.Type = type;
             ViewBag.Title = "Edit";
             FillDropdowns();
+         
             PolicyIssue objPolicy = new PolicyIssueRepository().GetNewPolicy(Id);
             objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
+            objPolicy.Committed = new List<PaymentCommitments>();
+            objPolicy.Committed.Add(new PaymentCommitments());
+
             return View("Create", objPolicy);
 
         }
@@ -86,6 +93,37 @@ namespace CapitalInsurance.Controllers
 
             }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult PaymentCommitments(int Id, int? type)
+        {
+
+            ViewBag.Type = type;
+            ViewBag.Title = "Edit";
+            FillDropdowns();
+
+            PolicyIssue objPolicy = new PolicyIssueRepository().GetNewPolicy(Id);
+            objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
+            objPolicy.Committed = new List<PaymentCommitments>();
+            objPolicy.Committed.Add(new PaymentCommitments());
+
+            return View(objPolicy);
+
+        }
+        public ActionResult PaymentDetails(int Id, int? type)
+        {
+
+            ViewBag.Type = type;
+            ViewBag.Title = "Edit";
+            FillDropdowns();
+
+            PolicyIssue objPolicy = new PolicyIssueRepository().GetNewPolicy(Id);
+            objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
+            objPolicy.Committed = new List<PaymentCommitments>();
+            objPolicy.Committed.Add(new PaymentCommitments());
+
+            return View("PaymentCommitments", objPolicy);
+
         }
         public ActionResult Delete(int Id)
         {
@@ -138,6 +176,14 @@ namespace CapitalInsurance.Controllers
             FromDate = FromDate ?? FYStartdate;
             ToDate = ToDate ?? DateTime.Now;
             return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetNewPolicy(FromDate, ToDate, PolicyNo,Client,SalesManager));
+        }
+        public ActionResult PendingPolicyForCommitments()
+        {
+            return View(new PolicyIssueRepository().GetNewPolicyForCommitments());
+        }
+        public ActionResult PendingPolicyForPaymentDetails()
+        {
+            return View(new PolicyIssueRepository().GetNewPolicyForCommitments());
         }
         void FillDropdowns()
         {

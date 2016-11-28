@@ -3,7 +3,9 @@
     ViewBag.Title = "Issue New Policy";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(); }
+@{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
+  ViewBag.actionName = actionName;
+  }
 <style>
     .divHidden {
         visibility: hidden;
@@ -23,7 +25,7 @@
         location.href = url;
     }
     function Total_Premium() {
-      
+
         var PremiumAmount = parseFloat($("#PremiumAmount").val());
         var PolicyFee = parseFloat($("#PolicyFee").val());
         var AdditionalPreminum = parseFloat($("#ExtraPremium").val());
@@ -46,9 +48,8 @@
         $("#CommissionAmount").val(commissionAmt);
 
     }
-    function AddRow()
-    {
-  
+    function AddRow() {
+
         var i = 0;
         var no = 1;
         $('tr[id^="Row_"]').each(function () {
@@ -60,11 +61,11 @@
             }
         });
         i++;
-       
+
         var index = (new Date()).getTime(); // unique indexer
         var clone = $('#Row_0').clone(); // clone the BatchProducts item
         //Update the index of the clone
-      
+
         clone.html($(clone).html().replace(/\Cheque_0__/g, 'Cheque_' + i + '__'));
         clone.html($(clone).html().replace(/\Cheque[0]./g, 'Cheque[' + i + '].'));
         clone.html($(clone).html().replace(/\[0\]/g, '[' + i + ']'));
@@ -73,7 +74,7 @@
         clone.html($(clone).html().replace(/this,0/, 'this,' + i + ''));
         $("#tab_logic").append('<tr id="Row_' + i + '">' + clone.html() + '  </tr>');
         Append_Date();
-        }
+    }
     function Delete(index) {
         var i = 0;
         var no = 1;
@@ -94,7 +95,7 @@
                 alert(clone);
                 clone.html($(clone).html().replace(new RegExp("Cheque_" + j + "__", "g"), 'Cheque_' + (j - 1) + '__'));
                 clone.html($(clone).html().replace(new RegExp("\\[" + j + "].", "g"), "[" + (j - 1) + "]."));
-                              clone.html($(clone).html().replace("Delete(" + j, "Delete(" + (j - 1)));
+                clone.html($(clone).html().replace("Delete(" + j, "Delete(" + (j - 1)));
                 clone.html($(clone).html().replace("Row_" + j, "Row_" + (j - 1)));
 
                 clone.html($(clone).html().replace("this," + j, "this," + (j - 1)));
@@ -104,19 +105,18 @@
             }
         }
     }
-    function Append_Date()
-    {
-     $('.form_date').datetimepicker({
-         language: 'fr',
-         weekStart: 1,
-         todayBtn: 1,
-         autoclose: 1,
-         todayHighlight: 1,
-         startView: 2,
-         minView: 2,
-         forceParse: 0,
-         format: 'dd-M-yyyy',
-     });
+    function Append_Date() {
+        $('.form_date').datetimepicker({
+            language: 'fr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            format: 'dd-M-yyyy',
+        });
     }
     function OptionChanged() {
         var opt = $("#Policy_type").val();
@@ -129,10 +129,10 @@
             $("#Actuals_Date").removeClass("divShow");
         }
         if (opt == "RenewPolicy") {
-           
+
             $("#policy_details").addClass("divShow");
             $("#Actuals_Date").removeClass("divShow");
-           }
+        }
         if (opt == "EndorsePolicy") {
             $("#againstId").text("Endorsement No.");
             $("#Actuals_Date").addClass("divShow");
@@ -142,22 +142,21 @@
         $.ajax({
             url: "@Url.Action("GetTransNum", "New_Policy")",
             data: { Id: opt },
-        cache: false,
-        type: "GET",
-        timeout: 10000,
-        dataType: "json",
-        success: function (result) {
-            if (result.Success) { // this sets the value from the response
-                $('#TranNumber').val(result.internalid);
-               
-            } else {
-                $('#SomeOtherHtmlTextBox').val("Failed");
+            cache: false,
+            type: "GET",
+            timeout: 10000,
+            dataType: "json",
+            success: function (result) {
+                if (result.Success) { // this sets the value from the response
+                    $('#TranNumber').val(result.internalid);
+
+                } else {
+                    $('#SomeOtherHtmlTextBox').val("Failed");
+                }
             }
-        }
-    });
+        });
     }
-    function CustomerChanged(cust)
-    {
+    function CustomerChanged(cust) {
         var cusId = cust.value;
         $.ajax({
             url: "@Url.Action("GetCustomerContactDetailsByKey", "New_Policy")",
@@ -189,9 +188,18 @@
                 return false;
             }
         });
+        @*if ('@ViewBag.actionName' == "PaymentCommitments") {
+           
+            $("input").prop("readonly", "true");
+            $("select").prop("disabled", "true");
+            $("input[type='text']").attr("disabled", "true");
+            $(".test").prop("readonly", "true");
+          
+        }*@
+
 
     })
- 
+
 </script>
 <div class="container content-in">
     <div class="row">
@@ -458,7 +466,7 @@
         if (@ViewBag.type != 1)
 {
             <h2>PAYMENT COMMITMENTS</h2>
-            <div class="row">
+            <div class="row" id="test">
                 <div class="table-responsive scroll2 col-md-6">
                     <table class="table table-bordered " id="tab_logic">
                         <tr class="grid_heading">
@@ -467,38 +475,50 @@
                             <th>Amount</th>
                             @*<th></th>*@
                         </tr>
-                        @for (int i = 0; i < Model.Cheque.Count; i++)
+                        @for (int i = 0; i < Model.Committed.Count; i++)
                     {
                             <tr id="Row_@i">
                                 <td>
-                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
+                                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
                                 </td>
                                 <td>
-                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
-                                </td>
-                                <td>
-                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                                    @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
+                                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
                                 </td>
                                 <td>
-                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                                    @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
+                                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
                                 </td>
                                 <td>
-                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                                    @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
                                 </td>
                             </tr>
                     }

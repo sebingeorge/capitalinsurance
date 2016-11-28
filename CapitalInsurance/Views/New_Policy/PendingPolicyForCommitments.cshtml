@@ -1,0 +1,45 @@
+﻿@model List<Capital.Domain.PolicyIssue>
+@using GridMvc.Html
+@{
+    ViewBag.Title = "PendingPolicyForCommitments";
+}
+@{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
+ViewBag.actionName = actionName;
+}
+<div class="container content-in">
+
+    <div class="row">
+            <h4>Pending Policy Issue for Payment Commitments</h4>
+        </div>
+    @*<div class="row">*@
+        <div class="table-responsive scroll3">
+            @*<span class="filter"><img src="~/Images/icon/filter.png" /></span>*@
+            @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(m => m.StrTranNumber).Titled("Transaction No.").SetWidth(5);
+        columns.Add(m => m.PolicyNo).Titled("Policy No.").SetWidth(5);
+        columns.Add(m => m.CusName).Titled("Client").SetWidth(20);
+        columns.Add(m => m.CustContPersonName).Titled("Contact Name").SetWidth(15);
+        columns.Add(m => m.InsuredName).Titled("Insured Name").SetWidth(10);
+        columns.Add(m => m.InsCmpName).Titled("Insurance Company").SetWidth(10);
+        columns.Add(m => m.InsPrdName).Titled("Product").SetWidth(10);
+        columns.Add(m => m.InsCoverName).Titled("Product Type").SetWidth(10);
+        columns.Add(m => m.TotalPremium).Titled("Total Premium").SetWidth(5);
+        columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("Renewal Date").SetWidth(5);
+        columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(5);
+       
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(5).Css("cent").RenderValueAs(m => @<a href="@Url.Action("PaymentCommitments", new { Id = m.PolicyId, Type = 2 })">Select</a>);
+    }).WithPaging(15)
+        </div>
+    @*</div>*@
+    <div class="row">
+        <hr />
+        <div class="col-md-12 hrpart">
+          
+            <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
+        </div>
+    </div>
+</div>
+
+
+
