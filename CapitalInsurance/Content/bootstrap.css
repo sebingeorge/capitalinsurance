@@ -4021,7 +4021,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .nav a:hover .caret {
   border-top-color:#0099cc /*#2a6496*/;
-  border-bottom-color:#93241e /*#2a6496*/;
+  border-bottom-color:/*#93241e*/ /*#2a6496*/ #0099cc;
 }
 
 .nav-tabs .dropdown-menu {
