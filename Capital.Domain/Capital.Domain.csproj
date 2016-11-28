@@ -72,6 +72,7 @@
     <Compile Include="SalesTarget.cs" />
     <Compile Include="State.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserRole.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

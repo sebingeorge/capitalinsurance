@@ -8,6 +8,7 @@ namespace Capital.Domain
 {
     public class RegisterViewModel
     {
+        public int? UserId { get; set; }
         [System.ComponentModel.DataAnnotations.Required]
         public string UserName { get; set; }
         [System.ComponentModel.DataAnnotations.Required]
@@ -22,5 +23,7 @@ namespace Capital.Domain
         [System.ComponentModel.DataAnnotations.DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [System.ComponentModel.DataAnnotations.Required]
+        public int UserRole { get; set; }
     }
 }

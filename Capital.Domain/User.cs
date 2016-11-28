@@ -22,5 +22,6 @@ namespace Capital.Domain
         public string UserSalt { get; set; }
         public int? UserRole { get; set; }
         public string CreatedBy { get; set; }
+        public string RoleName { get; set; }
     }
 }

@@ -1,0 +1,43 @@
+﻿@model List<Capital.Domain.User>
+@using GridMvc.Html
+@{
+    ViewBag.Title = "User List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container content-in">
+    <div class="row">
+        <h1>User List</h1>
+    </div>
+    <div class="row">
+        
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>User Name</label>
+                    <input type="text" class="form_input" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="table-responsive scroll3">
+        <span class="filter"><img src="~/Images/icon/filter.png" /></span>
+        @Html.Grid(Model).Columns(columns =>
+        {
+            columns.Add(m => m.UserName).Titled("User Name").SetWidth(12);
+            columns.Add(m => m.UserEmail).Titled("Email").SetWidth(12);
+            columns.Add(m => m.UserRole).Titled("Role").SetWidth(12);
+            columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.UserId })">Edit</a>);
+            columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Delete", new { Id = m.UserId })">Delete</a>);
+
+        }).WithPaging(15)
+    </div>
+    <div class="row">
+        <hr />
+        <div class="col-md-offset-8 col-md-4">
+            <button type="button" class="form-button right" onclick="Create()">Create</button>
+            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+        </div>
+    </div>
+</div>
+
