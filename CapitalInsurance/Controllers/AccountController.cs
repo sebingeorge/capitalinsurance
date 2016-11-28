@@ -230,14 +230,19 @@ namespace CapitalInsurance.Controllers
                 }
                 if (res > 0)
                 {
-                    return RedirectToAction("Register");
+                    return RedirectToAction("UserList");
                 }
             }
             var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+            ViewBag.UserRole = new SelectList((new UserRepository()).GetUserRole(), "RoleId", "RoleName");
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        [AllowAnonymous]
+        public ActionResult UserList()
+        {
+            return View(new UserRepository().GetUserAndModuleInfoList());
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

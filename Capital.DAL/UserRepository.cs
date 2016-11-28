@@ -25,13 +25,13 @@ namespace Capital.DAL
             {
                 try
                 {
-                    string sql = "INSERT INTO [dbo].[User](UserName, UserEmail, UserPassword, UserSalt)";
-                    sql += " VALUES(@UserName, @UserEmail, @UserPassword, @UserSalt);";
+                    string sql = "INSERT INTO [dbo].[User](UserName, UserEmail, UserPassword, UserSalt, UserRole)";
+                    sql += " VALUES(@UserName, @UserEmail, @UserPassword, @UserSalt, @UserRole);";
                     sql += " SELECT CAST(SCOPE_IDENTITY() as int);";
 
                     var id = connection.Query<int>(sql, user).Single();
                     
-                    InsertLoginHistory(dataConnection, user.CreatedBy, "Create", "Unit", id.ToString(), "0");
+                    //InsertLoginHistory(dataConnection, user.CreatedBy, "Create", "Unit", id.ToString(), "0");
                     return id;
                 }
                 catch (Exception ex)
@@ -106,6 +106,16 @@ namespace Capital.DAL
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
                 string sql = "update LoginHistory set LogoutTime = Getdate() where SessionID = " + sessionId;
+            }
+        }
+        public List<User> GetUserAndModuleInfoList()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"select U.UserId, U.UserName, U.UserEmail, UR.RoleName from [User] U
+                inner join UserRole UR on U.UserRole = UR.RoleId";
+
+                return connection.Query<User>(sql).ToList();
             }
         }
     }
