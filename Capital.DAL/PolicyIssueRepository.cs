@@ -79,7 +79,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select (TranPrefix+'/'+TranNumber)TranNumber,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
+                string sql = @"select PolicyId,(TranPrefix+'/'+TranNumber)TranNumber,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
                                     PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
                                     PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,AdditionEmpNo,
                                     DeletionEmpNo,EndorcementTypeId,TranType,OldPolicyNo,OldCompany,OldProductType,OldPremiumAmt,CreatedBy,CreatedDate,ICActualDate from PolicyIssue where PolicyId=@Id";
@@ -179,6 +179,38 @@ namespace Capital.DAL
                 return connection.Query<PolicyIssue>(query).ToList();
             }
         }
+        public Result UpdatePaymentCommitments(PolicyIssue model)
+        {
+            Result res = new Result(false);
+            try
+            {
+             
+                using (IDbConnection connection = OpenConnection(dataConnection))
+                {
+                    int id = 0;
+                    foreach (var item in model.Committed)
+                    {
+                        item.PolicyId = model.PolicyId;
+                        string sql = @"INSERT INTO PolicyIssueCommittedDetails
+                                   (PolicyId,CommittedDate
+                                   ,CommittedAmt )VALUES(@PolicyId,@CommittedDate,@CommittedAmt);SELECT CAST(SCOPE_IDENTITY() as int);";
+                         id = connection.Execute(sql, model.Committed);
+                    }
+                  
+                    if (id > 0)
+                    {
+                        return (new Result(true));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return (new Result(false, ex.InnerException == null ? ex.Message : ex.InnerException.Message));
+            }
+            return res;
+        }
+
+      
         
     }
 }

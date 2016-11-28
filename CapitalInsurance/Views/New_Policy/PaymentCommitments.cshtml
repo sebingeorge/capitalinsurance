@@ -194,9 +194,16 @@ ViewBag.actionName = actionName;
 </script>
 <div class="container content-in">
     <div class="row">
+@if(ViewBag.type == 2)
+        {
         <h1>Payment Commitments</h1>
+        }
+else
+{
+    <h1>Payment Details</h1>
+}
     </div>
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
+    @using (Html.BeginForm("UpdateCommitments", "New_Policy", FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
     {
         <div class="row">
             <div class="col-md-3">

@@ -103,7 +103,8 @@ namespace CapitalInsurance.Controllers
             FillDropdowns();
 
             PolicyIssue objPolicy = new PolicyIssueRepository().GetNewPolicy(Id);
-            objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
+            objPolicy.Cheque = new List<PolicyIssueChequeReceived>();
+            objPolicy.Cheque.Add(new PolicyIssueChequeReceived());
             objPolicy.Committed = new List<PaymentCommitments>();
             objPolicy.Committed.Add(new PaymentCommitments());
 
@@ -183,7 +184,27 @@ namespace CapitalInsurance.Controllers
         }
         public ActionResult PendingPolicyForPaymentDetails()
         {
-            return View(new PolicyIssueRepository().GetNewPolicyForCommitments());
+            return View("PendingPolicyForCommitments", new PolicyIssueRepository().GetNewPolicyForCommitments());
+        }
+        public ActionResult UpdateCommitments(PolicyIssue model)
+        {
+            //if (!ModelState.IsValid)
+            //{
+            //    var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+            //    return View(model);
+            //}
+            Result res = new PolicyIssueRepository().UpdatePaymentCommitments(model);
+
+
+            if (res.Value)
+            {
+                TempData["Success"] = "Updated Successfully!";
+            }
+            else
+            {
+
+            }
+            return RedirectToAction("Index");
         }
         void FillDropdowns()
         {
