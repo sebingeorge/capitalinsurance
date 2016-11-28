@@ -178,6 +178,7 @@ namespace CapitalInsurance.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.UserRole = new SelectList((new UserRepository()).GetUserRole(), "RoleId", "RoleName");
             return View();
         }
 
@@ -190,23 +191,49 @@ namespace CapitalInsurance.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                Capital.Domain.User user = new Capital.Domain.User()
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    ConfirmPassword = model.Password,
+                    UserEmail = model.Email,
+                    UserId = model.UserId,
+                    UserName = model.UserName,
+                    UserPassword = model.Password,
+                    UserRole = model.UserRole,
+                    UserSalt = "cib"
+                };
+                int res = 0;
+                if ((user.UserId ?? 0) == 0)
+                {
+                    string salt = ConfigurationManager.AppSettings["salt"].ToString();
+                    string saltpassword = String.Concat(salt, user.UserPassword);
+                    string hashedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(saltpassword, "sha1");
 
-                    return RedirectToAction("Index", "Home");
+                    user.UserPassword = hashedPassword;
+                    user.UserSalt = salt;
+
+                    res = (new UserRepository()).InsertUser(user);
+                    TempData["Success"] = "Registered Successfully!";
                 }
-                AddErrors(result);
-            }
+                else
+                {
+                    if (user.UserPassword != null && user.UserPassword != "")
+                    {
+                        string salt = ConfigurationManager.AppSettings["salt"].ToString();
+                        string saltpassword = String.Concat(salt, user.UserPassword);
+                        string hashedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(saltpassword, "sha1");
 
+                        user.UserPassword = hashedPassword;
+                        user.UserSalt = salt;
+                    }
+
+                    res = (new UserRepository()).UpdateUser(user);
+                }
+                if (res > 0)
+                {
+                    return RedirectToAction("Register");
+                }
+            }
+            var allErrors = ModelState.Values.SelectMany(v => v.Errors);
             // If we got this far, something failed, redisplay form
             return View(model);
         }

@@ -11,6 +11,14 @@ namespace Capital.DAL
     public class UserRepository: BaseRepository
     {
         static string dataConnection = GetConnectionString("CibConnection");
+        public List<UserRole> GetUserRole()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = "select RoleId, RoleName from UserRole";
+                return connection.Query<UserRole>(sql).ToList();
+            }
+        }
         public int InsertUser(User user)
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
