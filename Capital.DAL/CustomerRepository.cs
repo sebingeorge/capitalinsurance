@@ -38,6 +38,9 @@ namespace Capital.DAL
                                    ,Address2
                                    ,Address3
                                    ,CreditPeriod
+                                   ,CreditPeriod2
+                                   ,CreditPeriod3
+                                   ,CreditPeriod4
                                    ,CreditAmount)
                              VALUES
                                    (@CusName
@@ -58,6 +61,9 @@ namespace Capital.DAL
                                    ,@Address2
                                    ,@Address3
                                    ,@CreditPeriod
+                                   ,@CreditPeriod2
+                                   ,@CreditPeriod3
+                                   ,@CreditPeriod4
                                    ,@CreditAmount);SELECT CAST(SCOPE_IDENTITY() as int);";
                     int id = connection.Query<int>(sql, model).Single();
                     if(id>0)
@@ -133,6 +139,9 @@ namespace Capital.DAL
                                    ,Address2=@Address2
                                    ,Address3=@Address3
                                    ,CreditPeriod=@CreditPeriod
+                                   ,CreditPeriod2=@CreditPeriod2
+                                   ,CreditPeriod3=@CreditPeriod3
+                                   ,CreditPeriod4=@CreditPeriod4
                                    ,CreditAmount=@CreditAmount WHERE CusId=@CusId";
                     int id = connection.Execute(sql, model);
                     if (id > 0)

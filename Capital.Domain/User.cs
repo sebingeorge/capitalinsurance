@@ -23,5 +23,7 @@ namespace Capital.Domain
         public int? UserRole { get; set; }
         public string CreatedBy { get; set; }
         public string RoleName { get; set; }
+        [System.ComponentModel.DataAnnotations.Required]
+        public int SalesMgId { get; set; }
     }
 }
