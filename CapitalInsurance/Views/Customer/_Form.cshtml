@@ -33,14 +33,14 @@
                 <label>Region</label>
                 @Html.DropDownListFor(m => Model.RegionId, (SelectList)ViewBag.Regions, "Select Region", new { @class = "form_input", autocomplete = "off" })
             </div>*@
-            <div class="col-md-6">
+            @*<div class="col-md-6">
                 <label>No of Employees</label>
                 @Html.TextBoxFor(m => m.EmployeeNo, new { @class = "form_input" })
             </div>
             <div class="col-md-6">
                 <label>No of Premises</label>
                 @Html.TextBoxFor(m => m.PremisNo, new { @class = "form_input" })
-            </div>
+            </div>*@
         </div>
     </div>
     <div class="col-md-3">
@@ -152,7 +152,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    @*<div class="col-md-3">
         <div class="row form-group">
             <div class="col-md-6">
                 <label>Credit Period</label>
@@ -163,7 +163,53 @@
                 @Html.TextBoxFor(m => m.CreditAmount, new { @class = "form_input numbers-only", @style = "text-align:right" })
             </div>
         </div>
+    </div>*@
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label>Credit Period 1</label>
+                @Html.TextBoxFor(m => m.Address1, new { @class = "form_input" })
+            </div>
+            <div class="col-md-6">
+                <label>Credit Period 2</label>
+                @Html.TextBoxFor(m => m.CreditPeriod2, new { @class = "form_input" })
+            </div>
+        </div>
     </div>
+    <div class="col-md-3">
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label>Credit Period 3</label>
+                @Html.TextBoxFor(m => m.CreditPeriod3, new { @class = "form_input" })
+            </div>
+            <div class="col-md-6">
+                <label>Credit Period 4</label>
+                @Html.TextBoxFor(m => m.CreditPeriod4, new { @class = "form_input" })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label>Credit Amount</label>
+                @Html.TextBoxFor(m => m.CreditAmount, new { @class = "form_input numbers-only", @style = "text-align:right" })
+            </div>
+        </div>
+    </div>
+    @*<div class="col-md-3">
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label>Credit Period 4</label>
+                @Html.TextBoxFor(m => m.CreditPeriod, new { @class = "form_input" })
+            </div>
+            <div class="col-md-6">
+                <label>Credit Amount</label>
+                @Html.TextBoxFor(m => m.CreditAmount, new { @class = "form_input numbers-only", @style = "text-align:right" })
+            </div>
+        </div>
+    </div>*@
 </div>
 <script>
     $(document).ready(function () {

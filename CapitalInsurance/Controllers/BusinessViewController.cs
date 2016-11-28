@@ -16,7 +16,6 @@ namespace CapitalInsurance.Controllers
         {
            return View();
         }
-
        public ActionResult BusinessViewDetails(string[] tags, string Company = "", string PolicyNo = "", string Client = "", string SalesManager = "")
         {
             ViewBag.tags = tags;
