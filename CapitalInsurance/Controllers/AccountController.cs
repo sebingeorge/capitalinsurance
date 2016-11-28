@@ -186,7 +186,7 @@ namespace CapitalInsurance.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(Capital.Domain.RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
