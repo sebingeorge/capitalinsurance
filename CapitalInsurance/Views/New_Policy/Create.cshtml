@@ -433,101 +433,149 @@
                 </div>
             </div>
         <hr />
-    <h2>OPERATION</h2>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="row form-group">
-                <div class="col-md-12">
-                    <label id="againstId"></label>
-                    @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
-                    @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
+        <h2>OPERATION</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label id="againstId"></label>
+                        @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
+                        @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>
-        @*<div class="divHidden">
-            <div class="col-md-3" id="Actuals_Date">
-                <label>IC Actual Date</label>
-                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    @Html.TextBoxFor(m => m.ICActualDate, new { @class = "form_input"})
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            <div class="col-md-9">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Remarks</label>
+                        @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input" })
+                        @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>*@
-                <div class="col-md-9">
-            <div class="row form-group">
-                <div class="col-md-12">
-                    <label>Remarks</label>
-                    @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input" })
-                    @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            </div>
-    </div>
-        <hr />
-    <h2>FINANCE</h2>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="row form-group">
-                <div class="col-md-12">
-                    <label>Finance Manager</label>
-                    @Html.TextBoxFor(m => m.FinanceManager, new { @class = "form_input" })
-                    @Html.ValidationMessageFor(m => m.FinanceManager, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="row form-group">
-                <div class="col-md-6">
-                    <label>Payment to</label>
-                    @Html.DropDownListFor(m => m.PaymentTo, Model.PaymentToList)
-                </div>
-                <div class="col-md-6">
-                    <label>Mode of Payment</label>
-                    @Html.DropDownListFor(m => Model.PayModeId, (SelectList)ViewBag.PaymentMode, "Select Payment Mode", new { @class = "form_input", autocomplete = "off" })
-                </div>
-            </div>
-        </div>
-        <div class="table-responsive scroll2 col-md-6">
-            <table class="table table-bordered " id="tab_logic">
-                <tr class="grid_heading">
-                    <th></th>
-                    <th>Cheque No.</th>
-                    <th>Cheque Date</th>
-                    <th>Bank Name</th>
-                    <th>Branch</th>
-                    <th>Cheque Amount</th>
-                    <th></th>
-                </tr>
-                @for (int i = 0; i < Model.Cheque.Count; i++)
-                {
-                    <tr id="Row_@i">
 
-                        <td style="vertical-align:middle"><a class="glyphicon glyphicon-minus del" style="top:0px" onclick="Delete(@i)"></a></td>
-                        <td>
-                            @Html.TextBoxFor(model => Model.Cheque[i].ChequeNo, new { @class = "form_input", autocomplete = "off" })
-                        </td>
-                        <td>
-                            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                            </div>
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(model => Model.Cheque[i].BankName, new { @class = "form_input", autocomplete = "off" })
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(model => Model.Cheque[i].BankBranch, new { @class = "form_input", autocomplete = "off" })
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
-                        </td>
-                        <td style="vertical-align:middle"><a id="add_row" class="glyphicon glyphicon-plus del" style="top:0px" onclick="AddRow()"></a></td>
-                        @*<td><img src="~/Images/Plus.png" /></td>*@
-                    </tr>
-                }
-            </table>
         </div>
+        if (@ViewBag.type != 1)
+{
+            <h2>PAYMENT COMMITMENTS</h2>
+            <div class="row">
+                <div class="table-responsive scroll2 col-md-6">
+                    <table class="table table-bordered " id="tab_logic">
+                        <tr class="grid_heading">
+                            @*<th></th>*@
+                            <th>Committed Date</th>
+                            <th>Amount</th>
+                            @*<th></th>*@
+                        </tr>
+                        @for (int i = 0; i < Model.Cheque.Count; i++)
+                    {
+                            <tr id="Row_@i">
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                                </td>
+                            </tr>
+                    }
+                    </table>
+                </div>
+
+            </div>
+}
+if (@ViewBag.type == 3)
+{
+        <hr />
+        <h2>FINANCE</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Finance Manager</label>
+                        @Html.TextBoxFor(m => m.FinanceManager, new { @class = "form_input" })
+                        @Html.ValidationMessageFor(m => m.FinanceManager, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <label>Payment to</label>
+                        @Html.DropDownListFor(m => m.PaymentTo, Model.PaymentToList)
+                    </div>
+                    <div class="col-md-6">
+                        <label>Mode of Payment</label>
+                        @Html.DropDownListFor(m => Model.PayModeId, (SelectList)ViewBag.PaymentMode, "Select Payment Mode", new { @class = "form_input", autocomplete = "off" })
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive scroll2 col-md-6">
+                <table class="table table-bordered " id="tab_logic">
+                    <tr class="grid_heading">
+                        <th></th>
+                        <th>Cheque No.</th>
+                        <th>Cheque Date</th>
+                        <th>Bank Name</th>
+                        <th>Branch</th>
+                        <th>Cheque Amount</th>
+                        <th></th>
+                    </tr>
+                    @for (int i = 0; i < Model.Cheque.Count; i++)
+                {
+                <tr id="Row_@i">
+
+                    <td style="vertical-align:middle"><a class="glyphicon glyphicon-minus del" style="top:0px" onclick="Delete(@i)"></a></td>
+                    <td>
+                        @Html.TextBoxFor(model => Model.Cheque[i].ChequeNo, new { @class = "form_input", autocomplete = "off" })
+                    </td>
+                    <td>
+                        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => Model.Cheque[i].BankName, new { @class = "form_input", autocomplete = "off" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => Model.Cheque[i].BankBranch, new { @class = "form_input", autocomplete = "off" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                    </td>
+                    <td style="vertical-align:middle"><a id="add_row" class="glyphicon glyphicon-plus del" style="top:0px" onclick="AddRow()"></a></td>
+                                 </tr>
+                }
+                </table>
+            </div>
+      
+
     </div>
+}
                 <div class="row">
                 <hr />
                 <div class="col-md-12">

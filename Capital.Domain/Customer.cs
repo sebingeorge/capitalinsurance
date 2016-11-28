@@ -41,6 +41,9 @@ namespace Capital.Domain
         public string Address2 { get; set; }
         public string Address3 { get; set; }
         public int? CreditPeriod { get; set; }
+        public int? CreditPeriod2 { get; set; }
+        public int? CreditPeriod3 { get; set; }
+        public int? CreditPeriod4 { get; set; }
         public decimal? CreditAmount { get; set; }
     }
 }

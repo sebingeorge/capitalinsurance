@@ -17,8 +17,9 @@ namespace CapitalInsurance.Controllers
             ViewBag.Fromdate = FYStartdate;
             return View();
         }
-        public ActionResult Create()
+        public ActionResult Create(int? type)
         {
+            ViewBag.Type = type;
             FillDropdowns();
             PolicyIssue model = new PolicyIssue();
             model.TranType = "NewPolicy";
