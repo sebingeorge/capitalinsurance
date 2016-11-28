@@ -179,7 +179,26 @@ namespace CapitalInsurance.Controllers
         public ActionResult Register()
         {
             ViewBag.UserRole = new SelectList((new UserRepository()).GetUserRole(), "RoleId", "RoleName");
+            ViewBag.Employee = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName");
             return View();
+        }
+        [AllowAnonymous]
+        public ActionResult Edit(int Id)
+        {            
+            User user = new UserRepository().GetUserById(Id);
+            Capital.Domain.RegisterViewModel model = new Capital.Domain.RegisterViewModel()
+            {
+                ConfirmPassword = "",
+                Email = user.UserEmail,
+                Password = "",
+                SalesMgId = user.SalesMgId,
+                UserId = user.UserId,
+                UserName = user.UserName,
+                UserRole = user.UserRole ?? 0
+            };
+            ViewBag.UserRole = new SelectList((new UserRepository()).GetUserRole(), "RoleId", "RoleName", user.UserRole);
+            ViewBag.Employee = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName", user.SalesMgId);
+            return View(model);
         }
 
         //
@@ -199,7 +218,8 @@ namespace CapitalInsurance.Controllers
                     UserName = model.UserName,
                     UserPassword = model.Password,
                     UserRole = model.UserRole,
-                    UserSalt = "cib"
+                    UserSalt = ConfigurationManager.AppSettings["salt"].ToString(),
+                    SalesMgId = model.SalesMgId
                 };
                 int res = 0;
                 if ((user.UserId ?? 0) == 0)
@@ -235,9 +255,11 @@ namespace CapitalInsurance.Controllers
             }
             var allErrors = ModelState.Values.SelectMany(v => v.Errors);
             ViewBag.UserRole = new SelectList((new UserRepository()).GetUserRole(), "RoleId", "RoleName");
+            ViewBag.Employee = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName");
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
         [AllowAnonymous]
         public ActionResult UserList()
         {

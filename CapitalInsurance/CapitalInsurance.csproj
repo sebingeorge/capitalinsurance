@@ -503,6 +503,7 @@
     <Content Include="Views\Account\UserList.cshtml" />
     <Content Include="Views\New_Policy\PendingPolicyForCommitments.cshtml" />
     <Content Include="Views\New_Policy\PaymentCommitments.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

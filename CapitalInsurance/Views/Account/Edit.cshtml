@@ -4,7 +4,7 @@
 }
 <div class="container content-in">
     <div class="row">
-        <h1>Create User</h1>
+        <h1>Update User</h1>
     </div>
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
@@ -16,7 +16,7 @@
                     <div class="col-md-3">
                         <label>User Name</label>
                         @Html.HiddenFor(m => m.UserId)
-                        @Html.TextBoxFor(m => m.UserName, new { @class = "form_input" })
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form_input", @readonly="readonly" })
                         @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -75,14 +75,14 @@
                 </div>
             </div>
         </div>
-    <div class="row">
-        <hr />
-        <div class="col-md-12">
-            <button type="submit" class="form-button">Register</button>  
-            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
-            <button type="button" class="form-button right" onclick="Previous()">Previous</button>
+        <div class="row">
+            <hr />
+            <div class="col-md-12">
+                <button type="submit" class="form-button">Update</button>
+                <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+                <button type="button" class="form-button right" onclick="Previous()">Previous</button>
+            </div>
         </div>
-    </div>
     }
 </div>
 <script>
