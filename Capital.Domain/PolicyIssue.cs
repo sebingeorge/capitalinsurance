@@ -56,6 +56,7 @@ namespace Capital.Domain
         public string PolicyNo { get; set; }
         public string Remarks { get; set; }
         public string FinanceManager { get; set; }
+        public string QuickBookRefNo { get; set; }
         public int? PayModeId { get; set; }
         public int? OldPolicyId { get; set; }
         public DateTime? CIBEffectiveDate { get; set; }
