@@ -26,7 +26,7 @@
         {
             columns.Add(m => m.UserName).Titled("User Name").SetWidth(12);
             columns.Add(m => m.UserEmail).Titled("Email").SetWidth(12);
-            columns.Add(m => m.UserRole).Titled("Role").SetWidth(12);
+            columns.Add(m => m.RoleName).Titled("Role").SetWidth(12);
             columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.UserId })">Edit</a>);
 
         }).WithPaging(15)
