@@ -218,21 +218,39 @@ namespace Capital.DAL
                     IDbTransaction txn = connection.BeginTransaction();
                     string sql;
                     int id = 0;
-                    sql = @"UPDATE PolicyIssue SET PolicyNo=@PolicyNo,Remarks=@Remarks WHERE PolicyId = @PolicyId";
-
-                    connection.Execute(sql,model,txn );
-                    foreach (var item in model.Committed)
+                    if (model.Type== 3)
                     {
-                        item.PolicyId = model.PolicyId;
-                        if (item.CommittedDate != null)
+                        sql = @"UPDATE PolicyIssue SET QuickBookRefNo=@QuickBookRefNo,PaymentTo=@PaymentTo,PayModeId=@PayModeId WHERE PolicyId = @PolicyId";
+
+                        connection.Execute(sql, model, txn);
+                        foreach (var item in model.Cheque)
                         {
-                            sql = @"INSERT INTO PolicyIssueCommittedDetails
-                                   (PolicyId,CommittedDate
-                                   ,CommittedAmt )VALUES(@PolicyId,@CommittedDate,@CommittedAmt);SELECT CAST(SCOPE_IDENTITY() as int);";
+                            item.PolicyId = model.PolicyId;
+                            sql = @"INSERT INTO PolicyIssueChequeReceived
+                                   (PolicyId,ChequeNo,ChequeDate,BankName
+                                   ,BankBranch,ChequeAmt )VALUES(@PolicyId,@ChequeNo,@ChequeDate,@BankName,@BankBranch,@ChequeAmt);SELECT CAST(SCOPE_IDENTITY() as int);";
                             id = connection.Execute(sql, item, txn);
                         }
-                        
                     }
+                    else
+                    {
+                        sql = @"UPDATE PolicyIssue SET PolicyNo=@PolicyNo,Remarks=@Remarks WHERE PolicyId = @PolicyId";
+
+                        connection.Execute(sql, model, txn);
+                        foreach (var item in model.Committed)
+                        {
+                            item.PolicyId = model.PolicyId;
+                            if (item.CommittedDate != null)
+                            {
+                                sql = @"INSERT INTO PolicyIssueCommittedDetails
+                                   (PolicyId,CommittedDate
+                                   ,CommittedAmt )VALUES(@PolicyId,@CommittedDate,@CommittedAmt);SELECT CAST(SCOPE_IDENTITY() as int);";
+                                id = connection.Execute(sql, item, txn);
+                            }
+
+                        }
+                    }
+                   
                     txn.Commit();
                     if (id > 0)
                     {

@@ -5,6 +5,7 @@
 }
 @{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
 ViewBag.actionName = actionName;
+Model.Type = ViewBag.type;
 }
 <style>
     .divHidden {
@@ -99,19 +100,6 @@ ViewBag.actionName = actionName;
 
     $(document).ready(function ()
     {
-        function Append_Date() {
-            $('.form_date').datetimepicker({
-                language: 'fr',
-                weekStart: 1,
-                todayBtn: 1,
-                autoclose: 1,
-                todayHighlight: 1,
-                startView: 2,
-                minView: 2,
-                forceParse: 0,
-                format: 'dd-M-yyyy',
-            });
-        }
 
         if (@ViewBag.type == 2)
         {
@@ -120,7 +108,6 @@ ViewBag.actionName = actionName;
         else
         {
             $("#QuickBookRefNo").focus();
-            
         }
         $("#againstId").text("Policy No.");
         $(".numbers-only").keypress(function (e) {
@@ -132,7 +119,7 @@ ViewBag.actionName = actionName;
         });
       
     })
-
+    
 </script>
 <div class="container content-in">
     <div class="row">
@@ -152,6 +139,7 @@ else
                 <div class="row form-group">
                     <div class="col-md-12">
                         <label>Transaction No.</label>
+                        @Html.HiddenFor(m => m.Type)
                         @Html.HiddenFor(m => m.PolicyId)
                         @Html.TextBoxFor(m => m.TranNumber, new { @class = "form_input", @readonly = "readonly" })
                         @Html.ValidationMessageFor(m => m.TranNumber, "", new { @class = "text-danger" })
@@ -437,16 +425,31 @@ else
                         @for (int i = 0; i < Model.Committed.Count; i++)
                         {
                             <tr id="Row_@i">
-                                <td>
-                                    <div class="input-group date form_date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input"})
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
-                                </td>
-                            </tr>
+                        @if (ViewBag.type == 2)
+                         {
+                            <td>
+                            <div class="input-group date form_date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input"})
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                            </td>
+                            <td>
+                            @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                            </td>
+                          }
+                        else
+                        {
+                            <td>
+                            <div class="input-group date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input" })
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                            </td>
+                            <td>
+                            @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })
+                            </td>
+                        }
+                                                </tr>
                         }
                     </table>
                 </div>

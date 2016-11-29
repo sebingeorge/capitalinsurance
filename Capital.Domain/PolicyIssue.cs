@@ -96,7 +96,7 @@ namespace Capital.Domain
         public int TotalEmployes { get; set; }
         public List<PolicyIssueChequeReceived> Cheque { get; set; }
         public List<PaymentCommitments> Committed { get; set; }
-     
+        public int Type { get; set; }
         public string PaymentTo { get; set; }
         public IEnumerable<SelectListItem> PaymentToList
         {
