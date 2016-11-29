@@ -43,12 +43,12 @@ namespace Capital.DAL
                     model.TranNumber = PolicyIssueRepository.GetNextDocNo(model.TranType);
                     string sql = @"INSERT INTO PolicyIssue
                                    (TranPrefix,TranNumber,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
-                                    PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
+                                    PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,CustContOfficeNo,
                                     PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,AdditionEmpNo,
                                     DeletionEmpNo,EndorcementTypeId,TranType,OldPolicyNo,OldCompany,OldProductType,OldPremiumAmt,CreatedBy,CreatedDate,ICActualDate )
                                     VALUES
                                     (@TranPrefix,@TranNumber,@TranDate,@CusId,@InsuredName,@Address1,@Address2,@InsCmpId,@InsPrdId,@InsCoverId,@PolicySubDate,@EffectiveDate,@RenewalDate,
-                                    @PremiumAmount,@PolicyFee,@ExtraPremium,@Totalpremium,@CommissionPerc,@CommissionAmount,@CustContPersonName,@CustContDesignation,@CustContEmail,@CustContMobile,
+                                    @PremiumAmount,@PolicyFee,@ExtraPremium,@Totalpremium,@CommissionPerc,@CommissionAmount,@CustContPersonName,@CustContDesignation,@CustContEmail,@CustContMobile,@CustContOfficeNo,
                                     @PaymentOption,@SalesMgId,@OperationManager,@PolicyNo,@Remarks,@FinanceManager,@PaymentTo,@PayModeId,@OldPolicyId,@CIBEffectiveDate,@AdditionEmpNo,
                                     @DeletionEmpNo,@EndorcementTypeId,@TranType,@OldPolicyNo,@OldCompany,@OldProductType,@OldPremiumAmt,@CreatedBy,@CreatedDate,@ICActualDate );
                                     SELECT CAST(SCOPE_IDENTITY() as int);";
@@ -80,7 +80,7 @@ namespace Capital.DAL
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
                 string sql = @"select PolicyId,(TranPrefix+'/'+TranNumber)TranNumber,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
-                                    PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
+                                    PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,CustContOfficeNo,
                                     PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,AdditionEmpNo,
                                     DeletionEmpNo,EndorcementTypeId,TranType,OldPolicyNo,OldCompany,OldProductType,OldPremiumAmt,CreatedBy,CreatedDate,ICActualDate from PolicyIssue where PolicyId=@Id";
 
@@ -105,6 +105,17 @@ namespace Capital.DAL
                 return objCheque;
             }
         }
+        public List<PaymentCommitments> GetCommittedDetails(int id)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"SELECT * from PolicyIssueCommittedDetails P
+                               where P.PolicyId=@id ORDER BY CommRowId";
+                var objCheque = connection.Query<PaymentCommitments>(sql, new { id = id }).ToList<PaymentCommitments>();
+                return objCheque;
+            }
+        }
+        
         public Result Update(PolicyIssue model)
         {
             Result res = new Result(false);
@@ -149,7 +160,7 @@ namespace Capital.DAL
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
 
-                string query = "select ContactName,Designation,EmailId,MobileNo from Customer where CusId= @Id";
+                string query = "select ContactName,Designation,EmailId,MobileNo,OfficeNo from Customer where CusId= @Id";
                 return connection.Query<Customer>(query, new { Id = Id }).First<Customer>();
             }
         }
@@ -174,7 +185,24 @@ namespace Capital.DAL
                                     left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                    where P.OldPolicyId IS NULL AND P.TranType='NewPolicy'
+                                    where P.OldPolicyId IS NULL AND P.TranType='NewPolicy' and P.PolicyNo IS NULL
+                                    order by P.TranNumber";
+                return connection.Query<PolicyIssue>(query).ToList();
+            }
+        }
+        public List<PolicyIssue> GetNewPolicyForPaymentCollection()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string query = @"select P.PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)StrTranNumber,C.CusName,P.CustContPersonName,P.InsuredName,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,P.RenewalDate,
+                                    P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionAmount, S.SalesMgName,P.PolicyNo
+                                    from PolicyIssue P
+                                    left join Customer C on C.CusId = P.CusId
+                                    left join InsuranceCompany I on I.InsCmpId = P.InsCmpId
+                                    left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
+                                    left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
+                                    left join SalesManager S on S.SalesMgId = P.SalesMgId
+                                    where P.OldPolicyId IS NULL AND P.TranType='NewPolicy' and P.PayModeId IS NULL and P.PolicyNo IS NOT NULL
                                     order by P.TranNumber";
                 return connection.Query<PolicyIssue>(query).ToList();
             }
@@ -187,16 +215,25 @@ namespace Capital.DAL
              
                 using (IDbConnection connection = OpenConnection(dataConnection))
                 {
+                    IDbTransaction txn = connection.BeginTransaction();
+                    string sql;
                     int id = 0;
+                    sql = @"UPDATE PolicyIssue SET PolicyNo=@PolicyNo,Remarks=@Remarks WHERE PolicyId = @PolicyId";
+
+                    connection.Execute(sql,model,txn );
                     foreach (var item in model.Committed)
                     {
                         item.PolicyId = model.PolicyId;
-                        string sql = @"INSERT INTO PolicyIssueCommittedDetails
+                        if (item.CommittedDate != null)
+                        {
+                            sql = @"INSERT INTO PolicyIssueCommittedDetails
                                    (PolicyId,CommittedDate
                                    ,CommittedAmt )VALUES(@PolicyId,@CommittedDate,@CommittedAmt);SELECT CAST(SCOPE_IDENTITY() as int);";
-                         id = connection.Execute(sql, model.Committed);
+                            id = connection.Execute(sql, item, txn);
+                        }
+                        
                     }
-                  
+                    txn.Commit();
                     if (id > 0)
                     {
                         return (new Result(true));

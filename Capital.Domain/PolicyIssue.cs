@@ -29,7 +29,7 @@ namespace Capital.Domain
         public int? InsCmpId { get; set; }
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Product is Required")]
         public int? InsPrdId { get; set; }
-         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Product Type is Required")]
+         //[System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Product Type is Required")]
         public int? InsCoverId { get; set; }
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Policy Sub Date is Required")]
         public DateTime PolicySubDate { get; set; }
@@ -48,6 +48,7 @@ namespace Capital.Domain
         public string CustContDesignation { get; set; }
         public string CustContEmail { get; set; }
         public string CustContMobile { get; set; }
+        public string CustContOfficeNo { get; set; }
         public string PaymentOption { get; set; }
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Sales Manager is Required")]
         public int? SalesMgId { get; set; }
@@ -55,6 +56,7 @@ namespace Capital.Domain
         public string PolicyNo { get; set; }
         public string Remarks { get; set; }
         public string FinanceManager { get; set; }
+        public string QuickBookRefNo { get; set; }
         public int? PayModeId { get; set; }
         public int? OldPolicyId { get; set; }
         public DateTime? CIBEffectiveDate { get; set; }
