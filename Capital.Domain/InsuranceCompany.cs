@@ -18,5 +18,15 @@ namespace Capital.Domain
         public string ContactPerson { get; set; }
         public string ContactNo { get; set; }
         public string Designation { get; set; }
+        public string ContactPerson2  { get; set; }
+        public string ContactPerson3  { get; set; }
+        public string Designation2  { get; set; }
+        public string Designation3  { get; set; }
+        public string ContactNo2  { get; set; }
+        public string ContactNo3  { get; set; }
+        public string Email2  { get; set; }
+        public string Email3  { get; set; }
+        public string PoBox  { get; set; }
+        public string CrNo { get; set; }
     }
 }

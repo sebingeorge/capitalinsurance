@@ -17,9 +17,12 @@ namespace Capital.Domain
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage="Customer Name is Required")]
         [System.ComponentModel.DataAnnotations.Display(Name = "Customer Name")]
         public string CusName { get; set; }
-        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Customer Short Name is Required")]
+        
         [System.ComponentModel.DataAnnotations.Display(Name = "Customer Short Name")]
         public string CusShortName { get; set; }
+        public string CusPrefix  { get; set; }
+        public string PoBox  { get; set; }
+        public string CrNo { get; set; }
         public int? RegionId { get; set; }
         public string RegionName { get; set; }
         public int? SalesMgId { get; set; }

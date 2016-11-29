@@ -21,12 +21,12 @@ namespace Capital.DAL
                 {
                     string sql = @"INSERT INTO Customer
                                    (CusName
-                                   ,CusShortName
+                                   ,CusPrefix
                                    ,RegionId
                                    ,SalesMgId
                                    ,CusCatId
-                                   ,EmployeeNo
-                                   ,PremisNo
+                                   ,PoBox
+                                   ,CrNo
                                    ,ContactName
                                    ,Designation
                                    ,OfficeNo
@@ -44,12 +44,12 @@ namespace Capital.DAL
                                    ,CreditAmount)
                              VALUES
                                    (@CusName
-                                   ,@CusShortName
+                                   ,@CusPrefix
                                    ,@RegionId
                                    ,@SalesMgId
                                    ,@CusCatId
-                                   ,@EmployeeNo
-                                   ,@PremisNo
+                                   ,@PoBox
+                                   ,@CrNo
                                    ,@ContactName
                                    ,@Designation
                                    ,@OfficeNo
@@ -122,12 +122,12 @@ namespace Capital.DAL
                 {
                     string sql = @" UPDATE Customer SET 
                                    CusName=@CusName
-                                   ,CusShortName=@CusShortName
+                                   ,CusPrefix=@CusPrefix
                                    ,RegionId=@RegionId
                                    ,SalesMgId=@SalesMgId
                                    ,CusCatId=@CusCatId
-                                   ,EmployeeNo=@EmployeeNo
-                                   ,PremisNo=@PremisNo
+                                   ,PoBox=@PoBox
+                                   ,CrNo=@CrNo
                                    ,ContactName=@ContactName
                                    ,Designation=@Designation
                                    ,OfficeNo=@OfficeNo

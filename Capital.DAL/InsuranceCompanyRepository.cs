@@ -25,17 +25,31 @@ namespace Capital.DAL
                                    ,Address2
                                    ,Address3
                                    ,Email
+                                   ,Email2
+                                   ,Email3
                                    ,ContactPerson
+                                   ,ContactPerson2
+                                   ,ContactPerson3
                                    ,ContactNo
-                                   ,Designation)
+                                   ,ContactNo2
+                                   ,ContactNo3
+                                   ,Designation
+                                   ,Designation2
+                                   ,Designation3
+                                   ,PoBox
+                                   ,CrNo)
                                    VALUES
                                    (@InsCmpName
                                    ,@Address1
                                    ,@Address2
                                    ,@Address3
                                    ,@Email
+                                   ,@Email2
+                                   ,@Email3
                                    ,@ContactPerson
-                                   ,@ContactNo,@Designation);SELECT CAST(SCOPE_IDENTITY() as int);";
+                                   ,@ContactPerson2
+                                   ,@ContactPerson3
+                                   ,@ContactNo,@ContactNo2,@ContactNo3,@Designation,@Designation2,@Designation3,@PoBox,@CrNo);SELECT CAST(SCOPE_IDENTITY() as int);";
                                 
                     int id = connection.Query<int>(sql, model).Single();
                     if (id > 0)
@@ -90,9 +104,19 @@ namespace Capital.DAL
                                    ,Address2=@Address2
                                    ,Address3=@Address3
                                    ,Email=@Email
+                                   ,Email2=@Email2
+                                   ,Email3=@Email3
                                    ,ContactPerson=@ContactPerson
+                                   ,ContactPerson2=@ContactPerson2
+                                   ,ContactPerson3=@ContactPerson3
                                    ,ContactNo=@ContactNo
+                                   ,ContactNo2=@ContactNo2
+                                   ,ContactNo3=@ContactNo3
                                    ,Designation=@Designation
+                                   ,Designation2=@Designation2
+                                   ,Designation3=@Designation3
+                                   ,PoBox=@PoBox
+                                   ,CrNo=@CrNo
                                    WHERE InsCmpId=@InsCmpId";
                     int id = connection.Execute(sql, model);
                     if (id > 0)
