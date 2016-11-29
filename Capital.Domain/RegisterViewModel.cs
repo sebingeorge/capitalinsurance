@@ -27,5 +27,6 @@ namespace Capital.Domain
         public int UserRole { get; set; }
         [System.ComponentModel.DataAnnotations.Required]
         public int SalesMgId { get; set; }
+        public List<Modules> Module { get; set; }
     }
 }

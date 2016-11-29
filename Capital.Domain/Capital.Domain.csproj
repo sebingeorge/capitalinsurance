@@ -61,6 +61,7 @@
     <Compile Include="InsuranceType.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="LoginViewModel.cs" />
+    <Compile Include="Modules.cs" />
     <Compile Include="PaymentCommitments.cs" />
     <Compile Include="PolicyIssue.cs" />
     <Compile Include="PolicyIssueChequeReceived.cs" />
