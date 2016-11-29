@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-3">
+    @*<div class="col-md-3">
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Insurance Short Name</label>
@@ -20,7 +20,7 @@
             @Html.ValidationMessageFor(m => m.InsPrdShortName, "", new { @class = "text-danger" })
             </div>
         </div>
-    </div>
+    </div>*@
     <div class="col-md-3">
         <div class="row form-group">
             <div class="col-md-12">
@@ -37,7 +37,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    @*<div class="col-md-3">
         <div class="row form-group">
             <div class="col-md-8">
                 <label>Active Date</label>
@@ -48,10 +48,10 @@
                 @Html.ValidationMessageFor(m => m.InsActiveDate, "", new { @class = "text-danger" })
             </div>
         </div>
-    </div>
+    </div>*@
 </div>
 
-<hr />
+@*<hr />
 <h2>Insurance Product Parameter&nbsp;<button type="button" class="create">...</button></h2>
 <div class="table-responsive scroll1">
      <table class="table table-bordered " id="tab_logic">
@@ -76,4 +76,4 @@
         }
     </table>
 
-</div>
+</div>*@
