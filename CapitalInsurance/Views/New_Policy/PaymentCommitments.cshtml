@@ -99,7 +99,29 @@ ViewBag.actionName = actionName;
 
     $(document).ready(function ()
     {
-        $("#PolicyNo").focus();
+        function Append_Date() {
+            $('.form_date').datetimepicker({
+                language: 'fr',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0,
+                format: 'dd-M-yyyy',
+            });
+        }
+
+        if (@ViewBag.type == 2)
+        {
+            $("#PolicyNo").focus();
+        }
+        else
+        {
+            $("#QuickBookRefNo").focus();
+            
+        }
         $("#againstId").text("Policy No.");
         $(".numbers-only").keypress(function (e) {
             if (e.which == 8 || (e.which == 45 && $(this).val().indexOf('-') == -1) || (e.which == 46 && $(this).val().indexOf('.') == -1) || (e.which > 47 && e.which < 58)) {
@@ -120,7 +142,7 @@ ViewBag.actionName = actionName;
         }
 else
 {
-    <h1>Payment Details</h1>
+    <h1>Payment Collection</h1>
 }
     </div>
     @using (Html.BeginForm("UpdateCommitments", "New_Policy", FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
@@ -371,7 +393,13 @@ else
                 <div class="row form-group">
                     <div class="col-md-12">
                         <label id="againstId"></label>
+                        @if (ViewBag.type == 2)
+                        {
                         @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
+                        }
+                        else{
+                        @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input", @readonly = "readonly" })
+                        }
                         @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -380,7 +408,14 @@ else
                 <div class="row form-group">
                     <div class="col-md-12">
                         <label>Remarks</label>
+                        @if (ViewBag.type == 2)
+                        {
                         @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input"})
+                        }
+                        else
+                        {
+                        @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input", @readonly = "readonly" })
+                        }
                         @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -403,8 +438,8 @@ else
                         {
                             <tr id="Row_@i">
                                 <td>
-                                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input" })
+                                    <div class="input-group date form_date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input"})
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                     </div>
                                 </td>
@@ -425,11 +460,16 @@ else
             <div class="row">
                 <div class="col-md-3">
                     <div class="row form-group">
-                        <div class="col-md-12">
+                        @*<div class="col-md-12">
                             <label>Finance Manager</label>
                             @Html.TextBoxFor(m => m.FinanceManager, new { @class = "form_input" })
                             @Html.ValidationMessageFor(m => m.FinanceManager, "", new { @class = "text-danger" })
-                        </div>
+                        </div>*@
+                    <div class="col-md-12">
+                    <label>Quick Book Reference No.</label>
+                    @Html.TextBoxFor(m => m.QuickBookRefNo, new { @class = "form_input" })
+                    @Html.ValidationMessageFor(m => m.QuickBookRefNo, "", new { @class = "text-danger" })
+                    </div>
                     </div>
                 </div>
                 <div class="col-md-3">

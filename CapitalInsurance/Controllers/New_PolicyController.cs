@@ -105,11 +105,19 @@ namespace CapitalInsurance.Controllers
             PolicyIssue objPolicy = new PolicyIssueRepository().GetNewPolicy(Id);
             objPolicy.Cheque = new List<PolicyIssueChequeReceived>();
             objPolicy.Cheque.Add(new PolicyIssueChequeReceived());
-            objPolicy.Committed = new List<PaymentCommitments>();
-            objPolicy.Committed.Add(new PaymentCommitments());
-            objPolicy.Committed.Add(new PaymentCommitments());
-            objPolicy.Committed.Add(new PaymentCommitments());
-            objPolicy.Committed.Add(new PaymentCommitments());
+            if(type==2)
+            {
+                objPolicy.Committed = new List<PaymentCommitments>();
+                objPolicy.Committed.Add(new PaymentCommitments());
+                objPolicy.Committed.Add(new PaymentCommitments());
+                objPolicy.Committed.Add(new PaymentCommitments());
+                objPolicy.Committed.Add(new PaymentCommitments());
+            }
+            else
+            {
+                objPolicy.Committed = new PolicyIssueRepository().GetCommittedDetails(Id);
+            }
+           
             return View(objPolicy);
 
         }
@@ -186,7 +194,7 @@ namespace CapitalInsurance.Controllers
         }
         public ActionResult PendingPolicyForPaymentDetails()
         {
-            return View("PendingPolicyForCommitments", new PolicyIssueRepository().GetNewPolicyForCommitments());
+            return View("PendingPolicyForCommitments", new PolicyIssueRepository().GetNewPolicyForPaymentCollection());
         }
         public ActionResult UpdateCommitments(PolicyIssue model)
         {
