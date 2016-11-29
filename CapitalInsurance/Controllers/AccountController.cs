@@ -178,9 +178,11 @@ namespace CapitalInsurance.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            Capital.Domain.RegisterViewModel model = new Capital.Domain.RegisterViewModel();
             ViewBag.UserRole = new SelectList((new UserRepository()).GetUserRole(), "RoleId", "RoleName");
             ViewBag.Employee = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName");
-            return View();
+            model.Module = new UserRepository().GetModules();
+            return View(model);
         }
         [AllowAnonymous]
         public ActionResult Edit(int Id)

@@ -135,5 +135,13 @@ namespace Capital.DAL
                 return connection.Query<User>(sql).ToList();
             }
         }
+        public List<Modules> GetModules()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = "Select ModuleId, ModuleName from Modules";
+                return connection.Query<Modules>(sql).ToList();
+            }
+        }
     }
 }
