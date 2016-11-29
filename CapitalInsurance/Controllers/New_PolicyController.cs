@@ -155,7 +155,7 @@ namespace CapitalInsurance.Controllers
         public JsonResult GetCustomerContactDetailsByKey(int Id)
         {
             var details = (new PolicyIssueRepository()).GetCustomerContactDetails(Id);
-            return Json(new { Success = true, ContactName = details.ContactName, Designation = details.Designation, EmailId = details.EmailId, MobileNo = details.MobileNo }, JsonRequestBehavior.AllowGet);
+            return Json(new { Success = true, ContactName = details.ContactName, Designation = details.Designation, EmailId = details.EmailId, MobileNo = details.MobileNo, OfficeNo = details.OfficeNo }, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public JsonResult GetTransNum(string Id)

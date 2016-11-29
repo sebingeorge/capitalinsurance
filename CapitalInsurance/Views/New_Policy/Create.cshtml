@@ -44,7 +44,7 @@
         $("#TotalPremium").val(TotalPremium);
 
         var commissionperc = parseFloat($("#CommissionPerc").val());
-        var commissionAmt = (TotalPremium * (commissionperc / 100));
+        var commissionAmt = (PremiumAmount * (commissionperc / 100));
         $("#CommissionAmount").val(commissionAmt);
 
     }
@@ -171,6 +171,7 @@
                 $("#CustContDesignation").val(result.Designation);
                 $("#CustContEmail").val(result.EmailId);
                 $("#CustContMobile").val(result.MobileNo);
+                $("#CustContOfficeNo").val(result.OfficeNo);
             } else {
                 $('#SomeOtherHtmlTextBox').val("Failed");
             }
@@ -340,11 +341,11 @@
         </div>
         <div class="col-md-3">
             <div class="row form-group">
-                <div class="col-md-6">
+                @*<div class="col-md-6">
                     <label>Product Type</label>
                     @Html.DropDownListFor(m => Model.InsCoverId, (SelectList)ViewBag.ProductType, "Select Product Type", new { @class = "form_input", autocomplete = "off" })
                     @Html.ValidationMessageFor(m => m.InsCoverId, "", new { @class = "text-danger" })
-                </div>
+                </div>*@
                 <div class="col-md-6">
                     <label>Policy Sub Date</label>
                     <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -352,6 +353,14 @@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                     @Html.ValidationMessageFor(m => m.PolicySubDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    <label>Effective Date</label>
+                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        @Html.TextBoxFor(m => m.EffectiveDate, new { @class = "form_input ", @Value = Model.EffectiveDate.ToString("dd-MMM-yyyy") })
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.EffectiveDate, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">
                     <label>Commi. Percentage</label>
@@ -367,14 +376,7 @@
         </div>
         <div class="col-md-3">
             <div class="row form-group">
-                <div class="col-md-6">
-                    <label>Effective Date</label>
-                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                     @Html.TextBoxFor(m => m.EffectiveDate, new { @class = "form_input ",@Value = Model.EffectiveDate.ToString("dd-MMM-yyyy") })
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                    </div>
-                    @Html.ValidationMessageFor(m => m.EffectiveDate, "", new { @class = "text-danger" })
-                </div>
+
                 <div class="col-md-6">
                     <label>Renewal Date</label>
                     <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -401,7 +403,7 @@
                             @Html.ValidationMessageFor(m => m.CustContPersonName, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-12">
-                            <label>Mobile / Landline</label>
+                            <label>Mobile No.</label>
                             @Html.TextBoxFor(m => m.CustContMobile, new { @class = "form_input", @readonly = "readonly" })
                             @Html.ValidationMessageFor(m => m.CustContMobile, "", new { @class = "text-danger" })
                         </div>
@@ -415,10 +417,15 @@
                             @Html.ValidationMessageFor(m => m.CustContDesignation, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-12">
+                            <label>Office No.</label>
+                            @Html.TextBoxFor(m => m.CustContOfficeNo, new { @class = "form_input", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(m => m.CustContOfficeNo, "", new { @class = "text-danger" })
+                        </div>
+                        @*<div class="col-md-12">
                             <label>Payment Option</label>
                             @Html.TextBoxFor(m => m.PaymentOption, new { @class = "form_input" })
                             @Html.ValidationMessageFor(m => m.PaymentOption, "", new { @class = "text-danger" })
-                        </div>
+                        </div>*@
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -440,7 +447,7 @@
                       </div>
                 </div>
             </div>
-        <hr />
+        @*<hr />
         <h2>OPERATION</h2>
         <div class="row">
             <div class="col-md-3">
@@ -470,10 +477,10 @@
                 <div class="table-responsive scroll2 col-md-6">
                     <table class="table table-bordered " id="tab_logic">
                         <tr class="grid_heading">
-                            @*<th></th>*@
+                           
                             <th>Committed Date</th>
                             <th>Amount</th>
-                            @*<th></th>*@
+                           
                         </tr>
                         @for (int i = 0; i < Model.Committed.Count; i++)
                     {
@@ -488,39 +495,7 @@
                                     @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input" })
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input" })
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input" })
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
-                                </td>
-                            </tr>
+                 
                     }
                     </table>
                 </div>
@@ -595,7 +570,7 @@ if (@ViewBag.type == 3)
       
 
     </div>
-}
+}*@
                 <div class="row">
                 <hr />
                 <div class="col-md-12">

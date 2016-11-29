@@ -24,30 +24,7 @@ ViewBag.actionName = actionName;
         var url = '@Url.Action("Index")';
         location.href = url;
     }
-    function Total_Premium() {
-
-        var PremiumAmount = parseFloat($("#PremiumAmount").val());
-        var PolicyFee = parseFloat($("#PolicyFee").val());
-        var AdditionalPreminum = parseFloat($("#ExtraPremium").val());
-
-        if (isNaN(PremiumAmount)) {
-            PremiumAmount = 0;
-        }
-        if (isNaN(PolicyFee)) {
-            PolicyFee = 0;
-        }
-        if (isNaN(AdditionalPreminum)) {
-            AdditionalPreminum = 0;
-        }
-
-        var TotalPremium = PremiumAmount + PolicyFee + AdditionalPreminum;
-        $("#TotalPremium").val(TotalPremium);
-
-        var commissionperc = parseFloat($("#CommissionPerc").val());
-        var commissionAmt = (TotalPremium * (commissionperc / 100));
-        $("#CommissionAmount").val(commissionAmt);
-
-    }
+   
     function AddRow() {
 
         var i = 0;
@@ -118,68 +95,11 @@ ViewBag.actionName = actionName;
             format: 'dd-M-yyyy',
         });
     }
-    function OptionChanged() {
-        var opt = $("#Policy_type").val();
-        $("#TranType").val(opt);
-        $("#Policy_type").val(opt);
-        if (opt == "NewPolicy") {
-            $("#againstId").text("Policy No.");
-            $("#policy_details").removeClass("divShow");
-            $("#policy_details").addClass("divHidden");
-            $("#Actuals_Date").removeClass("divShow");
-        }
-        if (opt == "RenewPolicy") {
 
-            $("#policy_details").addClass("divShow");
-            $("#Actuals_Date").removeClass("divShow");
-        }
-        if (opt == "EndorsePolicy") {
-            $("#againstId").text("Endorsement No.");
-            $("#Actuals_Date").addClass("divShow");
-            $("#policy_details").addClass("divShow");
-        }
-
-        $.ajax({
-            url: "@Url.Action("GetTransNum", "New_Policy")",
-            data: { Id: opt },
-            cache: false,
-            type: "GET",
-            timeout: 10000,
-            dataType: "json",
-            success: function (result) {
-                if (result.Success) { // this sets the value from the response
-                    $('#TranNumber').val(result.internalid);
-
-                } else {
-                    $('#SomeOtherHtmlTextBox').val("Failed");
-                }
-            }
-        });
-    }
-    function CustomerChanged(cust) {
-        var cusId = cust.value;
-        $.ajax({
-            url: "@Url.Action("GetCustomerContactDetailsByKey", "New_Policy")",
-            data: { Id: cusId },
-        cache: false,
-        type: "GET",
-        timeout: 10000,
-        dataType: "json",
-        success: function (result) {
-            if (result.Success) { // this sets the value from the response
-                $('#CustContPersonName').val(result.ContactName);
-                $("#CustContDesignation").val(result.Designation);
-                $("#CustContEmail").val(result.EmailId);
-                $("#CustContMobile").val(result.MobileNo);
-            } else {
-                $('#SomeOtherHtmlTextBox').val("Failed");
-            }
-        }
-    });
-    }
 
     $(document).ready(function ()
     {
+        $("#PolicyNo").focus();
         $("#againstId").text("Policy No.");
         $(".numbers-only").keypress(function (e) {
             if (e.which == 8 || (e.which == 45 && $(this).val().indexOf('-') == -1) || (e.which == 46 && $(this).val().indexOf('.') == -1) || (e.which > 47 && e.which < 58)) {
@@ -338,18 +258,26 @@ else
             </div>
             <div class="col-md-3">
                 <div class="row form-group">
-                    <div class="col-md-6">
+                    @*<div class="col-md-6">
                         <label>Product Type</label>
                         @Html.DropDownListFor(m => Model.InsCoverId, (SelectList)ViewBag.ProductType, "Select Product Type", new { @class = "form_input", autocomplete = "off", @disabled = "true" })
                         @Html.ValidationMessageFor(m => m.InsCoverId, "", new { @class = "text-danger" })
-                    </div>
+                    </div>*@
                     <div class="col-md-6">
                         <label>Policy Sub Date</label>
-                        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                            @Html.TextBoxFor(m => m.PolicySubDate, new { @class = "form_input", @Value = Model.PolicySubDate.ToString("dd-MMM-yyyy")})
+                        <div class="input-group date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            @Html.TextBoxFor(m => m.PolicySubDate, new { @class = "form_input", @Value = Model.PolicySubDate.ToString("dd-MMM-yyyy"), @readonly = "readonly" })
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         @Html.ValidationMessageFor(m => m.PolicySubDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6">
+                        <label>Effective Date</label>
+                        <div class="input-group date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            @Html.TextBoxFor(m => m.EffectiveDate, new { @class = "form_input ", @Value = Model.EffectiveDate.ToString("dd-MMM-yyyy"), @readonly = "readonly" })
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.EffectiveDate, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-6">
                         <label>Commi. Percentage</label>
@@ -365,17 +293,10 @@ else
             </div>
             <div class="col-md-3">
                 <div class="row form-group">
-                    <div class="col-md-6">
-                        <label>Effective Date</label>
-                        <div  class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                            @Html.TextBoxFor(m => m.EffectiveDate, new { @class = "form_input ", @Value = Model.EffectiveDate.ToString("dd-MMM-yyyy"), @disabled = "true" })
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                        </div>
-                        @Html.ValidationMessageFor(m => m.EffectiveDate, "", new { @class = "text-danger" })
-                    </div>
+                    
                     <div class="col-md-6">
                         <label>Renewal Date</label>
-                        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <div class="input-group date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                             @Html.TextBoxFor(m => m.RenewalDate, new { @class = "form_input", @Value = Model.RenewalDate.Value.ToString("dd-MMM-yyyy"), @readonly = "readonly" })
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
@@ -399,7 +320,7 @@ else
                         @Html.ValidationMessageFor(m => m.CustContPersonName, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-12">
-                        <label>Mobile / Landline</label>
+                        <label>Mobile No.</label>
                         @Html.TextBoxFor(m => m.CustContMobile, new { @class = "form_input", @readonly = "readonly" })
                         @Html.ValidationMessageFor(m => m.CustContMobile, "", new { @class = "text-danger" })
                     </div>
@@ -413,10 +334,15 @@ else
                         @Html.ValidationMessageFor(m => m.CustContDesignation, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-12">
+                        <label>Office No.</label>
+                        @Html.TextBoxFor(m => m.CustContOfficeNo, new { @class = "form_input", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.CustContOfficeNo, "", new { @class = "text-danger" })
+                    </div>
+                    @*<div class="col-md-12">
                         <label>Payment Option</label>
                         @Html.TextBoxFor(m => m.PaymentOption, new { @class = "form_input", @readonly = "readonly" })
                         @Html.ValidationMessageFor(m => m.PaymentOption, "", new { @class = "text-danger" })
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="col-md-3">
@@ -445,7 +371,7 @@ else
                 <div class="row form-group">
                     <div class="col-md-12">
                         <label id="againstId"></label>
-                        @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input", @readonly = "readonly" })
+                        @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
                         @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -454,7 +380,7 @@ else
                 <div class="row form-group">
                     <div class="col-md-12">
                         <label>Remarks</label>
-                        @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input", @readonly = "readonly" })
+                        @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input"})
                         @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
                     </div>
                 </div>
