@@ -107,7 +107,9 @@ namespace CapitalInsurance.Controllers
             objPolicy.Cheque.Add(new PolicyIssueChequeReceived());
             objPolicy.Committed = new List<PaymentCommitments>();
             objPolicy.Committed.Add(new PaymentCommitments());
-
+            objPolicy.Committed.Add(new PaymentCommitments());
+            objPolicy.Committed.Add(new PaymentCommitments());
+            objPolicy.Committed.Add(new PaymentCommitments());
             return View(objPolicy);
 
         }
