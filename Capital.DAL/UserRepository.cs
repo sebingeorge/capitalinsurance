@@ -30,7 +30,15 @@ namespace Capital.DAL
                     sql += " SELECT CAST(SCOPE_IDENTITY() as int);";
 
                     var id = connection.Query<int>(sql, user).Single();
-                    
+
+                    foreach (var item in user.Module)
+                    {
+                        if(item.isPermission == 1)
+                        {
+                            sql = "Insert into ModuleVsUser(UserId, ModuleId) values (@UserId, @ModuleId);";
+                            connection.Query<int>(sql, new { UserId = id, ModuleId = item.ModuleId });
+                        }
+                    }
                     //InsertLoginHistory(dataConnection, user.CreatedBy, "Create", "Unit", id.ToString(), "0");
                     return id;
                 }
@@ -52,14 +60,25 @@ namespace Capital.DAL
                         sql += ", UserPassword = @UserPassword, @UserSalt = UserSalt";
                     }
                     sql += " where UserId = @UserId;";
-                    connection.Query(sql, user);                    
+                    connection.Query(sql, user);
+
+                    connection.Query("delete from ModuleVsUser where UserId = " + user.UserId.ToString());
+
+                    foreach (var item in user.Module)
+                    {
+                        if (item.isPermission == 1)
+                        {
+                            sql = "Insert into ModuleVsUser(UserId, ModuleId) values (@UserId, @ModuleId);";
+                            connection.Query<int>(sql, new { UserId = user.UserId, ModuleId = item.ModuleId });
+                        }
+                    }
                 }
                 catch
                 {
                     return 0;
                 }
             }
-            InsertLoginHistory(dataConnection, user.CreatedBy, "Update", "Unit", user.UserId.ToString(), "0");
+            //InsertLoginHistory(dataConnection, user.CreatedBy, "Update", "Unit", user.UserId.ToString(), "0");
             return user.UserId ?? 0;
         }
         public User GetUserByUserNameAndPassword(string username, string password)
@@ -130,16 +149,22 @@ namespace Capital.DAL
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
                 string sql = @"select U.UserId, U.UserName, U.UserEmail, UR.RoleName from [User] U
-                inner join UserRole UR on U.UserRole = UR.RoleId";
+                left join UserRole UR on U.UserRole = UR.RoleId";
 
                 return connection.Query<User>(sql).ToList();
             }
         }
-        public List<Modules> GetModules()
+        public List<Modules> GetModules(int? Id)
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
                 string sql = "Select ModuleId, ModuleName from Modules";
+                if((Id ?? 0) >0)
+                {
+                    sql = @"Select Modules.ModuleId, ModuleName, isPermission = case when ModuleVsUser.UserId is null then 0 else 1 end
+                    from Modules left join ModuleVsUser on Modules.ModuleId = ModuleVsUser.ModuleId
+                    and ModuleVsUser.UserId = " + (Id ?? 0).ToString();
+                }
                 return connection.Query<Modules>(sql).ToList();
             }
         }
