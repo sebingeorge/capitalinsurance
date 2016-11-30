@@ -3239,7 +3239,7 @@ input[type="button"].btn-block {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left:-75px;
+  left:-139px;
   z-index: 1000;
   display: none;
   float: left;
@@ -4569,6 +4569,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
   border-color: #101010;
+  background-color: #fff;
 }
 
 .navbar-inverse .navbar-nav > .open > a,
