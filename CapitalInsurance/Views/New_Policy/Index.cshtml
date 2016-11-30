@@ -72,10 +72,10 @@
         </div>
         <div class="col-md-8">
             <div class="row">
-                <div class="col-md-3">
+                @*<div class="col-md-3">
                     <label>Policy No.</label>
                     <input id="policyno" class="form_input" placeholder="Search for Policy No." onkeyup="Filter()" />
-                </div>
+                </div>*@
                 <div class="col-md-3">
                     <label>Client</label>
                     <input id="client" class="form_input" placeholder="Search for Client" onkeyup="Filter()" />
@@ -89,7 +89,7 @@
     </div>
     <hr />
     <div id="New_Policy">
-        @Html.Action("NewPolicyList")
+        @Html.Action("NewPolicyList", new { type=@ViewBag.Type})
     </div>
     <div class="row">
         <hr />
