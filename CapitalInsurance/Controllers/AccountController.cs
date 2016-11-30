@@ -15,6 +15,7 @@ using Capital.Domain;
 using Capital.DAL;
 using System.Security.Cryptography;
 using System.Text;
+using System.Collections.Generic;
 
 namespace CapitalInsurance.Controllers
 {
@@ -118,6 +119,36 @@ namespace CapitalInsurance.Controllers
             UserRepository repo = new UserRepository();
             string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
             repo.InsertLoginHistory(user, Session.SessionID.ToString(), ip, OrganizationId.ToString());
+
+            List<Modules> modules = repo.GetModules(user.UserId);
+            ModuleWisePermission modulepermission = new ModuleWisePermission();
+            foreach (var item in modules)
+            {
+                if(item.isPermission == 1)
+                {
+                    switch (item.ModuleName)
+                    {
+                        case "Admin":
+                            modulepermission.Admin = true;
+                            break;
+                        case "Documentation":
+                            modulepermission.Documentation = true;
+                            break;
+                        case "Sales":
+                            modulepermission.Sales = true;
+                            break;
+                        case "Finance":
+                            modulepermission.Finance = true;
+                            break;
+                        case "MIS Reports":
+                            modulepermission.MISReports = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }                
+            }
+            Session.Add("ModulePermission", modulepermission);
             //return userCookie;
         }
         public string ConvertPasswordToPublicKey(string encrytedpwd)
