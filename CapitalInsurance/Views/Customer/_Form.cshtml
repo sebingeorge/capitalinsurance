@@ -6,7 +6,7 @@
             <div class="col-md-2">
                 <label>Customer Prefix</label>
                 @Html.HiddenFor(m => m.CusId)
-                @Html.TextBoxFor(m => m.CusPrefix, new { @class = "form_input" })
+                @Html.TextBoxFor(m => m.CusPrefix, new { @class = "form_input half" })
                 @Html.ValidationMessageFor(m => m.CusPrefix, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -18,7 +18,7 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Customer Name</label>
-                @Html.TextBoxFor(m => m.CusName, new { @class = "form_input half" })
+                @Html.TextBoxFor(m => m.CusName, new { @class = "form_input" })
                 @Html.ValidationMessageFor(m => m.CusName, "", new { @class = "text-danger" })
             </div>
             @*<div class="col-md-12">
