@@ -7,13 +7,13 @@
     @Html.Grid(Model).Columns(columns =>
     {
         columns.Add(m => m.StrTranNumber).Titled("Transaction No.").SetWidth(12);
-        columns.Add(m => m.PolicyNo).Titled("Policy No.").SetWidth(10);
+        //columns.Add(m => m.PolicyNo).Titled("Policy No.").SetWidth(10);
         columns.Add(m => m.CusName).Titled("Client").SetWidth(10);
         columns.Add(m => m.CustContPersonName).Titled("Contact Name").SetWidth(10);
         columns.Add(m => m.InsuredName).Titled("Insured Name").SetWidth(7);
         columns.Add(m => m.InsCmpName).Titled("Company").SetWidth(7);
         columns.Add(m => m.InsPrdName).Titled("Product").SetWidth(7);
-        columns.Add(m => m.InsCoverName).Titled("Product Type").SetWidth(7);
+        //columns.Add(m => m.InsCoverName).Titled("Product Type").SetWidth(7);
         columns.Add(m => m.EffectiveDate).Format("{0:dd/MM/yyyy}").Titled("Effective Date").SetWidth(7);
         columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("Renewal Date").SetWidth(7);
         columns.Add(m => m.PremiumAmount).Titled("Premium Amt.").SetWidth(7);
@@ -21,8 +21,13 @@
         columns.Add(m => m.TotalPremium).Titled("Total Premium").SetWidth(7);
         columns.Add(m => m.CommissionAmount).Titled("Commi.Amt.").SetWidth(7);
         columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(7);
-        @*columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.PolicyId })">Edit</a>);*@
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Delete", new { Id = m.PolicyId })">Delete</a>);
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Edit", new { type = ViewBag.Type, Id = m.PolicyId})">Edit</a>);
+        if(@ViewBag.Type==1)
+        {
+             columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Delete", new { Id = m.PolicyId })">Delete</a>);
+        }
+
+
 
     }).WithPaging(15)
 </div>

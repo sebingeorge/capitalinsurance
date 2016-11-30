@@ -5,11 +5,23 @@
 }
 @{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
 ViewBag.actionName = actionName;
+if (ViewBag.actionName.ToString() == "PendingPolicyForCommitments")
+{
+    ViewBag.Type = 2;
+}
+else
+{
+    ViewBag.Type = 3;  
+}
 }
 <script>
     function Exit() {
         var url = '@Url.Action("Index","Home")';
         location.href = url;
+    }
+    function Previous() {
+        var url = '@Url.Action("Index", new { type = @ViewBag.Type })';
+        window.location = url;
     }
 </script>
 <div class="container content-in">
@@ -53,7 +65,7 @@ ViewBag.actionName = actionName;
     <div class="row">
         <hr />
         <div class="col-md-12 hrpart">
-          
+            <button type="button" class="form-button" onclick="Previous()">Previous</button>
             <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
         </div>
     </div>

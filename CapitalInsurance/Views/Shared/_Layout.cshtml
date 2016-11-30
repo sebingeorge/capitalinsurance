@@ -1,14 +1,17 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var permissions = (Capital.Domain.ModuleWisePermission)Session["ModulePermission"];
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Capital Insurance Application</title>
-  
+
     <script type="text/javascript" src="~/Scripts/datetimepicker/jquery-1.8.3.min.js" charset="UTF-8"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @*@Scripts.Render("~/bundles/jquery")*@ 
+    @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/jqueryval")
     @*@Scripts.Render("~/bundles/bootstrap")*@
     <script src="~/Scripts/toastr.min.js"></script>
@@ -19,9 +22,8 @@
     <script src="~/Scripts/highchart/highcharts.js"></script>
     <script src="~/Scripts/highchart/exporting.js"></script>
 </head>
-<body>
-
-   <div id="wrapper" class="toggled">
+<body>    
+    <div id="wrapper" class="toggled">
         <!-- Sidebar -->
         <div id="sidebar-wrapper" class="nav nav-pills nav-stacked">
             <ul class="sidebar-nav">
@@ -31,98 +33,98 @@
                     </a>
                 </li>
                 <li>
-                   <a href="#" data-toggle="collapse" data-target="#first-level-1"><span><img src="~/Images/icon/admin.png" /></span>Admin<span class="caret arrow"></span></a>
-                   <div id="first-level-1" class="collapse">
-                        <ul>
-                            <li>
-                                <a href="@Url.Action("Create", "Customer")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/customer.png" /></span>Customer</a>
-                                <a href="@Url.Action("Create", "SalesManager")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/sales-Manager.png" /></span>Employee Details</a>
-                                <a href="@Url.Action("Create", "InsuranceCompany")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/insurancecompany.png" /></span>Insurance Company</a>
-                                <a href="@Url.Action("Create", "InsuranceProduct")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/insuranceproduct.png" /></span>Insurance Product</a>
-                                <a href="@Url.Action("Register", "Account")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/admin.png" /></span>User</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="#" data-toggle="collapse" data-target="#first-level-2"><span><img src="~/Images/icon/documentation.png" /></span>Documentation<span class="caret arrow"></span></a>
-                    <div id="first-level-2" class="collapse">
-                        <ul>
-                            <li>
-                                <a href="@Url.Action("Create", "New_Policy", new { type = 1 })" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/newpolicy.png" /></span>New Policy</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("Index", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-2"><span><img src="~/Images/icon/policyrenewal.png" /></span>Policy Renewal</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("Index", "Policy_Endorsement")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/endorsement.png" /></span>Policy Endorsement</a>
-                            </li>
-                        </ul>
-                      </div>
-                    <a href="#" data-toggle="collapse" data-target="#first-level-22"><span><img src="~/Images/icon/sales.png" /></span>Sales<span class="caret arrow"></span></a>
-                    <div id="first-level-22" class="collapse">
-                        <ul>
-                            <li>
-                                <a href="@Url.Action("PendingPolicyForCommitments", "New_Policy")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/newpolicy.png" /></span>Payment Commitments</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("Create", "Sales_Target")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/salestarget.png" /></span>Sales Target</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("PendingCustomerInvoice", "Customer_Invoice")" data-toggle="collapse" data-target="#second-level-4"><span><img src="~/Images/icon/invoice.png" /></span>Customer Invoice</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="#" data-toggle="collapse" data-target="#first-level-23"><span><img src="~/Images/icon/finance.png" /></span>Finance<span class="caret arrow"></span></a>
-                    <div id="first-level-23" class="collapse">
-                        <ul>
-                            <li>
-                                <a href="@Url.Action("PendingPolicyForPaymentDetails", "New_Policy")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/payable.png" /></span>Payment Collection</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("PendingCustomerInvoice", "Customer_Invoice")" data-toggle="collapse" data-target="#second-level-4"><span><img src="~/Images/icon/invoice.png" /></span>Customer Invoice</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("PendingReceivableReport", "ReceivableReport")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/receivablereport.png" /></span>Receivable Reports</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="#" data-toggle="collapse" data-target="#first-level-3"><span><img src="~/Images/icon/mis.png" /></span>Reports<span class="caret arrow"></span></a>
-                    <div id="first-level-3" class="collapse">
-                        <ul>
-                            <li>
-                                <a href="@Url.Action("AddingFields", "BusinessView")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Business View</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("Sales_Achievement_report", "Sales_Achievement_report")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/salesachivementreport.png" /></span>Sales Achievement report</a>
-                            </li>
-                            @*<li>
-                                <a href="@Url.Action("MeetingSchedule", "MeetingSchedule")" data-toggle="collapse" data-target="#second-level-2"><span><img src="~/Images/icon/meetingschedule.png" /></span>Meeting Schedule</a>
-                            </li>*@                            
-                            <li>
-                                <a href="@Url.Action("Daily_Activity_report", "Daily_Activity_report")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Daily Activity Report</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("Index", "MISReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>MIS Report</a>
-                            </li>
-                        </ul>
-                    </div>
-                    @*<a href="#" data-toggle="collapse" data-target="#first-level-4"><span><img src="~/Images/icon/finance.png" /></span>Finance<span class="caret arrow"></span></a>
-                    <div id="first-level-4" class="collapse">
-                        <ul>
-                            <li>
-                                <a href="@Url.Action("PendingReceivableReport", "ReceivableReport")" data-toggle="collapse" data-target="#second-level-5"><span><img src="~/Images/icon/receivable.png" /></span>Receivable</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("PayableReport", "PayableReport")" data-toggle="collapse" data-target="#second-level-6"><span><img src="~/Images/icon/payable.png" /></span>Payable</a>
-                            </li>
-
-                        </ul>
-                    </div>*@
-                        
-                                </ul>
-                            </div>
-</div>
-
-
+                    @if (permissions.Admin)
+                    {
+                        <a href="#" data-toggle="collapse" data-target="#first-level-1"><span><img src="~/Images/icon/admin.png" /></span>Admin<span class="caret arrow"></span></a>
+                        <div id="first-level-1" class="collapse">
+                            <ul>
+                                <li>
+                                    <a href="@Url.Action("Create", "Customer")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/customer.png" /></span>Customer</a>
+                                    <a href="@Url.Action("Create", "SalesManager")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/sales-Manager.png" /></span>Employee Details</a>
+                                    <a href="@Url.Action("Create", "InsuranceCompany")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/insurancecompany.png" /></span>Insurance Company</a>
+                                    <a href="@Url.Action("Create", "InsuranceProduct")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/insuranceproduct.png" /></span>Insurance Product</a>
+                                    <a href="@Url.Action("Register", "Account")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/admin.png" /></span>User</a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    @if (permissions.Documentation)
+                    {
+                        <a href="#" data-toggle="collapse" data-target="#first-level-2"><span><img src="~/Images/icon/operation.png" /></span>Documentation<span class="caret arrow"></span></a>
+                        <div id="first-level-2" class="collapse">
+                            <ul>
+                                <li>
+                                    <a href="@Url.Action("Create", "New_Policy", new { type = 1 })" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/newpolicy.png" /></span>New Policy</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-2"><span><img src="~/Images/icon/policyrenewal.png" /></span>Policy Renewal</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Policy_Endorsement")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/endorsement.png" /></span>Policy Endorsement</a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    @if (permissions.Sales)
+                    {
+                        <a href="#" data-toggle="collapse" data-target="#first-level-22"><span><img src="~/Images/icon/operation.png" /></span>Sales<span class="caret arrow"></span></a>
+                        <div id="first-level-22" class="collapse">
+                            <ul>
+                                <li>
+                                    <a href="@Url.Action("PendingPolicyForCommitments", "New_Policy")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/newpolicy.png" /></span>Payment Commitments</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Create", "Sales_Target")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/salestarget.png" /></span>Sales Target</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("PendingCustomerInvoice", "Customer_Invoice")" data-toggle="collapse" data-target="#second-level-4"><span><img src="~/Images/icon/invoice.png" /></span>Customer Invoice</a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    @if (permissions.Finance)
+                    {
+                        <a href="#" data-toggle="collapse" data-target="#first-level-23"><span><img src="~/Images/icon/operation.png" /></span>Finance<span class="caret arrow"></span></a>
+                        <div id="first-level-23" class="collapse">
+                            <ul>
+                                <li>
+                                    <a href="@Url.Action("PendingPolicyForPaymentDetails", "New_Policy")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/salestarget.png" /></span>Payment Collection</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("PendingCustomerInvoice", "Customer_Invoice")" data-toggle="collapse" data-target="#second-level-4"><span><img src="~/Images/icon/invoice.png" /></span>Customer Invoice</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("PendingReceivableReport", "ReceivableReport")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/receivablereport.png" /></span>Receivable Reports</a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    @if (permissions.MISReports)
+                    {
+                        <a href="#" data-toggle="collapse" data-target="#first-level-3"><span><img src="~/Images/icon/mis.png" /></span>Reports<span class="caret arrow"></span></a>
+                        <div id="first-level-3" class="collapse">
+                            <ul>
+                                <li>
+                                    <a href="@Url.Action("AddingFields", "BusinessView")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Business View</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Sales_Achievement_report", "Sales_Achievement_report")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/salesachivementreport.png" /></span>Sales Achievement report</a>
+                                </li>
+                                @*<li>
+                                        <a href="@Url.Action("MeetingSchedule", "MeetingSchedule")" data-toggle="collapse" data-target="#second-level-2"><span><img src="~/Images/icon/meetingschedule.png" /></span>Meeting Schedule</a>
+                                    </li>*@
+                                <li>
+                                    <a href="@Url.Action("Daily_Activity_report", "Daily_Activity_report")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Daily Activity Report</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "MISReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>MIS Report</a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+            </ul>
+        </div>
+    </div>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -131,26 +133,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                    <a href="#menu-toggle" class="menu-icon" id="menu-toggle"></a>
+                <a href="#menu-toggle" class="menu-icon" id="menu-toggle"></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" width="40" /></a></li>
-                    @*<li class="top-button"><a href="@Url.Action("Index", "Home")">Home</a></li>*@
+                    <li class="top-button"><a href="@Url.Action("Index", "Home")">@*<img src="~/Images/home.png" />*@Home</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()        
+        @RenderBody()
     </div>
     <div>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     </div>
-    
+
     @RenderSection("scripts", required: false)
-    
+
     <script type="text/javascript" src="~/Scripts/datetimepicker/bootstrap.min.js" charset="UTF-8"></script>
     <script type="text/javascript" src="~/Scripts/datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
     <script type="text/javascript" src="~/Scripts/datetimepicker/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
@@ -173,3 +175,4 @@
     </script>
 </body>
 </html>
+

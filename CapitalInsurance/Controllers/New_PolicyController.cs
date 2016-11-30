@@ -12,8 +12,9 @@ namespace CapitalInsurance.Controllers
     public class New_PolicyController : BaseController
     {
         // GET: Proposal
-        public ActionResult Index()
+        public ActionResult Index(int? type)
         {
+            ViewBag.Type = type;
             ViewBag.Fromdate = FYStartdate;
             return View();
         }
@@ -55,9 +56,9 @@ namespace CapitalInsurance.Controllers
             {
 
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { type=1});
         }
-        public ActionResult Edit(int Id,int ? type)
+        public ActionResult Edit(int?type,int Id)
           
         {
           
@@ -69,13 +70,25 @@ namespace CapitalInsurance.Controllers
             objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
             objPolicy.Committed = new List<PaymentCommitments>();
             objPolicy.Committed.Add(new PaymentCommitments());
-
+            if(type==2)
+            {
+                objPolicy.Committed = new PolicyIssueRepository().GetCommittedDetails(Id);
+                return View("PaymentCommitments", objPolicy);
+            }
+            if (type == 3)
+            {
+                objPolicy.Committed = new PolicyIssueRepository().GetCommittedDetails(Id);
+                objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
+                return View("PaymentCommitments", objPolicy);
+            }
             return View("Create", objPolicy);
+            
 
         }
         [HttpPost]
         public ActionResult Edit(PolicyIssue model)
         {
+            model.TranDate = System.DateTime.Now;
             if (!ModelState.IsValid)
             {
                 var allErrors = ModelState.Values.SelectMany(v => v.Errors);
@@ -92,7 +105,7 @@ namespace CapitalInsurance.Controllers
             {
 
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { type = 1 });
         }
 
         public ActionResult PaymentCommitments(int Id, int? type)
@@ -182,8 +195,9 @@ namespace CapitalInsurance.Controllers
             return Json(new { Success = true, internalid = prefix + internalid }, JsonRequestBehavior.AllowGet);
         }
       
-        public ActionResult NewPolicyList(DateTime? FromDate, DateTime? ToDate,string PolicyNo="", string Client = "", string SalesManager = "")
+        public ActionResult NewPolicyList(int? type,DateTime? FromDate, DateTime? ToDate,string PolicyNo="", string Client = "", string SalesManager = "")
         {
+            ViewBag.Type = type;
             FromDate = FromDate ?? FYStartdate;
             ToDate = ToDate ?? DateTime.Now;
             return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetNewPolicy(FromDate, ToDate, PolicyNo,Client,SalesManager));
