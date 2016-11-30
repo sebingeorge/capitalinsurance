@@ -575,7 +575,15 @@ if (@ViewBag.type == 3)
                 <hr />
                 <div class="col-md-12">
                     <button type="button" class="form-button" onclick="Previous()">Previous</button>
-                    @if (actionName == "Edit")
+@if (Model.PolicyNo!=null)
+            {
+    <span class="perm">
+        <em>**Cannot edit/delete this Policy, because Payment Committment is already done for this Policy</em>
+    </span>
+            }
+            else
+            {
+                    if (actionName == "Edit")
                     {
                         <button type="submit" class="form-button right">Update</button>
                     }
@@ -586,7 +594,9 @@ if (@ViewBag.type == 3)
                     else
                     {
                         <button type="submit" class="form-button right">Save</button>
-                    }            
+                    }
+            }
+                             
                     <button type="button" class="form-button right" onclick="Exit()">Exit</button>
                 </div>
             </div>
