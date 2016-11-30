@@ -54,6 +54,7 @@ namespace Capital.Domain
         public int? SalesMgId { get; set; }
         public string OperationManager { get; set; }
         public string PolicyNo { get; set; }
+        public string EndorsementNo { get; set; }
         public string Remarks { get; set; }
         public string FinanceManager { get; set; }
         public string QuickBookRefNo { get; set; }

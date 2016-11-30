@@ -415,7 +415,7 @@ else
             <h2>PAYMENT COMMITMENTS</h2>
             <div class="row">
                 <div class="table-responsive scroll2 col-md-4">
-                    <table class="table table-bordered " id="tab_logic">
+                    <table class="table table-bordered ">
                         <tr class="grid_heading">
                             @*<th></th>*@
                             <th>Committed Date</th>
@@ -424,7 +424,7 @@ else
                         </tr>
                         @for (int i = 0; i < Model.Committed.Count; i++)
                         {
-                            <tr id="Row_@i">
+                            <tr>
                         @if (ViewBag.type == 2)
                          {
                             <td>
@@ -441,7 +441,7 @@ else
                         {
                             <td>
                             <div class="input-group date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                            @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input" })
+                            @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input", @readonly = "readonly" })
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
                             </td>

@@ -327,7 +327,7 @@
                         @Html.ValidationMessageFor(m => m.CustContPersonName, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-12">
-                        <label>Mobile</label>
+                        <label>Mobile No.</label>
                         @Html.TextBoxFor(m => m.CustContMobile, new { @class = "form_input", @readonly = "readonly" })
                         @Html.ValidationMessageFor(m => m.CustContMobile, "", new { @class = "text-danger" })
                     </div>
@@ -341,9 +341,9 @@
                         @Html.ValidationMessageFor(m => m.CustContDesignation, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-12">
-                        <label>Landline</label>
-                        @Html.TextBoxFor(m => m.CustContMobile, new { @class = "form_input", @readonly = "readonly" })
-                        @Html.ValidationMessageFor(m => m.CustContMobile, "", new { @class = "text-danger" })
+                        <label>Office No.</label>
+                        @Html.TextBoxFor(m => m.CustContOfficeNo, new { @class = "form_input", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.CustContOfficeNo, "", new { @class = "text-danger" })
                     </div>
                     @*<div class="col-md-12">
                         <label>Payment Option</label>
@@ -378,8 +378,8 @@
             <div class="row form-group">
                 <div class="col-md-12">
                     <label>Endorsement No.</label>
-                    @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input"})
-                    @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(m => m.EndorsementNo, new { @class = "form_input" })
+                    @Html.ValidationMessageFor(m => m.EndorsementNo, "", new { @class = "text-danger" })
                 </div>
         </div>
         </div>
@@ -406,8 +406,8 @@
                 <div class="row form-group">
                     <div class="col-md-12">
                         <label>QuickBooks Reference No.</label>
-                        @Html.TextBoxFor(m => m.FinanceManager, new { @class = "form_input", @readonly = "readonly" })
-                        @Html.ValidationMessageFor(m => m.FinanceManager, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.QuickBookRefNo, new { @class = "form_input", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.QuickBookRefNo, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>

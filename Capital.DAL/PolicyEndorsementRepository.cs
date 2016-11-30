@@ -41,7 +41,7 @@ namespace Capital.DAL
              string sql = @"select PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)TranNumber,TranPrefix,TranDate,P.CusId,C.EmployeeNo,InsuredName,P.Address1,P.Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
                                     PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
                                     PaymentOption,P.SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorcementDate,AdditionEmpNo,
-                                    DeletionEmpNo,(C.EmployeeNo+AdditionEmpNo-DeletionEmpNo)TotalEmployes,EndorcementTypeId,TranType,CreatedBy,CreatedDate from PolicyIssue P
+                                    DeletionEmpNo,(C.EmployeeNo+AdditionEmpNo-DeletionEmpNo)TotalEmployes,EndorcementTypeId,TranType,CreatedBy,CreatedDate,QuickBookRefNo from PolicyIssue P
                                     inner join Customer C on C.CusId=P.CusId
                                     where PolicyId=@Id";
              var objPolicy = connection.Query<PolicyIssue>(sql, new
@@ -62,12 +62,12 @@ namespace Capital.DAL
                  string sql = @"INSERT INTO PolicyIssue
                                    (TranPrefix,TranNumber,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
                                     PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
-                                    PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorcementDate,ICActualDate,AdditionEmpNo,
+                                    PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorsementNo,EndorcementDate,ICActualDate,AdditionEmpNo,
                                     DeletionEmpNo,EndorcementTypeId,TranType,CreatedBy,CreatedDate)
                                     VALUES
                                     (@TranPrefix,@TranNumber,@TranDate,@CusId,@InsuredName,@Address1,@Address2,@InsCmpId,@InsPrdId,@InsCoverId,@PolicySubDate,@EffectiveDate,@RenewalDate,
                                     @PremiumAmount,@PolicyFee,@ExtraPremium,@Totalpremium,@CommissionPerc,@CommissionAmount,@CustContPersonName,@CustContDesignation,@CustContEmail,@CustContMobile,
-                                    @PaymentOption,@SalesMgId,@OperationManager,@PolicyNo,@Remarks,@FinanceManager,@PaymentTo,@PayModeId,@PolicyId,@CIBEffectiveDate,@EndorcementDate,@ICActualDate,@AdditionEmpNo,
+                                    @PaymentOption,@SalesMgId,@OperationManager,@PolicyNo,@Remarks,@FinanceManager,@PaymentTo,@PayModeId,@PolicyId,@CIBEffectiveDate,@EndorsementNo,@EndorcementDate,@ICActualDate,@AdditionEmpNo,
                                     @DeletionEmpNo,@EndorcementTypeId,'EndorsePolicy',@CreatedBy,@CreatedDate);
                                     SELECT CAST(SCOPE_IDENTITY() as int);";
                  model.PolicyId = connection.Query<int>(sql, model).Single();

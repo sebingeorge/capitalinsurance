@@ -307,8 +307,8 @@ namespace Capital.DAL
                     }
                     else
                     {
-                        sql = @"UPDATE PolicyIssue SET PolicyNo=@PolicyNo,Remarks=@Remarks WHERE PolicyId = @PolicyId";
-
+                        sql = @"UPDATE PolicyIssue SET PolicyNo=@PolicyNo,Remarks=@Remarks WHERE PolicyId = @PolicyId
+                                DELETE FROM PolicyIssueCommittedDetails WHERE PolicyId = @PolicyId";
                         connection.Execute(sql, model, txn);
                         foreach (var item in model.Committed)
                         {

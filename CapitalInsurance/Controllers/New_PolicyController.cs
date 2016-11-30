@@ -73,6 +73,22 @@ namespace CapitalInsurance.Controllers
             if(type==2)
             {
                 objPolicy.Committed = new PolicyIssueRepository().GetCommittedDetails(Id);
+                if (objPolicy.Committed.Count == 1)
+                {
+                    objPolicy.Committed.Add(new PaymentCommitments());
+                    objPolicy.Committed.Add(new PaymentCommitments());
+                    objPolicy.Committed.Add(new PaymentCommitments());
+                }
+                else if(objPolicy.Committed.Count == 2)
+                {
+                    objPolicy.Committed.Add(new PaymentCommitments());
+                    objPolicy.Committed.Add(new PaymentCommitments());
+                }
+                else if (objPolicy.Committed.Count == 3)
+                {
+                    objPolicy.Committed.Add(new PaymentCommitments());
+                }
+               
                 return View("PaymentCommitments", objPolicy);
             }
             if (type == 3)
@@ -229,7 +245,7 @@ namespace CapitalInsurance.Controllers
             {
 
             }
-            return RedirectToAction("Index", new { type = 1 });
+            return RedirectToAction("Index", new { type = model.Type });
         }
         void FillDropdowns()
         {

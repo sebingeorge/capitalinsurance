@@ -41,7 +41,7 @@ namespace Capital.DAL
                 string sql = @"select PolicyId,TranPrefix,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
                                     PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
                                     PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorcementDate,AdditionEmpNo,
-                                    DeletionEmpNo,EndorcementTypeId,TranType,CreatedBy,CreatedDate from PolicyIssue where PolicyId=@Id";
+                                    DeletionEmpNo,EndorcementTypeId,TranType,CreatedBy,CreatedDate,QuickBookRefNo from PolicyIssue where PolicyId=@Id";
 
 
                 var objPolicy = connection.Query<PolicyIssue>(sql, new

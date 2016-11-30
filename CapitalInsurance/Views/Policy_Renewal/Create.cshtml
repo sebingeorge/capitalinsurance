@@ -250,11 +250,11 @@
             </div>
             <div class="col-md-3">
                 <div class="row form-group">
-                    <div class="col-md-6">
+                    @*<div class="col-md-6">
                         <label>Product Type</label>
                         @Html.DropDownListFor(m => Model.InsCoverId, (SelectList)ViewBag.ProductType, "Select Product Type", new { @class = "form_input", autocomplete = "off" })
                         @Html.ValidationMessageFor(m => m.InsCoverId, "", new { @class = "text-danger" })
-                    </div>
+                    </div>*@
                     <div class="col-md-6">
                         <label>Policy Sub Date</label>
                         <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -311,7 +311,7 @@
                         @Html.ValidationMessageFor(m => m.CustContPersonName, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-12">
-                        <label>Mobile / Landline</label>
+                        <label>Mobile No.</label>
                         @Html.TextBoxFor(m => m.CustContMobile, new { @class = "form_input" })
                         @Html.ValidationMessageFor(m => m.CustContMobile, "", new { @class = "text-danger" })
                     </div>
@@ -325,10 +325,15 @@
                         @Html.ValidationMessageFor(m => m.CustContDesignation, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-12">
+                        <label>Office No.</label>
+                        @Html.TextBoxFor(m => m.CustContOfficeNo, new { @class = "form_input", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.CustContOfficeNo, "", new { @class = "text-danger" })
+                    </div>
+                    @*<div class="col-md-12">
                         <label>Payment Option</label>
                         @Html.TextBoxFor(m => m.PaymentOption, new { @class = "form_input" })
                         @Html.ValidationMessageFor(m => m.PaymentOption, "", new { @class = "text-danger" })
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="col-md-3">
@@ -361,7 +366,7 @@
         <div class="col-md-3">
             <div class="row form-group">
                 <div class="col-md-12">
-                    <label>PolicyNo</label>
+                    <label>Policy No.</label>
                     @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
                     @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
                 </div>
@@ -384,9 +389,9 @@
             <div class="col-md-3">
                 <div class="row form-group">
                     <div class="col-md-12">
-                        <label>Finance Manager</label>
-                        @Html.TextBoxFor(m => m.FinanceManager, new { @class = "form_input" })
-                        @Html.ValidationMessageFor(m => m.FinanceManager, "", new { @class = "text-danger" })
+                        <label>QuickBooks Reference No.</label>
+                        @Html.TextBoxFor(m => m.QuickBookRefNo, new { @class = "form_input" })
+                        @Html.ValidationMessageFor(m => m.QuickBookRefNo, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
