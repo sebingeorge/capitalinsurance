@@ -99,8 +99,8 @@ namespace CapitalInsurance.Controllers
 
         private void SignIn(User user, int OrganizationId, bool isPersistent, HttpCookieCollection cookiecollection)
         {
-            var userData = String.Format("{0}|{1}|{2}|{3}",
-                user.UserId, user.UserName, user.UserPassword, user.UserEmail);
+            var userData = String.Format("{0}|{1}|{2}|{3}|{4}",
+                user.UserId, user.UserName, user.UserPassword, user.UserEmail, user.UserRole);
             var ticket = new FormsAuthenticationTicket(1, userData, DateTime.UtcNow, DateTime.UtcNow.AddMinutes(30), isPersistent, userData, FormsAuthentication.FormsCookiePath);
             var encryptedTicket = FormsAuthentication.Encrypt(ticket);
             var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket) { HttpOnly = true };
@@ -111,6 +111,7 @@ namespace CapitalInsurance.Controllers
             userCookie.Values.Add("UserName", user.UserName.ToString());
             userCookie.Values.Add("publicKey", ConvertPasswordToPublicKey(user.UserPassword));
             userCookie.Values.Add("UserEmail", user.UserEmail.ToString());
+            userCookie.Values.Add("UserRole", user.UserRole.ToString());
             cookiecollection.Add(userCookie);
             Session.Add("user", userCookie);
 
