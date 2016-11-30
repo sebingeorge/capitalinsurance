@@ -200,6 +200,14 @@ namespace CapitalInsurance.Controllers
             ViewBag.Type = type;
             FromDate = FromDate ?? FYStartdate;
             ToDate = ToDate ?? DateTime.Now;
+            if (type == 2)
+            {
+                return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetPaymentCommittedList(FromDate, ToDate, PolicyNo, Client, SalesManager));
+            }
+            else if (type == 3)
+            {
+                return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetPaymentCollectionList(FromDate, ToDate, PolicyNo, Client, SalesManager));
+            }
             return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetNewPolicy(FromDate, ToDate, PolicyNo,Client,SalesManager));
         }
         public ActionResult PendingPolicyForCommitments()
@@ -221,7 +229,7 @@ namespace CapitalInsurance.Controllers
             {
 
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { type = 1 });
         }
         void FillDropdowns()
         {

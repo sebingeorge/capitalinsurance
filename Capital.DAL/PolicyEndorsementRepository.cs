@@ -25,7 +25,7 @@ namespace Capital.DAL
                                     left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                   	where P.PolicyId not in (select isnull(OldPolicyId,0) from PolicyIssue) 
+                                   	where P.PolicyId not in (select isnull(OldPolicyId,0) from PolicyIssue) and P.PayModeId IS NOT NULL and P.PolicyNo IS NOT NULL
                                     AND CAST(P.TranDate AS date)  >=CAST(@FromDate AS date)  and CAST(P.TranDate AS date) <=CAST(@ToDate AS date)
                                     AND C.CusName LIKE '%'+@Client+'%'
                                     AND P.PolicyNo LIKE '%'+@PolicyNo+'%'

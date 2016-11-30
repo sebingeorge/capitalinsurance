@@ -33,6 +33,48 @@ namespace Capital.DAL
                 return connection.Query<PolicyIssue>(query, new {FromDate = FromDate,ToDate = ToDate,PolicyNo = PolicyNo,Client = Client,SalesManager = SalesManager }).ToList();
             }
         }
+        public List<PolicyIssue> GetPaymentCommittedList(DateTime? FromDate, DateTime? ToDate, string PolicyNo = "", string Client = "", string SalesManager = "")
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string query = @"select P.PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)StrTranNumber,C.CusName,P.CustContPersonName,P.InsuredName,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,P.RenewalDate,
+                                    P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionAmount, S.SalesMgName,P.PolicyNo
+                                    from PolicyIssue P
+                                    left join Customer C on C.CusId = P.CusId
+                                    left join InsuranceCompany I on I.InsCmpId = P.InsCmpId
+                                    left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
+                                    left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
+                                    left join SalesManager S on S.SalesMgId = P.SalesMgId
+                                    where P.OldPolicyId IS NULL AND P.TranType='NewPolicy'and P.PayModeId IS NULL and P.PolicyNo IS NOT NULL
+                                    AND cast(convert(varchar(20),P.TranDate,106) as datetime) between @FromDate and @ToDate
+                                    AND C.CusName LIKE '%'+@Client+'%'
+                                    AND isnull(P.PolicyNo,0) LIKE '%'+@PolicyNo+'%'
+                                    AND S.SalesMgName LIKE '%'+@SalesManager+'%'
+                                    order by P.TranNumber";
+                return connection.Query<PolicyIssue>(query, new { FromDate = FromDate, ToDate = ToDate, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager }).ToList();
+            }
+        }
+        public List<PolicyIssue> GetPaymentCollectionList(DateTime? FromDate, DateTime? ToDate, string PolicyNo = "", string Client = "", string SalesManager = "")
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string query = @"select P.PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)StrTranNumber,C.CusName,P.CustContPersonName,P.InsuredName,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,P.RenewalDate,
+                                    P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionAmount, S.SalesMgName,P.PolicyNo
+                                    from PolicyIssue P
+                                    left join Customer C on C.CusId = P.CusId
+                                    left join InsuranceCompany I on I.InsCmpId = P.InsCmpId
+                                    left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
+                                    left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
+                                    left join SalesManager S on S.SalesMgId = P.SalesMgId
+                                    where P.OldPolicyId IS NULL AND P.TranType='NewPolicy'and P.PayModeId IS NOT NULL and P.PolicyNo IS NOT NULL
+                                    AND cast(convert(varchar(20),P.TranDate,106) as datetime) between @FromDate and @ToDate
+                                    AND C.CusName LIKE '%'+@Client+'%'
+                                    AND isnull(P.PolicyNo,0) LIKE '%'+@PolicyNo+'%'
+                                    AND S.SalesMgName LIKE '%'+@SalesManager+'%'
+                                    order by P.TranNumber";
+                return connection.Query<PolicyIssue>(query, new { FromDate = FromDate, ToDate = ToDate, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager }).ToList();
+            }
+        }
         public Result Insert(PolicyIssue model)
         {
             Result res = new Result(false);
@@ -232,7 +274,7 @@ namespace Capital.DAL
                                     left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                    where P.OldPolicyId IS NULL AND P.TranType='NewPolicy' and P.PayModeId IS NULL and P.PolicyNo IS NOT NULL
+                                    where P.OldPolicyId IS NULL AND P.TranType in ('NewPolicy','RenewPolicy') and P.PayModeId IS NULL and P.PolicyNo IS NOT NULL
                                     order by P.TranNumber";
                 return connection.Query<PolicyIssue>(query).ToList();
             }

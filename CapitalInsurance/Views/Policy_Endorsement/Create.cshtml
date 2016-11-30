@@ -101,7 +101,7 @@
         if (i > 1) {
             $("#Row_" + index).remove();
             for (var j = index + 1; j < i; j++) {
-                alert("hi");
+               
                 var clone = $("#Row_" + j).clone(true, true);
                 alert(clone);
                 clone.html($(clone).html().replace(new RegExp("Cheque_" + j + "__", "g"), 'Cheque_' + (j - 1) + '__'));
@@ -223,10 +223,10 @@
                         @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", @readonly = "readonly" })
                         @Html.ValidationMessageFor(m => m.PolicyFee, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-md-6">
+                    @*<div class="col-md-6">
                         <label>No of Employees</label>
                         @Html.TextBoxFor(m => m.EmployeeNo, new { @class = "form_input numbers-only", @style = "text-align:right", @readonly = "readonly" })
-                    </div>
+                    </div>*@
                     <div class="col-md-6">
                         <label>Addition</label>
                         @Html.TextBoxFor(m => m.AdditionEmpNo, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Employees()" })
@@ -253,15 +253,15 @@
                         <label>Deletion</label>
                         @Html.TextBoxFor(m => m.DeletionEmpNo, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Employees()" })
                     </div>
-                    <div class="col-md-6">
+                    @*<div class="col-md-6">
                         <label>Total Employees</label>
                         @Html.TextBoxFor(m => m.TotalEmployes, new { @class = "form_input numbers-only", @style = "text-align:right", @readonly = "readonly" })
-                   </div>
+                   </div>*@
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="row form-group">
-                    <div class="col-md-6">
+                    @*<div class="col-md-6">
                         <label>Product Type</label>
                         @Html.DropDownListFor(m => Model.InsCoverId, (SelectList)ViewBag.ProductType, "Select Product Type", new { @class = "form_input", autocomplete = "off", @readonly = "readonly" })
                         @Html.ValidationMessageFor(m => m.InsCoverId, "", new { @class = "text-danger" })
@@ -273,7 +273,7 @@
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         @Html.ValidationMessageFor(m => m.PolicySubDate, "", new { @class = "text-danger" })
-                    </div>
+                    </div>*@
                     <div class="col-md-6">
                         <label>Commi. Percentage</label>
                         @Html.TextBoxFor(m => m.CommissionPerc, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", @readonly = "readonly" })
@@ -288,7 +288,7 @@
             </div>
             <div class="col-md-3">
                 <div class="row form-group">
-                    <div class="col-md-6">
+                    @*<div class="col-md-6">
                         <label>Effective Date</label>
                         <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                             @Html.TextBoxFor(m => m.EffectiveDate, new { @class = "form_input ", @Value = Model.EffectiveDate.ToString("dd-MMM-yyyy"), @readonly = "readonly" })
@@ -303,7 +303,7 @@
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         @Html.ValidationMessageFor(m => m.RenewalDate, "", new { @class = "text-danger" })
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="col-md-3">
@@ -322,7 +322,7 @@
                         @Html.ValidationMessageFor(m => m.CustContPersonName, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-12">
-                        <label>Mobile / Landline</label>
+                        <label>Mobile</label>
                         @Html.TextBoxFor(m => m.CustContMobile, new { @class = "form_input", @readonly = "readonly" })
                         @Html.ValidationMessageFor(m => m.CustContMobile, "", new { @class = "text-danger" })
                     </div>
@@ -336,10 +336,15 @@
                         @Html.ValidationMessageFor(m => m.CustContDesignation, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-12">
+                        <label>Landline</label>
+                        @Html.TextBoxFor(m => m.CustContMobile, new { @class = "form_input", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.CustContMobile, "", new { @class = "text-danger" })
+                    </div>
+                    @*<div class="col-md-12">
                         <label>Payment Option</label>
                         @Html.TextBoxFor(m => m.PaymentOption, new { @class = "form_input", @readonly = "readonly" })
                         @Html.ValidationMessageFor(m => m.PaymentOption, "", new { @class = "text-danger" })
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="col-md-3">
@@ -374,12 +379,10 @@
         </div>
         </div>
         <div class="col-md-3">
-            <label>IC Actual Date</label>
-            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                @Html.TextBoxFor(m => m.ICActualDate, new { @class = "form_input", @Value = Model.ICActualDate.Value.ToString("dd-MMM-yyyy") })
-                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-            </div>
-            </div>
+            <label>Policy No.</label>
+            @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
+            @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
+        </div>
         <div class="col-md-6">
             <div class="row form-group">
                 <div class="col-md-12">
@@ -397,7 +400,7 @@
             <div class="col-md-3">
                 <div class="row form-group">
                     <div class="col-md-12">
-                        <label>Finance Manager</label>
+                        <label>QuickBooks Reference No.</label>
                         @Html.TextBoxFor(m => m.FinanceManager, new { @class = "form_input", @readonly = "readonly" })
                         @Html.ValidationMessageFor(m => m.FinanceManager, "", new { @class = "text-danger" })
                     </div>
