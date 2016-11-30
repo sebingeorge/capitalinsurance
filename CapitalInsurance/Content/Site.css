@@ -256,6 +256,10 @@ margin-bottom:20px;
     {
      color:#75d2f0;
     }
+.bcn 
+{
+    background-color: transparent !important;
+}
 
     .create
 {
@@ -278,6 +282,11 @@ margin-bottom:20px;
 .right 
 {
     float:right;
+}
+.admin-icon
+{
+    margin-left: -65px;
+    margin-top: -1px !important;
 }
 .main-check 
 {

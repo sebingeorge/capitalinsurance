@@ -243,8 +243,10 @@
     <Content Include="images\form-text.jpg" />
     <Content Include="images\home.png" />
     <Content Include="images\icon\admin.png" />
+    <Content Include="images\icon\admin1.png" />
     <Content Include="images\icon\customer.png" />
     <Content Include="images\icon\dailyactivityreport.png" />
+    <Content Include="images\icon\documentation.png" />
     <Content Include="images\icon\endorsement.png" />
     <Content Include="images\icon\filter.png" />
     <Content Include="images\icon\finance.png" />
@@ -262,6 +264,7 @@
     <Content Include="images\icon\receivable.png" />
     <Content Include="images\icon\receivablereport.png" />
     <Content Include="images\icon\sales-Manager.png" />
+    <Content Include="images\icon\sales.png" />
     <Content Include="images\icon\salesachivementreport.png" />
     <Content Include="images\icon\salestarget.png" />
     <Content Include="images\icon_nav.png" />

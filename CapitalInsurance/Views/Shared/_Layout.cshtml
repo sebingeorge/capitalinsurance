@@ -31,8 +31,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" data-toggle="collapse" data-target="#first-level-1"><span><img src="~/Images/icon/admin.png" /></span>Admin<span class="caret arrow"></span></a>
-                    <div id="first-level-1" class="collapse">
+                    @*<a href="#" data-toggle="collapse" data-target="#first-level-1"><span><img src="~/Images/icon/admin.png" /></span>Admin<span class="caret arrow"></span></a>*@
+                    @*<div id="first-level-1" class="collapse">
                         <ul>
                             <li>
                                 <a href="@Url.Action("Create", "Customer")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/customer.png" /></span>Customer</a>
@@ -42,8 +42,8 @@
                                 <a href="@Url.Action("Register", "Account")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/admin.png" /></span>User</a>
                             </li>
                         </ul>
-                    </div>
-                    <a href="#" data-toggle="collapse" data-target="#first-level-2"><span><img src="~/Images/icon/operation.png" /></span>Documentation<span class="caret arrow"></span></a>
+                    </div>*@
+                    <a href="#" data-toggle="collapse" data-target="#first-level-2"><span><img src="~/Images/icon/documentation.png" /></span>Documentation<span class="caret arrow"></span></a>
                     <div id="first-level-2" class="collapse">
                         <ul>
                             <li>
@@ -57,7 +57,7 @@
                             </li>
                         </ul>
                       </div>
-                    <a href="#" data-toggle="collapse" data-target="#first-level-22"><span><img src="~/Images/icon/operation.png" /></span>Sales<span class="caret arrow"></span></a>
+                    <a href="#" data-toggle="collapse" data-target="#first-level-22"><span><img src="~/Images/icon/sales.png" /></span>Sales<span class="caret arrow"></span></a>
                     <div id="first-level-22" class="collapse">
                         <ul>
                             <li>
@@ -71,11 +71,11 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="#" data-toggle="collapse" data-target="#first-level-23"><span><img src="~/Images/icon/operation.png" /></span>Finance<span class="caret arrow"></span></a>
+                    <a href="#" data-toggle="collapse" data-target="#first-level-23"><span><img src="~/Images/icon/finance.png" /></span>Finance<span class="caret arrow"></span></a>
                     <div id="first-level-23" class="collapse">
                         <ul>
                             <li>
-                                <a href="@Url.Action("PendingPolicyForPaymentDetails", "New_Policy")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/salestarget.png" /></span>Payment Collection</a>
+                                <a href="@Url.Action("PendingPolicyForPaymentDetails", "New_Policy")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/payable.png" /></span>Payment Collection</a>
                             </li>
                             <li>
                                 <a href="@Url.Action("PendingCustomerInvoice", "Customer_Invoice")" data-toggle="collapse" data-target="#second-level-4"><span><img src="~/Images/icon/invoice.png" /></span>Customer Invoice</a>
@@ -136,7 +136,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" width="40" /></a></li>
-                    <li class="top-button"><a href="@Url.Action("Index", "Home")">@*<img src="~/Images/home.png" />*@Home</a></li>
+                    @*<li class="top-button"><a href="@Url.Action("Index", "Home")">Home</a></li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
