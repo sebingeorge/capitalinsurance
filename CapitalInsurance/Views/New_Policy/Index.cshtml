@@ -49,7 +49,18 @@
 </script>
 <div class="container content-in">
     <div class="row">
-        <h1>Policy List</h1>
+        @if(ViewBag.Type==2)
+        {
+        <h1>Payment Committed List</h1>
+        }
+        else if(ViewBag.Type==3)
+        {
+        <h1>Payment Collection List</h1>
+        }
+        else
+        {
+        <h1>New Policy List</h1>
+        }
     </div>
     <div class="row">
         <div class="col-md-4">
