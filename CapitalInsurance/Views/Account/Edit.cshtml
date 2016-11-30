@@ -118,6 +118,14 @@
     }
 </div>
 <script>
+    function App1Changed(row) {
+        if ($("#App1_" + row).prop("checked") == true) {
+            $("#Module_" + row + "__isPermission").val(1);
+        }
+        else if ($("#App1_" + row).prop("checked") == false) {
+            $("#Module_" + row + "__isPermission").val(0);
+        }
+    }
     function Previous()
     {
         var url = '@Url.Action("UserList")';

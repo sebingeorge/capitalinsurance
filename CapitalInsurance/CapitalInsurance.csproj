@@ -498,7 +498,6 @@
     <Content Include="Views\Policy_Renewal\_PendingPolicyListGrid.cshtml" />
     <Content Include="Views\Policy_Endorsement\_PendingPolicyListGrid.cshtml" />
     <Content Include="Views\Policy_Endorsement\Index.cshtml" />
-    <Content Include="Views\BusinessView\_BusinessViewDetailsFilter.cshtml" />
     <Content Include="Views\Account\UserList.cshtml" />
     <Content Include="Views\New_Policy\PendingPolicyForCommitments.cshtml" />
     <Content Include="Views\New_Policy\PaymentCommitments.cshtml" />
