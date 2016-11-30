@@ -16,7 +16,7 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label>Address 1</label>
-                @Html.TextBoxFor(m => m.Address1, new { @class = "form_input" })
+                @Html.TextAreaFor(m => m.Address1, new { @class = "form_input text-area" })
                 @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-12">
@@ -38,7 +38,7 @@
     </div>
     <div class="col-md-3">
         <div class="row form-group">
-            <div class="col-md-12">
+            <div class="col-md-12 mbb">
                 <label>PO Box</label>
                 @Html.TextBoxFor(m => m.Address2, new { @class = "form_input" })
                 @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })
@@ -62,7 +62,7 @@
     </div>
     <div class="col-md-3">
         <div class="row form-group">
-            <div class="col-md-12">
+            <div class="col-md-12 mbb">
                 <label>CR No.</label>
                 @Html.TextBoxFor(m => m.Address3, new { @class = "form_input" })
                 @Html.ValidationMessageFor(m => m.Address3, "", new { @class = "text-danger" })
@@ -86,10 +86,10 @@
     </div>
     <div class="col-md-3">
         <div class="row form-group">
-            <div class="col-md-12">
-                <label>Email</label>
+            <div class="col-md-12 mbb1">
+                @*<label>Email</label>
                 @Html.TextBoxFor(m => m.Email, new { @class = "form_input" })
-                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
             </div>
             <div class="col-md-12">
                 <label>Email</label>
