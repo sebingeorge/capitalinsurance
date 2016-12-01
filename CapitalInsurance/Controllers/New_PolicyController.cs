@@ -236,7 +236,7 @@ namespace CapitalInsurance.Controllers
         }
         public ActionResult UpdateCommitments(PolicyIssue model)
         {
-            Result res = new PolicyIssueRepository().UpdatePaymentCommitments(model);
+           Result res = new PolicyIssueRepository().UpdatePaymentCommitments(model);
             if (res.Value)
             {
                 TempData["Success"] = "Updated Successfully!";

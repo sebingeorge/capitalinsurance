@@ -21,11 +21,6 @@ Model.Type = ViewBag.type;
         var url = '@Url.Action("Index","Home")';
         location.href = url;
     }
-    function Previous() {
-        var url = '@Url.Action("Index")';
-        location.href = url;
-    }
-   
     function AddRow() {
 
         var i = 0;
@@ -449,7 +444,7 @@ else
                             @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })
                             </td>
                         }
-                                                </tr>
+                        </tr>
                         }
                     </table>
                 </div>
@@ -533,19 +528,39 @@ else
         <div class="row">
             <hr />
             <div class="col-md-12">
-                @*<button type="button" class="form-button" onclick="Previous()">Previous</button>*@
-                @if (actionName == "Edit")
+
+                @if (ViewBag.type == 2)
+                {
+                    if (Model.PayModeId != null)
+                {
+                    <span class="perm">
+                        <em>**Cannot edit this Policy, because Payment Collection is already done for this Policy</em>
+                    </span>
+                }
+                else
+                {
+                    if (actionName == "Edit")
+                    {
+                        <button type="submit" class="form-button right">Update</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="form-button right">Save</button>
+                    }
+                }
+                }
+              else
+                {
+                if (actionName == "Edit")
                 {
                     <button type="submit" class="form-button right">Update</button>
-                }
-                else if (actionName == "Delete")
-                {
-                    <button type="submit" class="form-button right">Delete</button>
                 }
                 else
                 {
                     <button type="submit" class="form-button right">Save</button>
                 }
+                }
+                
                 <button type="button" class="form-button right" onclick="Exit()">Exit</button>
             </div>
         </div>

@@ -12,14 +12,17 @@
         location.href = url;
     }
     function Filter() {
+       
         $("#New_Policy").addClass("fade");
+        var Type = @ViewBag.Type;
         var FromDate = $("#txtFrom").val().trim();
         var ToDate = $("#txtTo").val().trim();
         var PolicyNo = $("#policyno").val().trim();
         var Client = $("#client").val().trim();
         var SalesManager = $("#salesmanager").val().trim();
         var url = '@Url.Action("NewPolicyList")';
-        url += "?FromDate=" + FromDate + "&ToDate=" + ToDate + "&PolicyNo=" + encodeURIComponent(PolicyNo) + "&Client=" + encodeURIComponent(Client) + "&SalesManager=" + encodeURIComponent(SalesManager);
+        url += "?type=" + Type + "&FromDate=" + FromDate + "&ToDate=" + ToDate + "&PolicyNo=" + encodeURIComponent(PolicyNo) + "&Client=" + encodeURIComponent(Client) + "&SalesManager=" + encodeURIComponent(SalesManager);
+        alert(url);
         $("#New_Policy").load(url, function () {
         $("#New_Policy").removeClass("fade");
         });
@@ -83,10 +86,13 @@
         </div>
         <div class="col-md-8">
             <div class="row">
-                @*<div class="col-md-3">
+        @if (ViewBag.Type == 2 || ViewBag.Type == 3)
+                {
+                <div class="col-md-3">
                     <label>Policy No.</label>
                     <input id="policyno" class="form_input" placeholder="Search for Policy No." onkeyup="Filter()" />
-                </div>*@
+                </div>
+                }
                 <div class="col-md-3">
                     <label>Client</label>
                     <input id="client" class="form_input" placeholder="Search for Client" onkeyup="Filter()" />
