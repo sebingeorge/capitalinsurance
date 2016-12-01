@@ -128,7 +128,6 @@ namespace CapitalInsurance.Controllers
             }
             return RedirectToAction("Index", new { type = 1 });
         }
-
         public ActionResult PaymentCommitments(int Id, int? type)
         {
 
@@ -192,7 +191,6 @@ namespace CapitalInsurance.Controllers
             }
             return RedirectToAction("Index");
         }
-        
         [HttpGet]
         public JsonResult GetCustomerContactDetailsByKey(int Id)
         {
@@ -215,7 +213,6 @@ namespace CapitalInsurance.Controllers
 
             return Json(new { Success = true, internalid = prefix + internalid }, JsonRequestBehavior.AllowGet);
         }
-      
         public ActionResult NewPolicyList(int? type,DateTime? FromDate, DateTime? ToDate,string PolicyNo="", string Client = "", string SalesManager = "")
         {
             ViewBag.Type = type;

@@ -107,5 +107,6 @@ namespace Capital.Domain
                 yield return new SelectListItem { Text = "Insurance Co", Value = "Insurance Co" };
             }
         }
+        public bool SelectStatus { get; set; }
     }
 }

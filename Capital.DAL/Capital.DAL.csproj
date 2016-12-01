@@ -79,6 +79,7 @@
     <Compile Include="BusinessViewRepository.cs" />
     <Compile Include="CountryRepository.cs" />
     <Compile Include="CustomerCategoryRepository.cs" />
+    <Compile Include="CustomerInvoiceRepository.cs" />
     <Compile Include="CustomerRepository.cs" />
     <Compile Include="DropdownRepository.cs" />
     <Compile Include="FinancialYearRepository.cs" />
