@@ -295,14 +295,17 @@ namespace Capital.DAL
                         sql = @"UPDATE PolicyIssue SET QuickBookRefNo=@QuickBookRefNo,PaymentTo=@PaymentTo,PayModeId=@PayModeId WHERE PolicyId = @PolicyId
                                 DELETE FROM PolicyIssueChequeReceived WHERE PolicyId = @PolicyId";
 
-                        connection.Execute(sql, model, txn);
-                        foreach (var item in model.Cheque)
+                        id = connection.Execute(sql, model, txn);
+                        if (model.PayModeId == 2)
                         {
-                            item.PolicyId = model.PolicyId;
-                            sql = @"INSERT INTO PolicyIssueChequeReceived
+                            foreach (var item in model.Cheque)
+                            {
+                                item.PolicyId = model.PolicyId;
+                                sql = @"INSERT INTO PolicyIssueChequeReceived
                                    (PolicyId,ChequeNo,ChequeDate,BankName
                                    ,BankBranch,ChequeAmt )VALUES(@PolicyId,@ChequeNo,@ChequeDate,@BankName,@BankBranch,@ChequeAmt);SELECT CAST(SCOPE_IDENTITY() as int);";
-                            id = connection.Execute(sql, item, txn);
+                                id = connection.Execute(sql, item, txn);
+                            }
                         }
                     }
                     else

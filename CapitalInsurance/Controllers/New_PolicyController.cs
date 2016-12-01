@@ -95,6 +95,11 @@ namespace CapitalInsurance.Controllers
             {
                 objPolicy.Committed = new PolicyIssueRepository().GetCommittedDetails(Id);
                 objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
+                if (objPolicy.Cheque.Count == 0)
+                {
+                    objPolicy.Cheque.Add(new PolicyIssueChequeReceived());
+                  
+                }
                 return View("PaymentCommitments", objPolicy);
             }
             return View("Create", objPolicy);

@@ -12,19 +12,23 @@
         location.href = url;
     }
     function Filter() {
-       
+
         $("#New_Policy").addClass("fade");
         var Type = @ViewBag.Type;
         var FromDate = $("#txtFrom").val().trim();
         var ToDate = $("#txtTo").val().trim();
-        var PolicyNo = $("#policyno").val().trim();
+        var PolicyNo = '';
+        if(@ViewBag.Type==2 ||@ViewBag.Type==3) 
+        {
+            var PolicyNo = $("#policyno").val().trim();
+        }
         var Client = $("#client").val().trim();
         var SalesManager = $("#salesmanager").val().trim();
         var url = '@Url.Action("NewPolicyList")';
         url += "?type=" + Type + "&FromDate=" + FromDate + "&ToDate=" + ToDate + "&PolicyNo=" + encodeURIComponent(PolicyNo) + "&Client=" + encodeURIComponent(Client) + "&SalesManager=" + encodeURIComponent(SalesManager);
-        alert(url);
+        //alert(url);
         $("#New_Policy").load(url, function () {
-        $("#New_Policy").removeClass("fade");
+            $("#New_Policy").removeClass("fade");
         });
     }
     $(document).ready(function () {
