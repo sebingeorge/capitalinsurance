@@ -43,8 +43,14 @@ namespace CapitalInsurance.Controllers
                     }
                 }
             }
-            
-            return View();
+            CustomerInvoice Model = new CustomerInvoiceRepository().GetPolicyDetailsForInvoice(PolicyIds);
+            //Model.= new CustomerInvoiceRepository().GetPolicyDetailsForInvoice(PolicyIds);
+            Model.Items = new CustomerInvoiceRepository().GetPolicyDetailsForInvoiceDetails(PolicyIds);
+            var internalid = CustomerInvoiceRepository.GetNextDocNo();
+            Model.CusInvoiceRefNo = "CIB/INV/" + internalid;
+            Model.CusInvoiceDate = DateTime.Now;
+
+            return View(Model);
         }
         public ActionResult PreviousCustomerInvoice()
         {

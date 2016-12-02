@@ -50,6 +50,8 @@
     <Compile Include="Country.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerCategory.cs" />
+    <Compile Include="CustomerInvoice.cs" />
+    <Compile Include="CustomerInvoiceItem.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="DropDown.cs" />

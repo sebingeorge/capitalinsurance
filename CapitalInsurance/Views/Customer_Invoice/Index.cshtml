@@ -21,19 +21,7 @@
         //    return false;
         //}
     }
-    function Proceed()
-    {
-        if ($("#cboClient").val() == '') {
-            alert("Select Client");
-            $('#cboClient').focus();
-        }
-        else
-        {
-            var url = '@Url.Action("Create")'
-            window.location = url;
-        }
-
-    }
+ 
     function Filter(sender)
     {
         var id = $(sender).val();
@@ -65,7 +53,6 @@
             <hr />
             <div class="col-md-offset-8 col-md-4">
                 <button type="submit" class="form-button right">Proceed</button>
-                @*<button type="button" class="form-button right" onclick="Proceed()">Create</button>*@
                 <button type="button" class="form-button right" onclick="Exit()">Exit</button>
             </div>
         </div>
