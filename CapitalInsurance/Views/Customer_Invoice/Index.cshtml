@@ -1,5 +1,4 @@
-﻿@*@model IList<Capital.Domain.PolicyIssue>*@
-@using Capital.Domain
+﻿@using Capital.Domain
 @model IList<PolicyIssue>
 @{
     ViewBag.Title = "Index";
@@ -7,18 +6,11 @@
 <script>
     function Validation() {
         var count = 0;
-
         $(".clcheck").each(function (i, obj) {
-
-            alert("hi");
             if ($(obj).is(':checked')) {
-
                 count = count + 1;
-
             }
-
         });
-
         if ($("#cboClient").val() == '') {
             alert("Select Client.");
             $('#cboClient').focus();
