@@ -11,7 +11,8 @@
         columns.Add(m => m.PolicySubDate).Format("{0:dd/MM/yyyy}").Titled("Policy Sub Date").SetWidth(7);
         columns.Add(m => m.EffectiveDate).Format("{0:dd/MM/yyyy}").Titled("Effective Date").SetWidth(7);
         columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("Renewal Date").SetWidth(7);
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => Html.CheckBox("checked", m.SelectStatus, new { @class = "CheckBoxClass clcheck" }));
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => Html.CheckBox("selectedAddressesIds",
+            false, new { @class = "CheckBoxClass clcheck", name = "selectedAddressesIds", value = m.PolicyId }));
     }).WithPaging(15)
 </div>
 @*<div class="table-responsive scroll3">

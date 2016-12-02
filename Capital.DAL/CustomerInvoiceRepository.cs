@@ -16,7 +16,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string query = @"select  C.CusName,I.InsCmpName,P.TranType,P.PolicyNo,P.PolicySubDate,P.EffectiveDate,P.RenewalDate
+                string query = @"select  C.CusName,I.InsCmpName,P.TranType,P.PolicyNo,P.PolicySubDate,P.EffectiveDate,P.RenewalDate,P.PolicyId
                                     from PolicyIssue P
                                     left join Customer C on C.CusId = P.CusId
                                     left join InsuranceCompany I on I.InsCmpId = P.InsCmpId

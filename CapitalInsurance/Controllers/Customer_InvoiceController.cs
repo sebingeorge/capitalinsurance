@@ -29,8 +29,21 @@ namespace CapitalInsurance.Controllers
 
             return PartialView("_PendingPolicyForCustomerInvoice", new CustomerInvoiceRepository().GetPendingPoilcyforInvoice(ClientId));
         }
-        public ActionResult Create(IList<PolicyIssue>PendingPolicySelected)
+        public ActionResult Create(FormCollection collection)
         {
+            var SelectedIds = collection.GetValues("selectedAddressesIds");
+            List<int> PolicyIds = new List<int>();
+            if(SelectedIds != null)
+            {
+                foreach (var item in SelectedIds)
+                {
+                    if(item.ToString() != "false")
+                    {
+                        PolicyIds.Add(Convert.ToInt32(item.ToString()));
+                    }
+                }
+            }
+            
             return View();
         }
         public ActionResult PreviousCustomerInvoice()
