@@ -1,8 +1,6 @@
 ﻿@model List<Capital.Domain.PolicyIssue>
 @using GridMvc.Html
-
 <div class="table-responsive scroll3">
-
     <span class="filter"><img src="~/Images/icon/filter.png" /></span>
     @Html.Grid(Model).Columns(columns =>
     {
@@ -13,47 +11,49 @@
         columns.Add(m => m.PolicySubDate).Format("{0:dd/MM/yyyy}").Titled("Policy Sub Date").SetWidth(7);
         columns.Add(m => m.EffectiveDate).Format("{0:dd/MM/yyyy}").Titled("Effective Date").SetWidth(7);
         columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("Renewal Date").SetWidth(7);
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => Html.CheckBox("checked", m.SelectStatus));
-       
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => Html.CheckBox("checked", m.SelectStatus, new { @class = "CheckBoxClass clcheck" }));
     }).WithPaging(15)
 </div>
-
 @*<div class="table-responsive scroll3">
-    <span class="filter"><img src="~/Images/icon/filter.png" /></span>
-    <table class="table table-bordered" id="tab_logic">
-        <thead>
-            <tr class="grid_heading">
-                <th width="45%">Client</th>
-                <th width="10%" class="text-right">Company</th>
-                <th width="10%" class="text-right">Insurance Type</th>
-                <th width="10%" class="text-right">Policy No.</th>
-                <th width="10%" class="text-right">Policy Sub Date</th>
-                <th width="10%" class="text-right">Effective Date</th>
-                <th width="10%" class="text-right">Renewal Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < Model.Count; i++)
-            {
-                <tr>
-                    <td width="20%">
-                        @Html.TextBoxFor(m => Model[i].CusName, new { @class = "form_input", autocomplete = "off", @readonly = "readonly" })
-                    </td>
-                    <td width="20%">@Html.TextBoxFor(m => Model[i].InsCmpName, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
-                    <td width="10%">@Html.TextBoxFor(m => Model[i].TranType, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
-                    <td width="10%">@Html.TextBoxFor(m => Model[i].PolicyNo, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
-                    <td width="10%">@Html.TextBoxFor(m => Model[i].PolicySubDate, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
-                    <td width="10%">@Html.TextBoxFor(m => Model[i].EffectiveDate, new { @class = "form_input ", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
-                    <td width="10%">@Html.TextBoxFor(m => Model[i].RenewalDate, new { @class = "form_input ", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
+        <span class="filter"><img src="~/Images/icon/filter.png" /></span>
+        <table class="table table-bordered" id="tab_logic">
+            <thead>
+                <tr class="grid_heading">
+                    <th width="45%">Client</th>
+                    <th width="10%" class="text-right">Company</th>
+                    <th width="10%" class="text-right">Insurance Type</th>
+                    <th width="10%" class="text-right">Policy No.</th>
+                    <th width="10%" class="text-right">Policy Sub Date</th>
+                    <th width="10%" class="text-right">Effective Date</th>
+                    <th width="10%" class="text-right">Renewal Date</th>
+                    <th width="5%" class="text-center "><h1>Select</h1></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    <table class="table table-bordered" id="tab_logic">
-        <tr class="grid_heading footer">
-            <th class="text-right">Total:</th>
-            <th width="15%" class="text-right"><span id="TotalAmt"></span></th>
-        </tr>
-    </table>
-</div>*@
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td width="20%">
+                            @Html.TextBoxFor(m => Model[i].CusName, new { @class = "form_input", autocomplete = "off", @readonly = "readonly" })
+                        </td>
+                        <td width="20%">@Html.TextBoxFor(m => Model[i].InsCmpName, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
+                        <td width="10%">@Html.TextBoxFor(m => Model[i].TranType, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
+                        <td width="10%">@Html.TextBoxFor(m => Model[i].PolicyNo, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
+                        <td width="10%">@Html.TextBoxFor(m => Model[i].PolicySubDate, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
+                        <td width="10%">@Html.TextBoxFor(m => Model[i].EffectiveDate, new { @class = "form_input ", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
+                        <td width="10%">@Html.TextBoxFor(m => Model[i].RenewalDate, new { @class = "form_input ", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
+                    <td align="center">
+                                        @Html.CheckBoxFor(m => m[i].SelectStatus, new { @class = "CheckBoxClass clcheck" })
+                                    </td>
+    </tr>
+                }
+            </tbody>
+        </table>
+        <table class="table table-bordered" id="tab_logic">
+            <tr class="grid_heading footer">
+                <th class="text-right">Total:</th>
+                <th width="15%" class="text-right"><span id="TotalAmt"></span></th>
+            </tr>
+        </table>
+    </div>*@
 

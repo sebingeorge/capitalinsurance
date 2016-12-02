@@ -29,7 +29,7 @@ namespace CapitalInsurance.Controllers
 
             return PartialView("_PendingPolicyForCustomerInvoice", new CustomerInvoiceRepository().GetPendingPoilcyforInvoice(ClientId));
         }
-        public ActionResult Create()
+        public ActionResult Create(IList<PolicyIssue>PendingPolicySelected)
         {
             return View();
         }
