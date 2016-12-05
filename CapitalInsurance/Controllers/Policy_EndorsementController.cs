@@ -33,7 +33,8 @@ namespace CapitalInsurance.Controllers
         [HttpPost]
         public ActionResult Create(PolicyIssue model)
         {
-            model.TranPrefix = "CIB/END";
+            model.TranPrefix = model.TranNumber.Substring(0, model.TranNumber.LastIndexOf('/'));
+            model.TranNumber = model.StrTranNumber;
             model.TranDate = System.DateTime.Now;
             model.CreatedDate = System.DateTime.Now;
             model.CreatedBy = UserID;

@@ -154,6 +154,7 @@
                     <div class="col-md-12">
                         <label>Transaction No.</label>
                         @Html.HiddenFor(m => m.PolicyId)
+                        @Html.HiddenFor(m => m.StrTranNumber)
                         @Html.TextBoxFor(m => m.TranNumber, new { @class = "form_input", @readonly = "readonly" })
                     </div>
                 </div>

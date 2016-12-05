@@ -16,14 +16,6 @@ namespace CapitalInsurance.Controllers
             FillCustomer();
             return View();
         }
-        public ActionResult Customer_Invoice()
-        {
-            return View();
-        }
-        public ActionResult PendingCustomerInvoice()
-        {
-            return View();
-        }
         public ActionResult PendingPolicyForCustomerInvoice(int ClientId = 0)
         {
 
@@ -44,7 +36,6 @@ namespace CapitalInsurance.Controllers
                 }
             }
             CustomerInvoice Model = new CustomerInvoiceRepository().GetPolicyDetailsForInvoice(PolicyIds);
-            //Model.= new CustomerInvoiceRepository().GetPolicyDetailsForInvoice(PolicyIds);
             Model.Items = new CustomerInvoiceRepository().GetPolicyDetailsForInvoiceDetails(PolicyIds);
             var internalid = CustomerInvoiceRepository.GetNextDocNo();
             Model.CusInvoiceRefNo = "CIB/INV/" + internalid;
@@ -52,9 +43,31 @@ namespace CapitalInsurance.Controllers
 
             return View(Model);
         }
+
+        public ActionResult Save(CustomerInvoice model)
+        {
+            
+            model.CreatedDate = System.DateTime.Now;
+            model.CreatedBy = UserID;
+            if (!ModelState.IsValid)
+            {
+                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return View(model);
+            }
+            Result res = new CustomerInvoiceRepository().Insert(model);
+            if (res.Value)
+            {
+                TempData["Success"] = "Saved Successfully!";
+            }
+            else
+            {
+
+            }
+            return RedirectToAction("Index");
+        }
         public ActionResult PreviousCustomerInvoice()
         {
-            return View();
+            return View(new CustomerInvoiceRepository().GetCustomerInvoiceList());
         }
         void FillCustomer()
         {

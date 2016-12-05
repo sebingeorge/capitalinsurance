@@ -403,10 +403,6 @@
     <Content Include="Views\admin\PreviousEmployee.cshtml" />
     <Content Include="Views\admin\PreviousInsurance.cshtml" />
     <Content Include="Views\admin\PreviousInsuranceProduct.cshtml" />
-    <Content Include="Views\Customer_Invoice\Customer_Invoice.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Views\Customer_Invoice\PendingCustomerInvoice.cshtml" />
     <Content Include="Views\Daily_Activity_report\Daily_Activity_report.cshtml" />
     <Content Include="Views\PayableReport\PayableReport.cshtml" />
     <Content Include="Views\PayableReport\Payment.cshtml" />
@@ -464,7 +460,6 @@
     <Content Include="Views\MeetingSchedule\MeetingSchedule.cshtml" />
     <Content Include="Views\Daily_Activity_report\PreviousDaily_Activity.cshtml" />
     <Content Include="Views\MeetingSchedule\PreviousMeetingSchedule.cshtml" />
-    <Content Include="Views\Customer_Invoice\PreviousCustomerInvoice.cshtml" />
     <Content Include="Views\ReceivableReport\PreviousReceivable.cshtml" />
     <Content Include="Views\PayableReport\PreviousPayable.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
@@ -509,6 +504,7 @@
     <Content Include="Views\Customer_Invoice\Index.cshtml" />
     <Content Include="Views\Customer_Invoice\_PendingPolicyForCustomerInvoice.cshtml" />
     <Content Include="Views\Customer_Invoice\Create.cshtml" />
+    <Content Include="Views\Customer_Invoice\PreviousCustomerInvoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

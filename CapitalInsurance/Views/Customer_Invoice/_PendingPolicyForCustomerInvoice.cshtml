@@ -15,46 +15,5 @@
         false, new { @class = "CheckBoxClass clcheck", name = "selectedAddressesIds", value = m.PolicyId }));
     }).WithPaging(15)
 </div>
-@*<div class="table-responsive scroll3">
-        <span class="filter"><img src="~/Images/icon/filter.png" /></span>
-        <table class="table table-bordered" id="tab_logic">
-            <thead>
-                <tr class="grid_heading">
-                    <th width="45%">Client</th>
-                    <th width="10%" class="text-right">Company</th>
-                    <th width="10%" class="text-right">Insurance Type</th>
-                    <th width="10%" class="text-right">Policy No.</th>
-                    <th width="10%" class="text-right">Policy Sub Date</th>
-                    <th width="10%" class="text-right">Effective Date</th>
-                    <th width="10%" class="text-right">Renewal Date</th>
-                    <th width="5%" class="text-center "><h1>Select</h1></th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (int i = 0; i < Model.Count; i++)
-                {
-                    <tr>
-                        <td width="20%">
-                            @Html.TextBoxFor(m => Model[i].CusName, new { @class = "form_input", autocomplete = "off", @readonly = "readonly" })
-                        </td>
-                        <td width="20%">@Html.TextBoxFor(m => Model[i].InsCmpName, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
-                        <td width="10%">@Html.TextBoxFor(m => Model[i].TranType, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
-                        <td width="10%">@Html.TextBoxFor(m => Model[i].PolicyNo, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
-                        <td width="10%">@Html.TextBoxFor(m => Model[i].PolicySubDate, new { @class = "form_input", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
-                        <td width="10%">@Html.TextBoxFor(m => Model[i].EffectiveDate, new { @class = "form_input ", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
-                        <td width="10%">@Html.TextBoxFor(m => Model[i].RenewalDate, new { @class = "form_input ", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })</td>
-                    <td align="center">
-                                        @Html.CheckBoxFor(m => m[i].SelectStatus, new { @class = "CheckBoxClass clcheck" })
-                                    </td>
-    </tr>
-                }
-            </tbody>
-        </table>
-        <table class="table table-bordered" id="tab_logic">
-            <tr class="grid_heading footer">
-                <th class="text-right">Total:</th>
-                <th width="15%" class="text-right"><span id="TotalAmt"></span></th>
-            </tr>
-        </table>
-    </div>*@
+
 

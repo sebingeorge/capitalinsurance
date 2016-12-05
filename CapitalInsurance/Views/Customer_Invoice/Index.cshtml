@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
 }
 <script>
+
     function Validation() {
         var count = 0;
         $(".clcheck").each(function (i, obj) {
@@ -16,10 +17,10 @@
             $('#cboClient').focus();
             return false;
         }
-        //if (count == 0) {
-        //    alert("Select Atleast One Record...");
-        //    return false;
-        //}
+        if (count == 0) {
+            alert("Select Atleast One Record...");
+            return false;
+        }
     }
  
     function Filter(sender)
@@ -28,12 +29,20 @@
         var url = '@Url.Action("PendingPolicyForCustomerInvoice")';
         $("#Cus_Inv").load(url, { ClientId: id });
     }
+    function Exit() {
+        var url = '@Url.Action("Index", "Home")';
+        location.href = url;
+    }
+        function Previous() {
+            var url = '@Url.Action("PreviousCustomerInvoice")';
+            window.location = url;
+    }
 </script>
 <div class="container content-in">
     <div class="row">
         <h1>Pending Policy for Customer Invoice</h1>
     </div>
-    @using (Html.BeginForm("Create", null, FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
+    @using (Html.BeginForm("Create", null, FormMethod.Post, new { @class = "createFrom", @id = "box_form", @onsubmit = "return Validation()" }))
     {
         <div class="row">
             <div class="col-md-4">
@@ -50,11 +59,12 @@
             @Html.Action("PendingPolicyForCustomerInvoice")
         </div>
         <div class="row">
-            <hr />
-            <div class="col-md-offset-8 col-md-4">
-                <button type="submit" class="form-button right">Proceed</button>
-                <button type="button" class="form-button right" onclick="Exit()">Exit</button>
-            </div>
+        <hr />
+        <div class="col-md-12 hrpart">
+            <button type="button" class="form-button" onclick="Previous()">Previous</button>
+            <button type="submit" class="form-button right">Proceed</button>
+            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
         </div>
+    </div>
     }
 </div>

@@ -1,307 +1,38 @@
-﻿
+﻿@model List<Capital.Domain.CustomerInvoice>
+@using GridMvc.Html
 @{
     ViewBag.Title = "PreviousCustomerInvoice";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 
-
 <div class="container content-in">
-    <div class="row">
-        <h1>Previous Customer Invoice</h1>
-    </div>
 
     <div class="row">
-
-
-        <div class="col-md-2">
-            <div class="row">
-
-                <div class="col-md-6">
-                    <label>From</label>
-                    <input type="text" class="form_input" />
-                </div>
-                <div class="col-md-6">
-                    <label>To</label>
-                    <input type="text" class="form_input" />
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="row">
-
-                <div class="col-md-6">
-                    <label>Customer</label>
-                    <input type="text" class="form_input" />
-                </div>
-
-            </div>
-        </div>
-
-
-
+       
+            <h1>Customer Invoice List</h1>
 
     </div>
-
-
-    <hr />
-
-
 
     <div class="table-responsive scroll3">
-        <span class="filter"><img src="~/Images/icon/filter.png" /></span>
-        <table class="table table-bordered" id="tab_logic">
-            <thead>
-                <tr class="grid_heading">
-                    <th width="2%">Invoice No</th>
-                    <th width="30%">Customer</th>
-                    <th width="40%">Policy</th>
-                    <th width="7%" class="text-right">Quandity</th>
-                    <th width="7%" class="text-right">Amount</th>
-                    <th width="7%" class="text-center">Edit</th>
-                    <th width="7%" class="text-center">Delete</th>
 
-
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr>
-
-                    <td>101</td>
-                    <td>Mv Britos</td>
-                    <td>Life Insurance</td>
-                    <td class="text-right">20</td>
-                    <td class="text-right">15000</td>
-                    <td></td>
-                    <td></td>
-
-
-
-
-                </tr>
-
-
-
-                <tr>
-
-                    <td>101</td>
-                    <td>Mv Britos</td>
-                    <td>Life Insurance</td>
-                    <td class="text-right">2</td>
-                    <td class="text-right">15</td>
-                    <td></td>
-                    <td></td>
-
-
-
-
-                </tr>
-                <tr>
-
-                    <td>101</td>
-                    <td>Mv Britos</td>
-                    <td>Life Insurance</td>
-                    <td class="text-right">20</td>
-                    <td class="text-right">15000</td>
-                    <td></td>
-                    <td></td>
-
-
-
-
-                </tr>
-                <tr>
-
-                    <td>101</td>
-                    <td>Mv Britos</td>
-                    <td>Life Insurance</td>
-                    <td class="text-right">20</td>
-                    <td class="text-right">15000</td>
-                    <td></td>
-                    <td></td>
-
-
-
-
-                </tr>
-                <tr>
-
-                    <td>101</td>
-                    <td>Mv Britos</td>
-                    <td>Life Insurance</td>
-                    <td class="text-right">10</td>
-                    <td class="text-right">15000</td>
-                    <td></td>
-                    <td></td>
-
-
-
-
-                </tr>
-                <tr>
-
-                    <td>101</td>
-                    <td>Mv Britos</td>
-                    <td>Life Insurance</td>
-                    <td class="text-right">208</td>
-                    <td class="text-right">150000</td>
-                    <td></td>
-                    <td></td>
-
-
-
-
-                </tr>
-                <tr>
-
-                    <td>101</td>
-                    <td>Mv Britos</td>
-                    <td>Life Insurance</td>
-                    <td class="text-right">20</td>
-                    <td class="text-right">15000</td>
-                    <td></td>
-                    <td></td>
-
-
-
-
-                </tr>
-                <tr>
-
-                    <td>101</td>
-                    <td>Mv Britos</td>
-                    <td>Life Insurance</td>
-                    <td class="text-right">20</td>
-                    <td class="text-right">15000</td>
-                    <td></td>
-                    <td></td>
-
-
-
-
-                </tr>
-                <tr>
-
-                    <td>101</td>
-                    <td>Mv Britos</td>
-                    <td>Life Insurance</td>
-                    <td class="text-right">10</td>
-                    <td class="text-right">150</td>
-                    <td></td>
-                    <td></td>
-
-
-
-
-                </tr>
-                <tr>
-
-                    <td>101</td>
-                    <td>Mv Britos</td>
-                    <td>Life Insurance</td>
-                    <td class="text-right">80</td>
-                    <td class="text-right">85000</td>
-                    <td></td>
-                    <td></td>
-
-
-
-
-                </tr>
-                <tr>
-
-                    <td>101</td>
-                    <td>Mv Britos</td>
-                    <td>Life Insurance</td>
-                    <td class="text-right">20</td>
-                    <td class="text-right">1500</td>
-                    <td></td>
-                    <td></td>
-
-
-
-                </tr>
-                <tr>
-
-                    <td>101</td>
-                    <td>Mv Britos</td>
-                    <td>Life Insurance</td>
-                    <td class="text-right">20</td>
-                    <td class="text-right">15000</td>
-                    <td></td>
-                    <td></td>
-
-
-
-
-                </tr>
-
-                <tr>
-
-                    <td>101</td>
-                    <td>Mv Britos</td>
-                    <td>Life Insurance</td>
-                    <td class="text-right">20</td>
-                    <td class="text-right">15000</td>
-                    <td></td>
-                    <td></td>
-
-
-
-
-                </tr>
-                <tr>
-
-                    <td>101</td>
-                    <td>Mv Britos</td>
-                    <td>Life Insurance</td>
-                    <td class="text-right">20</td>
-                    <td class="text-right">15000</td>
-                    <td></td>
-                    <td></td>
-
-
-
-
-                </tr>
-
-
-
-
-
-            </tbody>
-
-        </table>
-
+        @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(m => m.CusInvoiceRefNo).Titled("Invoice No.").SetWidth(5);
+        columns.Add(m => m.CusInvoiceDate).Format("{0:dd/MM/yyyy}").Titled("Invoice Date").SetWidth(5);
+        columns.Add(m => m.CusName).Titled("Customer").SetWidth(15);
+        columns.Add(m => m.TotalAmount).Titled("Total Premium").SetWidth(5);
+      
+       
+            columns.Add().Encoded(false).Sanitized(false).SetWidth(5).Css("cent").RenderValueAs(m => @<a href="@Url.Action("PaymentCommitments")">Print</a>);
+      
+    }).WithPaging(15)
     </div>
-
-
-
 
     <div class="row">
         <hr />
-        <div class="col-md-offset-8 col-md-4">
-            <button type="button" class="form-button right" onclick="Proceed()">Create</button>
-            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+        <div class="col-md-12 hrpart">
+                <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
         </div>
-
     </div>
-
-
-
-
 </div>
-
-
-<script>
-    function Proceed() {
-        var url = '@Url.Action("Customer_Invoice", "Customer_Invoice")'
-        window.location = url;
-    }
-
-</script>
-
