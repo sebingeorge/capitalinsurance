@@ -8,9 +8,15 @@
 }
 .body 
 {
-    background: url(../Images/manhand.png) no-repeat; 
+    background: url(../Images/insurance.png) no-repeat; 
     width:762px;
     height:608px;
+}
+.logbd 
+{
+    background: url(../Images/CIBplain.png) no-repeat; 
+    width:900px;
+    height:280px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -78,7 +84,10 @@ textarea {
 {
     background-color:#0099cc;
 }
-
+.logb1 
+{
+    background-color:#00a4f6;
+}
     .outer-login .form-control 
     {
         width:100%;
@@ -133,7 +142,7 @@ textarea {
 .login-footer 
 {
     float: right;
-    margin-right: -544px;
+    margin-right: -1089px;
     margin-top: 279px;
     width: 100%;
 }
@@ -692,6 +701,10 @@ table thead tr th
 {
     margin-right: -560px !important;
 }
+    .logbd 
+    {
+        background-image: none !important;
+    }
 
 }
 
