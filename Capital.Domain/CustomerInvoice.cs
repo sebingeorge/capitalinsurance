@@ -12,6 +12,7 @@ namespace Capital.Domain
   public  class CustomerInvoice
     {
         public int CusInvoiceId { get; set; }
+        public string CusInvoicePrefix { get; set; }
         public string CusInvoiceRefNo { get; set; }
         public DateTime? CusInvoiceDate { get; set; }
         public int CusId { get; set; }

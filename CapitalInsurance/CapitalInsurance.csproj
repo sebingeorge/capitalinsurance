@@ -250,6 +250,7 @@
     <Content Include="images\back1.png" />
     <Content Include="images\btn.jpg" />
     <Content Include="images\button.jpg" />
+    <Content Include="images\CIB.jpg" />
     <Content Include="images\CIBplain.png" />
     <Content Include="images\content-head.jpg" />
     <Content Include="images\form-text.jpg" />
@@ -522,6 +523,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="XML\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
