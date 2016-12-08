@@ -98,7 +98,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string query = @"select CI.CusInvoiceId,CI.CusInvoiceRefNo,CI.CusInvoiceDate,C.CusName,CI.TotalAmount from CustomerInvoice CI inner join Customer C ON CI.CusId=C.CusId";
+                string query = @"select CI.CusInvoiceId,Concat(CI.CusInvoicePrefix ,'/', CI.CusInvoiceRefNo)CusInvoiceRefNo,CI.CusInvoiceDate,C.CusName,CI.TotalAmount from CustomerInvoice CI inner join Customer C ON CI.CusId=C.CusId";
                 return connection.Query<CustomerInvoice>(query).ToList();
             }
         }

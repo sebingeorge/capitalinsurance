@@ -3,8 +3,12 @@
 @{
     ViewBag.Title = "PreviousCustomerInvoice";
 }
-
-
+<script>
+    function Exit() {
+        var url = '@Url.Action("Index", "Customer_Invoice")';
+        location.href = url;
+    }
+</script>
 
 <div class="container content-in">
 
@@ -18,12 +22,12 @@
 
         @Html.Grid(Model).Columns(columns =>
     {
-        
+
         columns.Add(m => m.CusInvoiceRefNo).Titled("Invoice No.").SetWidth(5);
         columns.Add(m => m.CusInvoiceDate).Format("{0:dd/MM/yyyy}").Titled("Invoice Date").SetWidth(5);
         columns.Add(m => m.CusName).Titled("Customer").SetWidth(15);
-        columns.Add(m => m.TotalAmount).Titled("Total Premium").SetWidth(5);
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(5).Css("cent").RenderValueAs(m => @<a onclick="window.open('@Url.Action("Print", new { Id = m.CusInvoiceId})')">Print</a>);
+        columns.Add(m => m.TotalAmount).Titled("Total Premium").SetWidth(15).Css("text-right");
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(5).Css("cent text-center").RenderValueAs(m => @<a style="cursor:pointer" onclick="window.open('@Url.Action("Print", new { Id = m.CusInvoiceId })')">Print</a>);
 
     }).WithPaging(15)
     </div>
