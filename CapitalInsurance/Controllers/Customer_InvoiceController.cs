@@ -133,19 +133,16 @@ namespace CapitalInsurance.Controllers
             Response.ClearContent();
             Response.ClearHeaders();
 
-
             try
             {
                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 stream.Seek(0, SeekOrigin.Begin);
-                return File(stream, "application/pdf");
-              
+                return File(stream, "application/pdf");              
             }
             catch (Exception ex)
             {
                 throw;
-            }
-    
+            }    
         }
         void FillCustomer()
         {
