@@ -340,6 +340,31 @@ namespace Capital.DAL
             }
             return res;
         }
+        public PolicyIssue GetReceiptHdForPrint(int Id)
+        {
+
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"select P.TranDate,P.TotalPremium,P.PaymentTo,C.CusName,I.InsPrdName,IC.InsCmpName from PolicyIssue P inner join Customer C on P.CusId=C.CusId LEFT JOIN InsuranceProduct I ON I.InsPrdId=P.InsPrdId
+                               LEFT JOIN InsuranceCompany IC ON IC.InsCmpId=P.InsCmpId where P.PolicyId=@Id";
+
+                var ObjReceipt = connection.Query<PolicyIssue>(sql, new { Id = Id }).Single<PolicyIssue>();
+
+                return ObjReceipt;
+            }
+        }
+        public IEnumerable<PolicyIssueChequeReceived> GetReceiptChequeDetailsforPrint(int Id)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = string.Empty;
+                sql = @"select  PM.PayModeName,P.TotalPremium,R.ChequeNo,R.ChequeDate,R.BankName,C.CusName  from  PolicyIssueChequeReceived R 
+                        inner join PolicyIssue P ON R.PolicyId= P.PolicyId  INNER JOIN PaymentMode PM ON PM.PayModeId=P.PayModeId
+                        inner join Customer C on P.CusId=C.CusId where P.PolicyId= @Id ";
+                      
+                return connection.Query<PolicyIssueChequeReceived>(sql, new { Id = Id });
+            }
+        }
     }
 }
 
