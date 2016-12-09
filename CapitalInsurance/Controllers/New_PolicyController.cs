@@ -244,7 +244,7 @@ namespace CapitalInsurance.Controllers
            Result res = new PolicyIssueRepository().UpdatePaymentCommitments(model);
             if (res.Value)
             {
-                TempData["Success"] = "Updated Successfully!";
+                TempData["Success"] = "Saved Successfully!";
             }
             else
             {
