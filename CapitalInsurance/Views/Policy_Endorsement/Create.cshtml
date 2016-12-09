@@ -155,6 +155,9 @@
                         <label>Transaction No.</label>
                         @Html.HiddenFor(m => m.PolicyId)
                         @Html.HiddenFor(m => m.StrTranNumber)
+                        @Html.HiddenFor(m => m.PolicySubDate)
+                        @Html.HiddenFor(m => m.EffectiveDate)
+                        @Html.HiddenFor(m => m.RenewalDate)
                         @Html.TextBoxFor(m => m.TranNumber, new { @class = "form_input", @readonly = "readonly" })
                     </div>
                 </div>

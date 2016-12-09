@@ -19,10 +19,10 @@
         //columns.Add(m => m.InsCoverName).Titled("Product Type").SetWidth(7);
         columns.Add(m => m.EffectiveDate).Format("{0:dd/MM/yyyy}").Titled("Effective Date").SetWidth(7);
         columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("Renewal Date").SetWidth(7);
-        columns.Add(m => m.PremiumAmount).Titled("Premium Amt.").SetWidth(7).Css("text-right");
-        columns.Add(m => m.ExtraPremium).Titled("Additional Premium").SetWidth(7).Css("text-right");
-        columns.Add(m => m.TotalPremium).Titled("Total Premium").SetWidth(7).Css("text-right");
-        columns.Add(m => m.CommissionAmount).Titled("Commi.Amt.").SetWidth(7).Css("text-right");
+        columns.Add(m => m.PremiumAmount).Titled("Premium Amt.").SetWidth(7).Css("text-right").Format("{0:#}");
+        columns.Add(m => m.ExtraPremium).Titled("Additional Premium").SetWidth(7).Css("text-right").Format("{0:#}");
+        columns.Add(m => m.TotalPremium).Titled("Total Premium").SetWidth(7).Css("text-right").Format("{0:#}");
+        columns.Add(m => m.CommissionAmount).Titled("Commi.Amt.").SetWidth(7).Css("text-right").Format("{0:#}");
         columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(7);
         columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Edit", new { type = ViewBag.Type, Id = m.PolicyId})">Edit</a>);
         if (@ViewBag.Type == 3)

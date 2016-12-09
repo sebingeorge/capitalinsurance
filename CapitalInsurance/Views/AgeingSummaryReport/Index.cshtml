@@ -3,6 +3,10 @@
     ViewBag.Title = "Index";
 }
 <script>
+    function Exit() {
+        var url = '@Url.Action("Index","Home")';
+        window.location = url;
+    }
     function Filter() {
         $("#Ageing_Summary").addClass("fade");
       
