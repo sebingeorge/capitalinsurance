@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
+using System.Data;
 
 
 namespace CapitalInsurance.Controllers
@@ -241,13 +244,102 @@ namespace CapitalInsurance.Controllers
            Result res = new PolicyIssueRepository().UpdatePaymentCommitments(model);
             if (res.Value)
             {
-                TempData["Success"] = "Updated Successfully!";
+                TempData["Success"] = "Saved Successfully!";
             }
             else
             {
 
             }
             return RedirectToAction("Index", new { type = model.Type });
+        }
+        public ActionResult Print(int Id)
+        {
+
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ReceiptVoucher.rpt"));
+
+            DataSet ds = new DataSet();
+            ds.Tables.Add("Head");
+            ds.Tables.Add("Items");
+
+            //    //-------HEAD
+
+
+            ds.Tables["Head"].Columns.Add("VoucherNo");
+            ds.Tables["Head"].Columns.Add("DocumentDate");
+            ds.Tables["Head"].Columns.Add("TotalPremium");
+            ds.Tables["Head"].Columns.Add("Customer");
+            ds.Tables["Head"].Columns.Add("Company");
+            ds.Tables["Head"].Columns.Add("Product");
+            ds.Tables["Head"].Columns.Add("PaymentTo");
+            //-------DT
+            ds.Tables["Items"].Columns.Add("ReceiptType");
+            ds.Tables["Items"].Columns.Add("ReceiveFrom");
+            ds.Tables["Items"].Columns.Add("Amount");
+            ds.Tables["Items"].Columns.Add("ChequeNo");
+            ds.Tables["Items"].Columns.Add("Date");
+            ds.Tables["Items"].Columns.Add("Bank");
+
+            var Head = new PolicyIssueRepository().GetReceiptHdForPrint(Id);
+            DataRow dr = ds.Tables["Head"].NewRow();
+            //dr["VoucherNo"] = Head.;
+            dr["DocumentDate"] = Head.TranDate.Value.ToString("dd-MMM-yyyy");
+            dr["TotalPremium"] = Head.TotalPremium;
+            dr["Customer"] = Head.CusName;
+            dr["Company"] = Head.InsCmpName;
+            dr["Product"] = Head.InsPrdName;
+            dr["PaymentTo"] = Head.PaymentTo;
+
+
+            ds.Tables["Head"].Rows.Add(dr);
+
+            var Items = new PolicyIssueRepository().GetReceiptChequeDetailsforPrint(Id);
+
+            foreach (var item in Items)
+            {
+                var ReceiptDetails = new PolicyIssueChequeReceived
+                {
+                    CusName = item.CusName,
+                    PayModeName = item.PayModeName,
+                    TotalPremium = item.TotalPremium,
+                    ChequeNo = item.ChequeNo,
+                    ChequeDate = item.ChequeDate,
+                    BankBranch = item.BankBranch,
+                    BankName = item.BankName,
+                    ChequeAmt=item.ChequeAmt
+                };
+
+                DataRow dri = ds.Tables["Items"].NewRow();
+                dri["ReceiptType"] = ReceiptDetails.PayModeName;
+                dri["ReceiveFrom"] = ReceiptDetails.CusName;
+                dri["Amount"] = ReceiptDetails.TotalPremium;
+                dri["ChequeNo"] = ReceiptDetails.ChequeNo;
+                dri["Date"] = ReceiptDetails.ChequeDate.Value.ToString("dd-MMM-yyyy");
+                dri["Bank"] = ReceiptDetails.BankName;
+                ds.Tables["Items"].Rows.Add(dri);
+            }
+
+            ds.WriteXml(Path.Combine(Server.MapPath("~/XML"), "ReceiptVoucher.xml"), XmlWriteMode.WriteSchema);
+
+            rd.SetDataSource(ds);
+
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+
+
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf");
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
         void FillDropdowns()
         {
