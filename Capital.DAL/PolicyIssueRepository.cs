@@ -345,7 +345,7 @@ namespace Capital.DAL
 
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select P.TranDate,P.TotalPremium,P.PaymentTo,C.CusName,I.InsPrdName,IC.InsCmpName from PolicyIssue P inner join Customer C on P.CusId=C.CusId LEFT JOIN InsuranceProduct I ON I.InsPrdId=P.InsPrdId
+                string sql = @"select Concat(P.TranPrefix,'/',P.TranNumber)StrTranNumber,P.TranDate,P.TotalPremium,P.PaymentTo,C.CusName,I.InsPrdName,IC.InsCmpName from PolicyIssue P inner join Customer C on P.CusId=C.CusId LEFT JOIN InsuranceProduct I ON I.InsPrdId=P.InsPrdId
                                LEFT JOIN InsuranceCompany IC ON IC.InsCmpId=P.InsCmpId where P.PolicyId=@Id";
 
                 var ObjReceipt = connection.Query<PolicyIssue>(sql, new { Id = Id }).Single<PolicyIssue>();

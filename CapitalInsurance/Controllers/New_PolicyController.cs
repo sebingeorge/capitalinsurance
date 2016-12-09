@@ -282,7 +282,7 @@ namespace CapitalInsurance.Controllers
 
             var Head = new PolicyIssueRepository().GetReceiptHdForPrint(Id);
             DataRow dr = ds.Tables["Head"].NewRow();
-            //dr["VoucherNo"] = Head.;
+            dr["VoucherNo"] = Head.StrTranNumber;
             dr["DocumentDate"] = Head.TranDate.Value.ToString("dd-MMM-yyyy");
             dr["TotalPremium"] = Head.TotalPremium;
             dr["Customer"] = Head.CusName;
