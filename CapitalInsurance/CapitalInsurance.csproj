@@ -185,6 +185,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\adminController.cs" />
+    <Compile Include="Controllers\AgeingSummaryReportController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BusinessViewController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -196,7 +197,6 @@
     <Compile Include="Controllers\MISReportController.cs" />
     <Compile Include="Controllers\New_PolicyController.cs" />
     <Compile Include="Controllers\PayableReportController.cs" />
-    <Compile Include="Controllers\PolicyIssueController.cs" />
     <Compile Include="Controllers\Policy_EndorsementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -525,6 +525,8 @@
     <Content Include="Views\Customer_Invoice\_PendingPolicyForCustomerInvoice.cshtml" />
     <Content Include="Views\Customer_Invoice\Create.cshtml" />
     <Content Include="Views\Customer_Invoice\PreviousCustomerInvoice.cshtml" />
+    <Content Include="Views\AgeingSummaryReport\Index.cshtml" />
+    <Content Include="Views\AgeingSummaryReport\_AgeingSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

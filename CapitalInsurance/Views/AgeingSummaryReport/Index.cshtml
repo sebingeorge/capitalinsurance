@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<script>
+    function Filter() {
+        $("#Ageing_Summary").addClass("fade");
+      
+        var Client = $("#client").val().trim();
+     
+        var url = '@Url.Action("AgeingSummary")';
+        url += "?Client=" + encodeURIComponent(Client);
+        $("#Ageing_Summary").load(url, function () {
+            $("#Ageing_Summary").removeClass("fade");
+        });
+    }
+</script>
+<div class="container content-in">
+    <div class="row">
+            <h1>Ageing Summary Report Based on Committed Dates</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label>Customer</label>
+            <input id="client" class="form_input" placeholder="Search for Customer" onkeyup="Filter()" />
+        </div>
+
+    </div>
+
+    <br />
+    <div id="Ageing_Summary">
+        @Html.Action("AgeingSummary")
+    </div>
+    <div class="row">
+        <hr />
+        <div class="col-md-12 hrpart">
+        
+            <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
+        </div>
+    </div>
+</div>
+
