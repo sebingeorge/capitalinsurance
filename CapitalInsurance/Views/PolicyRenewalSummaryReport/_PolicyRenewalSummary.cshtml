@@ -36,16 +36,17 @@
             console.log(testdata);
         });
     })
-    //function ShowDetails() {
+    function ShowDetails() {
+      
+
+    }
+    //$(function () {
     //    alert("hi");
-    //}
-    $(function () {
-        alert("hi");
-            $(".check-item").click(function () {
-                alert("hi");
+    //        $(".check-item").click(function () {
+    //            alert("hi");
               
-            });
-        });
+    //        });
+    //    });
 
 
    
@@ -53,7 +54,7 @@
 <div class="table-responsive scroll3">
     @Html.Grid(Model).Columns(columns =>
     {
-        columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => @Html.ActionLink(Model.Month, "", new { @class = "details"}));
+        columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => @Html.ActionLink(Model.Month, "#", "", null, new { onclick="ShowDetails()" }));
         //columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => Html.ActionLink(Model.Month,"", new { id = Model.MonthCode, @class = "check-item" }).ToHtmlString());
         
         columns.Add(m => m.CountofExpired).Titled("For Renewal").SetWidth(5).Css("text-right PolicyRenewal-Red");
