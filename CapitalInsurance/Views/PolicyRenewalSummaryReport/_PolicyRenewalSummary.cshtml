@@ -23,19 +23,39 @@
 </style>
 <script>
     $(document).ready(function () {
+        //$(function () {
+        //    alert("hi");
+            $(".details").click(function () {
+                alert("hi");
+
+            });
+        //});
+
         $.each($('input').attr('data-name'), function () {
             var testdata = $(this).attr('data-name');
             console.log(testdata);
         });
     })
-    function ShowDetails() {
+    //function ShowDetails() {
+    //    alert("hi");
+    //}
+    $(function () {
         alert("hi");
-    }
+            $(".check-item").click(function () {
+                alert("hi");
+              
+            });
+        });
+
+
+   
 </script>
 <div class="table-responsive scroll3">
     @Html.Grid(Model).Columns(columns =>
     {
-        columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => Html.ActionLink(Model.Month, "PolicyDetailsPopup", new { id = Model.MonthCode}).ToHtmlString());
+        columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => @Html.ActionLink(Model.Month, "", new { @class = "details"}));
+        //columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => Html.ActionLink(Model.Month,"", new { id = Model.MonthCode, @class = "check-item" }).ToHtmlString());
+        
         columns.Add(m => m.CountofExpired).Titled("For Renewal").SetWidth(5).Css("text-right PolicyRenewal-Red");
         columns.Add(m => m.CountofRenewed).Titled("Renewed").SetWidth(10).Css("text-right PolicyRenewal-Green");
        
