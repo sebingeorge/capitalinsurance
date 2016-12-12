@@ -3,7 +3,7 @@
 @using GridMvc.Html
 <style>
     /*Simple css hack to right align text*/
-    td[data-name='CountofExpired'] {
+    /*td[data-name='CountofExpired'] {
        background-color:red;
     }
      td[data-name='CountofRenewed'] {
@@ -11,9 +11,23 @@
     }
    td[data-name='Month'] {
      cursor:pointer;
-    }
+    }*/
+   .PolicyRenewal-Red{
+       background-color:red;
+       color:white;
+   }
+   .PolicyRenewal-Green{
+       background-color:green;
+       color:white;
+   }
 </style>
 <script>
+    $(document).ready(function () {
+        $.each($('input').attr('data-name'), function () {
+            var testdata = $(this).attr('data-name');
+            console.log(testdata);
+        });
+    })
     function ShowDetails() {
         alert("hi");
     }
@@ -22,8 +36,8 @@
     @Html.Grid(Model).Columns(columns =>
     {
         columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => Html.ActionLink(Model.Month, "PolicyDetailsPopup", new { id = Model.MonthCode}).ToHtmlString());
-        columns.Add(m => m.CountofExpired).Titled("For Renewal").SetWidth(5).Css("text-right");
-        columns.Add(m => m.CountofRenewed).Titled("Renewed").SetWidth(10).Css("text-right");
+        columns.Add(m => m.CountofExpired).Titled("For Renewal").SetWidth(5).Css("text-right PolicyRenewal-Red");
+        columns.Add(m => m.CountofRenewed).Titled("Renewed").SetWidth(10).Css("text-right PolicyRenewal-Green");
        
     }).WithPaging(15)
 </div>
