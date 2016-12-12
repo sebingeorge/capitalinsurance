@@ -197,6 +197,7 @@
     <Compile Include="Controllers\MISReportController.cs" />
     <Compile Include="Controllers\New_PolicyController.cs" />
     <Compile Include="Controllers\PayableReportController.cs" />
+    <Compile Include="Controllers\PolicyRenewalSummaryReportController.cs" />
     <Compile Include="Controllers\Policy_EndorsementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -527,6 +528,9 @@
     <Content Include="Views\Customer_Invoice\PreviousCustomerInvoice.cshtml" />
     <Content Include="Views\AgeingSummaryReport\Index.cshtml" />
     <Content Include="Views\AgeingSummaryReport\_AgeingSummary.cshtml" />
+    <Content Include="Views\PolicyRenewalSummaryReport\_PolicyRenewalSummary.cshtml" />
+    <Content Include="Views\PolicyRenewalSummaryReport\Index.cshtml" />
+    <Content Include="Views\PolicyRenewalSummaryReport\_PolicyDetailsPopup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
