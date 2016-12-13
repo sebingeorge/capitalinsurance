@@ -272,6 +272,7 @@
     <Content Include="images\icon\salesachivementreport.png" />
     <Content Include="images\icon\salestarget.png" />
     <Content Include="images\icon_nav.png" />
+    <Content Include="images\ihits.png" />
     <Content Include="images\insurance.png" />
     <Content Include="images\login-head.png" />
     <Content Include="images\logo.png" />
