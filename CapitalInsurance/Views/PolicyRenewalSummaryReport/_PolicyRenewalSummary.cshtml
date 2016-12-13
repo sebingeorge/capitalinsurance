@@ -1,0 +1,80 @@
+﻿
+@model List<Capital.Domain.RenewalSummary>
+@using GridMvc.Html
+<style>
+    /*Simple css hack to right align text*/
+    /*td[data-name='CountofExpired'] {
+       background-color:red;
+    }
+     td[data-name='CountofRenewed'] {
+       background-color:green;
+    }
+   td[data-name='Month'] {
+     cursor:pointer;
+    }*/
+   .PolicyRenewal-Red{
+       background-color:red;
+       color:white;
+   }
+   .PolicyRenewal-Green{
+       background-color:green;
+       color:white;
+   }
+</style>
+<script>
+    $(document).ready(function () {
+        //$(function () {
+        //    alert("hi");
+            $(".details").click(function () {
+                alert("hi");
+
+            });
+        //});
+
+        $.each($('input').attr('data-name'), function () {
+            var testdata = $(this).attr('data-name');
+            console.log(testdata);
+        });
+    })
+    function ShowDetails() {
+      
+
+    }
+    //$(function () {
+    //    alert("hi");
+    //        $(".check-item").click(function () {
+    //            alert("hi");
+              
+    //        });
+    //    });
+
+
+   
+</script>
+<div class="table-responsive scroll3">
+    @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => @Html.ActionLink(Model.Month, "#", "", null, new { onclick="ShowDetails()" }));
+        //columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => Html.ActionLink(Model.Month,"", new { id = Model.MonthCode, @class = "check-item" }).ToHtmlString());
+        
+        columns.Add(m => m.CountofExpired).Titled("For Renewal").SetWidth(5).Css("text-right PolicyRenewal-Red");
+        columns.Add(m => m.CountofRenewed).Titled("Renewed").SetWidth(10).Css("text-right PolicyRenewal-Green");
+       
+    }).WithPaging(15)
+</div>
+<!-- modal to show details -->
+<div id="details-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>*@
+            <div class="modal-body" id="div-details">
+                Loading...
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>*@
+        </div>
+    </div>
+</div>
