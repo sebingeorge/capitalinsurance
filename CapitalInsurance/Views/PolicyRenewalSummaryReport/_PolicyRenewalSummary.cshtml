@@ -3,32 +3,31 @@
 @using GridMvc.Html
 <style>
     /*Simple css hack to right align text*/
-    /*td[data-name='CountofExpired'] {
+    td[data-name='CountofExpired'] {
        background-color:red;
     }
      td[data-name='CountofRenewed'] {
        background-color:green;
     }
-   td[data-name='Month'] {
-     cursor:pointer;
-    }*/
-   .PolicyRenewal-Red{
+
+   /*.PolicyRenewal-Red{
        background-color:red;
        color:white;
    }
    .PolicyRenewal-Green{
        background-color:green;
        color:white;
-   }
+   }*/
 </style>
 <script>
-    $(document).ready(function () {
+    //$(document).ready(function () {
 
-        $.each($('input').attr('data-name'), function () {
-        var testdata = $(this).attr('data-name');
-        console.log(testdata);
-       });
-    })
+    //    $.each($('input').attr('data-name'), function () {
+    //    var testdata = $(this).attr('data-name');
+    //    console.log(testdata);
+    //   });
+    //})
+
     function ShowDetails(id) {
        
        
