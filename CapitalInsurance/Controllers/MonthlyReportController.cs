@@ -18,7 +18,8 @@ namespace CapitalInsurance.Controllers
         public ActionResult MonthlyPaymentCommittment(string Client = "")
         {
 
-            return PartialView("MonthlyPaymentCommittment", new MonthlyReportRepository().MonthlyPaymentCommittment(Client));
+            var data = new MonthlyReportRepository().MonthlyPaymentCommittment(Client);
+            return PartialView("MonthlyPaymentCommittment", data);
         }
 
     }

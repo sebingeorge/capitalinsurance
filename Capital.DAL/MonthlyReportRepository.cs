@@ -51,8 +51,8 @@ select @LastDay_CurrentMonth ,@FirstDay_NextMonth,@LastDay_NextMonth,@FirstDay_N
                      update R set R.Amount3 = A.Amount from A inner join #Result R on R.PolicyId = A.PolicyId;
 
 
-				     select * from #Result where  CusName LIKE '%'+@Client+'%';
-                      drop table #Result
+				     select * from #Result ;
+                   
 
 ";
 
