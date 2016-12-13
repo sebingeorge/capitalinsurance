@@ -78,7 +78,7 @@ namespace Capital.DAL
             }
             return res;
         }
-        public List<Customer> GetCustomer()
+        public List<Customer> GetCustomer(string Customer = "")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
@@ -92,8 +92,9 @@ namespace Capital.DAL
                 left join CustomerCategory CC on CC.CusCatId = C.CusCatId
                 left join [State] S on S.StateId = C.StateId
                 left join Country CT on CT.CountryId = C.CountryId
+                where C.CusName LIKE '%'+@Customer+'%'
                 order by C.CusName";
-                return connection.Query<Customer>(query).ToList();
+                return connection.Query<Customer>(query, new { Customer = Customer }).ToList();
             }
         }
         public Customer GetCustomer(int Id)

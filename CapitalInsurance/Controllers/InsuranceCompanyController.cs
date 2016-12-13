@@ -13,8 +13,7 @@ namespace CapitalInsurance.Controllers
         // GET: InsuranceCompany
         public ActionResult Index()
         {
-            List<InsuranceCompany> lstInsurCmpy = (new InsuranceCompanyRepository()).GetCompany();
-            return View(lstInsurCmpy);
+            return View();
         }
         public ActionResult Create()
         {
@@ -87,6 +86,11 @@ namespace CapitalInsurance.Controllers
 
             }
             return RedirectToAction("Index");
+        }
+        public ActionResult CompanyList(string Company = "")
+        {
+
+            return PartialView("_InsuranceCmpyGrid", new InsuranceCompanyRepository().GetCompany(Company));
         }
     }
 }

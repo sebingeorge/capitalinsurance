@@ -4,7 +4,7 @@
 }
 <div class="container content-in">
     <div class="row">
-        <h1>Create User</h1>
+        <h1>New User</h1>
     </div>
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
@@ -69,12 +69,12 @@
                 <div class="row form-group">
                     <div class="col-md-3">
                         <label>Employee</label>
-                        @Html.DropDownListFor(m => Model.SalesMgId, (SelectList)ViewBag.Employee, "Select Person", new { @class = "form_input", autocomplete = "off" })
+                        @Html.DropDownListFor(m => Model.SalesMgId, (SelectList)ViewBag.Employee, "Select Employee", new { @class = "form_input", autocomplete = "off" })
                     </div>
                 </div>
             </div>
         </div>
-        <hr />
+        <br />
         <div class="row">
             <div class="table-responsive">
                 <div class="tab_logic">
@@ -109,9 +109,9 @@
         <div class="row">
             <hr />
             <div class="col-md-12">
-                <button type="submit" class="form-button">Register</button>  
+                <button type="button" class="form-button" onclick="Previous()">Previous</button>
                 <button type="button" class="form-button right" onclick="Exit()">Exit</button>
-                <button type="button" class="form-button right" onclick="Previous()">Previous</button>
+                <button type="submit" class="form-button right">Save</button>
             </div>
         </div>
     }
@@ -120,6 +120,10 @@
     function Previous()
     {
         var url = '@Url.Action("UserList")';
+        location.href = url;
+    }
+    function Exit() {
+        var url = '@Url.Action("Index","Home")';
         location.href = url;
     }
     function App1Changed(row) {

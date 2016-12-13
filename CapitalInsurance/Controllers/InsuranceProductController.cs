@@ -13,8 +13,8 @@ namespace CapitalInsurance.Controllers
         // GET: InsuranceProduct
         public ActionResult Index()
         {
-            List<InsuranceProduct> lstInsurProducts = (new InsuranceProductRepository()).GetInsuranceProduct();
-            return View(lstInsurProducts);
+            //List<InsuranceProduct> lstInsurProducts = (new InsuranceProductRepository()).GetInsuranceProduct();
+            return View();
         }
         public ActionResult Create()
         {
@@ -93,6 +93,11 @@ namespace CapitalInsurance.Controllers
 
             }
             return RedirectToAction("Index");
+        }
+        public ActionResult ProductList(string Product = "")
+        {
+
+            return PartialView("_InsuranceProductGrid", new InsuranceProductRepository().GetInsuranceProduct(Product));
         }
         void FillDropdowns()
         {

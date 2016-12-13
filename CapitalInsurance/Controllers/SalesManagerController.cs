@@ -13,8 +13,8 @@ namespace CapitalInsurance.Controllers
         // GET: SalesManager
         public ActionResult Index()
         {
-            List<SalesManager> lstSalesManager = (new SalesManagerRepository()).GetSalesManagers();
-            return View(lstSalesManager);
+            //List<SalesManager> lstSalesManager = (new SalesManagerRepository()).GetSalesManagers();
+            return View();
         }
         public ActionResult Create()
         {
@@ -91,6 +91,12 @@ namespace CapitalInsurance.Controllers
 
             }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult SalesManagerList(string Employee = "")
+        {
+
+            return PartialView("_SalesManagerGrid", new SalesManagerRepository().GetSalesManagers(Employee));
         }
         void FillDropdowns()
         {

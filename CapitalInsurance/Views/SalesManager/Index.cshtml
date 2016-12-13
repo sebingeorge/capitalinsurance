@@ -11,6 +11,16 @@
         var url = '@Url.Action("Index","Home")';
         location.href = url;
     }
+    function Filter() {
+        $("#Emp_list").addClass("fade");
+
+        var Employee = $("#emp").val().trim();
+        var url = '@Url.Action("SalesManagerList")';
+        url += "?Employee=" + encodeURIComponent(Employee);
+        $("#Emp_list").load(url, function () {
+            $("#Emp_list").removeClass("fade");
+        });
+    }
     $(document).ready(function () {
 
 
@@ -42,7 +52,7 @@
         <h1>Employee Details List</h1>
     </div>
     <div class="row">
-        <div class="col-md-2">
+        @*<div class="col-md-2">
             <div class="row">
                 <div class="col-md-6">
                     <label>From</label>
@@ -53,24 +63,26 @@
                     <input type="text" class="form_input" />
                 </div>
             </div>
-        </div>
+        </div>*@
         <div class="col-md-4">
             <div class="row">
                 <div class="col-md-6">
-                    <label>Sales Manager Name</label>
-                    <input type="text" class="form_input" />
+                    <label>Employee</label>
+                    <input id="emp" class="form_input" placeholder="Search for Employee" onkeyup="Filter()" />
                 </div>
             </div>
         </div>
     </div>
-    <hr />
-    @Html.Partial("_SalesManagerGrid", Model)
-  
+    <br />
+    <div id="Emp_list">
+        @Html.Action("SalesManagerList")
+    </div>
     <div class="row">
         <hr />
         <div class="col-md-offset-8 col-md-4">
-            <button type="button" class="form-button right" onclick="Create()">Create</button>
             <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+            <button type="button" class="form-button right" onclick="Create()">Create</button>
+           
         </div>
     </div>
 </div>

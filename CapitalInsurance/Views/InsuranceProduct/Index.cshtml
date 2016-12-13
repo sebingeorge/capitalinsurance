@@ -13,6 +13,16 @@
         var url = '@Url.Action("Index","Home")';
         location.href = url;
     }
+    function Filter() {
+        $("#Product_list").addClass("fade");
+
+        var Product = $("#InsPrdt").val().trim();
+        var url = '@Url.Action("ProductList")';
+        url += "?Product=" + encodeURIComponent(Product);
+        $("#Product_list").load(url, function () {
+            $("#Product_list").removeClass("fade");
+        });
+    }
     $(document).ready(function () {
 
 
@@ -42,7 +52,7 @@
         <h1>Insurance Product List</h1>
     </div>
     <div class="row">
-        <div class="col-md-2">
+        @*<div class="col-md-2">
             <div class="row">
                 <div class="col-md-6">
                     <label>From</label>
@@ -53,23 +63,25 @@
                     <input type="text" class="form_input" />
                 </div>
             </div>
-        </div>
+        </div>*@
         <div class="col-md-4">
             <div class="row">
                 <div class="col-md-6">
-                    <label>Insurance Product Name</label>
-                    <input type="text" class="form_input" />
+                    <label>Insurance Product</label>
+                    <input id="InsPrdt" class="form_input" placeholder="Search for Insurance Product" onkeyup="Filter()" /> 
                 </div>
             </div>
         </div>
     </div>
-    <hr />
-    @Html.Partial("_InsuranceProductGrid", Model)
+    <br />
+    <div id="Product_list">
+        @Html.Action("ProductList")
+    </div>
     <div class="row">
         <hr />
         <div class="col-md-offset-8 col-md-4">
-            <button type="button" class="form-button right" onclick="Create()">Create</button>
             <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+            <button type="button" class="form-button right" onclick="Create()">Create</button>
         </div>
     </div>
 </div>

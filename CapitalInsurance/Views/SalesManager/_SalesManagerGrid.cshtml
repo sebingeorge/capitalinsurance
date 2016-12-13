@@ -6,13 +6,13 @@
     @Html.Grid(Model).Columns(columns =>
 {
         columns.Add(m => m.SalesMgCode).Titled("Employee Id").SetWidth(12);
-        columns.Add(m => m.SalesMgName).Titled("Name").SetWidth(12);
+        columns.Add(m => m.SalesMgName).Titled("Employee Name").SetWidth(12);
         columns.Add(m => m.DsgName).Titled("Designation").SetWidth(12);
         columns.Add(m => m.Deptment).Titled("Department").SetWidth(10);
         columns.Add(m => m.Location).Titled("Location").SetWidth(7);
         columns.Add(m => m.QuatarContactNo).Titled("Contact").SetWidth(7);
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.SalesMgId })">Edit</a>);
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Delete", new { Id = m.SalesMgId })">Delete</a>);
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.SalesMgId })">Edit</a>);
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Delete", new { Id = m.SalesMgId })">Delete</a>);
 
     }).WithPaging(15)
 </div>

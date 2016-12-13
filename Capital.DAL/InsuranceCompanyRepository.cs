@@ -65,13 +65,14 @@ namespace Capital.DAL
             return res;
         }
 
-        public List<InsuranceCompany> GetCompany()
+        public List<InsuranceCompany> GetCompany(string Company = "")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
                 string query = @"select * from InsuranceCompany
+                where InsCmpName LIKE '%'+@Company+'%'
                 order by InsCmpName";
-                return connection.Query<InsuranceCompany>(query).ToList();
+                return connection.Query<InsuranceCompany>(query, new { Company = Company }).ToList();
             }
         }
         public InsuranceCompany GetCompany(int Id)

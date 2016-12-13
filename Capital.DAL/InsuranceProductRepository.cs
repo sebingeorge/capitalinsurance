@@ -74,7 +74,7 @@ namespace Capital.DAL
             }
             return res;
         }
-        public List<InsuranceProduct> GetInsuranceProduct()
+        public List<InsuranceProduct> GetInsuranceProduct(string Product = "")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
@@ -82,8 +82,9 @@ namespace Capital.DAL
                 from InsuranceProduct I
                 left join InsuranceCompany IC on IC.InsCmpId = I.InsCmpId
                 left join InsuranceType IT on IT.InsTypeId = I.InsTypeId
+                where I.InsPrdName LIKE '%'+@Product+'%'
                 order by I.InsPrdName";
-                return connection.Query<InsuranceProduct>(query).ToList();
+                return connection.Query<InsuranceProduct>(query, new { Product = Product }).ToList();
             }
         }
         public InsuranceProduct GetInsuranceProduct(int Id)

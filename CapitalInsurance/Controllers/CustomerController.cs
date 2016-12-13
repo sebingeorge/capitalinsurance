@@ -13,8 +13,7 @@ namespace CapitalInsurance.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            List<Customer> lstCustomer = (new CustomerRepository()).GetCustomer();
-            return View(lstCustomer);
+             return View();
         }
         public ActionResult Create()
         {
@@ -35,6 +34,11 @@ namespace CapitalInsurance.Controllers
             FillDropdowns();
             Customer objCustomer = new CustomerRepository().GetCustomer(Id);
             return View("Create", objCustomer);
+        }
+        public ActionResult CustomerList(string Customer = "")
+        {
+            
+            return PartialView("_CustomerGrid", new CustomerRepository().GetCustomer(Customer));
         }
         void FillDropdowns()
         {

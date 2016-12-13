@@ -12,7 +12,7 @@ namespace Capital.DAL
     public class SalesManagerRepository:BaseRepository
     {
         static string dataConnection = GetConnectionString("CibConnection");
-        public List<SalesManager> GetSalesManagers()
+        public List<SalesManager> GetSalesManagers(string Employee = "")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
@@ -20,8 +20,9 @@ namespace Capital.DAL
                 D.DsgName
                 from SalesManager S
                 left join Designation D on D.DsgId = S.DsgId
+                where  S.SalesMgName LIKE '%'+@Employee+'%'
                 order by S.SalesMgName";
-                return connection.Query<SalesManager>(query).ToList();
+                return connection.Query<SalesManager>(query, new { Employee = Employee }).ToList();
             }
         }
         public Result Insert(SalesManager model)

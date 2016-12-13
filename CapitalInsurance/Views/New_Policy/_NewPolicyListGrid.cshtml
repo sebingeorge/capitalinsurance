@@ -24,10 +24,10 @@
         columns.Add(m => m.TotalPremium).Titled("Total Premium").SetWidth(7).Css("text-right").Format("{0:#}");
         columns.Add(m => m.CommissionAmount).Titled("Commi.Amt.").SetWidth(7).Css("text-right").Format("{0:#}");
         columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(7);
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Edit", new { type = ViewBag.Type, Id = m.PolicyId})">Edit</a>);
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Edit", new { type = ViewBag.Type, Id = m.PolicyId})">Edit</a>);
         if (@ViewBag.Type == 3)
         {
-            columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent").RenderValueAs(m => @<a href="@Url.Action("Print", new { Id = m.PolicyId })">Print</a>);
+            columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Print", new { Id = m.PolicyId })">Print</a>);
         }
         if (@ViewBag.Type == 1)
         {

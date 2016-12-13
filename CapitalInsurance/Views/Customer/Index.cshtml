@@ -37,14 +37,23 @@
         }
     });
 
-
+    function Filter() {
+        $("#Cus_list").addClass("fade");
+      
+        var Customer = $("#cus").val().trim();
+        var url = '@Url.Action("CustomerList")';
+        url += "?Customer=" + encodeURIComponent(Customer);
+        $("#Cus_list").load(url, function () {
+            $("#Cus_list").removeClass("fade");
+        });
+    }
 </script>
 <div class="container content-in">
     <div class="row">
-        <h1>Customers</h1>
+        <h1>Customer List</h1>
     </div>
     <div class="row">
-        <div class="col-md-2">
+        @*<div class="col-md-2">
             <div class="row">
                 <div class="col-md-6">
                     <label>From</label>
@@ -55,68 +64,25 @@
                     <input type="text" class="form_input" />
                 </div>
             </div>
-        </div>
+        </div>*@
         <div class="col-md-4">
             <div class="row">
                 <div class="col-md-6">
-                    <label>Customer Name</label>
-                    <input type="text" class="form_input" />
+                    <label>Customer</label>
+                    <input id="cus" class="form_input" placeholder="Search for Customer" onkeyup="Filter()" />
                 </div>
             </div>
         </div>
     </div>
-    <hr />
-    @Html.Partial("_CustomerGrid", Model)
-    @*<div class="table-responsive scroll3">
-        <table class="table table-bordered" id="tab_logic">
-            <thead>
-                <tr class="grid_heading">
-                    <th width="2%">#</th>
-                    <th width="10%">Customer</th>
-                    <th width="10%">Short Name</th>
-                    <th width="7%">Region</th>
-                    <th width="7%">Sales Manager</th>
-                    <th width="7%">Category</th>
-                    <th width="7%">State</th>
-                    <th width="7%">Country</th>
-                    <th width="7%">Contact Name</th>
-                    <th width="7%">Designation</th>
-                    <th width="7%">Office No</th>
-                    <th width="7%">Mobile No</th>
-                    <th width="7%">Email Id</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    int i = 1;
-                    foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@i</td>
-                            <td>@item.CusName</td>
-                            <td>@item.CusShortName</td>
-                            <td>@item.RegionName</td>
-                            <td>@item.SalesMgName</td>
-                            <td>@item.CusCategory</td>
-                            <td>@item.StateName</td>
-                            <td>@item.CountryName</td>
-                            <td>@item.ContactName</td>
-                            <td>@item.Designation</td>
-                            <td>@item.OfficeNo</td>
-                            <td>@item.MobileNo</td>
-                            <td>@item.EmailId</td>
-                        </tr>
-                        i++;
-                    }
-                }                
-            </tbody>
-        </table>
-    </div>*@
-    <div class="row">
-        <hr />
-        <div class="col-md-offset-8 col-md-4">
-            <button type="button" class="form-button right" onclick="Create()">Create</button>
-            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+    <br />
+    <div id="Cus_list">
+        @Html.Action("CustomerList")
+    </div>
+        <div class="row">
+            <hr />
+            <div class="col-md-offset-8 col-md-4">
+                <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+                <button type="button" class="form-button right" onclick="Create()">Create</button>
+            </div>
         </div>
     </div>
-</div>
