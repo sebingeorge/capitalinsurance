@@ -9,10 +9,10 @@ using Dapper;
 
 namespace Capital.DAL
 {
- public  class AgeingReportRepository : BaseRepository
+ public  class MonthlyReportRepository : BaseRepository
     {
         static string dataConnection = GetConnectionString("CibConnection");
-        public List<AgeingSummary> GetThreeMonthsAgeingSummaryBasedCommittedDate(string Client="")
+        public List<AgeingSummary> MonthlyPaymentCommittment(string Client="")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
@@ -29,7 +29,6 @@ select @FirstDay_NextMonth =(SELECT DATEADD(s,1,@LastDay_CurrentMonth))
 select @FirstDay_Next2Month =(SELECT DATEADD(s,1,@LastDay_NextMonth))
 select @LastDay_Next2Month = (SELECT DATEADD(s,-1,DATEADD(mm, DATEDIFF(m,0,GETDATE())+3,0)))
 
-select @LastDay_CurrentMonth ,@FirstDay_NextMonth,@LastDay_NextMonth,@FirstDay_Next2Month,@LastDay_Next2Month
 
 
  SELECT P.PolicyId,C.CusName,P.TranType,P.TotalPremium,0 Amount1,0 Amount2,0 Amount3 INTO #Result FROM PolicyIssue P inner join Customer C ON C.CusId=P.CusId where P.PolicyNo IS NOT NULL;
@@ -51,8 +50,8 @@ select @LastDay_CurrentMonth ,@FirstDay_NextMonth,@LastDay_NextMonth,@FirstDay_N
                      update R set R.Amount3 = A.Amount from A inner join #Result R on R.PolicyId = A.PolicyId;
 
 
-				     select * from #Result where  CusName LIKE '%'+@Client+'%';
-                      drop table #Result
+				     select * from #Result ;
+                   
 
 ";
 
