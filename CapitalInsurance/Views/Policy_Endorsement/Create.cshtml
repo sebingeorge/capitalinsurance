@@ -155,6 +155,9 @@
                         <label>Transaction No.</label>
                         @Html.HiddenFor(m => m.PolicyId)
                         @Html.HiddenFor(m => m.StrTranNumber)
+                        @Html.HiddenFor(m => m.PolicySubDate)
+                        @Html.HiddenFor(m => m.EffectiveDate)
+                        @Html.HiddenFor(m => m.RenewalDate)
                         @Html.TextBoxFor(m => m.TranNumber, new { @class = "form_input", @readonly = "readonly" })
                     </div>
                 </div>
@@ -406,7 +409,7 @@
             <div class="col-md-3">
                 <div class="row form-group">
                     <div class="col-md-12">
-                        <label>QuickBooks Reference No.</label>
+                        <label>Quick Books Reference No.</label>
                         @Html.TextBoxFor(m => m.QuickBookRefNo, new { @class = "form_input", @readonly = "readonly" })
                         @Html.ValidationMessageFor(m => m.QuickBookRefNo, "", new { @class = "text-danger" })
                     </div>

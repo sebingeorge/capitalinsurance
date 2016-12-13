@@ -15,5 +15,9 @@ namespace Capital.Domain
         public string BankName { get; set; }
         public string BankBranch { get; set; }
         public decimal ChequeAmt { get; set; }
+        public string CusName { get; set; }
+        public decimal TotalPremium { get; set; }
+        public string PayModeName { get; set; }
+
     }
 }

@@ -21,7 +21,7 @@ namespace Capital.DAL
                                     left join Customer C on C.CusId = P.CusId
                                     left join InsuranceCompany I on I.InsCmpId = P.InsCmpId
                                     left join CustomerInvoiceItem CI ON CI.PolicyId =P.PolicyId
-                                    where CI.PolicyId IS NULL AND P.CusId = ISNULL(NULLIF(@ClientId, 0), P.CusId)";
+                                    where CI.PolicyId IS NULL AND P.CusId = ISNULL(NULLIF(@ClientId, 0), P.CusId) AND  P.PayModeId IS NOT NULL AND P.PolicyNo IS NOT NULL";
 
                 return connection.Query<PolicyIssue>(query, new { ClientId = ClientId }).ToList();
             }
@@ -31,7 +31,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"SELECT I.InsCmpName,P.EffectiveDate,P.InsuredName,P.TranType,P.PolicyNo,P.PolicyId,TotalPremium  from PolicyIssue P  left join InsuranceCompany I on I.InsCmpId = P.InsCmpId  WHERE P.PolicyId IN @PolicyIds";
+                string sql = @"SELECT I.InsCmpName,P.EffectiveDate,P.InsuredName,P.TranType,ISNULL(P.EndorsementNo,P.PolicyNo)PolicyNo,P.PolicyId,TotalPremium  from PolicyIssue P  left join InsuranceCompany I on I.InsCmpId = P.InsCmpId  WHERE P.PolicyId IN @PolicyIds";
 
                 var objPendingInv = connection.Query<CustomerInvoiceItem>(sql, new { PolicyIds = PolicyIds }).ToList<CustomerInvoiceItem>();
 
@@ -66,12 +66,13 @@ namespace Capital.DAL
             {
                 using (IDbConnection connection = OpenConnection(dataConnection))
                 {
+                    model.CusInvoicePrefix = "CIB/INV";
                     model.CusInvoiceRefNo = CustomerInvoiceRepository.GetNextDocNo();
                     model.TotalAmount = model.Items.Sum(m => m.TotalPremium);
                     string sql = @"INSERT INTO CustomerInvoice
-                                   (CusInvoiceRefNo,CusInvoiceDate,CusId,SpecialRemarks,TotalAmount,CreatedBy,CreatedDate )
+                                   (CusInvoicePrefix,CusInvoiceRefNo,CusInvoiceDate,CusId,SpecialRemarks,TotalAmount,CreatedBy,CreatedDate )
                                    VALUES
-                                   (@CusInvoiceRefNo,@CusInvoiceDate,@CusId,@SpecialRemarks,@TotalAmount,@CreatedBy,@CreatedDate );
+                                   (@CusInvoicePrefix,@CusInvoiceRefNo,@CusInvoiceDate,@CusId,@SpecialRemarks,@TotalAmount,@CreatedBy,@CreatedDate );
                                    SELECT CAST(SCOPE_IDENTITY() as int);";
                     model.CusInvoiceId = connection.Query<int>(sql, model).Single();
                     foreach (var item in model.Items)
@@ -97,8 +98,32 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string query = @"select CI.CusInvoiceRefNo,CI.CusInvoiceDate,C.CusName,CI.TotalAmount from CustomerInvoice CI inner join Customer C ON CI.CusId=C.CusId ";
+                string query = @"select CI.CusInvoiceId,Concat(CI.CusInvoicePrefix ,'/', CI.CusInvoiceRefNo)CusInvoiceRefNo,CI.CusInvoiceDate,C.CusName,CI.TotalAmount from CustomerInvoice CI inner join Customer C ON CI.CusId=C.CusId";
                 return connection.Query<CustomerInvoice>(query).ToList();
+            }
+        }
+        public IEnumerable<CustomerInvoiceItem> GetCustomerInvoicePrint(int Id)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = string.Empty;
+                sql = @"select  I.InsCmpName,ISNULL(P.EffectiveDate,'')EffectiveDate,P.InsuredName,P.TranType,ISNULL(P.EndorsementNo,P.PolicyNo)PolicyNo,P.PolicyId,TotalPremium from CustomerInvoiceItem C 
+                        INNER JOIN PolicyIssue P on P.PolicyId=C.PolicyId
+                        INNER JOIN InsuranceCompany I on I.InsCmpId = P.InsCmpId
+                        where C.CusInvoiceId = @Id";
+                return connection.Query<CustomerInvoiceItem>(sql, new { Id = Id });
+            }
+        }
+        public CustomerInvoice GetCustomerInvoiceHdDetails()
+        {
+
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"select Concat(CI.CusInvoicePrefix ,'/', CI.CusInvoiceRefNo)CusInvoiceRefNo,CI.CusInvoiceDate,C.CusName from CustomerInvoice CI inner join Customer C on CI.CusId=C.CusId";
+
+                var ObjInvoice = connection.Query<CustomerInvoice>(sql).Single<CustomerInvoice>();
+
+                return ObjInvoice;
             }
         }
     }
