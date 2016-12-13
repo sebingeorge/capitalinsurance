@@ -23,40 +23,30 @@
 </style>
 <script>
     $(document).ready(function () {
-        //$(function () {
-        //    alert("hi");
-            $(".details").click(function () {
-                alert("hi");
-
-            });
-        //});
 
         $.each($('input').attr('data-name'), function () {
-            var testdata = $(this).attr('data-name');
-            console.log(testdata);
-        });
+        var testdata = $(this).attr('data-name');
+        console.log(testdata);
+       });
     })
-    function ShowDetails() {
+    function ShowDetails(id) {
+       
+       
+        alert(id);
+        var url = '@Url.Action("PolicyDetailsPopup")';
+        $("#div-details").text('Loading...');
       
+        $("#div-details").load(url, { id: id });
+        //alert(url);
+        $('#details-modal').modal('show');
 
     }
-    //$(function () {
-    //    alert("hi");
-    //        $(".check-item").click(function () {
-    //            alert("hi");
-              
-    //        });
-    //    });
 
-
-   
-</script>
+ </script>
 <div class="table-responsive scroll3">
     @Html.Grid(Model).Columns(columns =>
     {
-        columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => @Html.ActionLink(Model.Month, "#", "", null, new { onclick="ShowDetails()" }));
-        //columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => Html.ActionLink(Model.Month,"", new { id = Model.MonthCode, @class = "check-item" }).ToHtmlString());
-        
+        columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => @Html.ActionLink(Model.Month, "", "", new { Model.MonthCode }, new { onclick = "ShowDetails('" + Model.MonthCode + "')" }));
         columns.Add(m => m.CountofExpired).Titled("For Renewal").SetWidth(5).Css("text-right PolicyRenewal-Red");
         columns.Add(m => m.CountofRenewed).Titled("Renewed").SetWidth(10).Css("text-right PolicyRenewal-Green");
        

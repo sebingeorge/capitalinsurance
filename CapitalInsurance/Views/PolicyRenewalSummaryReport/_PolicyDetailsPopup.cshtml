@@ -1,5 +1,18 @@
-﻿<div>
-    <h1>
-        hi
-    </h1>
+﻿@model List<Capital.Domain.PolicyIssue>
+@using GridMvc.Html
+<div class="table-responsive scroll3">
+      @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(m => m.StrTranNumber).Titled("Transaction No.").SetWidth(12);
+        columns.Add(m => m.PolicyNo).Titled("Policy No.").SetWidth(5);
+        columns.Add(m => m.CusName).Titled("Client").SetWidth(10);
+        columns.Add(m => m.CustContPersonName).Titled("Contact Name").SetWidth(10);
+        columns.Add(m => m.InsuredName).Titled("Insured Name").SetWidth(7);
+        columns.Add(m => m.InsCmpName).Titled("Insurance Company").SetWidth(7);
+        columns.Add(m => m.InsPrdName).Titled("Product").SetWidth(7);
+        columns.Add(m => m.TotalPremium).Titled("Total Premium").SetWidth(7).Css("text-right").Format("{0:#}");
+        columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("Renewal Date").SetWidth(7);
+        columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(7);
+    }).WithPaging(15)
 </div>
+
