@@ -9,10 +9,10 @@ using Dapper;
 
 namespace Capital.DAL
 {
- public  class AgeingReportRepository : BaseRepository
+ public  class MonthlyReportRepository : BaseRepository
     {
         static string dataConnection = GetConnectionString("CibConnection");
-        public List<AgeingSummary> GetThreeMonthsAgeingSummaryBasedCommittedDate(string Client="")
+        public List<AgeingSummary> MonthlyPaymentCommittment(string Client="")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {

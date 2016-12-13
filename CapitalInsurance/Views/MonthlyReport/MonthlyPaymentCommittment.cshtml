@@ -1,0 +1,14 @@
+﻿
+@model List<Capital.Domain.AgeingSummary>
+@using GridMvc.Html
+<div class="table-responsive scroll3">
+    @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(m => m.CusName).Titled("Customer").SetWidth(12);
+        columns.Add(m => m.TranType).Titled("Type").SetWidth(5);
+        columns.Add(m => m.TotalPremium).Titled("Total Receivable").SetWidth(10).Css("text-right").Format("{0:#}");
+        columns.Add(m => m.Amount1).Titled("Dec").SetWidth(10).Css("text-right");
+        columns.Add(m => m.Amount2).Titled("Jan").SetWidth(7).Css("text-right");
+        columns.Add(m => m.Amount3).Titled("Feb").SetWidth(7).Css("text-right");
+    }).WithPaging(15)
+</div>
