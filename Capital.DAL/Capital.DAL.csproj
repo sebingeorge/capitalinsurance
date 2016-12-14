@@ -81,6 +81,7 @@
     <Compile Include="CustomerCategoryRepository.cs" />
     <Compile Include="CustomerInvoiceRepository.cs" />
     <Compile Include="CustomerRepository.cs" />
+    <Compile Include="DailyActivityRepository.cs" />
     <Compile Include="DropdownRepository.cs" />
     <Compile Include="FinancialYearRepository.cs" />
     <Compile Include="InsuranceCompanyRepository.cs" />

@@ -16,7 +16,16 @@ namespace CapitalInsurance.Controllers
         }
         public ActionResult DailyActivity()
         {
-            return View();
+            //Type();
+            DailyActivity Model = new DailyActivityRepository().DAEmployeeDetails(UserID);
+            Model.DailyActivityItems = new List<DailyActivityItem>();
+            Model.DailyActivityItems.Add(new DailyActivityItem());
+            Model.DailyActivityDate = DateTime.Now;
+            return View(Model);
         }
+        //void Type()
+        //{
+        //    ViewBag.Type = new SelectList((new DropdownRepository()).FillDAType(), "Id", "Name");
+        //}
     }
 }

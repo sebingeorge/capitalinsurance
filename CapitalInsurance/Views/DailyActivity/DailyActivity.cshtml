@@ -1,13 +1,25 @@
-﻿
+﻿@model Capital.Domain.DailyActivity
 @{
     ViewBag.Title = "DailyActivity";
 }
-
+<script>
+    $(function () {
+        $(".timepicker").timepicker({});
+    });
+ 
+    function Previous() {
+        var url = '@Url.Action("PreviousDaily_Activity", "Daily_Activity_report")'
+        window.location = url;
+    }
+    function Exit() {
+        var url = '@Url.Action("Index","Home")';
+        location.href = url;
+    }
+</script>
 <div class="container content-in">
     <div class="row">
-        <h1>Daily Activity Report</h1>
+        <h1>Daily Activity</h1>
     </div>
-
     <div class="row">
         <div class="col-md-1">
             <div class="form-group">
@@ -20,133 +32,66 @@
             <div class="form-group">
                 <div class="col-md-6">
                     <label>Date</label>
-                    <input type="text" class="form_input" />
+                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        @Html.TextBoxFor(m => m.DailyActivityDate, new { @class = "form_input", @Value = Model.DailyActivityDate.Value.ToString("dd-MMM-yyyy") })
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
                 </div>
                 <div class="col-md-12">
                     <label>Employee</label>
-                    <input type="text" class="form_input" />
+                    @Html.TextBoxFor(m => m.SalesMgName, new { @class = "form_input ", @readonly = "readonly" })
                 </div>
 
                 <div class="col-md-12">
                     <label>Designation</label>
-                    <input type="text" class="form_input" />
+                    @Html.TextBoxFor(m => m.DsgName, new { @class = "form_input ", @readonly = "readonly" })
                 </div>
             </div>
         </div>
     </div>
     <br />
-    <div class="table-responsive scroll1">
-        <table class="table table-bordered" id="tab_logic">
-            <thead>
-                <tr class="grid_heading">
-                    <th width="2%">Sl.No.</th>
-                    <th width="7%">Date</th>
-                    @*<th width="7">Day</th>*@
-                    <th width="7%" class="text-right">Time</th>
-                    <th width="10%">Company</th>
-                    <th width="10%">Contact Person</th>
-                    <th width="12%">Contact Number</th>
-                    <th width="10%">Email ID</th>
-                    <th width="10%">
-                        <select class="form_input">
-                            <option value="">Type</option>
-                            <option value="">CC</option>
-                            <option value="">FC</option>
-                            <option value="">FA</option>
-                            <option value="">SC</option>
-                        </select>
-                    </th>
-                    <th width="25%">Remarks</th>
-                </tr>
-            </thead>
-            <tbody>
+    <table class="table table-bordered" id="aaa" data-placement="bottom">
+        <thead>
+            <tr class="grid_heading">
+                <th width="1%">Sl.No.</th>
+                <th width="10%">Date</th>
+                <th width="5%" class="text-right">Time</th>
+                <th width="15%">Company</th>
+                <th width="15%">Contact Person</th>
+                <th width="10%">Contact Number</th>
+                <th width="10%">Email ID</th>
+                <th width="10%">Type</th>
+                <th width="25%">Remarks</th>
+            </tr>
+        </thead>
+        <tbody class="grid_row">
+            @{int i = 0;}
+            @foreach (var item in Model.DailyActivityItems)
+            {
                 <tr>
-                    <td>SL2010</td>
-                    <td>01-11-2016</td>
-                    @*<td>Wensday</td>*@
-                    <td class="text-right">9 am</td>
-                    <td>United</td>
-                    <td>Sam</td>
-                    <td>659852655</td>
-                    <td>sam@gmail</td>
-                    <td>cc</td>
-                    <td>Remarks</td>
+                    <td width="1%" align="center">@(i + 1)</td>
+                    <td width="10%">
+                        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            @Html.TextBoxFor(model => Model.DailyActivityItems[i].Date, new { @class = "form_input" })
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </td>
+                    <td width="5%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Time, new { @class = "form_input timepicker", autocomplete = "off", @required = "true" })</td>
+                    <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Company, new { @class = "form_input", autocomplete = "off" })</td>
+                    <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].ContactPerson, new { @class = "form_input", autocomplete = "off" })</td>
+                    <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].ContactNumber, new { @class = "form_input", autocomplete = "off" })</td>
+                    <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Email, new { @class = "form_input ", autocomplete = "off"})</td>
+
+                    <td width="10%">
+                        @Html.DropDownListFor(m => m.DailyActivityItems[i].Type, Model.DailyActivityItems[i].TypeList)
+                 
+                    </td>
+                    <td width="25%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Remarks, new { @class = "form_input", autocomplete = "off" })</td>
+                           
                 </tr>
-                <tr>
-                    <td>SL2010</td>
-                    <td>01-11-2016</td>
-                    @*<td>Wensday</td>*@
-                    <td class="text-right">9 am</td>
-                    <td>United</td>
-                    <td>Sam</td>
-                    <td>659852655</td>
-                    <td>sam@gmail</td>
-                    <td>cc</td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>SL2010</td>
-                    <td>01-11-2016</td>
-                    @*<td>Wensday</td>*@
-                    <td class="text-right">9 am</td>
-                    <td>United</td>
-                    <td>Sam</td>
-                    <td>659852655</td>
-                    <td>sam@gmail</td>
-                    <td>cc</td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>SL2010</td>
-                    <td>01-11-2016</td>
-                    @*<td>Wensday</td>*@
-                    <td class="text-right">9 am</td>
-                    <td>United</td>
-                    <td>Sam</td>
-                    <td>659852655</td>
-                    <td>sam@gmail</td>
-                    <td>cc</td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>SL2010</td>
-                    <td>01-11-2016</td>
-                    @*<td>Wensday</td>*@
-                    <td class="text-right">9 am</td>
-                    <td>United</td>
-                    <td>Sam</td>
-                    <td>659852655</td>
-                    <td>sam@gmail</td>
-                    <td>cc</td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>SL2010</td>
-                    <td>01-11-2016</td>
-                    @*<td>Wensday</td>*@
-                    <td class="text-right">9 am</td>
-                    <td>United</td>
-                    <td>Sam</td>
-                    <td>659852655</td>
-                    <td>sam@gmail</td>
-                    <td>cc</td>
-                    <td>Remarks</td>
-                </tr>
-                <tr>
-                    <td>SL2010</td>
-                    <td>01-11-2016</td>
-                    @*<td>Wensday</td>*@
-                    <td class="text-right">9 am</td>
-                    <td>United</td>
-                    <td>Sam</td>
-                    <td>659852655</td>
-                    <td>sam@gmail</td>
-                    <td>cc</td>
-                    <td>Remarks</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            }
+        </tbody>
+    </table>
     <div class="row">
         <hr />
         <div class="col-md-12">
@@ -158,10 +103,5 @@
         </div>
     </div>
 </div>
-<script>
-    function Previous() {
-        var url = '@Url.Action("PreviousDaily_Activity", "Daily_Activity_report")'
-        window.location = url;
-    }
-</script>
+
 
