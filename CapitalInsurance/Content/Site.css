@@ -281,19 +281,18 @@ margin-bottom:20px;
     }
     .form-button1
 {
-    background:#000;
-    height:27px;
+
+    height:21px;
     line-height:15px;
     font-size:14px;
-    color:#fff;
-    border-radius:6px;
-    -moz-border-radius:6px;
+    border-radius:2px;
+    -moz-border-radius:2px;
     padding-left:2px;
     padding-right:2px;
     border:0;
     min-width:58px;
-    margin-top:3px;
-    margin-bottom:3px;
+    margin-top:4px;
+    margin-bottom:4px;
 
 }
     .form-button1 .btn:hover 
