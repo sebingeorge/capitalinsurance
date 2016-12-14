@@ -139,6 +139,8 @@ textarea {
      top:7px;
     }
 
+  
+
 .login-footer 
 {
     float: right;
@@ -148,11 +150,13 @@ textarea {
 }
 .PolicyRenewal-Red 
 {
+    background-color:red;
     font-weight:bold;
     color:#fff !important;
 }
 .PolicyRenewal-Green 
 {
+    background-color:Green;
     font-weight:bold;
     color:#fff !important;
 }
@@ -272,6 +276,27 @@ margin-bottom:20px;
 
 }
     .form-button .btn:hover 
+    {
+     color:#75d2f0;
+    }
+    .form-button1
+{
+    background:#000;
+    height:27px;
+    line-height:15px;
+    font-size:14px;
+    color:#fff;
+    border-radius:6px;
+    -moz-border-radius:6px;
+    padding-left:2px;
+    padding-right:2px;
+    border:0;
+    min-width:58px;
+    margin-top:3px;
+    margin-bottom:3px;
+
+}
+    .form-button1 .btn:hover 
     {
      color:#75d2f0;
     }
