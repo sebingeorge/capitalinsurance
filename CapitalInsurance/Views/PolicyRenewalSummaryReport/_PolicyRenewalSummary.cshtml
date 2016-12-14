@@ -10,8 +10,12 @@
         $("#div-details").load(url);
         $('#details-modal').modal('show');
     }
- </script>
-<table class="table table-bordered table-hover" id="aaa" data-placement="bottom">
+
+   
+
+</script>
+
+<table class="table table-bordered" id="aaa" data-placement="bottom">
     <thead>
         <tr class="grid_heading">
          
@@ -23,17 +27,20 @@
     </thead>
     <tbody class="grid_row">
         @{
+          
                 for (int i = 0; i < Model.Count; i++)
                 {
                     <tr>
                         <td> @Model[i].Month </td>
-                        <td class="PolicyRenewal-Red text-right"> @Model[i].CountofExpired</td>
-                        <td class="PolicyRenewal-Green text-right"> @Model[i].CountofRenewed</td>  
+                        <td class="PolicyRenewal-Red text-right"> @Model[i].CountofExpired </td>
+                        <td class="PolicyRenewal-Green text-right"> @Model[i].CountofRenewed </td>  
+             
                         <td class="text-center">
-                        <input type="button" class="form-button1" onclick="ShowDetails(@Model[i].MonthCode)" value="Details" title="Click to see more details" />
+                            <input type="button" class="form-button1" onclick="ShowDetails(@Model[i].MonthCode)" value="Details" title="Click to see more details" />
                         </td>
                     </tr>
                 }
+         
         }
     </tbody>
 </table>
@@ -41,9 +48,15 @@
 <div id="details-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
+            @*<div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>*@
             <div class="modal-body" id="div-details">
                 Loading...
             </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>*@
         </div>
     </div>
 </div>
