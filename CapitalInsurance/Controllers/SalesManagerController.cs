@@ -125,10 +125,7 @@ namespace CapitalInsurance.Controllers
             List<Dropdown> types = new List<Dropdown>();
             types.Add(new Dropdown { Id = 1, Name = "Single" });
             types.Add(new Dropdown { Id = 2, Name = "Married" });
-
             ViewBag.MaritalStatus = new SelectList(types, "Id", "Name");
-          
-            
         }
         void FillGender()
         {

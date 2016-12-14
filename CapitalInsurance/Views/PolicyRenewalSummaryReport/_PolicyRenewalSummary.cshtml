@@ -1,62 +1,19 @@
 ﻿
 @model List<Capital.Domain.RenewalSummary>
 @using GridMvc.Html
-<style>
-    /*Simple css hack to right align text*/
-    td[data-name='CountofExpired'] {
-       background-color:#BC2706;
-    }
-     td[data-name='CountofRenewed'] {
-       background-color:#3DB68C;
-    }
 
-   /*.PolicyRenewal-Red{
-       background-color:red;
-       color:white;
-   }
-   .PolicyRenewal-Green{
-       background-color:green;
-       color:white;
-   }*/
-</style>
 <script>
-    //$(document).ready(function () {
 
-    //    $.each($('input').attr('data-name'), function () {
-    //    var testdata = $(this).attr('data-name');
-    //    console.log(testdata);
-    //   });
-    //})
 
     function ShowDetails(id) {
-        alert(id);
         var url = '@Url.Action("PolicyDetailsPopup", "PolicyRenewalSummaryReport")';
         url += "?id=" + id;
         $("#div-details").text('Loading...');
         $("#div-details").load(url);
-        alert(url);
         $('#details-modal').modal('show');
     }
-    @*function ShowDetails(id) {
-        var x = screen.width / 2 - 600 / 2;
-        var y = screen.height / 2 - 300 / 2;
-        var url = '@Url.Action("PolicyDetailsPopup", "PolicyRenewalSummaryReport")';
-        url += "?id=" + id;
-        var popup = window.open(url, "PolicyDetailsPopup", 'width=500,height=300,menubar=no,status=no,titlebar=no,location=no,scrollbars=no,left=' + x + ',top=' + y);
-        alert(url);
-        popup.focus();
-        return false;
-    }*@
+
  </script>
-@*<div class="table-responsive scroll3">
-    @Html.Grid(Model).Columns(columns =>
-    {
-        columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => @Html.ActionLink(Model.Month, "", "", new { Model.MonthCode }, new { onclick = "ShowDetails('" + Model.MonthCode + "')"}));
-        columns.Add(m => m.CountofExpired).Titled("For Renewal").SetWidth(5).Css("text-right PolicyRenewal-Red");
-        columns.Add(m => m.CountofRenewed).Titled("Renewed").SetWidth(10).Css("text-right PolicyRenewal-Green");
-       
-    }).WithPaging(15)
-</div>*@
 <table class="table table-bordered table-hover" id="aaa" data-placement="bottom">
     <thead>
         <tr class="grid_heading">
@@ -69,20 +26,17 @@
     </thead>
     <tbody class="grid_row">
         @{
-          
                 for (int i = 0; i < Model.Count; i++)
                 {
                     <tr>
                         <td> @Model[i].Month </td>
                         <td> @Model[i].CountofExpired </td>
                         <td> @Model[i].CountofRenewed </td>  
-             
                         <td>
                             <input type="button" class="form-button4" onclick="ShowDetails(@Model[i].MonthCode)" value="Details" title="Click to see more details" />
                         </td>
                     </tr>
                 }
-         
         }
     </tbody>
 </table>
@@ -90,15 +44,9 @@
 <div id="details-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            @*<div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                </div>*@
             <div class="modal-body" id="div-details">
                 Loading...
             </div>
-            @*<div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>*@
         </div>
     </div>
 </div>

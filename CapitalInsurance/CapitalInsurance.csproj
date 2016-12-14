@@ -190,6 +190,7 @@
     <Compile Include="Controllers\BusinessViewController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\Customer_InvoiceController.cs" />
+    <Compile Include="Controllers\DailyActivityController.cs" />
     <Compile Include="Controllers\Daily_Activity_reportController.cs" />
     <Compile Include="Controllers\InsuranceCompanyController.cs" />
     <Compile Include="Controllers\InsuranceProductController.cs" />
@@ -537,6 +538,8 @@
     <Content Include="Views\AgeingSummaryReport\_AgeingSummary.cshtml" />
     <Content Include="Views\PolicyRenewalSummaryReport\Index.cshtml" />
     <Content Include="Views\MonthlyReport\MonthlyPaymentCommittment.cshtml" />
+    <Content Include="Views\DailyActivity\Index.cshtml" />
+    <Content Include="Views\DailyActivity\DailyActivity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
