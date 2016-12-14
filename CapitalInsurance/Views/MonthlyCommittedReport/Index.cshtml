@@ -8,14 +8,14 @@
         window.location = url;
     }
     function Filter() {
-        $("#Ageing_Summary").addClass("fade");
+        $("#Month_Commit").addClass("fade");
 
         var Client = $("#client").val().trim();
 
-        var url = '@Url.Action("AgeingSummary")';
+        var url = '@Url.Action("MonthlyCommitment")';
         url += "?Client=" + encodeURIComponent(Client);
-        $("#Ageing_Summary").load(url, function () {
-            $("#Ageing_Summary").removeClass("fade");
+        $("#Month_Commit").load(url, function () {
+            $("#Month_Commit").removeClass("fade");
         });
     }
 </script>
@@ -32,8 +32,8 @@
     </div>
 
     <br />
-    <div id="Ageing_Summary">
-        @Html.Action("MonthlyPaymentCommittment")
+    <div id="Month_Commit">
+        @Html.Action("MonthlyCommitment")
     </div>
     <div class="row">
         <hr />

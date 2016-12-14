@@ -196,7 +196,7 @@
     <Compile Include="Controllers\InsuranceProductController.cs" />
     <Compile Include="Controllers\MeetingScheduleController.cs" />
     <Compile Include="Controllers\MISReportController.cs" />
-    <Compile Include="Controllers\MonthlyReportController.cs" />
+    <Compile Include="Controllers\MonthlyCommittedReportController.cs" />
     <Compile Include="Controllers\New_PolicyController.cs" />
     <Compile Include="Controllers\PayableReportController.cs" />
     <Compile Include="Controllers\PolicyRenewalSummaryReportController.cs" />
@@ -430,7 +430,7 @@
     <Content Include="Views\admin\PreviousInsurance.cshtml" />
     <Content Include="Views\admin\PreviousInsuranceProduct.cshtml" />
     <Content Include="Views\Daily_Activity_report\Daily_Activity_report.cshtml" />
-    <Content Include="Views\MonthlyReport\MonthlyPaymentCommittmentIndex.cshtml" />
+    <Content Include="Views\MonthlyCommittedReport\Index.cshtml" />
     <Content Include="Views\PayableReport\PayableReport.cshtml" />
     <Content Include="Views\PayableReport\Payment.cshtml" />
     <Content Include="Views\PolicyRenewalSummaryReport\_PolicyDetailsPopup.cshtml" />
@@ -537,9 +537,9 @@
     <Content Include="Views\AgeingSummaryReport\Index.cshtml" />
     <Content Include="Views\AgeingSummaryReport\_AgeingSummary.cshtml" />
     <Content Include="Views\PolicyRenewalSummaryReport\Index.cshtml" />
-    <Content Include="Views\MonthlyReport\MonthlyPaymentCommittment.cshtml" />
     <Content Include="Views\DailyActivity\Index.cshtml" />
     <Content Include="Views\DailyActivity\DailyActivity.cshtml" />
+    <Content Include="Views\MonthlyCommittedReport\_MonthlyCommitment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

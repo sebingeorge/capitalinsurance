@@ -8,18 +8,17 @@ using System.Web.Mvc;
 
 namespace CapitalInsurance.Controllers
 {
-    public class MonthlyReportController :  BaseController
+    public class MonthlyCommittedReportController :  BaseController
     {
         // GET: MonthlyReport
-        public ActionResult MonthlyPaymentCommittmentIndex()
+        public ActionResult Index()
         {
             return View();
         }
-        public ActionResult MonthlyPaymentCommittment(string Client = "")
+        public ActionResult MonthlyCommitment(string Client = "")
         {
-
             var data = new MonthlyReportRepository().MonthlyPaymentCommittment(Client);
-            return PartialView("MonthlyPaymentCommittment", data);
+            return PartialView("_MonthlyCommitment", data);
         }
 
     }
