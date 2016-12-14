@@ -29,28 +29,63 @@
     //})
 
     function ShowDetails(id) {
-       
-       
         alert(id);
-        var url = '@Url.Action("PolicyDetailsPopup")';
+        var url = '@Url.Action("PolicyDetailsPopup", "PolicyRenewalSummaryReport")';
+        url += "?id=" + id;
         $("#div-details").text('Loading...');
-      
-        $("#div-details").load(url, { id: id });
-        //alert(url);
+        $("#div-details").load(url);
+        alert(url);
         $('#details-modal').modal('show');
-
     }
-
+    @*function ShowDetails(id) {
+        var x = screen.width / 2 - 600 / 2;
+        var y = screen.height / 2 - 300 / 2;
+        var url = '@Url.Action("PolicyDetailsPopup", "PolicyRenewalSummaryReport")';
+        url += "?id=" + id;
+        var popup = window.open(url, "PolicyDetailsPopup", 'width=500,height=300,menubar=no,status=no,titlebar=no,location=no,scrollbars=no,left=' + x + ',top=' + y);
+        alert(url);
+        popup.focus();
+        return false;
+    }*@
  </script>
-<div class="table-responsive scroll3">
+@*<div class="table-responsive scroll3">
     @Html.Grid(Model).Columns(columns =>
     {
-        columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => @Html.ActionLink(Model.Month, "", "", new { Model.MonthCode }, new { onclick = "ShowDetails('" + Model.MonthCode + "')" }));
+        columns.Add(m => m.Month).Titled("Month").SetWidth(12).Sanitized(false).Encoded(false).RenderValueAs(Model => @Html.ActionLink(Model.Month, "", "", new { Model.MonthCode }, new { onclick = "ShowDetails('" + Model.MonthCode + "')"}));
         columns.Add(m => m.CountofExpired).Titled("For Renewal").SetWidth(5).Css("text-right PolicyRenewal-Red");
         columns.Add(m => m.CountofRenewed).Titled("Renewed").SetWidth(10).Css("text-right PolicyRenewal-Green");
        
     }).WithPaging(15)
-</div>
+</div>*@
+<table class="table table-bordered table-hover" id="aaa" data-placement="bottom">
+    <thead>
+        <tr class="grid_heading">
+         
+            <th width="20%"><h1>Month</h1></th>
+            <th width="25%" class=""><h1>For Renewal</h1></th>
+            <th width="25%"><h1>Renewed</h1></th>
+            <th width="5%"><h1></h1></th>
+        </tr>
+    </thead>
+    <tbody class="grid_row">
+        @{
+          
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td> @Model[i].Month </td>
+                        <td> @Model[i].CountofExpired </td>
+                        <td> @Model[i].CountofRenewed </td>  
+             
+                        <td>
+                            <input type="button" class="form-button4" onclick="ShowDetails(@Model[i].MonthCode)" value="Details" title="Click to see more details" />
+                        </td>
+                    </tr>
+                }
+         
+        }
+    </tbody>
+</table>
 <!-- modal to show details -->
 <div id="details-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">

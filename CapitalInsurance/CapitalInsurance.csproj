@@ -234,7 +234,9 @@
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.js" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.min.js" />
     <Content Include="Content\datetimepicker\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\datetimepicker\bootstrap-theme.css" />
     <Content Include="Content\datetimepicker\bootstrap-theme.min.css" />
@@ -430,6 +432,8 @@
     <Content Include="Views\MonthlyReport\MonthlyPaymentCommittmentIndex.cshtml" />
     <Content Include="Views\PayableReport\PayableReport.cshtml" />
     <Content Include="Views\PayableReport\Payment.cshtml" />
+    <Content Include="Views\PolicyRenewalSummaryReport\_PolicyDetailsPopup.cshtml" />
+    <Content Include="Views\PolicyRenewalSummaryReport\_PolicyRenewalSummary.cshtml" />
     <Content Include="Views\ReceivableReport\PendingReceivableReport.cshtml" />
     <Content Include="Views\ReceivableReport\ReceivableReport.cshtml" />
     <Content Include="Views\Sales_Achievement_report\Sales_Achievement_report.cshtml">
@@ -531,9 +535,7 @@
     <Content Include="Views\Customer_Invoice\PreviousCustomerInvoice.cshtml" />
     <Content Include="Views\AgeingSummaryReport\Index.cshtml" />
     <Content Include="Views\AgeingSummaryReport\_AgeingSummary.cshtml" />
-    <Content Include="Views\PolicyRenewalSummaryReport\_PolicyRenewalSummary.cshtml" />
     <Content Include="Views\PolicyRenewalSummaryReport\Index.cshtml" />
-    <Content Include="Views\PolicyRenewalSummaryReport\_PolicyDetailsPopup.cshtml" />
     <Content Include="Views\MonthlyReport\MonthlyPaymentCommittment.cshtml" />
   </ItemGroup>
   <ItemGroup>

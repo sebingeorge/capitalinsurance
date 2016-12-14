@@ -19,12 +19,22 @@ namespace CapitalInsurance.Controllers
         {
             return PartialView("_PolicyRenewalSummary", new ReportRepository().GetPolicyRenewalSummary());
         }
-        public ActionResult PolicyDetailsPopup(int id=0)
+
+        public ActionResult PolicyDetailsPopup(int id = 0)
         {
             if (id != 0)
-            return PartialView("_PolicyDetailsPopup", new ReportRepository().GetPolicyDetails(id));
+                return PartialView("_PolicyDetailsPopup", new ReportRepository().GetPolicyDetails(id));
             return View();
         }
-
+        //public ActionResult PolicyDetailsPopup(int id = 0)
+        //{
+        //    var List = new ReportRepository().GetPolicyDetails(id);
+        //    return View(List);
+        //}
+        //public ActionResult PolicyDetailsPopup(int id = 0)
+        //{
+        //    List<RenewalSummary> objRenewal = (new ReportRepository()).GetPolicyDetails(id);
+        //    return View(objRenewal);
+        //}
     }
 }
