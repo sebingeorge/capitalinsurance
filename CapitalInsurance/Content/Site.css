@@ -146,6 +146,16 @@ textarea {
     margin-top: 279px;
     width: 100%;
 }
+.PolicyRenewal-Red 
+{
+    font-weight:bold;
+    color:#fff !important;
+}
+.PolicyRenewal-Green 
+{
+    font-weight:bold;
+    color:#fff !important;
+}
 .mbb 
 {
     margin-bottom:20px;
