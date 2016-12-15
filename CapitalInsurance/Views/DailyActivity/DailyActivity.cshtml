@@ -27,10 +27,13 @@
                     <img src="~/Images/photo.jpg" />
                 </div>
             </div>
+
         </div>
+
+
         <div class="col-md-3">
             <div class="form-group">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label>Date</label>
                     <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                         @Html.TextBoxFor(m => m.DailyActivityDate, new { @class = "form_input", @Value = Model.DailyActivityDate.Value.ToString("dd-MMM-yyyy") })
@@ -48,60 +51,65 @@
                 </div>
             </div>
         </div>
-    </div>
-    <br />
-    <table class="table table-bordered" id="aaa" data-placement="bottom">
-        <thead>
-            <tr class="grid_heading">
-                <th width="1%">Sl.No.</th>
-                <th width="10%">Date</th>
-                <th width="5%" class="text-right">Time</th>
-                <th width="15%">Company</th>
-                <th width="15%">Contact Person</th>
-                <th width="10%">Contact Number</th>
-                <th width="10%">Email ID</th>
-                <th width="10%">Type</th>
-                <th width="25%">Remarks</th>
-            </tr>
-        </thead>
-        <tbody class="grid_row">
-            @{int i = 0;}
-            @foreach (var item in Model.DailyActivityItems)
-            {
-                <tr>
-                    <td width="1%" align="center">@(i + 1)</td>
-                    <td width="10%">
-                        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                            @Html.TextBoxFor(model => Model.DailyActivityItems[i].Date, new { @class = "form_input" })
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                        </div>
-                    </td>
-                    <td width="5%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Time, new { @class = "form_input timepicker", autocomplete = "off", @required = "true" })</td>
-                    <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Company, new { @class = "form_input", autocomplete = "off" })</td>
-                    <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].ContactPerson, new { @class = "form_input", autocomplete = "off" })</td>
-                    <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].ContactNumber, new { @class = "form_input", autocomplete = "off" })</td>
-                    <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Email, new { @class = "form_input ", autocomplete = "off"})</td>
 
-                    <td width="10%">
-                        @Html.DropDownListFor(m => m.DailyActivityItems[i].Type, Model.DailyActivityItems[i].TypeList)
-                 
-                    </td>
-                    <td width="25%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Remarks, new { @class = "form_input", autocomplete = "off" })</td>
-                           
-                </tr>
-            }
-        </tbody>
-    </table>
-    <div class="row">
-        <hr />
-        <div class="col-md-12">
-            @*<button type="button" class="form-button" onclick="Previous()">Previous DAR</button>
-            <button type="button" class="form-button">New Prospective Client</button>*@
-            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
-            <button type="button" class="form-button right">Save</button>
-           
-        </div>
     </div>
-</div>
+    <div class="row">
+        <br />
+        <div class="col-md-12">
+            <table class="table table-bordered" id="aaa" data-placement="bottom">
+                <thead>
+                    <tr class="grid_heading">
+                        <th width="1%">Sl.No.</th>
+                        <th width="9%">Date</th>
+                        <th width="5%" class="text-right">Time</th>
+                        <th width="15%">Company</th>
+                        <th width="15%">Contact Person</th>
+                        <th width="10%">Contact Number</th>
+                        <th width="10%">Email ID</th>
+                        <th width="5%">Type</th>
+                        <th width="30%">Remarks</th>
+                    </tr>
+                </thead>
+                <tbody class="grid_row">
+                    @{int i = 0;}
+                    @foreach (var item in Model.DailyActivityItems)
+                    {
+                        <tr>
+                            <td width="1%" align="center">@(i + 1)</td>
+                            <td width="9%">
+                                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                    @Html.TextBoxFor(model => Model.DailyActivityItems[i].Date, new { @class = "form_input" })
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                            </td>
+                            <td width="5%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Time, new { @class = "form_input timepicker", autocomplete = "off", @required = "true" })</td>
+                            <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Company, new { @class = "form_input", autocomplete = "off" })</td>
+                            <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].ContactPerson, new { @class = "form_input", autocomplete = "off" })</td>
+                            <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].ContactNumber, new { @class = "form_input", autocomplete = "off" })</td>
+                            <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Email, new { @class = "form_input ", autocomplete = "off" })</td>
+
+                            <td width="5%">
+                                <center> @Html.DropDownListFor(m => m.DailyActivityItems[i].Type, Model.DailyActivityItems[i].TypeList)</center>
+
+                            </td>
+                            <td width="30%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Remarks, new { @class = "form_input", autocomplete = "off" })</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        </div>
+        <div class="row">
+            <hr />
+            <div class="col-md-12">
+                @*<button type="button" class="form-button" onclick="Previous()">Previous DAR</button>
+                    <button type="button" class="form-button">New Prospective Client</button>*@
+                <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+                <button type="button" class="form-button right">Save</button>
+
+            </div>
+        </div>
+
 
 
