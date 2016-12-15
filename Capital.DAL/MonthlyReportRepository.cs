@@ -50,14 +50,8 @@ select @LastDay_Next2Month = (SELECT DATEADD(s,-1,DATEADD(mm, DATEDIFF(m,0,GETDA
                      update R set R.Amount3 = A.Amount from A inner join #Result R on R.PolicyId = A.PolicyId;
 
 
-				     select * from #Result ;
-                   
-
-";
-
-
-
-
+				     select * from #Result where  CusName LIKE '%'+@Client+'%'";
+               
 
                 return connection.Query<AgeingSummary>(query, new { Client = Client }).ToList();
             }

@@ -196,7 +196,7 @@
     <Compile Include="Controllers\InsuranceProductController.cs" />
     <Compile Include="Controllers\MeetingScheduleController.cs" />
     <Compile Include="Controllers\MISReportController.cs" />
-    <Compile Include="Controllers\MonthlyReportController.cs" />
+    <Compile Include="Controllers\MonthlyCommittedReportController.cs" />
     <Compile Include="Controllers\New_PolicyController.cs" />
     <Compile Include="Controllers\PayableReportController.cs" />
     <Compile Include="Controllers\PolicyRenewalSummaryReportController.cs" />
@@ -252,6 +252,7 @@
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\m-logo.png" />
     <Content Include="Content\images\manhand.png" />
+    <Content Include="Content\jquery.timepicker.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -412,6 +413,7 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.timepicker.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -430,7 +432,7 @@
     <Content Include="Views\admin\PreviousInsurance.cshtml" />
     <Content Include="Views\admin\PreviousInsuranceProduct.cshtml" />
     <Content Include="Views\Daily_Activity_report\Daily_Activity_report.cshtml" />
-    <Content Include="Views\MonthlyReport\MonthlyPaymentCommittmentIndex.cshtml" />
+    <Content Include="Views\MonthlyCommittedReport\Index.cshtml" />
     <Content Include="Views\PayableReport\PayableReport.cshtml" />
     <Content Include="Views\PayableReport\Payment.cshtml" />
     <Content Include="Views\PolicyRenewalSummaryReport\_PolicyDetailsPopup.cshtml" />
@@ -537,9 +539,9 @@
     <Content Include="Views\AgeingSummaryReport\Index.cshtml" />
     <Content Include="Views\AgeingSummaryReport\_AgeingSummary.cshtml" />
     <Content Include="Views\PolicyRenewalSummaryReport\Index.cshtml" />
-    <Content Include="Views\MonthlyReport\MonthlyPaymentCommittment.cshtml" />
     <Content Include="Views\DailyActivity\Index.cshtml" />
     <Content Include="Views\DailyActivity\DailyActivity.cshtml" />
+    <Content Include="Views\MonthlyCommittedReport\_MonthlyCommitment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

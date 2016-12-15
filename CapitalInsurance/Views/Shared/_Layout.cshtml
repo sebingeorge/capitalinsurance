@@ -17,10 +17,12 @@
     <script src="~/Scripts/toastr.min.js"></script>
     @*<link href="~/Content/datetimepicker/bootstrap.min.css" rel="stylesheet" media="screen" />*@
     <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.timepicker.css" rel="stylesheet" />
     <link href="~/Content/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen" />
 
     <script src="~/Scripts/highchart/highcharts.js"></script>
     <script src="~/Scripts/highchart/exporting.js"></script>
+    <script src="~/Scripts/jquery.timepicker.min.js"></script>
 </head>
 <body>    
     <div id="wrapper" class="toggled">
@@ -76,7 +78,9 @@
                                 <li>
                                     <a href="@Url.Action("Create", "Sales_Target")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/salestarget.png" /></span>Sales Target</a>
                                 </li>
-
+                                <li>
+                                    <a href="@Url.Action("DailyActivity", "DailyActivity")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Daily Activity</a>
+                                </li>
                             </ul>
                         </div>
                     }
@@ -94,9 +98,7 @@
                                 <li>
                                     <a href="@Url.Action("PendingReceivableReport", "ReceivableReport")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/receivablereport.png" /></span>Receivable Reports</a>
                                 </li>
-                                <li>
-                                    <a href="@Url.Action("DailyActivity", "DailyActivity")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Daily Activity</a>
-                                </li>
+                              
                             </ul>
                         </div>
                     }
@@ -128,7 +130,7 @@
                                     <a href="@Url.Action("Index", "PolicyRenewalSummaryReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Renewal Summary Report</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("MonthlyPaymentCommittmentIndex", "MonthlyReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Monthly Committments</a>
+                                    <a href="@Url.Action("Index", "MonthlyCommittedReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Monthly Committments</a>
                                 </li>
                             </ul>
                         </div>
@@ -167,6 +169,7 @@
     <script type="text/javascript" src="~/Scripts/datetimepicker/bootstrap.min.js" charset="UTF-8"></script>
     <script type="text/javascript" src="~/Scripts/datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
     <script type="text/javascript" src="~/Scripts/datetimepicker/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
+
     <script>
         $('.form_date').datetimepicker({
             language: 'fr',
