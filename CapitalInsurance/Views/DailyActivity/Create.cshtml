@@ -1,12 +1,13 @@
-﻿@model Capital.Domain.DailyActivity
+﻿
 @{
-    ViewBag.Title = "DailyActivity";
+    ViewBag.Title = "Create";
 }
+
 <script>
     $(function () {
         $(".timepicker").timepicker({});
     });
- 
+
     function Previous() {
         var url = '@Url.Action("PreviousDaily_Activity", "Daily_Activity_report")'
         window.location = url;
@@ -20,6 +21,8 @@
     <div class="row">
         <h1>Daily Activity</h1>
     </div>
+@using (Html.BeginForm("", null, FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
+    {
     <div class="row">
         <div class="col-md-1">
             <div class="form-group">
@@ -67,7 +70,7 @@
         </thead>
         <tbody class="grid_row">
             @*@{int i = 0;}*@
-            
+
             @for (int i = 0; i < Model.DailyActivityItems.Count; i++)
             {
                 <tr>
@@ -82,14 +85,14 @@
                     <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Company, new { @class = "form_input", autocomplete = "off" })</td>
                     <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].ContactPerson, new { @class = "form_input", autocomplete = "off" })</td>
                     <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].ContactNumber, new { @class = "form_input", autocomplete = "off" })</td>
-                    <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Email, new { @class = "form_input ", autocomplete = "off"})</td>
+                    <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Email, new { @class = "form_input ", autocomplete = "off" })</td>
 
                     <td width="10%">
                         @Html.DropDownListFor(m => m.DailyActivityItems[i].Type, Model.DailyActivityItems[i].TypeList)
-                 
+
                     </td>
                     <td width="25%">@Html.TextBoxFor(m => m.DailyActivityItems[i].Remarks, new { @class = "form_input", autocomplete = "off" })</td>
-                           
+
                 </tr>
             }
         </tbody>
@@ -98,12 +101,12 @@
         <hr />
         <div class="col-md-12">
             @*<button type="button" class="form-button" onclick="Previous()">Previous DAR</button>
-            <button type="button" class="form-button">New Prospective Client</button>*@
+                <button type="button" class="form-button">New Prospective Client</button>*@
             <button type="button" class="form-button right" onclick="Exit()">Exit</button>
             <button type="button" class="form-button right">Save</button>
-           
+
         </div>
     </div>
+}
 </div>
-
 

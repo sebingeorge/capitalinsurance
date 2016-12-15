@@ -542,6 +542,7 @@
     <Content Include="Views\DailyActivity\Index.cshtml" />
     <Content Include="Views\DailyActivity\DailyActivity.cshtml" />
     <Content Include="Views\MonthlyCommittedReport\_MonthlyCommitment.cshtml" />
+    <Content Include="Views\DailyActivity\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

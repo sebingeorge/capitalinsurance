@@ -16,16 +16,50 @@ namespace CapitalInsurance.Controllers
         }
         public ActionResult DailyActivity()
         {
-            //Type();
+
             DailyActivity Model = new DailyActivityRepository().DAEmployeeDetails(UserID);
             Model.DailyActivityItems = new List<DailyActivityItem>();
+            Model.DailyActivityItems.Add(new DailyActivityItem());
+            Model.DailyActivityItems.Add(new DailyActivityItem());
+            Model.DailyActivityItems.Add(new DailyActivityItem());
+            Model.DailyActivityItems.Add(new DailyActivityItem());
             Model.DailyActivityItems.Add(new DailyActivityItem());
             Model.DailyActivityDate = DateTime.Now;
             return View(Model);
         }
-        //void Type()
-        //{
-        //    ViewBag.Type = new SelectList((new DropdownRepository()).FillDAType(), "Id", "Name");
-        //}
+        public ActionResult Create()
+        {
+            DailyActivity Model = new DailyActivityRepository().DAEmployeeDetails(UserID);
+            Model.DailyActivityItems = new List<DailyActivityItem>();
+            Model.DailyActivityItems.Add(new DailyActivityItem());
+            Model.DailyActivityItems.Add(new DailyActivityItem());
+            Model.DailyActivityItems.Add(new DailyActivityItem());
+            Model.DailyActivityItems.Add(new DailyActivityItem());
+            Model.DailyActivityItems.Add(new DailyActivityItem());
+            Model.DailyActivityDate = DateTime.Now;
+            return View(Model);
+        }
+      [HttpPost]
+        public ActionResult Create(DailyActivity Model)
+        {
+            //Model.TranDate = System.DateTime.Now;
+            //Model.CreatedDate = System.DateTime.Now;
+            //Model.CreatedBy = UserID;
+            if (!ModelState.IsValid)
+            {
+                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return View(Model);
+            }
+            Result res = new DailyActivityRepository().Insert(Model);
+            if (res.Value)
+            {
+                TempData["Success"] = "Saved Successfully!";
+            }
+            else
+            {
+
+            }
+            return RedirectToAction("Index", new { type = 1 });
+        }
     }
 }

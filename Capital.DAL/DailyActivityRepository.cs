@@ -13,7 +13,6 @@ namespace Capital.DAL
     {
 
         static string dataConnection = GetConnectionString("CibConnection");
-
         public DailyActivity DAEmployeeDetails(int Id)
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
@@ -22,6 +21,38 @@ namespace Capital.DAL
                 string query = "select  S.SalesMgName,DsgName from [User]  U INNER JOIN SalesManager S ON S.SalesMgId=U.SalesMgId INNER JOIN Designation D ON S.DsgId=D.DsgId WHERE U.UserId=@Id";
                 return connection.Query<DailyActivity>(query, new { Id = Id }).First<DailyActivity>();
             }
+        }
+        public Result Insert(DailyActivity model)
+        {
+            Result res = new Result(false);
+            try
+            {
+                using (IDbConnection connection = OpenConnection(dataConnection))
+                {
+                    string sql = string.Empty;
+                    //DateTime TranDate = model.DailyActivityDate;
+                    int SalesMgCode = model.SalesMgCode;
+                    //string query = @"DELETE FROM SalesTarget WHERE FyId =" + FyId + "";
+                    //connection.Execute(query, new { SalesMgCode = SalesMgCode });
+                    foreach (var item in model.DailyActivityItems)
+                    {
+                        sql = @"INSERT INTO DailyActivity
+                                (TranDate,SalesMgCode,DailyActivityDate,DailyActivityTime,DailyActivityCompany,DailyActivityContactNo,DailyActivityEmail,DailyActivityType,DailyActivityRemarks,CreatedBy,CreatedDate)
+                                 VALUES(@TranDate," + SalesMgCode + ",@DailyActivityDate,@DailyActivityTime,@DailyActivityCompany,@DailyActivityContactNo,@DailyActivityEmail,@DailyActivityType,@DailyActivityRemarks,@CreatedBy,@CreatedDate);  SELECT CAST(SCOPE_IDENTITY() as int);";
+                               
+                    }
+                    int id = connection.Execute(sql, model.DailyActivityItems);
+                    if (id > 0)
+                    {
+                        return (new Result(true));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return (new Result(false, ex.InnerException == null ? ex.Message : ex.InnerException.Message));
+            }
+            return res;
         }
    }
 
