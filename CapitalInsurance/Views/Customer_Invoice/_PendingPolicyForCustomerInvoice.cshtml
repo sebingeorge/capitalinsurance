@@ -1,8 +1,7 @@
 ﻿@model List<Capital.Domain.PolicyIssue>
 @using GridMvc.Html
 <div class="table-responsive scroll3">
-    <span class="filter"><img src="~/Images/icon/filter.png" /></span>
-    @Html.Grid(Model).Columns(columns =>
+      @Html.Grid(Model).Columns(columns =>
     {
         columns.Add(m => m.CusName).Titled("Client").SetWidth(10);
         columns.Add(m => m.InsCmpName).Titled("Company").SetWidth(7);

@@ -539,10 +539,10 @@
     <Content Include="Views\AgeingSummaryReport\Index.cshtml" />
     <Content Include="Views\AgeingSummaryReport\_AgeingSummary.cshtml" />
     <Content Include="Views\PolicyRenewalSummaryReport\Index.cshtml" />
-    <Content Include="Views\DailyActivity\Index.cshtml" />
-    <Content Include="Views\DailyActivity\DailyActivity.cshtml" />
     <Content Include="Views\MonthlyCommittedReport\_MonthlyCommitment.cshtml" />
     <Content Include="Views\DailyActivity\Create.cshtml" />
+    <Content Include="Views\DailyActivity\Index.cshtml" />
+    <Content Include="Views\DailyActivity\_DailyActivityReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

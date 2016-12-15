@@ -12,23 +12,13 @@ namespace CapitalInsurance.Controllers
         // GET: DailyActivity
         public ActionResult Index()
         {
+            FillSalesManager();
             return View();
         }
-        public ActionResult DailyActivity()
-        {
-
-            DailyActivity Model = new DailyActivityRepository().DAEmployeeDetails(UserID);
-            Model.DailyActivityItems = new List<DailyActivityItem>();
-            Model.DailyActivityItems.Add(new DailyActivityItem());
-            Model.DailyActivityItems.Add(new DailyActivityItem());
-            Model.DailyActivityItems.Add(new DailyActivityItem());
-            Model.DailyActivityItems.Add(new DailyActivityItem());
-            Model.DailyActivityItems.Add(new DailyActivityItem());
-            Model.DailyActivityDate = DateTime.Now;
-            return View(Model);
-        }
+     
         public ActionResult Create()
         {
+          
             DailyActivity Model = new DailyActivityRepository().DAEmployeeDetails(UserID);
             Model.DailyActivityItems = new List<DailyActivityItem>();
             Model.DailyActivityItems.Add(new DailyActivityItem());
@@ -36,15 +26,14 @@ namespace CapitalInsurance.Controllers
             Model.DailyActivityItems.Add(new DailyActivityItem());
             Model.DailyActivityItems.Add(new DailyActivityItem());
             Model.DailyActivityItems.Add(new DailyActivityItem());
-            Model.DailyActivityDate = DateTime.Now;
+            Model.TranDate = DateTime.Now;
             return View(Model);
         }
-      [HttpPost]
+        [HttpPost]
         public ActionResult Create(DailyActivity Model)
         {
-            //Model.TranDate = System.DateTime.Now;
-            //Model.CreatedDate = System.DateTime.Now;
-            //Model.CreatedBy = UserID;
+          
+            Model.CreatedBy = UserID;
             if (!ModelState.IsValid)
             {
                 var allErrors = ModelState.Values.SelectMany(v => v.Errors);
@@ -59,7 +48,15 @@ namespace CapitalInsurance.Controllers
             {
 
             }
-            return RedirectToAction("Index", new { type = 1 });
+            return RedirectToAction("Index");
+        }
+        public ActionResult DailyActivityReport(int EmpId = 0)
+        {
+            return PartialView("_DailyActivityReport", new DailyActivityRepository().GetDailyActivityDetails(EmpId));
+        }
+        void FillSalesManager()
+        {
+            ViewBag.SalesManager = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName");
         }
     }
 }
