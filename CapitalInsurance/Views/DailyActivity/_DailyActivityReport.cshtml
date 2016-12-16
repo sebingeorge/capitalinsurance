@@ -1,5 +1,21 @@
 ﻿@model List<Capital.Domain.DailyActivityItem>
 @using GridMvc.Html
+<script>
+    $(document).ready(function () {
+     $('.grid-table tr td:nth-child(6)').each(function (index,object) {
+            var lastCol = $(this).text();
+            if (lastCol == "FC") {
+                $(object).parent().css("background-color", "#3DB68C");
+            }
+            else if (lastCol == "CC") {
+                $(object).parent().css("background-color", "#F9E237");
+            }
+            else if (lastCol == "FA") {
+                $(object).parent().css("background-color", "#6ED7FA");
+            }
+        });
+    })
+</script>
 <div class="table-responsive scroll3">
       @Html.Grid(Model).Columns(columns =>
     {

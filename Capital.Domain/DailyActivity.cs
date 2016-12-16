@@ -22,6 +22,7 @@ namespace Capital.Domain
     {
         public DateTime? DailyActivityDate { get; set; }
         public string DailyActivityTime { get; set; }
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Sales Manager is Required")]
         public string DailyActivityCompany { get; set; }
         public string DailyActivityContactPerson { get; set; }
         public string DailyActivityContactNo { get; set; }
@@ -33,6 +34,7 @@ namespace Capital.Domain
         {
             get
             {
+                yield return new SelectListItem { Text = "Select Type", Value = "" };
                 yield return new SelectListItem { Text = "CC", Value = "CC" };
                 yield return new SelectListItem { Text = "FC", Value = "FC" };
                 yield return new SelectListItem { Text = "FA", Value = "FA" };

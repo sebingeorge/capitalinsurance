@@ -67,7 +67,7 @@
                         <th width="15%">Contact Person</th>
                         <th width="10%">Contact Number</th>
                         <th width="10%">Email ID</th>
-                        <th width="5%">Type</th>
+                        <th width="8%">Type</th>
                         <th width="30%">Remarks</th>
                     </tr>
                 </thead>
@@ -85,11 +85,14 @@
                                 </div>
                             </td>
                             <td width="5%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityTime, new { @class = "form_input timepicker", autocomplete = "off"})</td>
-                            <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityCompany, new { @class = "form_input", autocomplete = "off" })</td>
+                            <td width="15%">
+                            @Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityCompany, new { @class = "form_input", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.DailyActivityItems[i].DailyActivityCompany, "", new { @class = "text-danger" })
+                            </td>
                             <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityContactPerson, new { @class = "form_input", autocomplete = "off" })</td>
                             <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityContactNo, new { @class = "form_input", autocomplete = "off" })</td>
                             <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityEmail, new { @class = "form_input ", autocomplete = "off" })</td>
-                            <td width="5%">
+                            <td width="8%">
                                 <center> @Html.DropDownListFor(m => m.DailyActivityItems[i].DailyActivityType, Model.DailyActivityItems[i].TypeList)</center>
                             </td>
                             <td width="30%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityRemarks, new { @class = "form_input", autocomplete = "off" })</td>

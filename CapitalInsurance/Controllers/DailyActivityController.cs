@@ -26,6 +26,11 @@ namespace CapitalInsurance.Controllers
             Model.DailyActivityItems.Add(new DailyActivityItem());
             Model.DailyActivityItems.Add(new DailyActivityItem());
             Model.DailyActivityItems.Add(new DailyActivityItem());
+            Model.DailyActivityItems.Add(new DailyActivityItem());
+            Model.DailyActivityItems.Add(new DailyActivityItem());
+            Model.DailyActivityItems.Add(new DailyActivityItem());
+            Model.DailyActivityItems.Add(new DailyActivityItem());
+            Model.DailyActivityItems.Add(new DailyActivityItem());
             Model.TranDate = DateTime.Now;
             return View(Model);
         }

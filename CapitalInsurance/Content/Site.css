@@ -150,13 +150,13 @@ textarea {
 }
 .PolicyRenewal-Red 
 {
-    background-color:red;
+    background-color:#BC2706;
     font-weight:bold;
     color:#fff !important;
 }
 .PolicyRenewal-Green 
 {
-    background-color:Green;
+    background-color:#3DB68C;
     font-weight:bold;
     color:#fff !important;
 }

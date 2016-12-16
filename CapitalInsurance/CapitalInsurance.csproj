@@ -191,7 +191,6 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\Customer_InvoiceController.cs" />
     <Compile Include="Controllers\DailyActivityController.cs" />
-    <Compile Include="Controllers\Daily_Activity_reportController.cs" />
     <Compile Include="Controllers\InsuranceCompanyController.cs" />
     <Compile Include="Controllers\InsuranceProductController.cs" />
     <Compile Include="Controllers\MeetingScheduleController.cs" />
@@ -431,7 +430,6 @@
     <Content Include="Views\admin\PreviousEmployee.cshtml" />
     <Content Include="Views\admin\PreviousInsurance.cshtml" />
     <Content Include="Views\admin\PreviousInsuranceProduct.cshtml" />
-    <Content Include="Views\Daily_Activity_report\Daily_Activity_report.cshtml" />
     <Content Include="Views\MonthlyCommittedReport\Index.cshtml" />
     <Content Include="Views\PayableReport\PayableReport.cshtml" />
     <Content Include="Views\PayableReport\Payment.cshtml" />
@@ -489,7 +487,6 @@
     <Content Include="Views\admin\InsuranceProduct.cshtml" />
     <Content Include="Views\Policy_Endorsement\Proposal.cshtml" />
     <Content Include="Views\MeetingSchedule\MeetingSchedule.cshtml" />
-    <Content Include="Views\Daily_Activity_report\PreviousDaily_Activity.cshtml" />
     <Content Include="Views\MeetingSchedule\PreviousMeetingSchedule.cshtml" />
     <Content Include="Views\ReceivableReport\PreviousReceivable.cshtml" />
     <Content Include="Views\PayableReport\PreviousPayable.cshtml" />
