@@ -153,7 +153,8 @@
                     <li><a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" width="40" /></a></li>
                     @*<li class="top-button"><a href="@Url.Action("Index", "Home")">Home</a></li>*@
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @Html.Action("LoadQuickView", "Home")
+                @*@Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>
