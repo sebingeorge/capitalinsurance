@@ -1,7 +1,6 @@
 ﻿@model List<Capital.Domain.PolicyIssue>
 @using GridMvc.Html
 <div class="table-responsive scroll3">
-    <span class="filter"><img src="~/Images/icon/filter.png" /></span>
     @Html.Grid(Model).Columns(columns =>
     {
         columns.Add(m => m.StrTranNumber).Titled("Transaction No.").SetWidth(5);

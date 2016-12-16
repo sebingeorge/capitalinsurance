@@ -94,7 +94,7 @@ select *,concat(Months ,' / ', Year)Month from #TEMP";
                                     left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                    where month(p.RenewalDate)=@id";
+                                    where month(p.RenewalDate)=@id and year(p.RenewalDate)=year(getdate())";
                 return connection.Query<PolicyIssue>(query, new { id = id }).ToList();
             }
         }
