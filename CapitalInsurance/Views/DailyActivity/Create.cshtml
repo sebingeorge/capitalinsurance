@@ -15,6 +15,17 @@
         var url = '@Url.Action("Index","Home")';
         location.href = url;
     }
+    function CheckValidation(sender, i)
+    {
+        $("#DailyActivityItems_" + i + "__DailyActivityDate").attr("required", "true");
+        $("#DailyActivityItems_" + i + "__DailyActivityCompany").attr("required", "true");
+        $("#DailyActivityItems_" + i + "__DailyActivityTime").attr("required", "true");
+        $("#DailyActivityItems_" + i + "__DailyActivityContactPerson").attr("required", "true");
+        $("#DailyActivityItems_" + i + "__DailyActivityContactNo").attr("required", "true");
+        $("#DailyActivityItems_" + i + "__DailyActivityEmail").attr("required", "true");
+        $("#DailyActivityItems_" + i + "__DailyActivityType").attr("required", "true");
+        $("#DailyActivityItems_" + i + "__DailyActivityRemarks").attr("required", "true");
+     }
 </script>
 <div class="container content-in">
     <div class="row">
@@ -80,22 +91,22 @@
                             <td width="1%" align="center">@(i + 1)</td>
                             <td width="9%">
                                 <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                    @Html.TextBoxFor(model => Model.DailyActivityItems[i].DailyActivityDate, new { @class = "form_input" })
+                                    @Html.TextBoxFor(model => Model.DailyActivityItems[i].DailyActivityDate, new { @class = "form_input", @onchange = "CheckValidation(this," + i + ")"  })
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                 </div>
                             </td>
-                            <td width="5%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityTime, new { @class = "form_input timepicker", autocomplete = "off"})</td>
+                            <td width="5%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityTime, new { @class = "form_input timepicker", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
                             <td width="15%">
-                            @Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityCompany, new { @class = "form_input", autocomplete = "off" })
-                            @Html.ValidationMessageFor(m => m.DailyActivityItems[i].DailyActivityCompany, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityCompany, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })
+                         
                             </td>
-                            <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityContactPerson, new { @class = "form_input", autocomplete = "off" })</td>
-                            <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityContactNo, new { @class = "form_input", autocomplete = "off" })</td>
-                            <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityEmail, new { @class = "form_input ", autocomplete = "off" })</td>
+                            <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityContactPerson, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
+                            <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityContactNo, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
+                            <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityEmail, new { @class = "form_input ", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
                             <td width="8%">
-                                <center> @Html.DropDownListFor(m => m.DailyActivityItems[i].DailyActivityType, Model.DailyActivityItems[i].TypeList)</center>
+                                <center> @Html.DropDownListFor(m => m.DailyActivityItems[i].DailyActivityType, Model.DailyActivityItems[i].TypeList, new { @class = "form_input ", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</center>
                             </td>
-                            <td width="30%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityRemarks, new { @class = "form_input", autocomplete = "off" })</td>
+                            <td width="30%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityRemarks, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
                         </tr>
                     }
                 </tbody>

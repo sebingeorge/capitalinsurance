@@ -22,7 +22,7 @@ namespace Capital.Domain
     {
         public DateTime? DailyActivityDate { get; set; }
         public string DailyActivityTime { get; set; }
-        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Sales Manager is Required")]
+      
         public string DailyActivityCompany { get; set; }
         public string DailyActivityContactPerson { get; set; }
         public string DailyActivityContactNo { get; set; }
