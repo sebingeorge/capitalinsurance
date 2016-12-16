@@ -1,7 +1,7 @@
 ﻿@model List<Capital.Domain.Customer>
 @using GridMvc.Html
 <div class="table-responsive scroll3">
-    <span class="filter"><img src="~/Images/icon/filter.png" /></span>
+    @*<span class="filter"><img src="~/Images/icon/filter.png" /></span>*@
     @Html.Grid(Model).Columns(columns =>
     {
         columns.Add(m => m.CusName).Titled("Customer").SetWidth(12);

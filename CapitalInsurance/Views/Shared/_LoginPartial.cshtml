@@ -25,26 +25,12 @@ else
 @{
  
     int total = 0;
-    if (Model.NewPolicy==true)
-    {
-        total += Model.NoOfNewPolicy;
-    }
+   
     if (Model.RenewalPolicy == true)
     {
         total += Model.NoOfRenewalPolicy;
     }
-    if (Model.EndorsePolicy == true)
-    {
-        total += Model.NoOfEndorsePolicy;
-    }
-    if (Model.SalesTarget == true)
-    {
-        total += Model.NoOfSalesTarget;
-    }
-    if (Model.DailyActivity == true)
-    {
-        total += Model.NoOfDailyActivity;
-    } 
+   
 }
 <div class="alert1">
     <ul class="nav navbar-nav right">
@@ -68,11 +54,11 @@ else
         <li>
             <i class="glyphicon glyphicon-bell bell1"></i><a data-toggle="dropdown" class="dropdown-toggle" href="#">@total</a>
             <ul class="dropdown-menu">
-                <li><a href="@Url.Action("Index", "New_Policy", new { type = 1 })" class=""><span class="badge pull-right">@Model.NoOfNewPolicy</span>New Policy List</a></li>
+                @*<li><a href="@Url.Action("Index", "New_Policy", new { type = 1 })" class=""><span class="badge pull-right">@Model.NoOfNewPolicy</span>New Policy List</a></li>*@
                 <li><a href="@Url.Action("Index", "Policy_Renewal")" class=""><span class="badge pull-right">@Model.NoOfRenewalPolicy</span>Renewal List</a></li>
-                <li><a href="@Url.Action("Index", "Policy_Endorsement")" class=""><span class="badge pull-right">@Model.NoOfEndorsePolicy</span>Policy Endorsement</a></li>
+                @*<li><a href="@Url.Action("Index", "Policy_Endorsement")" class=""><span class="badge pull-right">@Model.NoOfEndorsePolicy</span>Policy Endorsement</a></li>
                 <li><a href="@Url.Action("Index", "DailyActivity")" class=""><span class="badge pull-right">@Model.NoOfDailyActivity</span>Daily Activity Report</a></li>
-                <li><a href="@Url.Action("Create", "Sales_Target")" class=""><span class="badge pull-right">@Model.NoOfSalesTarget</span>Sales Target</a></li>
+                <li><a href="@Url.Action("Create", "Sales_Target")" class=""><span class="badge pull-right">@Model.NoOfSalesTarget</span>Sales Target</a></li>*@
                 @*<li><a href="@Url.Action("Sales_Achievement_report", "Sales_Achievement_report")">Sales Achievement report</a></li>*@
                 @*<li><a href="@Url.Action("MeetingSchedule", "MeetingSchedule")">Meeting Schedule</a></li>*@
                 @*<li><a href="@Url.Action("PendingReceivableReport", "ReceivableReport")">Receivable Report</a></li>
