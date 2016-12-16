@@ -3239,13 +3239,13 @@ input[type="button"].btn-block {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left:-139px;
+  left:-147px;
   z-index: 1000;
   display: none;
   float: left;
-  min-width: 160px;
+  min-width:210px;
   padding: 5px 0;
-  margin: 2px 0 0;
+  margin:5px 0 0;
   font-size: 14px;
   list-style: none;
   background-color: #ffffff;
