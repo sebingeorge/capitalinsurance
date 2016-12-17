@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Capital.Domain.SalesAchievement>
+@*@using GridMvc.Html
+    <div class="table-responsive scroll3">
+        @Html.Grid(Model).Columns(columns =>
+        {
+            columns.Add(m => m.SalesMgId).Titled("Code").SetWidth(12);
+            columns.Add(m => m.SalesMgName).Titled("Employee Name").SetWidth(5);
+            columns.Add(m => m.Target1).Titled("Quarter 1").SetWidth(10);
+
+
+
+        }).WithPaging(15)
+    </div>*@
+<div class="table-responsive scroll3">
+    <table class="table table-bordered" id="tab_logic">
+        <thead>
+            <tr class="grid_heading">
+                <th width="5%">Code</th>
+                <th width="15%">Employee Name</th>
+                <th width="20%" class="span">
+                    <table class="table table-bordered" id="tab_logic">
+                        <thead>
+                            <tr><th colspan="4"><center>Quarter 1</center></th></tr>
+                            <tr><th>Target</th><th>Achived</th><th>Achv.%</th><th>SF</th></tr>
+                        </thead>
+                    </table>
+
+                </th>
+                <th width="20%" class="span">
+                    <table class="table table-bordered" id="tab_logic">
+                        <thead>
+                            <tr><th colspan="4"><center>Quarter 2</center></th></tr>
+                            <tr><th>Target</th><th>Achived</th><th>Achv.%</th><th>SF</th></tr>
+                        </thead>
+                    </table>
+
+                </th>
+                <th width="20%" class="span">
+                    <table class="table table-bordered" id="tab_logic">
+                        <thead>
+                            <tr><th colspan="4"><center>Quarter 3</center></th></tr>
+                            <tr><th>Target</th><th>Achived</th><th>Achv.%</th><th>SF</th></tr>
+                        </thead>
+                    </table>
+
+                </th>
+                <th width="20%" class="span">
+                    <table class="table table-bordered" id="tab_logic">
+                        <thead>
+                            <tr><th colspan="4"><center>Quarter 4</center></th></tr>
+                            <tr><th>Target</th><th>Achived</th><th>Achv.%</th><th>SF</th></tr>
+                        </thead>
+                    </table>
+
+                </th>
+
+
+
+        </thead>
+        <tbody>
+     
+            @foreach (var item in Model)
+              {
+            <tr>
+
+                <td>@item.SalesMgCode</td>
+                <td>@item.SalesMgName</td>
+                <td class="span">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                            <td>@item.Target1</td>
+                            <td>@item.Achvd1</td>
+                            <td>@item.AchvdPerc1</td>
+                            <td>@item.Target1-@item.Achvd1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td class="span">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr><td>@item.Target2</td><td>@item.Achvd2</td><td>@item.AchvdPerc2</td><td>@item.Target2-@item.Achvd2</td></tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td class="span">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr><td>@item.Target3</td><td>@item.Achvd3</td><td>@item.AchvdPerc3</td><td>@item.Target3-@item.Achvd3</td></tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td class="span">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr><td>@item.Target4</td><td>@item.Achvd4</td><td>@item.AchvdPerc4</td><td>@item.Target4-@item.Achvd4</td></tr>
+                        </tbody>
+                    </table>
+                </td>
+
+
+            </tr>
+}
+        </tbody>
+
+
+    </table>
+
+</div>

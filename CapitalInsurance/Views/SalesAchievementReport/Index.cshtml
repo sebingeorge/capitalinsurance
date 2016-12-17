@@ -1,0 +1,47 @@
+﻿@model Capital.Domain.SalesAchievement
+@{
+    ViewBag.Title = "Index";
+}
+<script>
+    function Filter() {
+        var id = $("#FyId").val();
+        var url = '@Url.Action("SalesAchieveReport")';
+        url += "?FyId=" + id;
+        $("#Sales_Achvd").load(url);
+    }
+</script>
+   
+<div class="container content-in">
+    <div class="row">
+        <h1>Sales Achievement Report</h1>
+    </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <label>Year</label>
+                        @Html.DropDownListFor(m => Model.FyId, (SelectList)ViewBag.FinYear, "Select Year", new { @class = "form_input", autocomplete = "off", onchange = "Filter()" })
+                        @Html.ValidationMessageFor(m => m.FyId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row form-group">
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="table-responsive" id="Sales_Achvd">
+            @Html.Action("SalesAchieveReport", new { FyId = 0 })
+        </div>
+        <div class="row">
+            <hr />
+            <div class="col-md-12">
+                <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+            </div>
+        </div>
+
+</div>
+
+

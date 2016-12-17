@@ -204,6 +204,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Policy_RenewalController.cs" />
     <Compile Include="Controllers\ReceivableReportController.cs" />
+    <Compile Include="Controllers\SalesAchievementReportController.cs" />
     <Compile Include="Controllers\SalesManagerController.cs" />
     <Compile Include="Controllers\Sales_Achievement_reportController.cs" />
     <Compile Include="Controllers\Sales_TargetController.cs" />
@@ -540,6 +541,8 @@
     <Content Include="Views\DailyActivity\Create.cshtml" />
     <Content Include="Views\DailyActivity\Index.cshtml" />
     <Content Include="Views\DailyActivity\_DailyActivityReport.cshtml" />
+    <Content Include="Views\SalesAchievementReport\_SalesAchieveReport.cshtml" />
+    <Content Include="Views\SalesAchievementReport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
