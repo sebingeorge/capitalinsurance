@@ -103,10 +103,14 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select S.SalesMgId,SM.SalesMgName,S.FyId,F.FyName,S.Total,S.Quarer1 Target1,S.Quarer2 Target2,S.Quarer3 Target3,S.Quarer4 Target4,0 Jan,0 Feb,0 Mar,0 Apl,0 May,0 Jun,0 July,0 Aug,0 Sep,0 Oct,0 Nov,0 Dec INTO #RESULT from SalesTarget S
+                string sql = @"select S.SalesMgId,SM.SalesMgName,S.FyId,F.FyName,S.Total TotalTarget,0 TotalAcvd,S.Quarer1 Target1,S.Quarer2 Target2,S.Quarer3 Target3,S.Quarer4 Target4,0 Jan,0 Feb,0 Mar,0 Apl,0 May,0 Jun,0 July,0 Aug,0 Sep,0 Oct,0 Nov,0 Dec INTO #RESULT from SalesTarget S
                                INNER JOIN SalesManager SM on S.SalesMgId=SM.SalesMgId
                                INNER JOIN FinancialYear F ON F.FyId=S.FyId;
-        
+
+                               with A as (
+                               select year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)TotalAcvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where  year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set TotalAcvd = A.TotalAcvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+
                                with A as (
                                select year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)JanAchvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) = 1 and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
                                Update R set Jan = A.JanAchvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
