@@ -103,7 +103,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select S.SalesMgId,SM.SalesMgName,S.FyId,F.FyName,S.Total TotalTarget,0 TotalAcvd,S.Quarer1 Target1,S.Quarer2 Target2,S.Quarer3 Target3,S.Quarer4 Target4,0 Jan,0 Feb,0 Mar,0 Apl,0 May,0 Jun,0 July,0 Aug,0 Sep,0 Oct,0 Nov,0 Dec INTO #RESULT from SalesTarget S
+                string sql = @"select S.SalesMgId,SM.SalesMgName,S.FyId,F.FyName,S.Total,0 TotalAcvd,S.Quarer1 Target1,S.Quarer2 Target2,S.Quarer3 Target3,S.Quarer4 Target4,0 Jan,0 Feb,0 Mar,0 Apl,0 May,0 Jun,0 July,0 Aug,0 Sep,0 Oct,0 Nov,0 Dec,0 Q1Shortfall,0 Q2Shortfall,0 Q3Shortfall,0 Q4Shortfall,0 Q1Excess,0 Q2Excess,0 Q3Excess,0 Q4Excess INTO #RESULT from SalesTarget S
                                INNER JOIN SalesManager SM on S.SalesMgId=SM.SalesMgId
                                INNER JOIN FinancialYear F ON F.FyId=S.FyId;
 
@@ -158,8 +158,32 @@ namespace Capital.DAL
                                with A as (
                                select  year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)DecAchvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) = 12 and  year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
                                Update R set Dec = A.DecAchvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+                              
+                               with A as (
+                               select  FyName,SalesMgId, Target1-(Jan + Feb + Mar)Q1Shortfall ,(Jan + Feb + Mar)-Target1 Q1Excess from #Result  )
+                               Update R set Q1Shortfall = A.Q1Shortfall,Q1Excess=A.Q1Excess from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.FyName=R.FyName;
 
-                               SELECT * FROM #RESULT  WHERE FyId=@FyId";
+                               with A as (
+                               select  FyName,SalesMgId,  Target2-(Apl + May + Jun)Q2Shortfall  ,(Apl + May + Jun)-Target2 Q2Excess from #Result  )
+                               Update R set Q2Shortfall = A.Q2Shortfall,Q2Excess=A.Q2Excess  from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.FyName=R.FyName;
+
+                               with A as (
+                               select  FyName,SalesMgId, Target3-(july + Aug + Sep)Q3Shortfall  ,(july + Aug + Sep)-Target3 Q3Excess from #Result  )
+                               Update R set Q3Shortfall = A.Q3Shortfall,Q3Excess=A.Q3Excess from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.FyName=R.FyName;
+
+                               with A as (
+                               select  FyName,SalesMgId, Target4-(Oct + Nov + Dec) Q4Shortfall  ,(Oct + Nov + Dec)-Target4 Q4Excess from #Result  )
+                               Update R set Q4Shortfall = A.Q4Shortfall,Q4Excess=A.Q4Excess from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.FyName=R.FyName;
+
+                               SELECT  SalesMgName,Total,Target1,Target2,Target3,Target4,Jan,Feb,Mar,Apl,May,Jun,July,Aug,Sep,Oct,Nov,Dec,
+                               CASE WHEN Q1Shortfall< 0 THEN 0 ELSE Q1Shortfall END AS Q1Shortfall,
+                               CASE WHEN Q2Shortfall< 0 THEN 0 ELSE Q2Shortfall END AS Q2Shortfall,
+                               CASE WHEN Q3Shortfall < 0 THEN 0 ELSE Q3Shortfall END AS Q3Shortfall,
+                               CASE WHEN Q4Shortfall< 0 THEN 0 ELSE Q4Shortfall END AS Q4Shortfall,
+                               CASE WHEN Q1Excess< 0 THEN 0 ELSE Q1Excess END AS Q1Excess,
+                               CASE WHEN Q2Excess< 0 THEN 0 ELSE Q2Excess END AS Q2Excess,
+                               CASE WHEN Q3Excess< 0 THEN 0 ELSE Q3Excess END AS Q3Excess,
+                               CASE WHEN Q4Excess < 0 THEN 0 ELSE Q4Excess END AS Q4Excess FROM #RESULT  WHERE FyId=@FyId";
 
                 var objSalesTarget = connection.Query<SalesAchievement>(sql, new { FyId = FyId }).ToList<SalesAchievement>();
                 return objSalesTarget;

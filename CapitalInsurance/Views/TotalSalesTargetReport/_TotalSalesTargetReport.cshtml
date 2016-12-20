@@ -4,7 +4,7 @@
     <table class="table table-bordered" id="tab_logic">
         <thead>
             <tr class="grid_heading">
-                      <th width="20%" class="span">
+                      <th width="40%" class="span">
                     <table class="table table-bordered" id="tab_logic">
                         <thead>
                             <tr><th colspan="5"><center></center></th></tr>
@@ -18,7 +18,7 @@
                         </thead>
                     </table>
                 </th>
-                <th width="20%" class="span">
+                <th width="15%" class="span">
                     <table class="table table-bordered" id="tab_logic">
                         <thead>
                             <tr><th colspan="7"><center>1st Quarter</center></th></tr>
@@ -34,7 +34,7 @@
                         </thead>
                     </table>
                 </th>
-                <th width="20%" class="span">
+                <th width="15%" class="span">
                     <table class="table table-bordered" id="tab_logic">
                         <thead>
                             <tr><th colspan="7"><center>2nd Quarter</center></th></tr>
@@ -50,23 +50,23 @@
                         </thead>
                     </table>
                 </th>
-                <th width="20%" class="span">
+                <th width="15%" class="span">
                     <table class="table table-bordered" id="tab_logic">
                         <thead>
                             <tr><th colspan="7"><center>3rd Quarter</center></th></tr>
                             <tr>
-                            <th width="25%">Q3 T</th>
-                            <th width="25%">JUL</th>
-                            <th width="25%">AUG</th>
-                            <th width="25%">SEP</th>
-                            <th width="25%">ACHIEVED</th>
-                            <th width="25%">EXCESS</th>
-                            <th width="25%">SF</th>
+                                <th width="25%">Q3 T</th>
+                                <th width="25%">JUL</th>
+                                <th width="25%">AUG</th>
+                                <th width="25%">SEP</th>
+                                <th width="25%">ACHIEVED</th>
+                                <th width="25%">EXCESS</th>
+                                <th width="25%">SF</th>
                             </tr>
                         </thead>
                     </table>
                 </th>
-                <th width="20%" class="span">
+                <th width="15%" class="span">
                     <table class="table table-bordered" id="tab_logic">
                         <thead>
                             <tr><th colspan="7"><center>4th Quarter</center></th></tr>
@@ -86,8 +86,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        @*<td>@item.SalesMgCode</td>
-                        <td>@item.SalesMgName</td>*@
+                       
                         <td class="span">
                             <table class="table">
                                 <tbody>
@@ -110,8 +109,8 @@
                                         <td width="25%">@item.Feb</td>
                                         <td width="25%">@item.Mar</td>
                                         <td width="25%">@(item.Jan + item.Feb + item.Mar)</td>
-                                        <td width="25%">@(item.Jan + item.Feb + item.Mar)</td>
-                                        <td width="25%">@(item.Jan + item.Feb + item.Mar)</td>
+                                        <td width="25%">@item.Q1Excess</td>
+                                        <td width="25%">@item.Q1Shortfall</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -125,8 +124,8 @@
                                         <td width="25%">@item.May</td>
                                         <td width="25%">@item.Jun</td>
                                         <td width="25%">@(item.Apl + item.May + item.Jun)</td>
-                                        <td width="25%">@(item.Apl + item.May + item.Jun)</td>
-                                        <td width="25%">@(item.Apl + item.May + item.Jun)</td>
+                                        <td width="25%">@item.Q2Excess</td>
+                                        <td width="25%">@item.Q2Shortfall</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -140,8 +139,8 @@
                                         <td width="25%">@item.Aug</td>
                                         <td width="25%">@item.Sep</td>
                                         <td width="25%">@(item.July + item.Aug + item.Sep)</td>
-                                        <td width="25%">@(item.July + item.Aug + item.Sep)</td>
-                                        <td width="25%">@(item.July + item.Aug + item.Sep)</td>
+                                        <td width="25%">@item.Q3Excess</td>
+                                        <td width="25%">@item.Q3Shortfall</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -155,8 +154,8 @@
                                         <td width="25%">@item.Nov</td>
                                         <td width="25%">@item.Dec</td>
                                         <td width="25%">@(item.Oct + item.Nov + item.Dec)</td>
-                                        <td width="25%">@(item.Oct + item.Nov + item.Dec)</td>
-                                        <td width="25%">@(item.Oct + item.Nov + item.Dec)</td>
+                                        <td width="25%">@item.Q4Excess</td>
+                                        <td width="25%">@item.Q4Shortfall</td>
                                     </tr>
                                 </tbody>
                             </table>
