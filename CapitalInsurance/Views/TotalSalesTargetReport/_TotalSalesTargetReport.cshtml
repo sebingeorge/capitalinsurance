@@ -86,16 +86,15 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                       
-                        <td class="span">
+                       <td class="span">
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td width="30%" style="word-wrap:break-word;" class="q1t">@item.SalesMgName</td>
+                                        <td width="30%" style="word-wrap:break-word;">@item.SalesMgName</td>
                                         <td width="20%" class="q1t">@item.TotalTarget</td>
                                         <td width="20%" class="q1t">@item.TotalAcvd</td>
-                                        <td width="18%" class="q1t">@(item.TotalTarget - item.TotalAcvd)</td>
-                                        <td width="15%" class="q1t">@(item.TotalTarget - item.TotalAcvd)</td>
+                                        <td width="18%" class="q1t">@item.YExcess</td>
+                                        <td width="15%" class="q1t">@item.YShortFall</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -104,13 +103,13 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td width="25%">@item.Target1</td>
-                                        <td width="25%">@item.Jan</td>
-                                        <td width="25%">@item.Feb</td>
-                                        <td width="25%">@item.Mar</td>
-                                        <td width="25%">@(item.Jan + item.Feb + item.Mar)</td>
-                                        <td width="25%">@item.Q1Excess</td>
-                                        <td width="25%">@item.Q1Shortfall</td>
+                                        <td width="12%" class="q1t">@item.Target1</td>
+                                        <td width="12%">@item.Jan</td>
+                                        <td width="12%">@item.Feb</td>
+                                        <td width="12%">@item.Mar</td>
+                                        <td width="25%" class="achived">@(item.Jan + item.Feb + item.Mar)</td>
+                                        <td width="18%">@item.Q1Excess</td>
+                                        <td width="12%" class="sf">@item.Q1Shortfall</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -119,13 +118,13 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td width="25%">@item.Target2</td>
-                                        <td width="25%">@item.Apl</td>
-                                        <td width="25%">@item.May</td>
-                                        <td width="25%">@item.Jun</td>
-                                        <td width="25%">@(item.Apl + item.May + item.Jun)</td>
-                                        <td width="25%">@item.Q2Excess</td>
-                                        <td width="25%">@item.Q2Shortfall</td>
+                                        <td width="12%" class="q1t">@(item.Target2 + (item.Q1Shortfall/3))</td>
+                                        <td width="12%">@item.Apl</td>
+                                        <td width="12%">@item.May</td>
+                                        <td width="12%">@item.Jun</td>
+                                        <td width="25%" class="achived">@(item.Apl + item.May + item.Jun)</td>
+                                        <td width="18%">@item.Q2Excess</td>
+                                        <td width="12%" class="sf">@item.Q2Shortfall</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -134,13 +133,13 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td width="25%">@item.Target3</td>
-                                        <td width="25%">@item.July</td>
-                                        <td width="25%">@item.Aug</td>
-                                        <td width="25%">@item.Sep</td>
-                                        <td width="25%">@(item.July + item.Aug + item.Sep)</td>
-                                        <td width="25%">@item.Q3Excess</td>
-                                        <td width="25%">@item.Q3Shortfall</td>
+                                        <td width="12%" class="q1t">@(item.Target3 + (item.Q1Shortfall / 3) - (item.Q2Excess / 2) + (item.Q2Shortfall / 2))</td>
+                                        <td width="12%">@item.July</td>
+                                        <td width="12%">@item.Aug</td>
+                                        <td width="12%">@item.Sep</td>
+                                        <td width="25%" class="achived">@(item.July + item.Aug + item.Sep)</td>
+                                        <td width="18%">@item.Q3Excess</td>
+                                        <td width="12%" class="sf">@item.Q3Shortfall</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -149,13 +148,13 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td width="25%">@item.Target4</td>
-                                        <td width="25%">@item.Oct</td>
-                                        <td width="25%">@item.Nov</td>
-                                        <td width="25%">@item.Dec</td>
-                                        <td width="25%">@(item.Oct + item.Nov + item.Dec)</td>
-                                        <td width="25%">@item.Q4Excess</td>
-                                        <td width="25%">@item.Q4Shortfall</td>
+                                        <td width="12%" class="q1t">@(item.Target4 + (item.Q1Shortfall / 3) - (item.Q2Excess / 2) + (item.Q3Shortfall) - (item.Q3Excess))</td>
+                                        <td width="12%">@item.Oct</td>
+                                        <td width="12%">@item.Nov</td>
+                                        <td width="12%">@item.Dec</td>
+                                        <td width="25%" class="achived">@(item.Oct + item.Nov + item.Dec)</td>
+                                        <td width="18%">@item.Q4Excess</td>
+                                        <td width="12%" class="sf">@item.Q4Shortfall</td>
                                     </tr>
                                 </tbody>
                             </table>

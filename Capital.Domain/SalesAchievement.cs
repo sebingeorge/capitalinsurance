@@ -46,6 +46,9 @@ namespace Capital.Domain
       public int Q2Excess { get; set; }
       public int Q3Excess { get; set; }
       public int Q4Excess { get; set; }
+       public int YShortFall { get; set; }
+       public int YExcess { get; set; }
+    
     }
  
 }

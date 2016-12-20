@@ -175,15 +175,15 @@ namespace Capital.DAL
                                select  FyName,SalesMgId, Target4-(Oct + Nov + Dec) Q4Shortfall  ,(Oct + Nov + Dec)-Target4 Q4Excess from #Result  )
                                Update R set Q4Shortfall = A.Q4Shortfall,Q4Excess=A.Q4Excess from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.FyName=R.FyName;
 
-                               SELECT  SalesMgName,Total,Target1,Target2,Target3,Target4,Jan,Feb,Mar,Apl,May,Jun,July,Aug,Sep,Oct,Nov,Dec,
-                               CASE WHEN Q1Shortfall< 0 THEN 0 ELSE Q1Shortfall END AS Q1Shortfall,
-                               CASE WHEN Q2Shortfall< 0 THEN 0 ELSE Q2Shortfall END AS Q2Shortfall,
-                               CASE WHEN Q3Shortfall < 0 THEN 0 ELSE Q3Shortfall END AS Q3Shortfall,
-                               CASE WHEN Q4Shortfall< 0 THEN 0 ELSE Q4Shortfall END AS Q4Shortfall,
-                               CASE WHEN Q1Excess< 0 THEN 0 ELSE Q1Excess END AS Q1Excess,
-                               CASE WHEN Q2Excess< 0 THEN 0 ELSE Q2Excess END AS Q2Excess,
-                               CASE WHEN Q3Excess< 0 THEN 0 ELSE Q3Excess END AS Q3Excess,
-                               CASE WHEN Q4Excess < 0 THEN 0 ELSE Q4Excess END AS Q4Excess FROM #RESULT  WHERE FyId=@FyId";
+                               SELECT  SalesMgName,Total TotalTarget,TotalAcvd, CASE WHEN (TotalAcvd-Total)<= 0 THEN 0 ELSE (TotalAcvd-Total) END AS YExcess,CASE WHEN (Total-TotalAcvd)<= 0 THEN 0 ELSE (Total-TotalAcvd) END AS YShortFall,Target1,Target2,Target3,Target4,Jan,Feb,Mar,Apl,May,Jun,July,Aug,Sep,Oct,Nov,Dec,
+                               CASE WHEN Q1Shortfall<= 0 THEN 0 ELSE Q1Shortfall END AS Q1Shortfall,
+                               CASE WHEN Q2Shortfall<= 0 THEN 0 ELSE Q2Shortfall END AS Q2Shortfall,
+                               CASE WHEN Q3Shortfall <= 0 THEN 0 ELSE Q3Shortfall END AS Q3Shortfall,
+                               CASE WHEN Q4Shortfall<= 0 THEN 0 ELSE Q4Shortfall END AS Q4Shortfall,
+                               CASE WHEN Q1Excess<= 0 THEN 0 ELSE Q1Excess END AS Q1Excess,
+                               CASE WHEN Q2Excess<= 0 THEN 0 ELSE Q2Excess END AS Q2Excess,
+                               CASE WHEN Q3Excess<= 0 THEN 0 ELSE Q3Excess END AS Q3Excess,
+                               CASE WHEN Q4Excess <= 0 THEN 0 ELSE Q4Excess END AS Q4Excess FROM #RESULT  WHERE FyId=@FyId";
 
                 var objSalesTarget = connection.Query<SalesAchievement>(sql, new { FyId = FyId }).ToList<SalesAchievement>();
                 return objSalesTarget;
