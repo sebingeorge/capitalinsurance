@@ -204,9 +204,11 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Policy_RenewalController.cs" />
     <Compile Include="Controllers\ReceivableReportController.cs" />
+    <Compile Include="Controllers\SalesAchievementReportController.cs" />
     <Compile Include="Controllers\SalesManagerController.cs" />
     <Compile Include="Controllers\Sales_Achievement_reportController.cs" />
     <Compile Include="Controllers\Sales_TargetController.cs" />
+    <Compile Include="Controllers\TotalSalesTargetReportController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -438,9 +440,6 @@
     <Content Include="Views\PolicyRenewalSummaryReport\_PolicyRenewalSummary.cshtml" />
     <Content Include="Views\ReceivableReport\PendingReceivableReport.cshtml" />
     <Content Include="Views\ReceivableReport\ReceivableReport.cshtml" />
-    <Content Include="Views\Sales_Achievement_report\Sales_Achievement_report.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -541,6 +540,10 @@
     <Content Include="Views\DailyActivity\Create.cshtml" />
     <Content Include="Views\DailyActivity\Index.cshtml" />
     <Content Include="Views\DailyActivity\_DailyActivityReport.cshtml" />
+    <Content Include="Views\SalesAchievementReport\_SalesAchieveReport.cshtml" />
+    <Content Include="Views\SalesAchievementReport\Index.cshtml" />
+    <Content Include="Views\TotalSalesTargetReport\_TotalSalesTargetReport.cshtml" />
+    <Content Include="Views\TotalSalesTargetReport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

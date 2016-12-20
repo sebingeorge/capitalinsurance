@@ -68,16 +68,12 @@ namespace Capital.DAL
                                                FROM   DateRange
                                                WHERE Months < DATEADD(mm, 3, GETDATE()))
 
-SELECT  Month(Months) AS MonthCode,DateName(m, Months) AS Months,year(Months)Year,0 CountofExpired,0 CountofRenewed into #TEMP FROM DateRange
+                                SELECT  Month(Months) AS MonthCode,DateName(m, Months) AS Months,year(Months)Year,0 CountofExpired,0 CountofRenewed into #TEMP FROM DateRange
 
-update  #TEMP   set CountofExpired = (select count(*)  from PolicyIssue p where month(p.RenewalDate)=#TEMP.MonthCode and year(p.RenewalDate)=#TEMP.year and p.TranType <>'EndorsePolicy') where MonthCode=#TEMP.MonthCode
-update  #TEMP   set CountofRenewed = (select count(*)  from PolicyIssue p where month(p.RenewalDate)=#TEMP.MonthCode and year(p.RenewalDate)=#TEMP.year and p.TranType <>'EndorsePolicy' and p.PolicyId =p.OldPolicyId) where MonthCode=#TEMP.MonthCode
+                                update  #TEMP   set CountofExpired = (select count(*)  from PolicyIssue p where month(p.RenewalDate)=#TEMP.MonthCode and year(p.RenewalDate)=#TEMP.year and p.TranType <>'EndorsePolicy') where MonthCode=#TEMP.MonthCode
+                                update  #TEMP   set CountofRenewed = (select count(*)  from PolicyIssue p where month(p.RenewalDate)=#TEMP.MonthCode and year(p.RenewalDate)=#TEMP.year and p.TranType <>'EndorsePolicy' and p.PolicyId =p.OldPolicyId) where MonthCode=#TEMP.MonthCode
 
-select *,concat(Months ,' / ', Year)Month from #TEMP";
-
-
-
-
+                                select *,concat(Months ,' / ', Year)Month from #TEMP";
 
                 return connection.Query<RenewalSummary>(query).ToList();
             }
