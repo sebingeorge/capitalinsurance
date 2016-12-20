@@ -38,6 +38,16 @@ namespace Capital.Domain
       public int Oct { get; set; }
       public int Nov { get; set; }
       public int Dec { get; set; }
+      public int Q1Shortfall { get; set; }
+      public int Q2Shortfall { get; set; }
+      public int Q3Shortfall { get; set; }
+      public int Q4Shortfall { get; set; }
+      public int Q1Excess { get; set; }
+      public int Q2Excess { get; set; }
+      public int Q3Excess { get; set; }
+      public int Q4Excess { get; set; }
+       public int YShortFall { get; set; }
+       public int YExcess { get; set; }
     
     }
  
