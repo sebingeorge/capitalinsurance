@@ -1,16 +1,5 @@
 ﻿@model IEnumerable<Capital.Domain.SalesAchievement>
-@*@using GridMvc.Html
-    <div class="table-responsive scroll3">
-        @Html.Grid(Model).Columns(columns =>
-        {
-            columns.Add(m => m.SalesMgId).Titled("Code").SetWidth(12);
-            columns.Add(m => m.SalesMgName).Titled("Employee Name").SetWidth(5);
-            columns.Add(m => m.Target1).Titled("Quarter 1").SetWidth(10);
 
-
-
-        }).WithPaging(15)
-    </div>*@
 <div class="table-responsive scroll3">
     <table class="table table-bordered" id="tab_logic">
         <thead>
@@ -24,7 +13,6 @@
                             <tr><th width="25%">Target</th><th width="25%">Achived</th><th width="25%">Achv.%</th><th width="25%">SF</th></tr>
                         </thead>
                     </table>
-
                 </th>
                 <th width="20%" class="span">
                     <table class="table table-bordered" id="tab_logic">
@@ -33,7 +21,6 @@
                             <tr><th width="25%">Target</th><th width="25%">Achived</th><th width="25%">Achv.%</th><th width="25%">SF</th></tr>
                         </thead>
                     </table>
-
                 </th>
                 <th width="20%" class="span">
                     <table class="table table-bordered" id="tab_logic">
@@ -42,7 +29,6 @@
                             <tr><th width="25%">Target</th><th width="25%">Achived</th><th width="25%">Achv.%</th><th width="25%">SF</th></tr>
                         </thead>
                     </table>
-
                 </th>
                 <th width="20%" class="span">
                     <table class="table table-bordered" id="tab_logic">
@@ -51,28 +37,22 @@
                             <tr><th width="25%">Target</th><th width="25%">Achived</th><th width="25%">Achv.%</th><th width="25%">SF</th></tr>
                         </thead>
                     </table>
-
                 </th>
-
-
-
         </thead>
         <tbody>
-     
-            @foreach (var item in Model)
+              @foreach (var item in Model)
               {
             <tr>
-
                 <td>@item.SalesMgCode</td>
                 <td>@item.SalesMgName</td>
                 <td class="span">
                     <table class="table">
                         <tbody>
                             <tr>
-                            <td width="25%">@item.Target1</td>
-                            <td width="25%">@item.Achvd1</td>
-                            <td width="25%">@item.AchvdPerc1</td>
-                            <td width="25%">@item.Target1-@item.Achvd1</td>
+                                <td width="25%">@item.Target1</td>
+                                <td width="25%">@item.Achvd1</td>
+                                <td width="25%">@item.AchvdPerc1</td>
+                                <td width="25%">@(item.Target1 - item.Achvd1)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -80,31 +60,41 @@
                 <td class="span">
                     <table class="table">
                         <tbody>
-                            <tr><td width="25%">@item.Target2</td><td width="25%">@item.Achvd2</td><td width="25%">@item.AchvdPerc2</td><td width="25%">@item.Target2-@item.Achvd2</td></tr>
+                            <tr>
+                            <td width="25%">@item.Target2</td>
+                            <td width="25%">@item.Achvd2</td>
+                            <td width="25%">@item.AchvdPerc2</td>
+                            <td width="25%">@(item.Target2 - item.Achvd2)</td>
+                            </tr>
                         </tbody>
                     </table>
                 </td>
                 <td class="span">
                     <table class="table">
                         <tbody>
-                            <tr><td width="25%">@item.Target3</td><td width="25%">@item.Achvd3</td><td width="25%">@item.AchvdPerc3</td><td width="25%">@item.Target3-@item.Achvd3</td></tr>
+                            <tr>
+                            <td width="25%">@item.Target3</td>
+                            <td width="25%">@item.Achvd3</td>
+                            <td width="25%">@item.AchvdPerc3</td>
+                            <td width="25%">@(item.Target3 - item.Achvd3)</td>
+                            </tr>
                         </tbody>
                     </table>
                 </td>
                 <td class="span">
                     <table class="table">
                         <tbody>
-                            <tr><td width="25%">@item.Target4</td><td width="25%">@item.Achvd4</td><td width="25%">@item.AchvdPerc4</td><td width="25%">@item.Target4-@item.Achvd4</td></tr>
+                            <tr>
+                            <td width="25%">@item.Target4</td>
+                            <td width="25%">@item.Achvd4</td>
+                            <td width="25%">@item.AchvdPerc4</td>
+                            <td width="25%">@(item.Target4 - item.Achvd4)</td>
+                            </tr>
                         </tbody>
                     </table>
                 </td>
-
-
             </tr>
 }
         </tbody>
-
-
     </table>
-
 </div>
