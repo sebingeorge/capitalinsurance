@@ -1,0 +1,168 @@
+﻿@model IEnumerable<Capital.Domain.SalesAchievement>
+
+<div class="table-responsive scroll3">
+    <table class="table table-bordered" id="tab_logic">
+        <thead>
+            <tr class="grid_heading">
+                      <th width="20%" class="span">
+                    <table class="table table-bordered" id="tab_logic">
+                        <thead>
+                            <tr><th colspan="5"><center></center></th></tr>
+                            <tr>
+                            <th width="25%">MANAGER</th>
+                            <th width="25%">YEARLY TARGET</th>
+                            <th width="25%">ACHIEVED</th>
+                            <th width="25%">EXCESS</th>
+                            <th width="25%">SF</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </th>
+                <th width="20%" class="span">
+                    <table class="table table-bordered" id="tab_logic">
+                        <thead>
+                            <tr><th colspan="7"><center>1st Quarter</center></th></tr>
+                            <tr>
+                            <th width="25%">Q1 T</th>
+                            <th width="25%">JAN</th>
+                            <th width="25%">FEB</th>
+                            <th width="25%">MAR</th>
+                            <th width="25%">ACHIEVED</th>
+                            <th width="25%">EXCESS</th>
+                            <th width="25%">SF</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </th>
+                <th width="20%" class="span">
+                    <table class="table table-bordered" id="tab_logic">
+                        <thead>
+                            <tr><th colspan="7"><center>2nd Quarter</center></th></tr>
+                            <tr>
+                            <th width="25%">Q2 T</th>
+                            <th width="25%">APR</th>
+                            <th width="25%">MAY</th>
+                            <th width="25%">JUN</th>
+                            <th width="25%">ACHIEVED</th>
+                            <th width="25%">EXCESS</th>
+                            <th width="25%">SF</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </th>
+                <th width="20%" class="span">
+                    <table class="table table-bordered" id="tab_logic">
+                        <thead>
+                            <tr><th colspan="7"><center>3rd Quarter</center></th></tr>
+                            <tr>
+                            <th width="25%">Q3 T</th>
+                            <th width="25%">JUL</th>
+                            <th width="25%">AUG</th>
+                            <th width="25%">SEP</th>
+                            <th width="25%">ACHIEVED</th>
+                            <th width="25%">EXCESS</th>
+                            <th width="25%">SF</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </th>
+                <th width="20%" class="span">
+                    <table class="table table-bordered" id="tab_logic">
+                        <thead>
+                            <tr><th colspan="7"><center>4th Quarter</center></th></tr>
+                            <tr><th width="25%">Q4 T</th>
+                            <th width="25%">OCT</th>
+                            <th width="25%">NOV</th>
+                            <th width="25%">DEC</th>
+                            <th width="25%">ACHIEVED</th>
+                            <th width="25%">EXCESS</th>
+                            <th width="25%">SF</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </th>
+        </thead>
+        <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @*<td>@item.SalesMgCode</td>
+                        <td>@item.SalesMgName</td>*@
+                        <td class="span">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td width="25%">@item.SalesMgName</td>
+                                        <td width="25%">@item.TotalTarget</td>
+                                        <td width="25%">@item.TotalAcvd</td>
+                                        <td width="25%">@(item.TotalTarget - item.TotalAcvd)</td>
+                                        <td width="25%">@(item.TotalTarget - item.TotalAcvd)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td class="span">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td width="25%">@item.Target1</td>
+                                        <td width="25%">@item.Jan</td>
+                                        <td width="25%">@item.Feb</td>
+                                        <td width="25%">@item.Mar</td>
+                                        <td width="25%">@(item.Jan + item.Feb + item.Mar)</td>
+                                        <td width="25%">@(item.Jan + item.Feb + item.Mar)</td>
+                                        <td width="25%">@(item.Jan + item.Feb + item.Mar)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td class="span">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td width="25%">@item.Target2</td>
+                                        <td width="25%">@item.Apl</td>
+                                        <td width="25%">@item.May</td>
+                                        <td width="25%">@item.Jun</td>
+                                        <td width="25%">@(item.Apl + item.May + item.Jun)</td>
+                                        <td width="25%">@(item.Apl + item.May + item.Jun)</td>
+                                        <td width="25%">@(item.Apl + item.May + item.Jun)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td class="span">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td width="25%">@item.Target3</td>
+                                        <td width="25%">@item.July</td>
+                                        <td width="25%">@item.Aug</td>
+                                        <td width="25%">@item.Sep</td>
+                                        <td width="25%">@(item.July + item.Aug + item.Sep)</td>
+                                        <td width="25%">@(item.July + item.Aug + item.Sep)</td>
+                                        <td width="25%">@(item.July + item.Aug + item.Sep)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td class="span">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td width="25%">@item.Target4</td>
+                                        <td width="25%">@item.Oct</td>
+                                        <td width="25%">@item.Nov</td>
+                                        <td width="25%">@item.Dec</td>
+                                        <td width="25%">@(item.Oct + item.Nov + item.Dec)</td>
+                                        <td width="25%">@(item.Oct + item.Nov + item.Dec)</td>
+                                        <td width="25%">@(item.Oct + item.Nov + item.Dec)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+</div>

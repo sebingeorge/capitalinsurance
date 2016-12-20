@@ -5,26 +5,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 namespace CapitalInsurance.Controllers
 {
-    public class SalesAchievementReportController : BaseController
+    public class TotalSalesTargetReportController : BaseController
     {
-        // GET: SalesAchievementReport
+        // GET: TotalSalesTargetReport
         public ActionResult Index()
         {
             FillFinYear();
             return View();
         }
-        public ActionResult SalesAchieveReport(int? FyId)
-        {
-                    
-            return PartialView("_SalesAchieveReport", new SalesTargetRepository().GetSalesAchievementReportDetails(FyId));
-        }
         void FillFinYear()
         {
             ViewBag.FinYear = new SelectList((new DropdownRepository()).FillFinYear(), "Id", "Name");
         }
-     
+              public ActionResult TotalSalesTargetReport(int? FyId)
+        {
+
+            return PartialView("_TotalSalesTargetReport", new SalesTargetRepository().GetTotalSalesTargetReport(FyId));
+        }
+       
     }
 }

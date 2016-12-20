@@ -74,25 +74,87 @@ namespace Capital.DAL
                                INNER JOIN FinancialYear F ON F.FyId=S.FyId;
         
                                with A as (
-                               select P.SalesMgId, sum(P.TotalPremium)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) in (1,2,3) and year(P.TranDate)=R.FyName group by P.SalesMgId)
-                               Update R set Achvd1 = A.Amount from A inner join #Result R on R.SalesMgId = A.SalesMgId;
+                               select year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) in (1,2,3) and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set Achvd1 = A.Amount from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
                                
                                with A as (
-                               select P.SalesMgId, sum(TotalPremium)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(TranDate)in(4,5,6) and year(P.TranDate)=R.FyName group by P.SalesMgId)
-                               Update R set Achvd2 = A.Amount from A inner join #Result R on R.SalesMgId = A.SalesMgId;
+                               select year(P.TranDate)year,P.SalesMgId, sum(TotalPremium)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(TranDate)in(4,5,6) and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set Achvd2 = A.Amount from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
                                
                                with A as (
-                               select P.SalesMgId, sum(TotalPremium)Amount from PolicyIssue  P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(TranDate)in(7,8,9) and year(P.TranDate)=R.FyName  group by P.SalesMgId)
-                               Update R set Achvd3 = A.Amount from A inner join #Result R on R.SalesMgId = A.SalesMgId;
+                               select year(P.TranDate)year,P.SalesMgId, sum(TotalPremium)Amount from PolicyIssue  P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(TranDate)in(7,8,9) and year(P.TranDate)=R.FyName  group by P.SalesMgId,year(P.TranDate))
+                               Update R set Achvd3 = A.Amount from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
                                
                                with A as (
-                               select P.SalesMgId, sum(TotalPremium)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(TranDate)in(10,11,12) and year(P.TranDate)=R.FyName  group by P.SalesMgId)
-                               Update R set Achvd4 = A.Amount from A inner join #Result R on R.SalesMgId = A.SalesMgId;
+                               select  year(P.TranDate)year,P.SalesMgId, sum(TotalPremium)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(TranDate)in(10,11,12) and year(P.TranDate)=R.FyName  group by P.SalesMgId,year(P.TranDate))
+                               Update R set Achvd4 = A.Amount from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
 
                                Update R set AchvdPerc1 = (Achvd1/Target1)*100 from #Result R where Achvd1>0;
                                Update R set AchvdPerc2 = (Achvd2/Target2)*100 from #Result R where Achvd2>0;
                                Update R set AchvdPerc3 = (Achvd3/Target3)*100 from #Result R where Achvd3>0;
                                Update R set AchvdPerc4 = (Achvd4/Target4)*100 from #Result R where Achvd4>0;
+                               SELECT * FROM #RESULT  WHERE FyId=@FyId";
+
+                var objSalesTarget = connection.Query<SalesAchievement>(sql, new { FyId = FyId }).ToList<SalesAchievement>();
+                return objSalesTarget;
+            }
+        }
+        public List<SalesAchievement> GetTotalSalesTargetReport(int? FyId)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"select S.SalesMgId,SM.SalesMgName,S.FyId,F.FyName,S.Total,S.Quarer1 Target1,S.Quarer2 Target2,S.Quarer3 Target3,S.Quarer4 Target4,0 Jan,0 Feb,0 Mar,0 Apl,0 May,0 Jun,0 July,0 Aug,0 Sep,0 Oct,0 Nov,0 Dec INTO #RESULT from SalesTarget S
+                               INNER JOIN SalesManager SM on S.SalesMgId=SM.SalesMgId
+                               INNER JOIN FinancialYear F ON F.FyId=S.FyId;
+        
+                               with A as (
+                               select year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)JanAchvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) = 1 and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set Jan = A.JanAchvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+
+                               with A as (
+                               select year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)FebAchvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) = 2 and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set Feb = A.FebAchvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+
+                               with A as (
+                               select year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)MarAchvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) = 3 and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set Mar = A.MarAchvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+
+                               with A as (
+                               select year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)AplAchvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) = 4 and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set Apl = A.AplAchvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+
+                               with A as (
+                               select year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)MayAchvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) = 5 and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set May = A.MayAchvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+
+                               with A as (
+                               select year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)JunAchvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) = 6 and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set Jun = A.JunAchvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+
+                               with A as (
+                               select year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)JulyAchvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) = 7 and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set July = A.JulyAchvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+
+                               with A as (
+                               select year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)AugAchvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) = 8 and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set Aug = A.AugAchvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+
+                               with A as (
+                               select year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)SepAchvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) = 9 and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set Sep = A.SepAchvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+
+                               with A as (
+                               select year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)OctAchvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) = 10 and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set Oct = A.OctAchvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+
+                               with A as (
+                               select  year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)NovAchvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) = 11 and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set Nov = A.NovAchvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+
+                               with A as (
+                               select  year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)DecAchvd from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) = 12 and  year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
+                               Update R set Dec = A.DecAchvd from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+
                                SELECT * FROM #RESULT  WHERE FyId=@FyId";
 
                 var objSalesTarget = connection.Query<SalesAchievement>(sql, new { FyId = FyId }).ToList<SalesAchievement>();

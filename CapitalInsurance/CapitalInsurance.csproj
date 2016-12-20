@@ -208,6 +208,7 @@
     <Compile Include="Controllers\SalesManagerController.cs" />
     <Compile Include="Controllers\Sales_Achievement_reportController.cs" />
     <Compile Include="Controllers\Sales_TargetController.cs" />
+    <Compile Include="Controllers\TotalSalesTargetReportController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -540,6 +541,8 @@
     <Content Include="Views\DailyActivity\_DailyActivityReport.cshtml" />
     <Content Include="Views\SalesAchievementReport\_SalesAchieveReport.cshtml" />
     <Content Include="Views\SalesAchievementReport\Index.cshtml" />
+    <Content Include="Views\TotalSalesTargetReport\_TotalSalesTargetReport.cshtml" />
+    <Content Include="Views\TotalSalesTargetReport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

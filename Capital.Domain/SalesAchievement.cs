@@ -16,6 +16,8 @@ namespace Capital.Domain
       public int Target2 { get; set; }
       public int Target3 { get; set; }
       public int Target4 { get; set; }
+      public int TotalTarget { get; set; }
+      public int TotalAcvd { get; set; }
       public int Achvd1 { get; set; }
       public int Achvd2 { get; set; }
       public int Achvd3 { get; set; }
@@ -24,7 +26,19 @@ namespace Capital.Domain
       public int AchvdPerc2 { get; set; }
       public int AchvdPerc3 { get; set; }
       public int AchvdPerc4 { get; set; }
-      public int ShortFall { get; set; }
+      public int Jan { get; set; }
+      public int Feb { get; set; }
+      public int Mar { get; set; }
+      public int Apl { get; set; }
+      public int May { get; set; }
+      public int Jun { get; set; }
+      public int July { get; set; }
+      public int Aug { get; set; }
+      public int Sep { get; set; }
+      public int Oct { get; set; }
+      public int Nov { get; set; }
+      public int Dec { get; set; }
+    
     }
  
 }
