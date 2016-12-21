@@ -162,18 +162,32 @@ namespace Capital.DAL
                                with A as (
                                select  FyName,SalesMgId, Target1-(Jan + Feb + Mar)Q1Shortfall ,(Jan + Feb + Mar)-Target1 Q1Excess from #Result  )
                                Update R set Q1Shortfall = A.Q1Shortfall,Q1Excess=A.Q1Excess from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.FyName=R.FyName;
-
+                               
+                               with A as (
+                               select  FyName,SalesMgId, Target2+(Q1Shortfall/3)Target2 ,Target3+(Q1Shortfall/3)Target3,Target4+(Q1Shortfall/3)Target4 from #Result where Q1Shortfall>0 )
+                               Update R set Target2 = A.Target2,Target3 = A.Target3,Target4 = A.Target4 from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.FyName=R.FyName;
+                               
+                               
                                with A as (
                                select  FyName,SalesMgId,  Target2-(Apl + May + Jun)Q2Shortfall  ,(Apl + May + Jun)-Target2 Q2Excess from #Result  )
                                Update R set Q2Shortfall = A.Q2Shortfall,Q2Excess=A.Q2Excess  from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.FyName=R.FyName;
-
+                               
+                               with A as (
+                               select  FyName,SalesMgId, (Target3-(Q2Excess/2)+(Q2Shortfall/2))Target3 ,Target4-(Q2Excess/2)Target4 from #Result where Q2Shortfall>0 and Q2Excess>0  )
+                               Update R set Target3 = A.Target3,Target4 = A.Target4 from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.FyName=R.FyName;
+                               
                                with A as (
                                select  FyName,SalesMgId, Target3-(july + Aug + Sep)Q3Shortfall  ,(july + Aug + Sep)-Target3 Q3Excess from #Result  )
                                Update R set Q3Shortfall = A.Q3Shortfall,Q3Excess=A.Q3Excess from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.FyName=R.FyName;
-
+                               
+                               with A as (
+                               select  FyName,SalesMgId, ((Target4)+(Q3Shortfall)-(Q3Excess))Target4  from #Result where Q3Shortfall>0 and Q3Excess>0 )
+                               Update R set Target4 = A.Target4 from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.FyName=R.FyName;
+                               
                                with A as (
                                select  FyName,SalesMgId, Target4-(Oct + Nov + Dec) Q4Shortfall  ,(Oct + Nov + Dec)-Target4 Q4Excess from #Result  )
                                Update R set Q4Shortfall = A.Q4Shortfall,Q4Excess=A.Q4Excess from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.FyName=R.FyName;
+                               
 
                                SELECT  SalesMgName,Total TotalTarget,TotalAcvd, CASE WHEN (TotalAcvd-Total)<= 0 THEN 0 ELSE (TotalAcvd-Total) END AS YExcess,CASE WHEN (Total-TotalAcvd)<= 0 THEN 0 ELSE (Total-TotalAcvd) END AS YShortFall,Target1,Target2,Target3,Target4,Jan,Feb,Mar,Apl,May,Jun,July,Aug,Sep,Oct,Nov,Dec,
                                CASE WHEN Q1Shortfall<= 0 THEN 0 ELSE Q1Shortfall END AS Q1Shortfall,
