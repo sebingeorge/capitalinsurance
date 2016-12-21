@@ -118,7 +118,7 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td width="12%" class="q1t">@(item.Target2 + (item.Q1Shortfall/3))</td>
+                                        <td width="12%" class="q1t">@item.Target2</td>
                                         <td width="12%">@item.Apl</td>
                                         <td width="12%">@item.May</td>
                                         <td width="12%">@item.Jun</td>
@@ -133,7 +133,7 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td width="12%" class="q1t">@(item.Target3 + (item.Q1Shortfall / 3) - (item.Q2Excess / 2) + (item.Q2Shortfall / 2))</td>
+                                        <td width="12%" class="q1t">@item.Target3</td>
                                         <td width="12%">@item.July</td>
                                         <td width="12%">@item.Aug</td>
                                         <td width="12%">@item.Sep</td>
@@ -148,7 +148,7 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td width="12%" class="q1t">@(item.Target4 + (item.Q1Shortfall / 3) - (item.Q2Excess / 2) + (item.Q3Shortfall) - (item.Q3Excess))</td>
+                                        <td width="12%" class="q1t">@item.Target4</td>
                                         <td width="12%">@item.Oct</td>
                                         <td width="12%">@item.Nov</td>
                                         <td width="12%">@item.Dec</td>
