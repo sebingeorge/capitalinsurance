@@ -9,6 +9,7 @@ using Capital.Domain;
 namespace CapitalInsurance.Controllers
 {
     [AuthorizeUser]
+
     public class BaseController : Controller
     {
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)

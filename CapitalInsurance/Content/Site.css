@@ -511,9 +511,9 @@ table thead tr th
     background-color:#92d050;
         color:#fff;
 }
-#Sales_Achvd table 
+#Sales_Achvd .table 
 {
-    max-width: inherit !important;
+    width:150% !important;
 }
 .scroll1 
 {
