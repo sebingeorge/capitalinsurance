@@ -4,6 +4,10 @@
 }
 
 <script>
+    function Exit() {
+        var url = '@Url.Action("Index","Home")';
+        location.href = url;
+    }
     function Filter() {
         var id = $("#FyId").val();
         var url = '@Url.Action("TotalSalesTargetReport")';
