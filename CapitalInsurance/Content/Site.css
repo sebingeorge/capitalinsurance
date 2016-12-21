@@ -511,8 +511,10 @@ table thead tr th
     background-color:#92d050;
         color:#fff;
 }
-#Sales_Achvd 
+#Sales_Achvd tbody tr
+ 
 {
+    font-weight:normal;
 
 }
 

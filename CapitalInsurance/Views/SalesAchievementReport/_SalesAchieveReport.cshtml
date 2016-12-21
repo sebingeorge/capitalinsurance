@@ -4,14 +4,59 @@
     <table class="table table-bordered" id="tab_logic">
         <thead>
             <tr class="grid_heading">
-                <th width="5%">Code</th>
-                <th width="15%">Employee Name</th>
+
+
+                <th width="5%" class="span">
+                    <table class="table table-bordered" id="tab_logic">
+                        <thead>
+                            <tr><th colspan="4">Code</th></tr>
+
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.SalesMgCode</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </th>
+
+                <th width="15%" class="span">
+                    <table class="table table-bordered" id="tab_logic">
+                        <thead>
+                            <tr><th colspan="4">Employee Name</th></tr>
+ 
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.SalesMgName</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </th>
+
                 <th width="20%" class="span">
                     <table class="table table-bordered" id="tab_logic">
                         <thead>
                             <tr><th colspan="4"><center>Quarter 1</center></th></tr>
                             <tr><th width="25%">Target</th><th width="25%">Achived</th><th width="25%">Achv.%</th><th width="25%">SF</th></tr>
                         </thead>
+                        <tbody>
+@foreach (var item in Model)
+              {
+                            <tr>
+                                <td width="25%">@item.Target1</td>
+                                <td width="25%">@item.Achvd1</td>
+                                <td width="25%">@item.AchvdPerc1</td>
+                                <td width="25%">@item.Q1Shortfall</td>
+                            </tr>
+}
+                        </tbody>
                     </table>
                 </th>
                 <th width="20%" class="span">
@@ -20,6 +65,17 @@
                             <tr><th colspan="4"><center>Quarter 2</center></th></tr>
                             <tr><th width="25%">Target</th><th width="25%">Achived</th><th width="25%">Achv.%</th><th width="25%">SF</th></tr>
                         </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td width="25%">@item.Target2</td>
+                                    <td width="25%">@item.Achvd2</td>
+                                    <td width="25%">@item.AchvdPerc2</td>
+                                    <td width="25%">@item.Q2Shortfall</td>
+                                </tr>
+                            }
+                        </tbody>
                     </table>
                 </th>
                 <th width="20%" class="span">
@@ -28,6 +84,17 @@
                             <tr><th colspan="4"><center>Quarter 3</center></th></tr>
                             <tr><th width="25%">Target</th><th width="25%">Achived</th><th width="25%">Achv.%</th><th width="25%">SF</th></tr>
                         </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                            <td width="25%">@item.Target3</td>
+                            <td width="25%">@item.Achvd3</td>
+                            <td width="25%">@item.AchvdPerc3</td>
+                            <td width="25%">@item.Q3Shortfall</td>
+                            </tr>
+                            }
+                        </tbody>
                     </table>
                 </th>
                 <th width="20%" class="span">
@@ -36,65 +103,20 @@
                             <tr><th colspan="4"><center>Quarter 4</center></th></tr>
                             <tr><th width="25%">Target</th><th width="25%">Achived</th><th width="25%">Achv.%</th><th width="25%">SF</th></tr>
                         </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td width="25%">@item.Target4</td>
+                                    <td width="25%">@item.Achvd4</td>
+                                    <td width="25%">@item.AchvdPerc4</td>
+                                    <td width="25%">@item.Q4Shortfall</td>
+                                </tr>
+                            }
+                        </tbody>
                     </table>
                 </th>
         </thead>
-        <tbody>
-              @foreach (var item in Model)
-              {
-            <tr>
-                <td>@item.SalesMgCode</td>
-                <td>@item.SalesMgName</td>
-                <td class="span">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td width="25%">@item.Target1</td>
-                                <td width="25%">@item.Achvd1</td>
-                                <td width="25%">@item.AchvdPerc1</td>
-                                <td width="25%">@item.Q1Shortfall</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-                <td class="span">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                            <td width="25%">@item.Target2</td>
-                            <td width="25%">@item.Achvd2</td>
-                            <td width="25%">@item.AchvdPerc2</td>
-                            <td width="25%">@item.Q2Shortfall</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-                <td class="span">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                            <td width="25%">@item.Target3</td>
-                            <td width="25%">@item.Achvd3</td>
-                            <td width="25%">@item.AchvdPerc3</td>
-                            <td width="25%">@item.Q3Shortfall</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-                <td class="span">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                            <td width="25%">@item.Target4</td>
-                            <td width="25%">@item.Achvd4</td>
-                            <td width="25%">@item.AchvdPerc4</td>
-                            <td width="25%">@item.Q4Shortfall</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-}
-        </tbody>
+        
     </table>
 </div>
