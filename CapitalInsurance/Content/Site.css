@@ -511,10 +511,11 @@ table thead tr th
     background-color:#92d050;
         color:#fff;
 }
-#Sales_Achvd .table 
+#Sales_Achvd 
 {
-    width:150% !important;
+
 }
+
 .scroll1 
 {
     overflow:auto;

@@ -6,17 +6,36 @@
             <tr class="grid_heading">
                       <th class="span">
                     <table class="table table-bordered" id="tab_logic">
-                        <thead>
-                            <tr><th colspan="5"><center></center></th></tr>
+    <thead>
+        <tr><th colspan="5"><center></center></th></tr>
+        <tr>
+            <th width="30%">MANAGER &nbsp;&nbsp;&nbsp;</th>
+            <th width="25%">YEARLY TARGET</th>
+            <th width="20%">ACHIEVED</th>
+            <th width="15%">EXCESS</th>
+            <th width="10%">SF</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+                {
+  
+
+
                             <tr>
-                            <th width="30%">MANAGER &nbsp;&nbsp;&nbsp;</th>
-                            <th width="20%">YEARLY TARGET</th>
-                            <th width="20%">ACHIEVED</th>
-                            <th width="22%">EXCESS</th>
-                            <th width="8%">SF</th>
+                                <td width="30%" style="word-wrap:break-word;">@item.SalesMgName</td>
+                                <td width="25%" class="q1t">@item.TotalTarget</td>
+                                <td width="20%" class="q1t">@item.TotalAcvd</td>
+                                <td width="15%" class="q1t">@item.YExcess</td>
+                                <td width="10%" class="q1t">@item.YShortFall</td>
                             </tr>
-                        </thead>
-                    </table>
+
+
+
+
+        }
+        </tbody>
+    </table>
                 </th>
                 <th class="span">
                     <table class="table table-bordered" id="tab_logic">
@@ -32,6 +51,23 @@
                             <th width="12%">SF</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+
+                                                <tr>
+                                                    <td width="12%" class="q1t">@item.Target1</td>
+                                                    <td width="12%">@item.Jan</td>
+                                                    <td width="12%">@item.Feb</td>
+                                                    <td width="12%">@item.Mar</td>
+                                                    <td width="25%" class="achived">@(item.Jan + item.Feb + item.Mar)</td>
+                                                    <td width="18%">@item.Q1Excess</td>
+                                                    <td width="12%" class="sf">@item.Q1Shortfall</td>
+                                                </tr>
+
+                            }
+                        </tbody>
                     </table>
                 </th>
                 <th class="span">
@@ -48,6 +84,22 @@
                             <th width="12%">SF</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                                <tr>
+                                                    <td width="12%" class="q1t">@item.Target2</td>
+                                                    <td width="12%">@item.Apl</td>
+                                                    <td width="12%">@item.May</td>
+                                                    <td width="12%">@item.Jun</td>
+                                                    <td width="25%" class="achived">@(item.Apl + item.May + item.Jun)</td>
+                                                    <td width="18%">@item.Q2Excess</td>
+                                                    <td width="12%" class="sf">@item.Q2Shortfall</td>
+                                                </tr>
+
+                            }
+                        </tbody>
                     </table>
                 </th>
                 <th class="span">
@@ -64,6 +116,22 @@
                             <th width="12%">SF</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                                <tr>
+                                                    <td width="12%" class="q1t">@item.Target3</td>
+                                                    <td width="12%">@item.July</td>
+                                                    <td width="12%">@item.Aug</td>
+                                                    <td width="12%">@item.Sep</td>
+                                                    <td width="25%" class="achived">@(item.July + item.Aug + item.Sep)</td>
+                                                    <td width="18%">@item.Q3Excess</td>
+                                                    <td width="12%" class="sf">@item.Q3Shortfall</td>
+                                                </tr>
+
+                            }
+                        </tbody>
                     </table>
                 </th>
                 <th class="span">
@@ -79,88 +147,25 @@
                             <th width="12%">SF</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                                <tr>
+                                                    <td width="12%" class="q1t">@item.Target4</td>
+                                                    <td width="12%">@item.Oct</td>
+                                                    <td width="12%">@item.Nov</td>
+                                                    <td width="12%">@item.Dec</td>
+                                                    <td width="25%" class="achived">@(item.Oct + item.Nov + item.Dec)</td>
+                                                    <td width="18%">@item.Q4Excess</td>
+                                                    <td width="12%" class="sf">@item.Q4Shortfall</td>
+                                                </tr>
+
+                            }
+                        </tbody>
                     </table>
                 </th>
         </thead>
-        <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                       <td class="span">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td width="30%" style="word-wrap:break-word;">@item.SalesMgName</td>
-                                        <td width="20%" class="q1t">@item.TotalTarget</td>
-                                        <td width="20%" class="q1t">@item.TotalAcvd</td>
-                                        <td width="22%" class="q1t">@item.YExcess</td>
-                                        <td width="8%" class="q1t">@item.YShortFall</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                        <td class="span">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td width="12%" class="q1t">@item.Target1</td>
-                                        <td width="12%">@item.Jan</td>
-                                        <td width="12%">@item.Feb</td>
-                                        <td width="12%">@item.Mar</td>
-                                        <td width="25%" class="achived">@(item.Jan + item.Feb + item.Mar)</td>
-                                        <td width="18%">@item.Q1Excess</td>
-                                        <td width="12%" class="sf">@item.Q1Shortfall</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                        <td class="span">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td width="12%" class="q1t">@item.Target2</td>
-                                        <td width="12%">@item.Apl</td>
-                                        <td width="12%">@item.May</td>
-                                        <td width="12%">@item.Jun</td>
-                                        <td width="25%" class="achived">@(item.Apl + item.May + item.Jun)</td>
-                                        <td width="18%">@item.Q2Excess</td>
-                                        <td width="12%" class="sf">@item.Q2Shortfall</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                        <td class="span">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td width="12%" class="q1t">@item.Target3</td>
-                                        <td width="12%">@item.July</td>
-                                        <td width="12%">@item.Aug</td>
-                                        <td width="12%">@item.Sep</td>
-                                        <td width="25%" class="achived">@(item.July + item.Aug + item.Sep)</td>
-                                        <td width="18%">@item.Q3Excess</td>
-                                        <td width="12%" class="sf">@item.Q3Shortfall</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                        <td class="span">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td width="12%" class="q1t">@item.Target4</td>
-                                        <td width="12%">@item.Oct</td>
-                                        <td width="12%">@item.Nov</td>
-                                        <td width="12%">@item.Dec</td>
-                                        <td width="25%" class="achived">@(item.Oct + item.Nov + item.Dec)</td>
-                                        <td width="18%">@item.Q4Excess</td>
-                                        <td width="12%" class="sf">@item.Q4Shortfall</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                }
-            </tbody>
+
     </table>
 </div>
