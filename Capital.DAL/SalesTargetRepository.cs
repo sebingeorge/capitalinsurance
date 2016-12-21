@@ -93,7 +93,12 @@ namespace Capital.DAL
                                Update R set AchvdPerc2 = (Achvd2/Target2)*100 from #Result R where Achvd2>0;
                                Update R set AchvdPerc3 = (Achvd3/Target3)*100 from #Result R where Achvd3>0;
                                Update R set AchvdPerc4 = (Achvd4/Target4)*100 from #Result R where Achvd4>0;
-                               SELECT * FROM #RESULT  WHERE FyId=@FyId";
+                               SELECT SalesMgId,SalesMgName,SalesMgCode,FyName,FyId,Target1, Target2, Target3,Target4,Achvd1, Achvd2, Achvd3,Achvd4, AchvdPerc1, AchvdPerc2, AchvdPerc3,AchvdPerc4,
+                               CASE WHEN  (Target1-Achvd1) <= 0 THEN 0 ELSE  (Target1-Achvd1) END AS Q1Shortfall,
+                               CASE WHEN  (Target2-Achvd2) <= 0 THEN 0 ELSE  (Target2-Achvd2) END AS Q2Shortfall,
+                               CASE WHEN  (Target3-Achvd3) <= 0 THEN 0 ELSE  (Target3-Achvd3) END AS Q3Shortfall,
+                               CASE WHEN  (Target4-Achvd4) <= 0 THEN 0 ELSE  (Target4-Achvd4) END AS Q4Shortfall
+                               FROM #RESULT  WHERE FyId=@FyId";
 
                 var objSalesTarget = connection.Query<SalesAchievement>(sql, new { FyId = FyId }).ToList<SalesAchievement>();
                 return objSalesTarget;
