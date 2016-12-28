@@ -29,7 +29,7 @@ namespace Capital.DAL
                                     AND CAST(P.TranDate AS date)  >=CAST(@FromDate AS date)  and CAST(P.TranDate AS date) <=CAST(@ToDate AS date)
                                     AND C.CusName LIKE '%'+@Client+'%'
                                     AND P.PolicyNo LIKE '%'+@PolicyNo+'%'
-                                    AND S.SalesMgName LIKE '%'+@SalesManager+'%'
+                                    AND ISNULL(S.SalesMgName,0) LIKE '%'+@SalesManager+'%'
                                     order by P.TranNumber desc";
              return connection.Query<PolicyIssue>(query, new { FromDate = FromDate, ToDate = ToDate, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager }).ToList();
          }

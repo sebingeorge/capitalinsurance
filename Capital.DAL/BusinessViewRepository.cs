@@ -36,7 +36,7 @@ namespace Capital.DAL
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
                                    	where 
-                                    I.InsCmpName LIKE '%'+@Company+'%' and P.PolicyNo LIKE '%'+@PolicyNo+'%' and C.CusName LIKE '%'+@Client+'%' and  S.SalesMgName LIKE '%'+@SalesManager+'%'
+                                    I.InsCmpName LIKE '%'+@Company+'%' and P.PolicyNo LIKE '%'+@PolicyNo+'%' and C.CusName LIKE '%'+@Client+'%' and  ISNULL(S.SalesMgName,0) LIKE '%'+@SalesManager+'%'
                                     order by P.RenewalDate ";
                 return connection.Query<PolicyIssue>(query, new { Company = Company, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager }).ToList();
             }

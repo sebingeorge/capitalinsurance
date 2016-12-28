@@ -28,7 +28,7 @@ namespace Capital.DAL
                                     AND cast(convert(varchar(20),P.TranDate,106) as datetime) between @FromDate and @ToDate
                                     AND C.CusName LIKE '%'+@Client+'%'
                                     AND isnull(P.PolicyNo,0) LIKE '%'+@PolicyNo+'%'
-                                    AND S.SalesMgName LIKE '%'+@SalesManager+'%'
+                                    AND isnull(S.SalesMgName,0) LIKE '%'+@SalesManager+'%'
                                     order by P.TranNumber";
                 return connection.Query<PolicyIssue>(query, new {FromDate = FromDate,ToDate = ToDate,PolicyNo = PolicyNo,Client = Client,SalesManager = SalesManager }).ToList();
             }
@@ -49,7 +49,7 @@ namespace Capital.DAL
                                     AND cast(convert(varchar(20),P.TranDate,106) as datetime) between @FromDate and @ToDate
                                     AND C.CusName LIKE '%'+@Client+'%'
                                     AND isnull(P.PolicyNo,0) LIKE '%'+@PolicyNo+'%'
-                                    AND S.SalesMgName LIKE '%'+@SalesManager+'%'
+                                    AND ISNULL(S.SalesMgName,0) LIKE '%'+@SalesManager+'%'
                                     order by P.TranNumber";
                 return connection.Query<PolicyIssue>(query, new { FromDate = FromDate, ToDate = ToDate, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager }).ToList();
             }
@@ -70,7 +70,7 @@ namespace Capital.DAL
                                     AND cast(convert(varchar(20),P.TranDate,106) as datetime) between @FromDate and @ToDate
                                     AND C.CusName LIKE '%'+@Client+'%'
                                     AND isnull(P.PolicyNo,0) LIKE '%'+@PolicyNo+'%'
-                                    AND S.SalesMgName LIKE '%'+@SalesManager+'%'
+                                    AND ISNULL(S.SalesMgName,0) LIKE '%'+@SalesManager+'%'
                                     order by P.TranNumber";
                 return connection.Query<PolicyIssue>(query, new { FromDate = FromDate, ToDate = ToDate, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager }).ToList();
             }
