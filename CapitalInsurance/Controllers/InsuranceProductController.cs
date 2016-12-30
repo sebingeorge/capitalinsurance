@@ -26,6 +26,7 @@ namespace CapitalInsurance.Controllers
         [HttpPost]
         public ActionResult Create(InsuranceProduct model)
         {
+            //FillDropdowns();
             if (!ModelState.IsValid)
             {
                 var allErrors = ModelState.Values.SelectMany(v => v.Errors);

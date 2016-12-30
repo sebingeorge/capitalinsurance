@@ -44,12 +44,12 @@ namespace Capital.DAL
                                    (InsPrdName
                                    ,InsPrdShortName
                                    ,InsTypeId
-                                   ,InsCmpId,InsActiveDate)
+                                   ,InsActiveDate)
                                    VALUES
                                    (@InsPrdName
                                    ,@InsPrdShortName
                                    ,@InsTypeId
-                                   ,@InsCmpId,@InsActiveDate);SELECT CAST(SCOPE_IDENTITY() as int);";
+                                   ,@InsActiveDate);SELECT CAST(SCOPE_IDENTITY() as int);";
                                                              
                   model.InsPrdId = connection.Query<int>(sql, model).Single();
 
@@ -114,8 +114,7 @@ namespace Capital.DAL
                     string sql = @" UPDATE InsuranceProduct SET 
                                     InsPrdName=@InsPrdName
                                    ,InsPrdShortName=@InsPrdShortName
-                                   ,InsTypeId=@InsTypeId
-                                   ,InsCmpId=@InsCmpId
+                                   ,InsTypeId=@InsTypeId 
                                    ,InsActiveDate=@InsActiveDate
                                     WHERE InsPrdId=@InsPrdId";
                     int id = connection.Execute(sql, model);

@@ -47,6 +47,7 @@ namespace CapitalInsurance.Controllers
             FillState();
             FillCustomerCategory();
             FillCountry();
+            FillAdditionDeduction();
         }
         [HttpPost]
         public ActionResult Create(Customer model)
@@ -123,6 +124,14 @@ namespace CapitalInsurance.Controllers
         void FillCountry()
         {
             ViewBag.Country = new SelectList((new CountryRepository()).GetCountry(), "CountryId", "CountryName");
+        }
+
+        public void FillAdditionDeduction()
+        {
+            List<Customer> types = new List<Customer>();
+            types.Add(new Customer { CusPrefixId = "Mr.", CusPrefix = "Mr." });
+            types.Add(new Customer { CusPrefixId = "Mrs.", CusPrefix = "Mrs." });
+            ViewBag.Prefixlist = new SelectList(types, "CusPrefixId", "CusPrefix");
         }
     }
 }

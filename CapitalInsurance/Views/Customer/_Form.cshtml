@@ -6,8 +6,11 @@
             <div class="col-md-2">
                 <label>Customer Prefix</label>
                 @Html.HiddenFor(m => m.CusId)
-                @Html.TextBoxFor(m => m.CusPrefix, new { @class = "form_input half" })
-                @Html.ValidationMessageFor(m => m.CusPrefix, "", new { @class = "text-danger" })
+                @*@Html.TextBoxFor(m => m.CusPrefix, new { @class = "form_input half" })*@
+
+                @Html.DropDownListFor(m => Model.CusPrefixId, (SelectList)ViewBag.Prefixlist, "Select Prefix", new { @class = "form_input", autocomplete = "off" })
+
+                @Html.ValidationMessageFor(m => m.CusPrefixId, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>

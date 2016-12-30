@@ -21,6 +21,7 @@ namespace Capital.Domain
         [System.ComponentModel.DataAnnotations.Display(Name = "Customer Short Name")]
         public string CusShortName { get; set; }
         public string CusPrefix  { get; set; }
+        public string CusPrefixId { get; set; }
         public string PoBox  { get; set; }
         public string CrNo { get; set; }
         public int? RegionId { get; set; }

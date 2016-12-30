@@ -44,7 +44,7 @@ namespace Capital.DAL
                                    ,CreditAmount)
                              VALUES
                                    (@CusName
-                                   ,@CusPrefix
+                                   ,@CusPrefixId
                                    ,@RegionId
                                    ,@SalesMgId
                                    ,@CusCatId
@@ -101,7 +101,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select * from Customer where CusId=@Id";
+                string sql = @"select CusPrefix as CusPrefixId,* from Customer where CusId=@Id";
                        
 
                 var objCustomer = connection.Query<Customer>(sql, new
@@ -123,7 +123,7 @@ namespace Capital.DAL
                 {
                     string sql = @" UPDATE Customer SET 
                                    CusName=@CusName
-                                   ,CusPrefix=@CusPrefix
+                                   ,CusPrefix=@CusPrefixId
                                    ,RegionId=@RegionId
                                    ,SalesMgId=@SalesMgId
                                    ,CusCatId=@CusCatId
