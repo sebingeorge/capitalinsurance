@@ -17,10 +17,10 @@
         {
             columns.Add(m => m.Month).Titled("MONTH").SetWidth(5);
         }
-        if (@a.Contains("Model.Day"))
-        {
-            columns.Add(m => m.Day).Titled("DAY").SetWidth(5);
-        }
+        //if (@a.Contains("Model.Day"))
+        //{
+        //    columns.Add(m => m.Day).Titled("DAY").SetWidth(5);
+        //}
         if (@a.Contains("Model.SalesMgCode"))
         {
             columns.Add(m => m.SalesMgCode).Titled("EMP NO").SetWidth(10);
@@ -61,17 +61,17 @@
         {
             columns.Add(m => m.TranType).Titled("TYPE OF BIZ").SetWidth(20);
         }
-        if (@a.Contains("Model.InsCoverName"))
-        {
-            columns.Add(m => m.InsCoverName).Titled("TYPE OF COVER").SetWidth(10);
-        }
+        //if (@a.Contains("Model.InsCoverName"))
+        //{
+        //    columns.Add(m => m.InsCoverName).Titled("TYPE OF COVER").SetWidth(10);
+        //}
         if (@a.Contains("Model.InsCmpName"))
         {
             columns.Add(m => m.InsCmpName).Titled("INS COMPANY").SetWidth(5);
         }
         if (@a.Contains("Model.InsPrdName"))
         {
-            columns.Add(m => m.InsPrdName).Titled("PRODUCT").SetWidth(5);
+            columns.Add(m => m.InsPrdName).Titled("TYPE OF COVER").SetWidth(5);
         }
         if (@a.Contains("Model.PolicyNo"))
         {
