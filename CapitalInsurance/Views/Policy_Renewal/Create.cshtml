@@ -233,8 +233,8 @@
             <div class="col-md-3">
                 <div class="row form-group">
                     <div class="col-md-12">
-                        <label>Product</label>
-                        @Html.DropDownListFor(m => Model.InsPrdId, (SelectList)ViewBag.InsuranceProduct, "Select Product", new { @class = "form_input", autocomplete = "off" })
+                        <label>Coverage</label>
+                        @Html.DropDownListFor(m => Model.InsPrdId, (SelectList)ViewBag.InsuranceProduct, "Select Coverage", new { @class = "form_input", autocomplete = "off" })
                         @Html.ValidationMessageFor(m => m.InsPrdId, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-6">

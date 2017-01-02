@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <div class="row form-group">
             <div class="col-md-3">
-                <label>Insurance Name</label>
+                <label>Coverage Name</label>
                 @Html.HiddenFor(m => m.InsPrdId)
                 @Html.TextBoxFor(m => m.InsPrdName, new { @class = "form_input" })
                 @Html.ValidationMessageFor(m => m.InsPrdName, "", new { @class = "text-danger" })               
@@ -24,8 +24,8 @@
     <div class="col-md-3">
         <div class="row form-group">
             <div class="col-md-12">
-                <label>Insurance Type</label>
-                @Html.DropDownListFor(m => Model.InsTypeId, (SelectList)ViewBag.InsuranceType, "Select Insurance Type", new { @class = "form_input", autocomplete = "off" })
+                <label>Coverage Type</label>
+                @Html.DropDownListFor(m => Model.InsTypeId, (SelectList)ViewBag.InsuranceType, "Select Coverage Type", new { @class = "form_input", autocomplete = "off" })
             </div>
         </div>
     </div>

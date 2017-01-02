@@ -101,8 +101,8 @@ namespace CapitalInsurance.Controllers
         void FillDropdowns()
         {
             FillDesignation();
-            FillState();
-            FillCountry();
+            //FillState();
+       FillCountry();
             FillMaritalStatus();
             FillGender();
         }
@@ -112,10 +112,10 @@ namespace CapitalInsurance.Controllers
             ViewBag.Designation = new SelectList((new DropdownRepository()).GetDesignation(), "Id", "Name");
           
         }
-        void FillState()
-        {
-            ViewBag.State = new SelectList((new StateRepository()).GetState(), "StateId", "StateName");
-        }
+        //void FillState()
+        //{
+        //    ViewBag.State = new SelectList((new StateRepository()).GetState(), "StateId", "StateName");
+        //}
         void FillCountry()
         {
             ViewBag.Country = new SelectList((new CountryRepository()).GetCountry(), "CountryId", "CountryName");

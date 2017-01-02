@@ -220,11 +220,11 @@
                     </div>
                     <div class="col-md-6">
                         <label>Premium Amount</label>
-                        @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", @readonly = "readonly" })
+                        @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()"})
                     </div>
                     <div class="col-md-6">
                         <label>Policy Fees</label>
-                        @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", @readonly = "readonly" })
+                        @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()"})
                         @Html.ValidationMessageFor(m => m.PolicyFee, "", new { @class = "text-danger" })
                     </div>
                     @*<div class="col-md-6">
@@ -237,18 +237,18 @@
             <div class="col-md-3">
                 <div class="row form-group">
                     <div class="col-md-12">
-                        <label>Product</label>
-                        @Html.DropDownListFor(m => Model.InsPrdId, (SelectList)ViewBag.InsuranceProduct, "Select Product", new { @class = "form_input", autocomplete = "off", @readonly = "readonly" })
+                        <label>Coverage</label>
+                        @Html.DropDownListFor(m => Model.InsPrdId, (SelectList)ViewBag.InsuranceProduct, "Select Coverage", new { @class = "form_input", autocomplete = "off", @readonly = "readonly" })
                         @Html.ValidationMessageFor(m => m.InsPrdId, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-6">
                         <label>Additional Premium</label>
-                        @Html.TextBoxFor(m => m.ExtraPremium, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", @readonly = "readonly" })
+                        @Html.TextBoxFor(m => m.ExtraPremium, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()"})
                         @Html.ValidationMessageFor(m => m.ExtraPremium, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-6">
                         <label>Total Premium</label>
-                        @Html.TextBoxFor(m => m.TotalPremium, new { @class = "form_input", @style = "text-align:right", @readonly = "readonly" })
+                        @Html.TextBoxFor(m => m.TotalPremium, new { @class = "form_input", @style = "text-align:right"})
                     </div>
 
                     @*<div class="col-md-6">
@@ -283,12 +283,12 @@
 
                     <div class="col-md-6">
                         <label>Commi. Percentage</label>
-                        @Html.TextBoxFor(m => m.CommissionPerc, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", @readonly = "readonly" })
+                        @Html.TextBoxFor(m => m.CommissionPerc, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()"})
                         @Html.ValidationMessageFor(m => m.CommissionPerc, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-6">
                         <label>Commi. Amount</label>
-                        @Html.TextBoxFor(m => m.CommissionAmount, new { @class = "form_input", @style = "text-align:right", @readonly = "readonly" })
+                        @Html.TextBoxFor(m => m.CommissionAmount, new { @class = "form_input", @style = "text-align:right"})
                         @Html.ValidationMessageFor(m => m.CommissionAmount, "", new { @class = "text-danger" })
                     </div>
 
