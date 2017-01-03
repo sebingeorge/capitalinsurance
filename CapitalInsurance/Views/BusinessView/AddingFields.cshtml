@@ -14,6 +14,7 @@
     });
 
     $(".chkSelect").bind("change", function (event, index) {
+
         if (!$(this).is(":checked")) {
             $("#chkSelectAll").prop("checked", false);
         }
@@ -28,14 +29,16 @@
         try {
 
             if ($('.chkSelect:checked').length > 1) {
+                //alert("hi");
                 var startIndex = $('.chkSelect').index($('.chkSelect:checked')[0]);
-
+                //alert(currentIndex);
+                //alert(startIndex);
                 if (startIndex != undefined && startIndex != null && startIndex != -1 && currentIndex > startIndex) {
                     $("#chkSelectAll").prop("checked", false);
 
-                    for (var indx = startIndex; indx <= currentIndex; indx++) {
-                        $('.chkSelect').eq(indx).prop("checked", true);
-                    }
+                    //for (var indx = startIndex; indx <= currentIndex; indx++) {
+                    //    $('.chkSelect').eq(indx).prop("checked", true);
+                    //}
                 }
             }
         }
@@ -198,10 +201,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="part4 col-md-2">
-            <input class="left1 chkSelect" id="CommissionAmount" name="tags" type="checkbox" value=Model.CommissionAmount />
-            <label for="name" class="left1">TOTAL COMMISSION</label>
-        </div>
+      
         <div class="part4 col-md-2">
             <input class="left1 chkSelect" id="PaymentTo" name="tags" type="checkbox" value=Model.PaymentTo />
             <label for="name" class="left1">PAID TO</label>
