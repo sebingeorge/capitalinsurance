@@ -3,10 +3,48 @@
     ViewBag.Title = "AddingFields";
 }
 <script>
-    $(document).ready(function () {
-        $(".check").prop("checked", true);
+    //$(document).ready(function () {
+    //    $(".check").prop("checked", true);
 
+    //})
+    $(document).ready(function () {
+    $("#chkSelectAll").bind("change", function () {
+       
+        $(".chkSelect").prop("checked", $(this).is(":checked"));
+    });
+
+    $(".chkSelect").bind("change", function (event, index) {
+        if (!$(this).is(":checked")) {
+            $("#chkSelectAll").prop("checked", false);
+        }
+
+        if ($(this).is(":checked")) {
+            DoSelection($('.chkSelect').index($(this)));
+        }
+    });
     })
+    function DoSelection(currentIndex) {
+
+        try {
+
+            if ($('.chkSelect:checked').length > 1) {
+                var startIndex = $('.chkSelect').index($('.chkSelect:checked')[0]);
+
+                if (startIndex != undefined && startIndex != null && startIndex != -1 && currentIndex > startIndex) {
+                    $("#chkSelectAll").prop("checked", false);
+
+                    for (var indx = startIndex; indx <= currentIndex; indx++) {
+                        $('.chkSelect').eq(indx).prop("checked", true);
+                    }
+                }
+            }
+        }
+        catch (e) {
+
+            $("#chkSelectAll").prop("checked", false);
+            $(".chkSelect").prop("checked", false);
+        }
+    }
 </script>
 <div class="container content-in">
 
@@ -18,11 +56,11 @@
     {
     <div class="row">
         <div class="part4 col-md-2">
-            <input class="left1 check" id="Year" name="tags" type="checkbox" value=Model.Year  />
+            <input class="left1 chkSelect" id="Year" name="tags" type="checkbox" value=Model.Year />
             <label for="name" class="left1">YEAR</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="Month" name="tags" type="checkbox" value=Model.Month />
+            <input class="left1 chkSelect" id="Month" name="tags" type="checkbox" value=Model.Month />
             <label for="name" class="left1">MONTH</label>
         </div>
         @*<div class="part4 col-md-2">
@@ -30,46 +68,46 @@
             <label for="name" class="left1">DAY</label>
         </div>*@
         <div class="part4 col-md-2">
-            <input class="left1 check" id="SalesMgCode" name="tags" type="checkbox" value=Model.SalesMgCode />
+            <input class="left1 chkSelect" id="SalesMgCode" name="tags" type="checkbox" value=Model.SalesMgCode />
             <label for="name" class="left1">EMP NO</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="SalesMgName" name="tags" type="checkbox" value=Model.SalesMgName />
+            <input class="left1 chkSelect" id="SalesMgName" name="tags" type="checkbox" value=Model.SalesMgName />
             <label for="name" class="left1">MANAGER</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="InsuredName" name="tags" type="checkbox" value=Model.InsuredName />
+            <input class="left1 chkSelect" id="InsuredName" name="tags" type="checkbox" value=Model.InsuredName />
             <label for="name" class="left1">INSURED NAME</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="CusName" name="tags" type="checkbox" value=Model.CusName />
+            <input class="left1 chkSelect" id="CusName" name="tags" type="checkbox" value=Model.CusName />
             <label for="name" class="left1">CUSTOMER</label>
         </div>
     </div>
     <div class="row">
         
         <div class="part4 col-md-2">
-            <input class="left1 check" id="CustContPersonName" name="tags" type="checkbox" value=Model.CustContPersonName />
+            <input class="left1 chkSelect" id="CustContPersonName" name="tags" type="checkbox" value=Model.CustContPersonName />
                 <label for="name" class="left1">DESIGNATED NAME</label>
             </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="CustContDesignation" name="tags" type="checkbox" value=Model.CustContDesignation />
+            <input class="left1 chkSelect" id="CustContDesignation" name="tags" type="checkbox" value=Model.CustContDesignation />
             <label for="name" class="left1">DESIGNATION</label>
             </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="MobileNo" name="tags" type="checkbox" value=Model.MobileNo />
+            <input class="left1 chkSelect" id="MobileNo" name="tags" type="checkbox" value=Model.MobileNo />
             <label for="name" class="left1">MOBILE NO</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="OfficeNo" name="tags" type="checkbox" value=Model.OfficeNo />
+            <input class="left1 chkSelect" id="OfficeNo" name="tags" type="checkbox" value=Model.OfficeNo />
             <label for="name" class="left1">BOARD NO</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="EmailId" name="tags" type="checkbox" value=Model.EmailId />
+            <input class="left1 chkSelect" id="EmailId" name="tags" type="checkbox" value=Model.EmailId />
             <label for="name" class="left1">EMAIL</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="TranType" name="tags" type="checkbox" value=Model.TranType />
+            <input class="left1 chkSelect" id="TranType" name="tags" type="checkbox" value=Model.TranType />
             <label for="name" class="left1">TYPE OF BIZ</label>
         </div>
         </div>
@@ -79,19 +117,19 @@
             <label for="name" class="left1">TYPE OF COVER</label>
         </div>*@
         <div class="part4 col-md-2">
-            <input class="left1 check" id="InsCmpName" name="tags" type="checkbox" value=Model.InsCmpName />
+            <input class="left1 chkSelect" id="InsCmpName" name="tags" type="checkbox" value=Model.InsCmpName />
             <label for="name" class="left1">INS COMPANY</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="InsPrdName" name="tags" type="checkbox" value=Model.InsPrdName />
+            <input class="left1 chkSelect" id="InsPrdName" name="tags" type="checkbox" value=Model.InsPrdName />
             <label for="name" class="left1">TYPE OF COVER</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="PolicyNo" name="tags" type="checkbox" value=Model.PolicyNo />
+            <input class="left1 chkSelect" id="PolicyNo" name="tags" type="checkbox" value=Model.PolicyNo />
             <label for="name" class="left1">POLICY NO</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="EffectiveDate" name="tags" type="checkbox" value=Model.EffectiveDate />
+            <input class="left1 chkSelect" id="EffectiveDate" name="tags" type="checkbox" value=Model.EffectiveDate />
             <label for="name" class="left1">INCEPTION DATE</label>
         </div>
         <div class="part4 col-md-2">
@@ -99,7 +137,7 @@
             <label for="name" class="left1">EXPIRY DATE</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="RenewalDate" name="tags" type="checkbox" value=Model.RenewalDate />
+            <input class="left1 chkSelect" id="RenewalDate" name="tags" type="checkbox" value=Model.RenewalDate />
             <label for="name" class="left1">RENEWAL DATE</label>
         </div>
     </div>
@@ -107,27 +145,27 @@
        
        
         <div class="part4 col-md-2">
-            <input class="left1 check" id="EndorcementDate" name="tags" type="checkbox" value=Model.EndorcementDate />
-            <label for="name" class="left1">End date_CIB COMM CALC</label>
+            <input class="left1 chkSelect" id="EndorcementDate" name="tags" type="checkbox" value=Model.EndorcementDate />
+            <label for="name" class="left1">End Date_CIB COMM CALC</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="ICActualDate" name="tags" type="checkbox" value=Model.ICActualDate />
+            <input class="left1 chkSelect" id="ICActualDate" name="tags" type="checkbox" value=Model.ICActualDate />
             <label for="name" class="left1">End Date_IC ACTUALS</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="EndType" name="tags" type="checkbox" value=Model.EndType />
+            <input class="left1 chkSelect" id="EndType" name="tags" type="checkbox" value=Model.EndType />
             <label for="name" class="left1">END TYPE</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="EndorcementNo" name="tags" type="checkbox" value=Model.EndorcementNo />
+            <input class="left1 chkSelect" id="EndorcementNo" name="tags" type="checkbox" value=Model.EndorcementNo />
             <label for="name" class="left1">END NUMBER</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="AdditionEmpNo" name="tags" type="checkbox" value=Model.AdditionEmpNo />
+            <input class="left1 chkSelect" id="AdditionEmpNo" name="tags" type="checkbox" value=Model.AdditionEmpNo />
             <label for="name" class="left1">ADDED</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="DeletionEmpNo" name="tags" type="checkbox" value=Model.DeletionEmpNo />
+            <input class="left1 chkSelect" id="DeletionEmpNo" name="tags" type="checkbox" value=Model.DeletionEmpNo />
             <label for="name" class="left1">DELETED</label>
         </div>
 </div>
@@ -135,46 +173,48 @@
       
        
         <div class="part4 col-md-2">
-            <input class="left1 check" id="PremiumAmount" name="tags" type="checkbox" value=Model.PremiumAmount />
+            <input class="left1 chkSelect" id="PremiumAmount" name="tags" type="checkbox" value=Model.PremiumAmount />
             <label for="name" class="left1">BASIC PREMIUM</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="PolicyFee" name="tags" type="checkbox" value=Model.PolicyFee />
+            <input class="left1 chkSelect" id="PolicyFee" name="tags" type="checkbox" value=Model.PolicyFee />
             <label for="name" class="left1">POLICY FEE</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="CommissionPerc" name="tags" type="checkbox" value=Model.CommissionPerc />
+            <input class="left1 chkSelect" id="CommissionPerc" name="tags" type="checkbox" value=Model.CommissionPerc />
             <label for="name" class="left1">COMMISSION %</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="ExtraPremium" name="tags" type="checkbox" value=Model.ExtraPremium />
+            <input class="left1 chkSelect" id="ExtraPremium" name="tags" type="checkbox" value=Model.ExtraPremium />
             <label for="name" class="left1">EXTRA PREMIUM</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="TotalPremium" name="tags" type="checkbox" value=Model.TotalPremium />
+            <input class="left1 chkSelect" id="TotalPremium" name="tags" type="checkbox" value=Model.TotalPremium />
             <label for="name" class="left1">TOTAL PREMIUM</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="CommissionAmount" name="tags" type="checkbox" value=Model.CommissionAmount />
+            <input class="left1 chkSelect" id="CommissionAmount" name="tags" type="checkbox" value=Model.CommissionAmount />
             <label for="name" class="left1">TOTAL COMMISSION</label>
         </div>
     </div>
     <div class="row">
         <div class="part4 col-md-2">
-            <input class="left1 check" id="CommissionAmount" name="tags" type="checkbox" value=Model.CommissionAmount />
+            <input class="left1 chkSelect" id="CommissionAmount" name="tags" type="checkbox" value=Model.CommissionAmount />
             <label for="name" class="left1">TOTAL COMMISSION</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="PaymentTo" name="tags" type="checkbox" value=Model.PaymentTo />
+            <input class="left1 chkSelect" id="PaymentTo" name="tags" type="checkbox" value=Model.PaymentTo />
             <label for="name" class="left1">PAID TO</label>
         </div>
         <div class="part4 col-md-2">
-            <input class="left1 check" id="Aging" name="tags" type="checkbox" value=Model.Aging />
+            <input class="left1 chkSelect" id="Aging" name="tags" type="checkbox" value=Model.Aging />
             <label for="name" class="left1">AGEING</label>
         </div>
     </div>
         <div class="row">
             <div class="col-md-12 hrpart">
+                <input class="left1" id="chkSelectAll" name="tags" type="checkbox" value=Model.Aging />
+                <label for="name" class="left1" style="color:red">SELECT ALL</label>
                 <button type="submit" class="form-button right">Proceed</button>
             </div>
         </div>
