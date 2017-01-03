@@ -94,6 +94,7 @@ namespace CapitalInsurance.Controllers
             ds.Tables["Items"].Columns.Add("PolicyOrEndorseNo");
             ds.Tables["Items"].Columns.Add("Company");
             ds.Tables["Items"].Columns.Add("Premium");
+            ds.Tables["Items"].Columns.Add("Remarks");
             CustomerInvoiceRepository repo = new CustomerInvoiceRepository();
             var Head = repo.GetCustomerInvoiceHdDetails();
             DataRow dr = ds.Tables["Head"].NewRow();
@@ -113,7 +114,8 @@ namespace CapitalInsurance.Controllers
                     TranType = item.TranType,
                     PolicyNo=item.PolicyNo,
                     InsCmpName = item.InsCmpName,
-                    TotalPremium = item.TotalPremium
+                    TotalPremium = item.TotalPremium,
+                    Remarks = item.Remarks
                 };
 
                 DataRow dri = ds.Tables["Items"].NewRow();
@@ -122,6 +124,7 @@ namespace CapitalInsurance.Controllers
                 dri["PolicyOrEndorseNo"] = CustomerInvoiceItem.PolicyNo;
                 dri["Company"] = CustomerInvoiceItem.InsCmpName;
                 dri["Premium"] = CustomerInvoiceItem.TotalPremium;
+                dri["Remarks"] = CustomerInvoiceItem.Remarks;
                 ds.Tables["Items"].Rows.Add(dri);
             }
 

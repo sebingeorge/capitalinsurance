@@ -89,12 +89,13 @@
         <table class="table table-bordered" id="tab_logic">
             <thead>
                 <tr class="grid_heading">
-                    <th width="30%">Insurance Company</th>
-                    <th width="20%">Insurance Type</th>
+                    <th width="20%">Insurance Company</th>
+                    <th width="15%">Coverage Type</th>
                     <th width="20%">Insured Name</th>
                     <th width="10%">Policy/Endorsement No.</th>
+                    <th width="17%">Remarks.</th>
                     <th width="10%">Effective date</th>
-                    <th width="10%" class="text-right">Premium(QR)</th>
+                    <th width="8%" class="text-right">Premium(QR)</th>
                 </tr>
             </thead>
             <tbody>
@@ -109,8 +110,10 @@
                         @Html.HiddenFor(m => m.Items[i].PolicyId)
                         </td>
                         <td>
+                            @Html.TextBoxFor(m => m.Items[i].Remarks, new { @class = "form_input", autocomplete = "off" })
+                        </td>
                         @*@Html.TextBoxFor(m => m.Items[i].EffectiveDate, new { @class = "form_input", autocomplete = "off", @readonly = "readonly" })*@
-                            <div class="input-group date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            <td><div class="input-group date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                 @Html.TextBoxFor(m => m.Items[i].EffectiveDate, new { @class = "form_input", @readonly = "readonly" })
                                 @*<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>*@
                             </div>

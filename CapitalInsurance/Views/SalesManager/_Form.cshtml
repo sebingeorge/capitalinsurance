@@ -129,7 +129,8 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label>State</label>
-                @Html.DropDownListFor(m => Model.StateId, (SelectList)ViewBag.State, "Select State", new { @class = "form_input", autocomplete = "off" })
+                @*@Html.DropDownListFor(m => Model.StateId, (SelectList)ViewBag.State, "Select State", new { @class = "form_input", autocomplete = "off" })*@
+                @Html.TextBoxFor(m => m.StateId, new { @class = "form_input" })
                 @*<select class="form_input">
                     <option value="">State 1</option>
                     <option value="">State 2</option>
@@ -138,7 +139,8 @@
 
             <div class="col-md-6">
                 <label>Country</label>
-                @Html.DropDownListFor(m => Model.CountryId, (SelectList)ViewBag.Country, "Select Country", new { @class = "form_input", autocomplete = "off" })
+                @*@Html.DropDownListFor(m => Model.CountryId, (SelectList)ViewBag.Country, "Select Country", new { @class = "form_input", autocomplete = "off" })*@
+                @Html.TextBoxFor(m => m.CountryId, new { @class = "form_input" })
                 @*<select class="form_input">
                     <option value="">Country 1</option>
                     <option value="">Country 2</option>

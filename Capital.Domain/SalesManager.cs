@@ -21,13 +21,13 @@ namespace Capital.Domain
         public int MaritalStatusId { get; set; }
         public int? DsgId { get; set; }
         public string DsgName { get; set; }
-        public int? CountryId { get; set; }
+        public string CountryId { get; set; }
         public string Deptment { get; set; }
         public string Location { get; set; }
         public string CurrentAddress1 { get; set; }
         public string CurrentAddress2 { get; set; }
         public string CurrentAddress3 { get; set; }
-        public int? StateId { get; set; }
+        public string StateId { get; set; }
         public string PermanantAddress1 { get; set; }
         public string PermanantAddress2 { get; set; }
         public string PermanantAddress3 { get; set; }

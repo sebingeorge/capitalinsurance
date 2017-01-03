@@ -19,5 +19,6 @@ namespace Capital.Domain
       public string InsCmpName { get; set; }
       public string InsuredName { get; set; }
       public string PolicyNo { get; set; }
+      public string Remarks { get; set; }
     }
 }

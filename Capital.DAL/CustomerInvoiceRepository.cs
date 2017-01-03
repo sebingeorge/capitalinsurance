@@ -16,11 +16,12 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string query = @"select  C.CusName,I.InsCmpName,P.TranType,P.PolicyNo,P.PolicySubDate,P.EffectiveDate,P.RenewalDate,P.PolicyId
+                string query = @"select  C.CusName,I.InsCmpName,ip.InsPrdName as TranType,P.PolicyNo,P.PolicySubDate,P.EffectiveDate,P.RenewalDate,P.PolicyId
                                     from PolicyIssue P
                                     left join Customer C on C.CusId = P.CusId
                                     left join InsuranceCompany I on I.InsCmpId = P.InsCmpId
                                     left join CustomerInvoiceItem CI ON CI.PolicyId =P.PolicyId
+                                    inner join InsuranceProduct IP on p.InsPrdId= IP.InsPrdId
                                     where CI.PolicyId IS NULL AND P.CusId = ISNULL(NULLIF(@ClientId, 0), P.CusId) AND  P.PayModeId IS NOT NULL AND P.PolicyNo IS NOT NULL";
 
                 return connection.Query<PolicyIssue>(query, new { ClientId = ClientId }).ToList();
@@ -31,7 +32,11 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"SELECT I.InsCmpName,P.EffectiveDate,P.InsuredName,P.TranType,ISNULL(P.EndorsementNo,P.PolicyNo)PolicyNo,P.PolicyId,TotalPremium  from PolicyIssue P  left join InsuranceCompany I on I.InsCmpId = P.InsCmpId  WHERE P.PolicyId IN @PolicyIds";
+                string sql = @"SELECT I.InsCmpName,P.EffectiveDate,P.InsuredName,ip.InsPrdName as TranType,ISNULL(P.EndorsementNo,P.PolicyNo)PolicyNo,'' as Remarks,P.PolicyId,TotalPremium  
+                                      from PolicyIssue P  
+                                      left join InsuranceCompany I on I.InsCmpId = P.InsCmpId  
+                                      inner join InsuranceProduct IP on p.InsPrdId= IP.InsPrdId
+                                      WHERE P.PolicyId IN @PolicyIds";
 
                 var objPendingInv = connection.Query<CustomerInvoiceItem>(sql, new { PolicyIds = PolicyIds }).ToList<CustomerInvoiceItem>();
 
@@ -79,7 +84,7 @@ namespace Capital.DAL
                     {
                         item.CusInvoiceId = model.CusInvoiceId;
                         sql = @"INSERT INTO CustomerInvoiceItem
-                                (CusInvoiceId,PolicyId)VALUES(@CusInvoiceId,@PolicyId);SELECT CAST(SCOPE_IDENTITY() as int);";
+                                (CusInvoiceId,PolicyId,Remarks)VALUES(@CusInvoiceId,@PolicyId,@Remarks);SELECT CAST(SCOPE_IDENTITY() as int);";
                     }
                     int id = connection.Execute(sql, model.Items);
                     if (id > 0)
@@ -107,9 +112,10 @@ namespace Capital.DAL
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
                 string sql = string.Empty;
-                sql = @"select  I.InsCmpName,ISNULL(P.EffectiveDate,'')EffectiveDate,P.InsuredName,P.TranType,ISNULL(P.EndorsementNo,P.PolicyNo)PolicyNo,P.PolicyId,TotalPremium from CustomerInvoiceItem C 
+                sql = @"select  I.InsCmpName,ISNULL(P.EffectiveDate,'')EffectiveDate,P.InsuredName,ip.InsPrdName as TranType,ISNULL(P.EndorsementNo,P.PolicyNo)PolicyNo,P.PolicyId,TotalPremium,Remarks from CustomerInvoiceItem C 
                         INNER JOIN PolicyIssue P on P.PolicyId=C.PolicyId
                         INNER JOIN InsuranceCompany I on I.InsCmpId = P.InsCmpId
+                        inner join InsuranceProduct IP on p.InsPrdId= IP.InsPrdId
                         where C.CusInvoiceId = @Id";
                 return connection.Query<CustomerInvoiceItem>(sql, new { Id = Id });
             }

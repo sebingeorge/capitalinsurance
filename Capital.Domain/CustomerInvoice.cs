@@ -25,6 +25,7 @@ namespace Capital.Domain
         public string Address2 { get; set; }
         public string Address3 { get; set; }
       
+      
         public List<CustomerInvoiceItem>Items { get; set; }
   
   }

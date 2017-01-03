@@ -1,12 +1,12 @@
 ﻿@model Capital.Domain.InsuranceProduct
 @{
-    ViewBag.Title = "InsuranceProduct";
+    ViewBag.Title = "Coverage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(); }
 <div class="container content-in">
     <div class="row">
-        <h1>Insurance Product</h1>
+        <h1>Coverage</h1>
     </div>
     @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
     {
