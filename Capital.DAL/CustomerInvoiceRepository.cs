@@ -112,7 +112,7 @@ namespace Capital.DAL
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
                 string sql = string.Empty;
-                sql = @"select  I.InsCmpName,ISNULL(P.EffectiveDate,'')EffectiveDate,P.InsuredName,ip.InsPrdName as TranType,ISNULL(P.EndorsementNo,P.PolicyNo)PolicyNo,P.PolicyId,TotalPremium,Remarks from CustomerInvoiceItem C 
+                sql = @"select  I.InsCmpName,ISNULL(P.EffectiveDate,'')EffectiveDate,P.InsuredName,ip.InsPrdName as TranType,ISNULL(P.EndorsementNo,P.PolicyNo)PolicyNo,P.PolicyId,TotalPremium,C.Remarks from CustomerInvoiceItem C 
                         INNER JOIN PolicyIssue P on P.PolicyId=C.PolicyId
                         INNER JOIN InsuranceCompany I on I.InsCmpId = P.InsCmpId
                         inner join InsuranceProduct IP on p.InsPrdId= IP.InsPrdId
@@ -120,14 +120,15 @@ namespace Capital.DAL
                 return connection.Query<CustomerInvoiceItem>(sql, new { Id = Id });
             }
         }
-        public CustomerInvoice GetCustomerInvoiceHdDetails()
+        public CustomerInvoice GetCustomerInvoiceHdDetails(int Id)
         {
 
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select Concat(CI.CusInvoicePrefix ,'/', CI.CusInvoiceRefNo)CusInvoiceRefNo,CI.CusInvoiceDate,C.CusName from CustomerInvoice CI inner join Customer C on CI.CusId=C.CusId";
+                string sql = string.Empty;
+                sql = @"select Concat(CI.CusInvoicePrefix ,'/', CI.CusInvoiceRefNo)CusInvoiceRefNo,CI.CusInvoiceDate,C.CusName,CI.SpecialRemarks from CustomerInvoice CI inner join Customer C on CI.CusId=C.CusId where CI.CusInvoiceId = @Id";
 
-                var ObjInvoice = connection.Query<CustomerInvoice>(sql).Single<CustomerInvoice>();
+      var ObjInvoice = connection.Query<CustomerInvoice>(sql, new { Id = Id }).Single<CustomerInvoice>();
 
                 return ObjInvoice;
             }
