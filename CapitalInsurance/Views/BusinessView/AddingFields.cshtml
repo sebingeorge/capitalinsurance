@@ -29,10 +29,10 @@
         try {
 
             if ($('.chkSelect:checked').length > 1) {
-                alert("hi");
+                //alert("hi");
                 var startIndex = $('.chkSelect').index($('.chkSelect:checked')[0]);
-                alert(currentIndex);
-                alert(startIndex);
+                //alert(currentIndex);
+                //alert(startIndex);
                 if (startIndex != undefined && startIndex != null && startIndex != -1 && currentIndex > startIndex) {
                     $("#chkSelectAll").prop("checked", false);
 
