@@ -88,6 +88,7 @@ namespace CapitalInsurance.Controllers
             ds.Tables["Head"].Columns.Add("DocumentDate");
             ds.Tables["Head"].Columns.Add("Location");
             ds.Tables["Head"].Columns.Add("InsuredName");
+            ds.Tables["Head"].Columns.Add("SpecialRemarks");
             //-------DT
             ds.Tables["Items"].Columns.Add("EffectiveDate");
             ds.Tables["Items"].Columns.Add("InsuranceType");
@@ -96,11 +97,12 @@ namespace CapitalInsurance.Controllers
             ds.Tables["Items"].Columns.Add("Premium");
             ds.Tables["Items"].Columns.Add("Remarks");
             CustomerInvoiceRepository repo = new CustomerInvoiceRepository();
-            var Head = repo.GetCustomerInvoiceHdDetails();
+            var Head = repo.GetCustomerInvoiceHdDetails(Id);
             DataRow dr = ds.Tables["Head"].NewRow();
             dr["DocumentNo"] = Head.CusInvoiceRefNo;
             dr["DocumentDate"] = Head.CusInvoiceDate.Value.ToString("dd-MMM-yyyy");
             dr["InsuredName"] = Head.CusName;
+            dr["SpecialRemarks"] = Head.SpecialRemarks;
            
             ds.Tables["Head"].Rows.Add(dr);
 
