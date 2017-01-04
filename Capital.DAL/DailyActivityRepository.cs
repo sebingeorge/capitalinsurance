@@ -57,12 +57,12 @@ namespace Capital.DAL
             }
             return res;
         }
-        public List<DailyActivityItem> GetDailyActivityDetails(int Id = 0)
+        public List<DailyActivityItem> GetDailyActivityDetails(DateTime? From,DateTime? To,int Id = 0)
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string query = @"select * from DailyActivity where SalesMgId=@Id";
-                return connection.Query<DailyActivityItem>(query, new { Id = Id }).ToList();
+                string query = @"select * from DailyActivity where SalesMgId=@Id and TranDate >=CAST(@From AS date) and Trandate <=CAST(@To AS date)" ;
+                return connection.Query<DailyActivityItem>(query, new { Id = Id,From=From,To=To }).ToList();
             }
         }
    }

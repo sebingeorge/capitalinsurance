@@ -18,7 +18,10 @@ namespace Capital.DAL
             {
                 string query = @"
 
-                     SELECT P.PolicyId,C.CusName,P.TranType,P.TotalPremium,0 Amount1,0 Amount2,0 Amount3,0 Amount4,0 Amount5 INTO #Result FROM PolicyIssue P inner join Customer C ON C.CusId=P.CusId where P.PolicyNo IS NOT NULL;
+                     SELECT P.PolicyId,C.CusName,IP.insPrdName as TranType,P.TotalPremium,0 Amount1,0 Amount2,0 Amount3,0 Amount4,0 Amount5 INTO #Result FROM PolicyIssue P 
+                     inner join Customer C ON C.CusId=P.CusId 
+                     inner join InsuranceProduct IP on P.insPrdId=IP.insPrdId
+                     where P.PolicyNo IS NOT NULL;
                      
                      with A as (
                      select PolicyId, sum(ChequeAmt)Amount from PolicyIssueChequeReceived  group by PolicyId)
@@ -46,7 +49,7 @@ namespace Capital.DAL
                      update R set R.Amount5 = A.Amount from A inner join #Result R on R.PolicyId = A.PolicyId;	
 
 
-				     select * from #Result where  CusName LIKE '%'+@Client+'%'";
+				     select * from #Result where  CusName LIKE '%'+@Client+'%' order by CusName" ;
 
 
 

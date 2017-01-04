@@ -55,9 +55,9 @@ namespace CapitalInsurance.Controllers
             }
             return RedirectToAction("Index");
         }
-        public ActionResult DailyActivityReport(int EmpId = 0)
+        public ActionResult DailyActivityReport(DateTime? From, DateTime? To, int EmpId = 0)
         {
-            return PartialView("_DailyActivityReport", new DailyActivityRepository().GetDailyActivityDetails(EmpId));
+            return PartialView("_DailyActivityReport", new DailyActivityRepository().GetDailyActivityDetails(From, To, EmpId));
         }
         void FillSalesManager()
         {
