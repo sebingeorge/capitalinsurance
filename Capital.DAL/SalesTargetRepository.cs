@@ -29,7 +29,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select * from SalesManager order by SalesMgName";
+                string sql = @"select * from SalesManager where DsgId in (9,10) order by SalesMgName";
                 var objSalesTarget = connection.Query<SalesTargetItem>(sql).ToList<SalesTargetItem>();
                 return objSalesTarget;
             }

@@ -8,6 +8,11 @@
         var url = '@Url.Action("Index","Home")';
         window.location = url;
       }
+    function ExportBussnessView() {
+        var url = '@Url.Action("ExportBussnessView", "BusinessView")';
+        window.location = url;
+    }
+
     function Filter() {
         $("#Bussiness_View").addClass("fade");
         var Cmpy = $("#compy").val().trim();
@@ -20,6 +25,15 @@
         $("#Bussiness_View").removeClass("fade");
         });
     }
+
+    @*function OnTransactionChanged(sender) {
+        var id = $(sender).val();
+        var url = '@Url.Action("LoadTransactions"';
+        url = url + "?TrnId=" + id;
+        $("#divTransaction".load(url)
+        }*@
+
+
 </script>
 
 
@@ -62,6 +76,7 @@
         <hr />
         <div class="col-md-12 hrpart">
             @*<input type="button" class="form-button" onclick="Previous()" value="Previous" title="Previous Policy Renewal">*@
+            <input type="button" class=" form-button right" onclick="ExportBussnessView()"value=" ExportToExcel" />
             <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
         </div>
     </div>

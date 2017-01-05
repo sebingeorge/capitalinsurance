@@ -3,10 +3,12 @@
 @using GridMvc.Html
 @{
      string[] a=ViewBag.tags;
+     TempData["tags"] = ViewBag.tags;
 }
 
 <div class="table-responsive scroll3">
     @*<span class="filter"><img src="~/Images/icon/filter.png" /></span>*@
+
     @Html.Grid(Model).Columns(columns =>
     {
         if (@a.Contains("Model.Year"))

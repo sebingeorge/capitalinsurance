@@ -274,7 +274,11 @@ namespace Capital.DAL
                                     left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                    where P.OldPolicyId IS NULL AND P.TranType in ('NewPolicy','RenewPolicy') and P.PayModeId IS NULL and P.PolicyNo IS NOT NULL
+                                    left join PolicyIssueChequeReceived CR on Cr.PolicyId=p.PolicyId
+                                    where P.OldPolicyId IS NULL AND P.TranType in ('NewPolicy','RenewPolicy') 
+                                    group by  P.PolicyId,C.CusName,P.CustContPersonName,P.InsuredName,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,P.RenewalDate,
+                                    P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionAmount, S.SalesMgName,P.PolicyNo,p.TranPrefix,p.TranNumber
+									having p.TotalPremium-isnull(sum(cr.ChequeAmt),0)>0
                                     order by P.TranNumber";
                 return connection.Query<PolicyIssue>(query).ToList();
             }
