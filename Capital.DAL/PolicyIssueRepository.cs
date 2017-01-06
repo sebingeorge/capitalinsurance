@@ -311,6 +311,17 @@ namespace Capital.DAL
                                 id = connection.Execute(sql, item, txn);
                             }
                         }
+
+                        if (model.PayModeId == 2)
+                        {
+                            foreach (var item in model.Committed)
+                            {
+                                item.PolicyId = model.PolicyId;
+                                sql = sql = @"UPDATE PolicyIssueCommittedDetails set paid=@paid WHERE PolicyId = @PolicyId";
+                               
+                                id = connection.Execute(sql, item, txn);
+                            }
+                        }
                     }
                     else
                     {
@@ -324,7 +335,7 @@ namespace Capital.DAL
                             {
                                 sql = @"INSERT INTO PolicyIssueCommittedDetails
                                    (PolicyId,CommittedDate
-                                   ,CommittedAmt )VALUES(@PolicyId,@CommittedDate,@CommittedAmt);SELECT CAST(SCOPE_IDENTITY() as int);";
+                                   ,CommittedAmt,paid )VALUES(@PolicyId,@CommittedDate,@CommittedAmt,@paid);SELECT CAST(SCOPE_IDENTITY() as int);";
                                 id = connection.Execute(sql, item, txn);
                             }
 

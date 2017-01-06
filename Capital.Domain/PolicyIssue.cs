@@ -53,6 +53,8 @@ namespace Capital.Domain
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Sales Manager is Required")]
         public int? SalesMgId { get; set; }
         public string OperationManager { get; set; }
+
+         //[System.ComponentModel.DataAnnotations.Required(ErrorMessage = "PolicyNo is Required")]
         public string PolicyNo { get; set; }
         public string EndorsementNo { get; set; }
         public string Remarks { get; set; }
@@ -108,5 +110,6 @@ namespace Capital.Domain
             }
         }
         public bool SelectStatus { get; set; }
+        //public Boolean paid { get; set; }
     }
 }

@@ -47,6 +47,7 @@ namespace CapitalInsurance.Controllers
             model.CreatedBy = UserID;
             if (!ModelState.IsValid)
             {
+                FillDropdowns();
                 var allErrors = ModelState.Values.SelectMany(v => v.Errors);
                 return View(model);
             }
