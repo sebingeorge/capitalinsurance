@@ -14,5 +14,7 @@ namespace Capital.Domain
         public int? PolicyId { get; set; }
         public DateTime? CommittedDate { get; set; }
         public decimal CommittedAmt { get; set; }
+
+        public Boolean paid { get; set; }
     }
 }
