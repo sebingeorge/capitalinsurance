@@ -63,16 +63,16 @@ Model.Type = ViewBag.type;
         if (i > 1) {
             $("#Row_" + index).remove();
             for (var j = index + 1; j < i; j++) {
-              
+
                 var clone = $("#Row_" + j).clone(true, true);
-              
+
                 clone.html($(clone).html().replace(new RegExp("Cheque_" + j + "__", "g"), 'Cheque_' + (j - 1) + '__'));
                 clone.html($(clone).html().replace(new RegExp("\\[" + j + "].", "g"), "[" + (j - 1) + "]."));
                 clone.html($(clone).html().replace("Delete(" + j, "Delete(" + (j - 1)));
                 clone.html($(clone).html().replace("Row_" + j, "Row_" + (j - 1)));
 
                 clone.html($(clone).html().replace("this," + j, "this," + (j - 1)));
-             
+
                 $("#Row_" + j).html(clone.html());
                 $("#Row_" + (j)).attr('id', (j - 1));
             }
@@ -112,22 +112,56 @@ Model.Type = ViewBag.type;
                 return false;
             }
         });
-      
     })
-    
 </script>
+@if (ViewBag.Type == 2)
+{
+    <script>
+        function validate()
+        {
+            if($("#PolicyNo").val() == "")
+            {
+                alert("Please enter Policy Number.");
+                $("#PolicyNo").focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+}
+@if (ViewBag.Type == 3)
+{
+    <script>
+        function validate()
+        {
+            if($("#PolicyNo").val() == "")
+            {
+                alert("Please enter Policy Number.");
+                $("#PolicyNo").focus();
+                return false;
+            }
+            if($("#QuickBookRefNo").val() =="")
+            {
+                alert("Please enter Quick Book Reference Number.");
+                $("#QuickBookRefNo").focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+}
 <div class="container content-in">
     <div class="row">
-@if(ViewBag.type == 2)
+        @if (ViewBag.type == 2)
         {
-        <h1>Payment Commitments</h1>
+            <h1>Payment Commitments</h1>
         }
-else
-{
-    <h1>Payment Collection</h1>
-}
+        else
+        {
+            <h1>Payment Collection</h1>
+        }
     </div>
-    @using (Html.BeginForm("UpdateCommitments", "New_Policy", FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
+    @using (Html.BeginForm("UpdateCommitments", "New_Policy", FormMethod.Post, new { @class = "createFrom", @id = "box_form", onsubmit = "return validate();" }))
     {
         <div class="row">
             <div class="col-md-3">
@@ -264,13 +298,13 @@ else
             <div class="col-md-3">
                 <div class="row form-group">
                     @*<div class="col-md-6">
-                        <label>Product Type</label>
-                        @Html.DropDownListFor(m => Model.InsCoverId, (SelectList)ViewBag.ProductType, "Select Product Type", new { @class = "form_input", autocomplete = "off", @disabled = "true" })
-                        @Html.ValidationMessageFor(m => m.InsCoverId, "", new { @class = "text-danger" })
-                    </div>*@
+                            <label>Product Type</label>
+                            @Html.DropDownListFor(m => Model.InsCoverId, (SelectList)ViewBag.ProductType, "Select Product Type", new { @class = "form_input", autocomplete = "off", @disabled = "true" })
+                            @Html.ValidationMessageFor(m => m.InsCoverId, "", new { @class = "text-danger" })
+                        </div>*@
                     <div class="col-md-6">
                         <label>Policy Sub Date</label>
-                        <div class="input-group date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <div class="input-group date " data-date="" data-date-format="dd-MMM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                             @Html.TextBoxFor(m => m.PolicySubDate, new { @class = "form_input", @Value = Model.PolicySubDate.ToString("dd-MMM-yyyy"), @readonly = "readonly" })
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
@@ -278,7 +312,7 @@ else
                     </div>
                     <div class="col-md-6">
                         <label>Effective Date</label>
-                        <div class="input-group date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <div class="input-group date" data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                             @Html.TextBoxFor(m => m.EffectiveDate, new { @class = "form_input ", @Value = Model.EffectiveDate.ToString("dd-MMM-yyyy"), @readonly = "readonly" })
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
@@ -298,10 +332,10 @@ else
             </div>
             <div class="col-md-3">
                 <div class="row form-group">
-                    
+
                     <div class="col-md-6">
                         <label>Renewal Date</label>
-                        <div class="input-group date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <div class="input-group date" data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                             @Html.TextBoxFor(m => m.RenewalDate, new { @class = "form_input", @Value = Model.RenewalDate.ToString("dd-MMM-yyyy"), @readonly = "readonly" })
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
@@ -344,10 +378,10 @@ else
                         @Html.ValidationMessageFor(m => m.CustContOfficeNo, "", new { @class = "text-danger" })
                     </div>
                     @*<div class="col-md-12">
-                        <label>Payment Option</label>
-                        @Html.TextBoxFor(m => m.PaymentOption, new { @class = "form_input", @readonly = "readonly" })
-                        @Html.ValidationMessageFor(m => m.PaymentOption, "", new { @class = "text-danger" })
-                    </div>*@
+                            <label>Payment Option</label>
+                            @Html.TextBoxFor(m => m.PaymentOption, new { @class = "form_input", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(m => m.PaymentOption, "", new { @class = "text-danger" })
+                        </div>*@
                 </div>
             </div>
             <div class="col-md-3">
@@ -378,10 +412,11 @@ else
                         <label id="againstId"></label>
                         @if (ViewBag.type == 2)
                         {
-                        @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
+                            @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
                         }
-                        else{
-                        @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input", @readonly = "readonly" })
+                        else
+                        {
+                            @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input", @readonly = "readonly" })
                         }
                         @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
                     </div>
@@ -393,11 +428,11 @@ else
                         <label>Remarks</label>
                         @if (ViewBag.type == 2)
                         {
-                        @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input"})
+                            @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input" })
                         }
                         else
                         {
-                        @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input", @readonly = "readonly" })
+                            @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input", @readonly = "readonly" })
                         }
                         @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
                     </div>
@@ -415,44 +450,43 @@ else
                             @*<th></th>*@
                             <th>Committed Date</th>
                             <th class="text-right ">Amount</th>
-                            <th>Paid</th>
-
-                            @*<th></th>*@
+                            @if (ViewBag.type == 3)
+                            {
+                                <th>Paid</th>
+                            }
                         </tr>
                         @for (int i = 0; i < Model.Committed.Count; i++)
                         {
                             <tr>
-                        @if (ViewBag.type == 2)
-                         {
-                            <td>
-                            <div class="input-group date form_date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                            @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input"})
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                            </div>
-                            </td>
-                            <td>
-                            @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
-                            </td>
-                            <td>
-                                @Html.CheckBoxFor(model=>Model.Committed[i].paid)
-                            </td>
-                          }
-                        else
-                        {
-                            <td>
-                            <div class="input-group date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                            @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input", @readonly = "readonly" })
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                            </div>
-                            </td>
-                            <td>
-                            @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })
-                            </td>
-                              <td>
-                                @Html.CheckBoxFor(model=>Model.Committed[i].paid)
-                            </td>
-                        }
-                        </tr>
+                                @Html.HiddenFor(model => Model.Committed[i].CommRowId)
+                                @if (ViewBag.type == 2)
+                                {
+                                    <td>
+                                        <div class="input-group date form_date " data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                            @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input" })
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <div class="input-group date " data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                            @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input", @readonly = "readonly" })
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })
+                                    </td>
+                                    <td>                                       
+                                        @Html.CheckBoxFor(model => Model.Committed[i].paid)
+                                    </td>
+                                }
+                            </tr>
                         }
                     </table>
                 </div>
@@ -467,15 +501,15 @@ else
                 <div class="col-md-3">
                     <div class="row form-group">
                         @*<div class="col-md-12">
-                            <label>Finance Manager</label>
-                            @Html.TextBoxFor(m => m.FinanceManager, new { @class = "form_input" })
-                            @Html.ValidationMessageFor(m => m.FinanceManager, "", new { @class = "text-danger" })
-                        </div>*@
-                    <div class="col-md-12">
-                    <label>Quick Book Reference No.</label>
-                    @Html.TextBoxFor(m => m.QuickBookRefNo, new { @class = "form_input" })
-                    @Html.ValidationMessageFor(m => m.QuickBookRefNo, "", new { @class = "text-danger" })
-                    </div>
+                                <label>Finance Manager</label>
+                                @Html.TextBoxFor(m => m.FinanceManager, new { @class = "form_input" })
+                                @Html.ValidationMessageFor(m => m.FinanceManager, "", new { @class = "text-danger" })
+                            </div>*@
+                        <div class="col-md-12">
+                            <label>Quick Book Reference No.</label>
+                            @Html.TextBoxFor(m => m.QuickBookRefNo, new { @class = "form_input" })
+                            @Html.ValidationMessageFor(m => m.QuickBookRefNo, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -510,7 +544,7 @@ else
                                     @Html.TextBoxFor(model => Model.Cheque[i].ChequeNo, new { @class = "form_input", autocomplete = "off" })
                                 </td>
                                 <td>
-                                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                    <div class="input-group date form_date" data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                         @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                     </div>
@@ -538,10 +572,30 @@ else
                 @if (ViewBag.type == 2)
                 {
                     if (Model.PayModeId != null)
-                {
-                    <span class="perm">
-                        <em>**Cannot edit this Policy, because Payment Collection is already done for this Policy</em>
-                    </span>
+                    {
+                        @*<span class="perm">
+                            <em>**Cannot edit this Policy, because Payment Collection is already done for this Policy</em>
+                        </span>*@
+                        if (actionName == "Edit")
+                        {
+                            <button type="submit" class="form-button right">Update</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="form-button right">Save</button>
+                        }
+                    }
+                    else
+                    {
+                        if (actionName == "Edit")
+                        {
+                            <button type="submit" class="form-button right">Update</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="form-button right">Save</button>
+                        }
+                    }
                 }
                 else
                 {
@@ -554,21 +608,8 @@ else
                         <button type="submit" class="form-button right">Save</button>
                     }
                 }
-                }
-              else
-                {
-                if (actionName == "Edit")
-                {
-                    <button type="submit" class="form-button right">Update</button>
-                }
-                else
-                {
-                    <button type="submit" class="form-button right">Save</button>
-                }
-                }
-         
+
             </div>
         </div>
     }
 </div>
-

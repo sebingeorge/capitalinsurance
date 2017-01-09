@@ -110,6 +110,7 @@ namespace Capital.Domain
             }
         }
         public bool SelectStatus { get; set; }
+        public decimal? BalanceAmount { get; set; }
         //public Boolean paid { get; set; }
     }
 }

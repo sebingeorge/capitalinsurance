@@ -257,7 +257,7 @@ namespace Capital.DAL
                                     left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                    where P.OldPolicyId IS NULL and P.PolicyNo IS NULL
+                                    where P.OldPolicyId IS NULL and P.PolicyId not in (select PolicyId from PolicyIssueCommittedDetails)
                                     order by P.TranNumber";
                 return connection.Query<PolicyIssue>(query).ToList();
             }
@@ -267,7 +267,7 @@ namespace Capital.DAL
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
                 string query = @"select P.PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)StrTranNumber,C.CusName,P.CustContPersonName,P.InsuredName,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,P.RenewalDate,
-                                    P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionAmount, S.SalesMgName,P.PolicyNo
+                                    P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionAmount, S.SalesMgName,P.PolicyNo,p.TotalPremium-isnull(sum(cr.ChequeAmt),0) BalanceAmount
                                     from PolicyIssue P
                                     left join Customer C on C.CusId = P.CusId
                                     left join InsuranceCompany I on I.InsCmpId = P.InsCmpId
@@ -316,10 +316,14 @@ namespace Capital.DAL
                         {
                             foreach (var item in model.Committed)
                             {
-                                item.PolicyId = model.PolicyId;
-                                sql = sql = @"UPDATE PolicyIssueCommittedDetails set paid=@paid WHERE PolicyId = @PolicyId";
-                               
-                                id = connection.Execute(sql, item, txn);
+                                if(item.paid == true)
+                                {
+                                    item.PolicyId = model.PolicyId;
+                                    sql = sql = @"UPDATE PolicyIssueCommittedDetails set paid=1 WHERE CommRowId = @CommRowId";
+
+                                    id = connection.Execute(sql, item, txn);
+                                }
+                                
                             }
                         }
                     }

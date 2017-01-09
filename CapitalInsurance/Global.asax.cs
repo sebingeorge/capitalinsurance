@@ -23,6 +23,7 @@ namespace CapitalInsurance
         {
             CultureInfo newCulture = (CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             newCulture.DateTimeFormat.ShortDatePattern = "dd-MMM-yyyy";
+            newCulture.DateTimeFormat.LongDatePattern = "dd-MMM-yyyy";
             newCulture.DateTimeFormat.DateSeparator = "-";
             Thread.CurrentThread.CurrentCulture = newCulture;
         }

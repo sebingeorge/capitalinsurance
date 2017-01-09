@@ -10,7 +10,7 @@ namespace Capital.Domain
 {
     public class PaymentCommitments
     {
-       
+        public int? CommRowId { get; set; }
         public int? PolicyId { get; set; }
         public DateTime? CommittedDate { get; set; }
         public decimal CommittedAmt { get; set; }
