@@ -22,6 +22,12 @@ namespace CapitalInsurance.Controllers
             return PartialView("_AgeingSummary", new ReportRepository().GetAgeingSummaryBasedCommittedDate(Client));
         }
 
+        public ActionResult DetailsPopup(int id)
+        {
+
+            return PartialView("_AgeingSummaryDetailed", new ReportRepository().GetAgeingSummaryBasedDetailed(id));
+        }
+
 
     }
 }

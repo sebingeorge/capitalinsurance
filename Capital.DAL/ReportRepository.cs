@@ -18,44 +18,87 @@ namespace Capital.DAL
             {
                 string query = @"
 
-                     SELECT P.PolicyId,C.CusName,IP.insPrdName as TranType,P.TotalPremium,0 Amount1,0 Amount2,0 Amount3,0 Amount4,0 Amount5 INTO #Result FROM PolicyIssue P 
-                     inner join Customer C ON C.CusId=P.CusId 
-                     inner join InsuranceProduct IP on P.insPrdId=IP.insPrdId
-                     where P.PolicyNo IS NOT NULL;
-                     
-                     with A as (
-                     select PolicyId, sum(ChequeAmt)Amount from PolicyIssueChequeReceived  group by PolicyId)
-                     update R set TotalPremium =(TotalPremium- A.Amount) from A inner join #Result R on R.PolicyId = A.PolicyId;
+                      SELECT P.CusId,C.CusName,0 Overdue,sum(P.TotalPremium)TotalPremium,0 Amount1,0 Amount2,0 Amount3,0 Amount4,0 Amount5 INTO #Result FROM PolicyIssue P 
+                     inner join Customer C ON P.CusId=c.CusId 
+					 where P.PolicyNo IS NOT NULL
+                     group by  P.CusId,C.CusName;
 
-                     with A as (
-                     select PolicyId, sum(CommittedAmt)Amount from PolicyIssueCommittedDetails WHERE  DATEDIFF(DAY, GETDATE(), CommittedDate) <=15  group by PolicyId)
-                     update R set R.Amount1 = A.Amount from A inner join #Result R on R.PolicyId = A.PolicyId;
                     
                      with A as (
-                     select PolicyId, sum(CommittedAmt)Amount from PolicyIssueCommittedDetails WHERE  DATEDIFF(DAY, GETDATE(), CommittedDate) BETWEEN 15 AND 30  group by PolicyId)
-                     update R set R.Amount2 = A.Amount from A inner join #Result R on R.PolicyId = A.PolicyId;
+                     select p.CusId, sum(CommittedAmt)Amount from PolicyIssueCommittedDetails pc
+                     inner join PolicyIssue p on p.PolicyId=pc.PolicyId
+                     WHERE CommittedDate <  GETDATE() and pc.paid=0 group by CusId)
+                     update R set R.Overdue = A.Amount from A inner join #Result R on R.CusId = A.CusId;
                      
                      with A as (
-                     select PolicyId, sum(CommittedAmt)Amount from PolicyIssueCommittedDetails WHERE  DATEDIFF(DAY, GETDATE(), CommittedDate)  BETWEEN 30 AND 60  group by PolicyId)
-                     update R set R.Amount3 = A.Amount from A inner join #Result R on R.PolicyId = A.PolicyId;
+                     select p.CusId, sum(CommittedAmt)Amount from PolicyIssueCommittedDetails PC
+                     inner join PolicyIssue p on p.PolicyId=pc.PolicyId where pc.paid=1 group by CusId)
+                     update R set TotalPremium =(TotalPremium- A.Amount) from A inner join #Result R on R.CusId = A.CusId;
+              
+
+                     with A as (
+                     select P.CusId, sum(CommittedAmt)Amount from PolicyIssueCommittedDetails pc
+                     inner join PolicyIssue p on p.PolicyId=pc.PolicyId WHERE  DATEDIFF(DAY, GETDATE(), CommittedDate) <=15 and  DATEDIFF(DAY, GETDATE(), CommittedDate)>0 and pc.paid=0 group by CusId)
+                     update R set R.Amount1 = A.Amount from A inner join #Result R on R.CusId = A.CusId;
+                    
+                     with A as (
+                     select P.CusId, sum(CommittedAmt)Amount from PolicyIssueCommittedDetails pc
+                     inner join PolicyIssue p on p.PolicyId=pc.PolicyId WHERE  DATEDIFF(DAY, GETDATE(), CommittedDate) BETWEEN 15 AND 30 and pc.paid=0  group by CusId)
+                     update R set R.Amount2 = A.Amount from A inner join #Result R on R.CusId = A.CusId;
+                     
+                      with A as (
+                     select P.CusId, sum(CommittedAmt)Amount from PolicyIssueCommittedDetails pc
+                     inner join PolicyIssue p on p.PolicyId=pc.PolicyId WHERE  DATEDIFF(DAY, GETDATE(), CommittedDate)  BETWEEN 30 AND 60  and pc.paid=0 group by CusId)
+                     update R set R.Amount3 = A.Amount from A inner join #Result R on R.CusId = A.CusId;
                      
                      with A as (
-                     select PolicyId, sum(CommittedAmt)Amount from PolicyIssueCommittedDetails WHERE  DATEDIFF(DAY, GETDATE(), CommittedDate)  BETWEEN 60 AND 90  group by PolicyId)
-                     update R set R.Amount4 = A.Amount from A inner join #Result R on R.PolicyId = A.PolicyId;
+                     select P.CusId, sum(CommittedAmt)Amount from PolicyIssueCommittedDetails pc
+                     inner join PolicyIssue p on p.PolicyId=pc.PolicyId WHERE  DATEDIFF(DAY, GETDATE(), CommittedDate)  BETWEEN 60 AND 90 and pc.paid=0  group by CusId)
+                     update R set R.Amount4 = A.Amount from A inner join #Result R on R.CusId = A.CusId;
                      
                      with A as (
-                     select PolicyId, sum(CommittedAmt)Amount from PolicyIssueCommittedDetails WHERE  DATEDIFF(DAY, GETDATE(), CommittedDate)  >90  group by PolicyId)
+                     select p.CusId, sum(CommittedAmt)Amount from PolicyIssueCommittedDetails pc
+                     inner join PolicyIssue p on p.PolicyId = pc.PolicyId
+                     WHERE  DATEDIFF(DAY, GETDATE(), CommittedDate)  >90  and pc.paid=0 group by CusId)
                      
-                     update R set R.Amount5 = A.Amount from A inner join #Result R on R.PolicyId = A.PolicyId;	
+                     update R set R.Amount5 = A.Amount from A inner join #Result R on R.CusId = A.CusId;	
 
 
-				     select * from #Result where  CusName LIKE '%'+@Client+'%' order by CusName" ;
+				     select * from #Result where  CusName LIKE '%'+@Client+'%' order by CusName";
 
 
 
 
 
                 return connection.Query<AgeingSummary>(query, new { Client = Client }).ToList();
+            }
+        }
+
+        public List<AgeingSummary> GetAgeingSummaryBasedDetailed(int cuscode)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string query = @"
+
+                        select TranPrefix +'/'+TranNumber PolicyNo,TranDate Date,InsPrdName Coverage,CommittedDate,CommittedAmt CommittedAmount,case when paid=1 then 'Yes' else 'No' end as Paid from PolicyIssue p
+                        inner join InsuranceProduct ip on p.InsPrdId=ip.InsPrdId
+                        inner join PolicyIssueCommittedDetails pc on pc.PolicyId=p.PolicyId
+                        where p.CusId=@cuscode ";
+
+                 List<AgeingSummary> list= connection.Query<AgeingSummary>(query, new { cuscode = cuscode }).ToList();
+                if (list.Count>0)
+                {
+                    query = @" select cast(sum(pc.CommittedAmt) as decimal(18,2)) from PolicyIssue p
+                                inner join PolicyIssueCommittedDetails pc on pc.PolicyId=p.PolicyId
+                                where p.CusId=@cuscode and paid=0";
+
+                    list[0].netamount = connection.Query<Decimal>(query, new { cuscode = cuscode }).First();
+
+                }
+
+                return list;
+
+               
             }
         }
         public List<RenewalSummary> GetPolicyRenewalSummary(string Client = "")

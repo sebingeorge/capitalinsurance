@@ -544,6 +544,7 @@
     <Content Include="Views\SalesAchievementReport\Index.cshtml" />
     <Content Include="Views\TotalSalesTargetReport\_TotalSalesTargetReport.cshtml" />
     <Content Include="Views\TotalSalesTargetReport\Index.cshtml" />
+    <Content Include="Views\AgeingSummaryReport\_AgeingSummaryDetailed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

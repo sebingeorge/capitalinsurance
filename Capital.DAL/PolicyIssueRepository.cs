@@ -300,31 +300,25 @@ namespace Capital.DAL
                                 DELETE FROM PolicyIssueChequeReceived WHERE PolicyId = @PolicyId";
 
                         id = connection.Execute(sql, model, txn);
-                        if (model.PayModeId == 2)
+                        foreach (var item in model.Cheque)
                         {
-                            foreach (var item in model.Cheque)
-                            {
-                                item.PolicyId = model.PolicyId;
-                                sql = @"INSERT INTO PolicyIssueChequeReceived
+                            item.PolicyId = model.PolicyId;
+                            sql = @"INSERT INTO PolicyIssueChequeReceived
                                    (PolicyId,ChequeNo,ChequeDate,BankName
                                    ,BankBranch,ChequeAmt )VALUES(@PolicyId,@ChequeNo,@ChequeDate,@BankName,@BankBranch,@ChequeAmt);SELECT CAST(SCOPE_IDENTITY() as int);";
-                                id = connection.Execute(sql, item, txn);
-                            }
+                            id = connection.Execute(sql, item, txn);
                         }
 
-                        if (model.PayModeId == 2)
+                        foreach (var item in model.Committed)
                         {
-                            foreach (var item in model.Committed)
+                            if (item.paid == true)
                             {
-                                if(item.paid == true)
-                                {
-                                    item.PolicyId = model.PolicyId;
-                                    sql = sql = @"UPDATE PolicyIssueCommittedDetails set paid=1 WHERE CommRowId = @CommRowId";
+                                item.PolicyId = model.PolicyId;
+                                sql = sql = @"UPDATE PolicyIssueCommittedDetails set paid=1 WHERE CommRowId = @CommRowId";
 
-                                    id = connection.Execute(sql, item, txn);
-                                }
-                                
+                                id = connection.Execute(sql, item, txn);
                             }
+
                         }
                     }
                     else
