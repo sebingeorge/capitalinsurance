@@ -523,7 +523,34 @@ namespace CapitalInsurance.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
+        private void SignOff()
+        {
+            //UserRepository repo = new UserRepository();
+            string sessionid = Session.SessionID;
+            //repo.UpdateLoginHistory(sessionid);
 
+            Session.Abandon();
+            UnsetAuthorizationCookie(HttpContext.Response, HttpContext.Request.Cookies);
+        }
+        private void UnsetAuthorizationCookie(HttpResponseBase httpresponsebase, HttpCookieCollection cookiecollection)
+        {
+            HttpCookie authCookie = cookiecollection[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                cookiecollection.Remove(FormsAuthentication.FormsCookieName);
+                authCookie.Expires = DateTime.Now.AddDays(-10);
+                authCookie.Value = null;
+                httpresponsebase.SetCookie(authCookie);
+            }
+            HttpCookie userCookie = cookiecollection["userCookie"];
+            if (userCookie != null)
+            {
+                cookiecollection.Remove("userCookie");
+                userCookie.Expires = DateTime.Now.AddDays(-10);
+                userCookie.Value = null;
+                httpresponsebase.SetCookie(userCookie);
+            }
+        }
         //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]

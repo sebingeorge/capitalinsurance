@@ -8,11 +8,8 @@ namespace Capital.Domain
 {
   public  class AgeingSummary
     {
-
       public string CusName { get; set; }
-
-      public int CusId { get; set; }
-   
+      public int CusId { get; set; }   
       public decimal TotalPremium { get; set; }
       public decimal Overdue { get; set; }
       public decimal Amount1 { get; set; }
@@ -20,15 +17,13 @@ namespace Capital.Domain
       public decimal Amount3 { get; set; }
       public decimal Amount4{ get; set; }
       public decimal Amount5 { get; set; }
-
       public string PolicyNo { get; set; }
       public DateTime Date { get; set; }
       public string Coverage { get; set; }
       public string CommittedDate { get; set; }
       public string CommittedAmount { get; set; }
       public string Paid { get; set; }
-
       public decimal netamount { get; set; }
-
+      public string TranType { get; set; }
     }
 }
