@@ -1,16 +1,14 @@
-﻿
-@model List<Capital.Domain.AgeingSummary>
+﻿@model List<Capital.Domain.AgeingSummary>
 @using GridMvc.Html
 
 <style type="text/css">
-    .colour-Red{
-        color:red !important
+    .colour-Red {
+        color: red !important;
     }
 </style>
 <script>
-    function MoreDetails(id, cusName)
-    {
-       
+    function MoreDetails(id, cusName) {
+
         var url = '@Url.Action("DetailsPopup")';
         url += "?id=" + id;
         $("#div-details").text('Loading...');
@@ -18,15 +16,30 @@
         $('#myModalLabel').text(cusName);
         $('#details-modal').modal('show');
     }
+
+    function ExportAgeingSummary() {
+        var CusName = $('#myModalLabel').text();
+        var url = '@Url.Action("ExportAgeingSummaryPopup", "AgeingSummaryReport")';
+        url += '?cusname=' + CusName;
+        window.location = url;
+    }
 </script>
 
 <!-- modal to show details -->
 <div id="details-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document" style="width:1250px">
         <div class="modal-content">
-            <div class="modal-header">
-                    <strong><h4 class="modal-title" id="myModalLabel">Customer</h4></strong>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="modal-header">
+                        <strong><h4 class="modal-title" id="myModalLabel">Customer</h4></strong>
+                    </div>
                 </div>
+                <div class="col-md-9">
+
+                    <input type="button" class="export form-button right" onclick="ExportAgeingSummary()" value="ExportToExcel" />
+                </div>
+            </div>
             <div class="modal-body" id="div-details">
                 Loading...
             </div>
@@ -63,7 +76,7 @@
                 <th width="10%" class="text-right">60-90</th>
                 <th width="10%" class="text-right">>90</th>
             </tr>
-        </thead> 
+        </thead>
         <tbody class="grid_row">
             @{
 
@@ -72,7 +85,7 @@
                     <tr>
                         <td>
                             <a onclick="MoreDetails(@Model[i].CusId, '@Model[i].CusName')">@Model[i].CusName</a>
-                          </td>
+                        </td>
                         <td> @Model[i].TotalPremium </td>
                         <td class="colour-Red text-right"> @Model[i].Overdue </td>
                         <td>@Model[i].Amount1 </td>
@@ -80,11 +93,11 @@
                         <td>@Model[i].Amount3 </td>
                         <td>@Model[i].Amount4 </td>
                         <td>@Model[i].Amount5 </td>
-                      
+
 
                         @*<td class="text-center">
-                            <input type="button" class="form-button1" onclick="ShowDetails(@Model[i].MonthCode)" value="Details" title="Click to see policy details" />
-                        </td>*@
+                                <input type="button" class="form-button1" onclick="ShowDetails(@Model[i].MonthCode)" value="Details" title="Click to see policy details" />
+                            </td>*@
                     </tr>
                 }
 
