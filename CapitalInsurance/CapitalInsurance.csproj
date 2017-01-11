@@ -282,6 +282,7 @@
     <Content Include="images\icon\insurancecompany.png" />
     <Content Include="images\icon\insuranceproduct.png" />
     <Content Include="images\icon\invoice.png" />
+    <Content Include="images\icon\logout.png" />
     <Content Include="images\icon\meetingschedule.png" />
     <Content Include="images\icon\mis.png" />
     <Content Include="images\icon\newpolicy.png" />
