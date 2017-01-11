@@ -111,6 +111,7 @@ namespace Capital.Domain
         }
         public bool SelectStatus { get; set; }
         public decimal? BalanceAmount { get; set; }
+        public string Renew { get { return "Renew"; } set{ this.Renew="Renew"; } }
         //public Boolean paid { get; set; }
     }
 }
