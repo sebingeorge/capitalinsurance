@@ -19,6 +19,9 @@
     height:280px;
 }
 
+
+
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -331,6 +334,12 @@ margin-bottom:20px;
     padding-right:7px;
     border:0;
 
+}
+
+.export 
+{
+    margin-top:10px;
+    margin-right:10px;
 }
     .create .btn:hover 
     {
