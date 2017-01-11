@@ -1,0 +1,44 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Head">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="DocumentNo" type="xs:string" minOccurs="0" />
+                <xs:element name="DocumentDate" type="xs:string" minOccurs="0" />
+                <xs:element name="Location" type="xs:string" minOccurs="0" />
+                <xs:element name="InsuredName" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Items">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="EffectiveDate" type="xs:string" minOccurs="0" />
+                <xs:element name="InsuranceType" type="xs:string" minOccurs="0" />
+                <xs:element name="PolicyOrEndorseNo" type="xs:string" minOccurs="0" />
+                <xs:element name="Company" type="xs:string" minOccurs="0" />
+                <xs:element name="Premium" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <Head>
+    <DocumentNo>CIB/INV/1</DocumentNo>
+    <DocumentDate>29-Dec-2016</DocumentDate>
+    <InsuredName>PROSCAPE</InsuredName>
+  </Head>
+  <Items>
+    <EffectiveDate>29-Dec-2016</EffectiveDate>
+    <InsuranceType>NewPolicy</InsuranceType>
+    <PolicyOrEndorseNo>12121</PolicyOrEndorseNo>
+    <Company>QGIRCO</Company>
+    <Premium>2488.00</Premium>
+  </Items>
+</NewDataSet>
