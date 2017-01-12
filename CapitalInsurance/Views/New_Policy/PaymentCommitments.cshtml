@@ -140,12 +140,12 @@ Model.Type = ViewBag.type;
                 $("#PolicyNo").focus();
                 return false;
             }
-            if($("#QuickBookRefNo").val() =="")
-            {
-                alert("Please enter Quick Book Reference Number.");
-                $("#QuickBookRefNo").focus();
-                return false;
-            }
+            //if($("#QuickBookRefNo").val() =="")
+            //{
+            //    alert("Please enter Quick Book Reference Number.");
+            //    $("#QuickBookRefNo").focus();
+            //    return false;
+            //}
             return true;
         }
     </script>
@@ -505,11 +505,11 @@ Model.Type = ViewBag.type;
                                 @Html.TextBoxFor(m => m.FinanceManager, new { @class = "form_input" })
                                 @Html.ValidationMessageFor(m => m.FinanceManager, "", new { @class = "text-danger" })
                             </div>*@
-                        <div class="col-md-12">
+                        @*<div class="col-md-12">
                             <label>Quick Book Reference No.</label>
                             @Html.TextBoxFor(m => m.QuickBookRefNo, new { @class = "form_input" })
                             @Html.ValidationMessageFor(m => m.QuickBookRefNo, "", new { @class = "text-danger" })
-                        </div>
+                        </div>*@
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -524,10 +524,11 @@ Model.Type = ViewBag.type;
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive scroll2 col-md-6">
+                <div class="table-responsive scroll2 col-md-9 ">
                     <table class="table table-bordered " id="tab_logic">
                         <tr class="grid_heading">
                             <th></th>
+                            <th>Quick Book Reference No.</th>
                             <th>Cheque No.</th>
                             <th>Cheque Date</th>
                             <th>Bank Name</th>
@@ -540,6 +541,9 @@ Model.Type = ViewBag.type;
                             <tr id="Row_@i">
 
                                 <td style="vertical-align:middle"><a class="glyphicon glyphicon-minus del" style="top:0px" onclick="Delete(@i)"></a></td>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Cheque[i].QuickBookRefNo, new { @class = "form_input", autocomplete = "off" })
+                                </td>
                                 <td>
                                     @Html.TextBoxFor(model => Model.Cheque[i].ChequeNo, new { @class = "form_input", autocomplete = "off" })
                                 </td>

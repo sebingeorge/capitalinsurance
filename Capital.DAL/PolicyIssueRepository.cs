@@ -296,7 +296,7 @@ namespace Capital.DAL
                     int id = 0;
                     if (model.Type== 3)
                     {
-                        sql = @"UPDATE PolicyIssue SET QuickBookRefNo=@QuickBookRefNo,PaymentTo=@PaymentTo,PayModeId=@PayModeId WHERE PolicyId = @PolicyId
+                        sql = @"UPDATE PolicyIssue SET PaymentTo=@PaymentTo,PayModeId=@PayModeId WHERE PolicyId = @PolicyId
                                 DELETE FROM PolicyIssueChequeReceived WHERE PolicyId = @PolicyId";
 
                         id = connection.Execute(sql, model, txn);
@@ -305,7 +305,7 @@ namespace Capital.DAL
                             item.PolicyId = model.PolicyId;
                             sql = @"INSERT INTO PolicyIssueChequeReceived
                                    (PolicyId,ChequeNo,ChequeDate,BankName
-                                   ,BankBranch,ChequeAmt )VALUES(@PolicyId,@ChequeNo,@ChequeDate,@BankName,@BankBranch,@ChequeAmt);SELECT CAST(SCOPE_IDENTITY() as int);";
+                                   ,BankBranch,ChequeAmt,QuickBookRefNo )VALUES(@PolicyId,@ChequeNo,@ChequeDate,@BankName,@BankBranch,@ChequeAmt,@QuickBookRefNo);SELECT CAST(SCOPE_IDENTITY() as int);";
                             id = connection.Execute(sql, item, txn);
                         }
 

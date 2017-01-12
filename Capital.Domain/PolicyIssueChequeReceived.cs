@@ -18,6 +18,7 @@ namespace Capital.Domain
         public string CusName { get; set; }
         public decimal TotalPremium { get; set; }
         public string PayModeName { get; set; }
+        public string QuickBookRefNo { get; set; }
 
     }
 }
