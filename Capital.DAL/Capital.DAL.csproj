@@ -86,6 +86,7 @@
     <Compile Include="FinancialYearRepository.cs" />
     <Compile Include="InsuranceCompanyRepository.cs" />
     <Compile Include="InsuranceProductRepository.cs" />
+    <Compile Include="MisReportRepository.cs" />
     <Compile Include="PolicyEndorsementRepository.cs" />
     <Compile Include="PolicyIssueRepository.cs" />
     <Compile Include="PolicyRenewalRepository.cs" />

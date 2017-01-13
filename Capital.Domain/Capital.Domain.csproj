@@ -54,6 +54,7 @@
     <Compile Include="CustomerInvoice.cs" />
     <Compile Include="CustomerInvoiceItem.cs" />
     <Compile Include="DailyActivity.cs" />
+    <Compile Include="Dashboard.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="DropDown.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Modules.cs" />
     <Compile Include="ModuleVsUser.cs" />
     <Compile Include="ModuleWisePermission.cs" />
+    <Compile Include="MonthlyAcheivementcoveragewise.cs" />
     <Compile Include="PaymentCommitments.cs" />
     <Compile Include="PolicyIssue.cs" />
     <Compile Include="PolicyIssueChequeReceived.cs" />

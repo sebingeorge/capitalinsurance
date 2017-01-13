@@ -245,7 +245,7 @@ namespace Capital.DAL
                     return connection.Query<string>(query, new { TYPE = TYPE }).Single();
                 }
             }
-        public List<PolicyIssue> GetNewPolicyForCommitments()
+        public List<PolicyIssue> GetNewPolicyForCommitments(string trnno="",string client="",string insuredname="",string insuredComp="",string coverage="")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
@@ -258,11 +258,17 @@ namespace Capital.DAL
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
                                     where P.OldPolicyId IS NULL and P.PolicyId not in (select PolicyId from PolicyIssueCommittedDetails)
+                                    and p.PolicyId like'%'+@trnno+'%'
+                                    and c.CusName like '%'+@Client+'%'
+									and p.InsuredName like '%'+@insuredname+'%'
+									and I.InsCmpName like '%'+@insuredComp+'%'
+									and IP.InsPrdName like '%'+@coverage+'%'
                                     order by P.TranNumber";
-                return connection.Query<PolicyIssue>(query).ToList();
+                return connection.Query<PolicyIssue>(query, new { trnno = trnno, client = client, insuredname = insuredname, insuredComp = insuredComp, coverage = coverage }).ToList();
+       
             }
         }
-        public List<PolicyIssue> GetNewPolicyForPaymentCollection()
+        public List<PolicyIssue> GetNewPolicyForPaymentCollection(string trnno = "", string client = "", string insuredname = "", string insuredComp = "", string coverage = "")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
@@ -276,11 +282,16 @@ namespace Capital.DAL
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
                                     left join PolicyIssueChequeReceived CR on Cr.PolicyId=p.PolicyId
                                     where P.OldPolicyId IS NULL AND P.TranType in ('NewPolicy','RenewPolicy') 
+                                    and p.PolicyId like'%'+@trnno+'%'
+                                    and c.CusName like '%'+@Client+'%'
+									and p.InsuredName like '%'+@insuredname+'%'
+									and I.InsCmpName like '%'+@insuredComp+'%'
+									and IP.InsPrdName like '%'+@coverage+'%'
                                     group by  P.PolicyId,C.CusName,P.CustContPersonName,P.InsuredName,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,P.RenewalDate,
                                     P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionAmount, S.SalesMgName,P.PolicyNo,p.TranPrefix,p.TranNumber
 									having p.TotalPremium-isnull(sum(cr.ChequeAmt),0)>0
                                     order by P.TranNumber";
-                return connection.Query<PolicyIssue>(query).ToList();
+                return connection.Query<PolicyIssue>(query, new { trnno = trnno, client = client, insuredname = insuredname, insuredComp = insuredComp, coverage = coverage }).ToList();
             }
         }
         public Result UpdatePaymentCommitments(PolicyIssue model)

@@ -234,11 +234,19 @@ namespace CapitalInsurance.Controllers
         }
         public ActionResult PendingPolicyForCommitments()
         {
-            return View(new PolicyIssueRepository().GetNewPolicyForCommitments());
+            return View();
+        }
+        public ActionResult PendingPolicyForCommitmentsGrid(string trnno = "", string client = "", string insuredname = "", string insuredComp = "", string coverage = "")
+        {
+            return PartialView("_PendingPolicyForCommitments", new PolicyIssueRepository().GetNewPolicyForCommitments(trnno , client ,insuredname , insuredComp , coverage));
         }
         public ActionResult PendingPolicyForPaymentDetails()
         {
-            return View("PendingPolicyForCommitments", new PolicyIssueRepository().GetNewPolicyForPaymentCollection());
+            return View("PendingPolicyForCommitments");
+        }
+        public ActionResult PendingPolicyForPaymentDetailsGrid(string trnno = "", string client = "", string insuredname = "", string insuredComp = "", string coverage = "")
+        {
+            return PartialView("_PendingPolicyForPaymentDetails", new PolicyIssueRepository().GetNewPolicyForPaymentCollection(trnno, client, insuredname, insuredComp, coverage));
         }
         public ActionResult UpdateCommitments(PolicyIssue model)
         {

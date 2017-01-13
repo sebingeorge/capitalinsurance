@@ -546,6 +546,8 @@
     <Content Include="Views\TotalSalesTargetReport\_TotalSalesTargetReport.cshtml" />
     <Content Include="Views\TotalSalesTargetReport\Index.cshtml" />
     <Content Include="Views\AgeingSummaryReport\_AgeingSummaryDetailed.cshtml" />
+    <Content Include="Views\New_Policy\_PendingPolicyForCommitments.cshtml" />
+    <Content Include="Views\New_Policy\_PendingPolicyForPaymentDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,7 +1,37 @@
 ﻿
+@model  Capital.Domain.Dashboard
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+@{
+
+    string CoverageType = string.Empty;
+    string totAmount = string.Empty;
+
+
+    foreach (var item in Model.MonthlyAcheivementcoveragewise)
+    {
+
+        if (CoverageType == string.Empty)
+        {
+            CoverageType = "'" + item.coverage + "'";
+        }
+        else
+        {
+            CoverageType += ",'" + item.coverage + "'";
+        }
+        if (totAmount == string.Empty)
+        {
+            totAmount = "" + item.TotalAmount + "";
+        }
+        else
+        {
+            totAmount += ", " + item.TotalAmount + "";
+        }
+    }
 }
 <script>
     $(function () {
@@ -9,7 +39,9 @@
         MonthlySales();
         SalesVsTarget();
         SalesVsTargetMonthly();
-        MonthlyProductWiseSales();
+        //MonthlyProductWiseSales();
+        MonthlyCWiseSales();
+        showMonthlyAchivementOnCoverage();
     });
     function MonthlySales()
     {
@@ -651,7 +683,72 @@
             }
         });
     }
+
+    function showMonthlyAchivementOnCoverage() {
+        chart1 = new Highcharts.chart('container4', {
+            chart: {
+                type: 'column',
+                renderTo: 'Monthly Achievement'
+            },
+            title: {
+                text: 'Monthly Achievement'
+            },
+            subtitle: {
+                text: 'Monthly Achievement for current Month.'
+            },
+            xAxis: {
+                //type: 'category',
+                categories: [@Html.Raw(CoverageType)],
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '11px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+                @*rotation: -45,
+        categories: [@Html.Raw(JobCardDays)],
+        crosshair: true*@
+        },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Achieved Amount'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0
+    },
+    plotOptions: {
+        column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Amount',
+        data: [@totAmount]
+
+    }]
+
+    });
+    }
+
 </script>
+
+
 <div class="container content-in">
     <div class="row">
         <h1>MIS Reports</h1>
@@ -660,4 +757,5 @@
     <div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
     <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
     <div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div id="container4" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 </div>

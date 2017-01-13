@@ -1,0 +1,28 @@
+﻿@model List<Capital.Domain.PolicyIssue>
+@using GridMvc.Html
+
+@Html.Grid(Model).Columns(columns =>
+            {
+                columns.Add(m => m.StrTranNumber).Titled("Transaction No.").SetWidth(5);
+                columns.Add(m => m.CusName).Titled("Client").SetWidth(20);
+                columns.Add(m => m.CustContPersonName).Titled("Contact Name").SetWidth(15);
+                columns.Add(m => m.InsuredName).Titled("Insured Name").SetWidth(10);
+                columns.Add(m => m.InsCmpName).Titled("Insurance Company").SetWidth(10);
+                columns.Add(m => m.InsPrdName).Titled("Coverage").SetWidth(10);
+                columns.Add(m => m.TotalPremium).Titled("Total Premium").SetWidth(5).Css("text-right").Format("{0:#}");
+                if (ViewBag.type == 3)
+                {
+                    columns.Add(m => m.BalanceAmount).Titled("Balance").SetWidth(5).Css("text-right").Format("{0:#}");
+                }
+                columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("Renewal Date").SetWidth(5);
+                columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(5);
+                if (@ViewBag.actionName == "PendingPolicyForCommitments")
+                {
+                    columns.Add().Encoded(false).Sanitized(false).SetWidth(5).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("PaymentCommitments", new { Id = m.PolicyId, Type = 2 })">Select</a>);
+                }
+                else
+                {
+                    columns.Add().Encoded(false).Sanitized(false).SetWidth(5).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("PaymentCommitments", new { Id = m.PolicyId, Type = 3 })">Select</a>);
+                }
+
+            }).WithPaging(15)

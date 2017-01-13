@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Capital.DAL;
+using Capital.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +13,15 @@ namespace CapitalInsurance.Controllers
         // GET: MISReport
         public ActionResult Index()
         {
-            return View();
+
+            Dashboard dashboard = new Dashboard();
+            MisReportRepository repo = new MisReportRepository();
+
+
+            dashboard.MonthlyAcheivementcoveragewise = repo.GetmonthlycoverageAchivement();
+
+            return View(dashboard);
+  
         }
     }
 }
