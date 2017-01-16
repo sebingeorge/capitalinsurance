@@ -17,7 +17,7 @@
         $('#details-modal').modal('show');
     }
 
-    function ExportAgeingSummary() {
+    function ExportAgeingSummarypopup() {
         var CusName = $('#myModalLabel').text();
         var url = '@Url.Action("ExportAgeingSummaryPopup", "AgeingSummaryReport")';
         url += '?cusname=' + CusName;
@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-9">
 
-                    <input type="button" class="export form-button right" onclick="ExportAgeingSummary()" value="ExportToExcel" />
+                    <input type="button" class="export form-button right" onclick="ExportAgeingSummarypopup()" value="ExportToExcel" />
                 </div>
             </div>
             <div class="modal-body" id="div-details">

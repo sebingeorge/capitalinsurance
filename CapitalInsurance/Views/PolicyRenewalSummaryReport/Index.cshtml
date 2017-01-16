@@ -16,7 +16,13 @@
         url += "?Client=" + encodeURIComponent(Client);
         $("#Ageing_Summary").load(url, function () {
             $("#Ageing_Summary").removeClass("fade");
-        });
+        }); 
+    }
+
+    function PolicyRenewalSummary() {
+    
+        var url = '@Url.Action("ExportPolicyRenewalSummary", "PolicyRenewalSummaryReport")';
+        window.location = url;
     }
 </script>
 <div class="container content-in">
@@ -40,6 +46,7 @@
         <div class="col-md-12 hrpart">
 
             <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
+            <input type="button" class=" form-button right" onclick="PolicyRenewalSummary()" value="ExportToExcel" />
         </div>
     </div>
 </div>
