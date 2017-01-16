@@ -11,6 +11,7 @@
                 <xs:element name="DocumentDate" type="xs:string" minOccurs="0" />
                 <xs:element name="Location" type="xs:string" minOccurs="0" />
                 <xs:element name="InsuredName" type="xs:string" minOccurs="0" />
+                <xs:element name="SpecialRemarks" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -22,6 +23,7 @@
                 <xs:element name="PolicyOrEndorseNo" type="xs:string" minOccurs="0" />
                 <xs:element name="Company" type="xs:string" minOccurs="0" />
                 <xs:element name="Premium" type="xs:string" minOccurs="0" />
+                <xs:element name="Remarks" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -30,15 +32,16 @@
     </xs:element>
   </xs:schema>
   <Head>
-    <DocumentNo>CIB/INV/1</DocumentNo>
-    <DocumentDate>29-Dec-2016</DocumentDate>
+    <DocumentNo>CIB/INV/2</DocumentNo>
+    <DocumentDate>30-Dec-2016</DocumentDate>
     <InsuredName>PROSCAPE</InsuredName>
+    <SpecialRemarks>cdddfgggsdfgdgdgsfg</SpecialRemarks>
   </Head>
   <Items>
-    <EffectiveDate>29-Dec-2016</EffectiveDate>
-    <InsuranceType>NewPolicy</InsuranceType>
-    <PolicyOrEndorseNo>12121</PolicyOrEndorseNo>
+    <EffectiveDate>30-Dec-2016</EffectiveDate>
+    <InsuranceType>MPTL</InsuranceType>
+    <PolicyOrEndorseNo>545446464646</PolicyOrEndorseNo>
     <Company>QGIRCO</Company>
-    <Premium>2488.00</Premium>
+    <Premium>15200.00</Premium>
   </Items>
 </NewDataSet>
