@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
 using System.Data;
+using System.Text;
 
 
 namespace CapitalInsurance.Controllers
@@ -238,15 +239,25 @@ namespace CapitalInsurance.Controllers
         }
         public ActionResult PendingPolicyForCommitmentsGrid(string trnno = "", string client = "", string insuredname = "", string insuredComp = "", string coverage = "")
         {
-            return PartialView("_PendingPolicyForCommitments", new PolicyIssueRepository().GetNewPolicyForCommitments(trnno , client ,insuredname , insuredComp , coverage));
+            //return PartialView("_PendingPolicyForCommitments", new PolicyIssueRepository().GetNewPolicyForCommitments(trnno , client ,insuredname , insuredComp , coverage));
+
+            var griddata = new PolicyIssueRepository().GetNewPolicyForCommitments(trnno, client, insuredname, insuredComp, coverage);
+
+            Session["GridDate"] = griddata;
+            Session["excelname"]="Commitments";
+            return PartialView("_PendingPolicyForCommitments", griddata);
         }
         public ActionResult PendingPolicyForPaymentDetails()
         {
             return View("PendingPolicyForCommitments");
         }
         public ActionResult PendingPolicyForPaymentDetailsGrid(string trnno = "", string client = "", string insuredname = "", string insuredComp = "", string coverage = "")
+
         {
-            return PartialView("_PendingPolicyForPaymentDetails", new PolicyIssueRepository().GetNewPolicyForPaymentCollection(trnno, client, insuredname, insuredComp, coverage));
+            var griddata = new PolicyIssueRepository().GetNewPolicyForPaymentCollection(trnno, client, insuredname, insuredComp, coverage);
+            Session["GridDate"] = griddata;
+            Session["excelname"]="PaymentDetails";
+            return PartialView("_PendingPolicyForPaymentDetails", griddata);
         }
         public ActionResult UpdateCommitments(PolicyIssue model)
         {
@@ -350,6 +361,100 @@ namespace CapitalInsurance.Controllers
             }
 
         }
+
+        public ActionResult ExportToExcel()
+        {
+
+              List<PolicyIssue> model = (List<PolicyIssue>)Session["GridDate"];
+            string excelname= Session["excelname"].ToString();
+            //string[] tags = (string[])TempData["Tags"];
+            //if (TempData["Tags"] == null)
+            //{
+            //    TempData.Add("Tags", tags);
+            //}
+            //TempData.Keep("Tags");
+            //ViewBag.tags = tags;
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("<Table border={0}1{0}>", (Char)34);
+            //sb.Append("</tr><td colspan='6'><b><h3>"+cusname+"</h3></b></td></tr>");
+            //sb.Append("<tr>");
+
+
+
+
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Transaction No</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Client</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Contact Name</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Insured Name</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Insurance Company</td>", (Char)34); ;
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Coverage</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Total Premium</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Balance</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Renewal Date</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Sales Manager</td>", (Char)34);
+
+
+
+
+            sb.Append("</tr>");
+
+            //decimal Debit = 0;
+            //decimal Credit = 0;
+            foreach (var item in model)
+            {
+                sb.Append("<tr>");
+
+
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.StrTranNumber);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.CusName);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.CustContPersonName);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.InsuredName);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.InsCmpName);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.InsPrdName);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.TotalPremium);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.BalanceAmount);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.RenewalDate);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.SalesMgName);
+
+
+
+
+                sb.Append("</tr>");
+
+
+
+
+            }
+            //sb.Append("</tr><td colspan='4' align='right'><b>Total Receivables</b></td><td><b>" + model[0].netamount + "</b></td><td></td></tr>");
+            sb.Append("</Table>");
+            string ExcelFileName;
+            if (excelname=="Commitments")
+            { ExcelFileName = "PendingPolicyForCommitments.xls"; }
+            else
+            { ExcelFileName = "PendingPolicyForPaymentDetails.xls"; }
+            
+            Response.Clear();
+            Response.Charset = "";
+            Response.ContentType = "application/excel";
+            Response.AddHeader("Content-Disposition", "filename=" + ExcelFileName);
+            Response.Write(sb);
+            Response.End();
+            Response.Flush();
+            return View();
+
+        }
+
         void FillDropdowns()
         {
             FillCustomer();

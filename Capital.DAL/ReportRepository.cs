@@ -65,7 +65,7 @@ namespace Capital.DAL
 
 
 				     select * from #Result where  CusName LIKE '%'+@Client+'%' order by CusName";
-
+    
 
 
 

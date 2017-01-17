@@ -11,6 +11,8 @@
         var url = '@Url.Action("Index","Home")';
         location.href = url;
     }
+   
+   
     function Filter() {
 
         $("#New_Policy").addClass("fade");
@@ -18,7 +20,7 @@
         var FromDate = $("#txtFrom").val().trim();
         var ToDate = $("#txtTo").val().trim();
         var PolicyNo = '';
-        if(@ViewBag.Type==2 ||@ViewBag.Type==3) 
+        if(@ViewBag.Type==2 ||@ViewBag.Type==3)
         {
             var PolicyNo = $("#policyno").val().trim();
         }
@@ -117,6 +119,8 @@
         <div class="col-md-12 hrpart">
             @*<button type="button" class="form-button right" onclick="Create()">Create</button>*@
             <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
+          
+           
         </div>
     </div>
 </div>

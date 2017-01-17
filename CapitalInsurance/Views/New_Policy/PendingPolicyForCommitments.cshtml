@@ -15,6 +15,10 @@ else
 }
 }
 <script>
+    function ExportToExcel() {
+        var url = '@Url.Action("ExportToExcel", "New_Policy")';
+        window.location = url;
+    }
     function Exit() {
         var url = '@Url.Action("Index","Home")';
         location.href = url;
@@ -132,6 +136,7 @@ else
         <hr />
         <div class="col-md-12 hrpart">
             <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
+            <input type="button" class=" form-button right" onclick="ExportToExcel()" value="ExportToExcel" />
             <button type="button" class="form-button" onclick="Previous()">Previous</button>
 
         </div>
