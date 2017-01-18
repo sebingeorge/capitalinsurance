@@ -423,7 +423,7 @@ namespace CapitalInsurance.Controllers
 
                 sb.AppendFormat("<td>{1}</td>", (Char)34, item.BalanceAmount);
 
-                sb.AppendFormat("<td>{1}</td>", (Char)34, item.RenewalDate);
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.RenewalDate.ToString("MMMM dd,yyyy"));
 
                 sb.AppendFormat("<td>{1}</td>", (Char)34, item.SalesMgName);
 
