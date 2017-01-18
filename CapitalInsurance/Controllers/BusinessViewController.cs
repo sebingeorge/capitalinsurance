@@ -25,7 +25,7 @@ namespace CapitalInsurance.Controllers
                 TempData.Add("Tags", tags);
             }
             TempData.Keep("Tags");
-            var model = new BusinessViewRepository().GetBusinessViewDetails(Company, PolicyNo, Client, SalesManager);
+            var model = new BusinessViewRepository().GetBusinessViewDetails(UserID, Company, PolicyNo, Client, SalesManager);
             Session["BussData"] = model;
             return PartialView("_BussinessViewDetails", model);
         }
@@ -38,7 +38,7 @@ namespace CapitalInsurance.Controllers
             }
             TempData.Keep("Tags");
             ViewBag.tags = tags;
-            var model = new BusinessViewRepository().GetBusinessViewDetails(Company, PolicyNo, Client, SalesManager);
+            var model = new BusinessViewRepository().GetBusinessViewDetails(UserID,Company, PolicyNo, Client, SalesManager);
             Session["BussData"] = model;
             return PartialView("_BussinessViewDetails", model);
         }

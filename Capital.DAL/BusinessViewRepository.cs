@@ -12,11 +12,12 @@ namespace Capital.DAL
     public class BusinessViewRepository : BaseRepository
     {
         static string dataConnection = GetConnectionString("CibConnection");
-        public List<PolicyIssue> GetBusinessViewDetails(string Company = "", string PolicyNo = "", string Client = "", string SalesManager = "")
+        public List<PolicyIssue> GetBusinessViewDetails(int Id,string Company = "", string PolicyNo = "", string Client = "", string SalesManager = "")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string query = @"select P.PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)StrTranNumber,convert(char(3), TranDate, 0)Month,year(TranDate)Year,day(TranDate)Day,
+                string query = @"DECLARE @SalesMgId INT = (select SalesMgId from [User]  U  WHERE U.UserId=@Id and U.UserRole=3)
+                                     select P.PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)StrTranNumber,convert(char(3), TranDate, 0)Month,year(TranDate)Year,day(TranDate)Day,
                                      C.CusName,C.Address1 CusAddress,C.EmailId,C.OfficeNo,C.MobileNo,
                                     (C.EmployeeNo + ISNULL(P.AdditionEmpNo,0) - ISNULL(P.DeletionEmpNo,0))EmployeeNo,P.CustContPersonName,P.InsuredName,P.CustContDesignation,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,
                                     (Select RenewalDate from PolicyIssue A where TranType='NewPolicy' AND A.PolicyId=P.PolicyId )ExpiryDate,
@@ -35,10 +36,10 @@ namespace Capital.DAL
                                     left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                   	where 
+                                   	where  isnull(P.SalesMgId,0)=ISNULL(@SalesMgId,isnull(P.SalesMgId,0)) and
                                     I.InsCmpName LIKE '%'+@Company+'%' and P.PolicyNo LIKE '%'+@PolicyNo+'%' and C.CusName LIKE '%'+@Client+'%' and  ISNULL(S.SalesMgName,0) LIKE '%'+@SalesManager+'%'
                                     order by P.RenewalDate ";
-                return connection.Query<PolicyIssue>(query, new { Company = Company, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager }).ToList();
+                return connection.Query<PolicyIssue>(query, new { Id = Id,Company = Company, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager }).ToList();
             }
         }
     }

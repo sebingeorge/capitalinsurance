@@ -22,7 +22,7 @@ namespace CapitalInsurance.Controllers
               public ActionResult TotalSalesTargetReport(int? FyId)
         {
 
-            return PartialView("_TotalSalesTargetReport", new SalesTargetRepository().GetTotalSalesTargetReport(FyId));
+            return PartialView("_TotalSalesTargetReport", new SalesTargetRepository().GetTotalSalesTargetReport(UserID,FyId));
         }
        
     }
