@@ -1,4 +1,15 @@
 ﻿@model List<Capital.Domain.PolicyIssue>
+@{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
+ViewBag.actionName = actionName;
+if (ViewBag.actionName.ToString() == "PendingPolicyForCommitments")
+{
+    ViewBag.Type = 2;
+}
+else
+{
+    ViewBag.Type = 3;
+}
+}
 @using GridMvc.Html
 
 @Html.Grid(Model).Columns(columns =>

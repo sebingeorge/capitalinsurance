@@ -225,7 +225,7 @@ namespace CapitalInsurance.Controllers
             ToDate = ToDate ?? DateTime.Now;
             if (type == 2)
             {
-                return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetPaymentCommittedList(FromDate, ToDate, PolicyNo, Client, SalesManager));
+                return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetPaymentCommittedList(UserID, FromDate, ToDate, PolicyNo, Client, SalesManager));
             }
             else if (type == 3)
             {
@@ -241,7 +241,7 @@ namespace CapitalInsurance.Controllers
         {
             //return PartialView("_PendingPolicyForCommitments", new PolicyIssueRepository().GetNewPolicyForCommitments(trnno , client ,insuredname , insuredComp , coverage));
 
-            var griddata = new PolicyIssueRepository().GetNewPolicyForCommitments(trnno, client, insuredname, insuredComp, coverage);
+            var griddata = new PolicyIssueRepository().GetNewPolicyForCommitments(UserID,trnno, client, insuredname, insuredComp, coverage);
 
             Session["GridDate"] = griddata;
             Session["excelname"]="Commitments";
