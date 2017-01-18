@@ -32,16 +32,16 @@
     </xs:element>
   </xs:schema>
   <Head>
-    <DocumentNo>CIB/INV/2</DocumentNo>
-    <DocumentDate>30-Dec-2016</DocumentDate>
-    <InsuredName>PROSCAPE</InsuredName>
-    <SpecialRemarks>cdddfgggsdfgdgdgsfg</SpecialRemarks>
+    <DocumentNo>CIB/INV/1</DocumentNo>
+    <DocumentDate>16-Jan-2017</DocumentDate>
+    <InsuredName> AL ANJAL, EDARAH, AL DEEWAN TRADING</InsuredName>
+    <SpecialRemarks>f</SpecialRemarks>
   </Head>
   <Items>
-    <EffectiveDate>30-Dec-2016</EffectiveDate>
-    <InsuranceType>MPTL</InsuranceType>
-    <PolicyOrEndorseNo>545446464646</PolicyOrEndorseNo>
-    <Company>QGIRCO</Company>
-    <Premium>15200.00</Premium>
+    <EffectiveDate>12-Apr-2015</EffectiveDate>
+    <InsuranceType>WC</InsuranceType>
+    <PolicyOrEndorseNo>QAT/WC/15/37/38/39</PolicyOrEndorseNo>
+    <Company>TAZUR</Company>
+    <Premium>3000.00</Premium>
   </Items>
 </NewDataSet>

@@ -20,7 +20,10 @@
 }
 
 
-
+.cib 
+{
+    margin-top:10px;
+}
 
 /* Set padding to keep content from hitting the edges */
 .body-content {

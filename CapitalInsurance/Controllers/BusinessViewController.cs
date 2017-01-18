@@ -278,16 +278,16 @@ namespace CapitalInsurance.Controllers
                 }
                 if (tags.Contains("Model.EffectiveDate"))
                 {
-                    sb.AppendFormat("<td>{1}</td>", (Char)34, item.EffectiveDate);
+                    sb.AppendFormat("<td>{1}</td>", (Char)34, item.EffectiveDate.ToString("dd-MMM-yyyy"));
                 }
                 if (tags.Contains("Model.ExpiryDate"))
                 {
-                    sb.AppendFormat("<td>{1}</td>", (Char)34, item.ExpiryDate);
+                    sb.AppendFormat("<td>{1}</td>", (Char)34, item.ExpiryDate.ToString("dd-MMM-yyyy"));
                 }
                 if (tags.Contains("Model.RenewalDate"))
                 {
 
-                    sb.AppendFormat("<td>{1}</td>", (Char)34, item.RenewalDate);
+                    sb.AppendFormat("<td>{1}</td>", (Char)34, item.RenewalDate.ToString("dd-MMM-yyyy"));
                 }
                 if (tags.Contains("Model.EndorcementDate"))
                 {

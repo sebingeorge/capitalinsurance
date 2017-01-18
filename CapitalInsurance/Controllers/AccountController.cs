@@ -64,6 +64,13 @@ namespace CapitalInsurance.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            try
+            {
+                string[] url = returnUrl.Split('/');
+                if (url[url.Length - 1] == "LogOff")
+                    returnUrl = "/";
+            }
+            catch (NullReferenceException) { returnUrl = "/"; }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -519,18 +526,24 @@ namespace CapitalInsurance.Controllers
 
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             SignOff();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Login");
         }
         private void SignOff()
         {
-            //UserRepository repo = new UserRepository();
+            UserRepository repo = new UserRepository();
             string sessionid = Session.SessionID;
-            //repo.UpdateLoginHistory(sessionid);
+            repo.UpdateLoginHistory(sessionid);
 
             Session.Abandon();
             UnsetAuthorizationCookie(HttpContext.Response, HttpContext.Request.Cookies);
+            ////UserRepository repo = new UserRepository();
+            //string sessionid = Session.SessionID;
+            ////repo.UpdateLoginHistory(sessionid);
+
+            //Session.Abandon();
+            //UnsetAuthorizationCookie(HttpContext.Response, HttpContext.Request.Cookies);
         }
         private void UnsetAuthorizationCookie(HttpResponseBase httpresponsebase, HttpCookieCollection cookiecollection)
         {

@@ -24,6 +24,7 @@
     <script src="~/Scripts/highchart/exporting.js"></script>
     <script src="~/Scripts/jquery.timepicker.min.js"></script>
 </head>
+
 <body>    
     <div id="wrapper" class="toggled">
         <!-- Sidebar -->
@@ -45,6 +46,7 @@
                                     <a href="@Url.Action("Create", "SalesManager")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/sales-Manager.png" /></span>Employee Details</a>
                                     <a href="@Url.Action("Create", "InsuranceCompany")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/insurancecompany.png" /></span>Insurance Company</a>
                                     <a href="@Url.Action("Create", "insuranceproduct")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/insuranceproduct.png" /></span>Coverage</a>
+                                    <a href="@Url.Action("Create", "Sales_Target")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/salestarget.png" /></span>Sales Target</a>
                                     <a href="@Url.Action("Register", "Account")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/admin.png" /></span>User</a>
                                 </li>
                             </ul>
@@ -75,9 +77,7 @@
                                 <li>
                                     <a href="@Url.Action("PendingPolicyForCommitments", "New_Policy")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/newpolicy.png" /></span>Payment Commitments</a>
                                 </li>
-                                <li>
-                                    <a href="@Url.Action("Create", "Sales_Target")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/salestarget.png" /></span>Sales Target</a>
-                                </li>
+                              
                                 <li>
                                     <a href="@Url.Action("Create", "DailyActivity")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Daily Activity</a>
                                 </li>
@@ -158,11 +158,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" width="40" /></a></li>
+                  
                     @*<li class="top-button"><a href="@Url.Action("Index", "Home")">Home</a></li>*@
                 </ul>
+               
                 @Html.Action("LoadQuickView", "Home")
                 @*@Html.Partial("_LoginPartial")*@
             </div>
+           
         </div>
     </div>
     <div class="container body-content">

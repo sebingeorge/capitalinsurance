@@ -32,8 +32,34 @@ else
     }
    
 }
+@{
+    var username = "";
+    try
+    {
+        username = ((HttpCookie)HttpContext.Current.Session["user"])["UserName"];
+
+    }
+    catch { }
+}
+<script>
+    function Logout() {
+        var cfm = confirm("Are you sure to logout?");
+        if (!cfm) {
+            return false;
+        }
+        else {
+            var url = '@Url.Action("LogOff", "Account")';
+            location.href = url;
+        }
+    }
+</script>
+<ul class="nav navbar-nav right cib">
+   
+    <li><a href="#" title="click to see user information">@username</a></li>
+    <li><a href="#"><i class="glyphicon glyphicon-off" onclick="Logout()" title="Logout"></i></a></li>
+</ul>
 <div class="alert1">
-    <ul class="nav navbar-nav right">
+    @*<ul class="nav navbar-nav right">
         <li>
             <a data-toggle="dropdown" class="bcn admin-icon" href="#"><img src="~/Images/icon/admin1.png" /></a>
 
@@ -49,22 +75,24 @@ else
             </ul>
             </li>
 
-    </ul>
-    <ul class="nav navbar-nav right">
-        <li>
-            <i class="glyphicon glyphicon-bell bell1"></i><a data-toggle="dropdown" class="dropdown-toggle" href="#">@total</a>
-            <ul class="dropdown-menu">
-                @*<li><a href="@Url.Action("Index", "New_Policy", new { type = 1 })" class=""><span class="badge pull-right">@Model.NoOfNewPolicy</span>New Policy List</a></li>*@
-                <li><a href="@Url.Action("Index", "Policy_Renewal")" class=""><span class="badge pull-right">@Model.NoOfRenewalPolicy</span>Renewal List</a></li>
-                @*<li><a href="@Url.Action("Index", "Policy_Endorsement")" class=""><span class="badge pull-right">@Model.NoOfEndorsePolicy</span>Policy Endorsement</a></li>
-                <li><a href="@Url.Action("Index", "DailyActivity")" class=""><span class="badge pull-right">@Model.NoOfDailyActivity</span>Daily Activity Report</a></li>
-                <li><a href="@Url.Action("Create", "Sales_Target")" class=""><span class="badge pull-right">@Model.NoOfSalesTarget</span>Sales Target</a></li>*@
-                @*<li><a href="@Url.Action("Sales_Achievement_report", "Sales_Achievement_report")">Sales Achievement report</a></li>*@
-                @*<li><a href="@Url.Action("MeetingSchedule", "MeetingSchedule")">Meeting Schedule</a></li>*@
-                @*<li><a href="@Url.Action("PendingReceivableReport", "ReceivableReport")">Receivable Report</a></li>
-                <li><a href="@Url.Action("PayableReport", "PayableReport")">Payable Report</a></li>*@
-            </ul>
-        </li>
-    </ul>
+    </ul>*@
+   
+
+        <ul class="nav navbar-nav right">
+            <li>
+                <i class="glyphicon glyphicon-bell bell1"></i><a data-toggle="dropdown" class="dropdown-toggle" href="#">@total</a>
+                <ul class="dropdown-menu">
+                    @*<li><a href="@Url.Action("Index", "New_Policy", new { type = 1 })" class=""><span class="badge pull-right">@Model.NoOfNewPolicy</span>New Policy List</a></li>*@
+                    <li><a href="@Url.Action("Index", "Policy_Renewal")" class=""><span class="badge pull-right">@Model.NoOfRenewalPolicy</span>Renewal List</a></li>
+                    @*<li><a href="@Url.Action("Index", "Policy_Endorsement")" class=""><span class="badge pull-right">@Model.NoOfEndorsePolicy</span>Policy Endorsement</a></li>
+                        <li><a href="@Url.Action("Index", "DailyActivity")" class=""><span class="badge pull-right">@Model.NoOfDailyActivity</span>Daily Activity Report</a></li>
+                        <li><a href="@Url.Action("Create", "Sales_Target")" class=""><span class="badge pull-right">@Model.NoOfSalesTarget</span>Sales Target</a></li>*@
+                    @*<li><a href="@Url.Action("Sales_Achievement_report", "Sales_Achievement_report")">Sales Achievement report</a></li>*@
+                    @*<li><a href="@Url.Action("MeetingSchedule", "MeetingSchedule")">Meeting Schedule</a></li>*@
+                    @*<li><a href="@Url.Action("PendingReceivableReport", "ReceivableReport")">Receivable Report</a></li>
+                        <li><a href="@Url.Action("PayableReport", "PayableReport")">Payable Report</a></li>*@
+                </ul>
+            </li>
+        </ul>
 </div>
 
