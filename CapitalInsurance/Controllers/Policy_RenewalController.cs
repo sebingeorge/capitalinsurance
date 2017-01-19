@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Text;
 
 namespace CapitalInsurance.Controllers
 {
@@ -65,8 +66,109 @@ namespace CapitalInsurance.Controllers
             ViewBag.Todate = new PolicyRenewalRepository().GetToDate();
             FromDate = FromDate ?? ViewBag.Fromdate;
             ToDate = ToDate ?? ViewBag.Todate;
-            return PartialView("_PendingPolicyListGrid", new PolicyRenewalRepository().GetNewPolicyForRenewal(FromDate, ToDate,PolicyNo,Client, SalesManager));
+
+            var pendingData = new PolicyRenewalRepository().GetNewPolicyForRenewal(FromDate, ToDate, PolicyNo, Client, SalesManager);
+
+            Session["pendingData"] = pendingData;
+
+            return PartialView("_PendingPolicyListGrid", pendingData);
+
+
+            //return PartialView("_PendingPolicyListGrid", new PolicyRenewalRepository().GetNewPolicyForRenewal(FromDate, ToDate,PolicyNo,Client, SalesManager));
         }
+
+        public ActionResult ExportToExcel()
+        {
+
+            List<PolicyIssue> model = (List<PolicyIssue>)Session["pendingData"];
+           
+            //string[] tags = (string[])TempData["Tags"];
+            //if (TempData["Tags"] == null)
+            //{
+            //    TempData.Add("Tags", tags);
+            //}
+            //TempData.Keep("Tags");
+            //ViewBag.tags = tags;
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("<Table border={0}1{0}>", (Char)34);
+            //sb.Append("</tr><td colspan='6'><b><h3>"+cusname+"</h3></b></td></tr>");
+            //sb.Append("<tr>");
+
+
+
+
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Transaction No</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Policy No</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Client</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Contact Name</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Insured Name</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Insurance Company</td>", (Char)34); ;
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Coverage</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Total Premium</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Renewal Date</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>Sales Manager</td>", (Char)34);
+
+
+
+
+            sb.Append("</tr>");
+
+            //decimal Debit = 0;
+            //decimal Credit = 0;
+            foreach (var item in model)
+            {
+                sb.Append("<tr>");
+
+
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.StrTranNumber);
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.PolicyNo);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.CusName);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.CustContPersonName);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.InsuredName);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.InsCmpName);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.InsPrdName);
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.TotalPremium);
+
+              
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.RenewalDate.ToString("MMMM dd,yyyy"));
+
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.SalesMgName);
+
+
+
+
+                sb.Append("</tr>");
+
+
+
+
+            }
+            //sb.Append("</tr><td colspan='4' align='right'><b>Total Receivables</b></td><td><b>" + model[0].netamount + "</b></td><td></td></tr>");
+            sb.Append("</Table>");
+            string ExcelFileName;
+           
+           
+            ExcelFileName = "PendingPolicyRenewal.xls"; 
+
+            Response.Clear();
+            Response.Charset = "";
+            Response.ContentType = "application/excel";
+            Response.AddHeader("Content-Disposition", "filename=" + ExcelFileName);
+            Response.Write(sb);
+            Response.End();
+            Response.Flush();
+            return View();
+
+        }
+
         void FillDropdowns()
         {
             FillCustomer();
