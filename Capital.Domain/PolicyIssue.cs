@@ -21,9 +21,9 @@ namespace Capital.Domain
         public int? CusId { get; set; }
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Insured Name is Required")]
         public string InsuredName { get; set; }
-         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Address1 is Required")]
+         //[System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Address1 is Required")]
         public string Address1 { get; set; }
-         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Address2 is Required")]
+         //[System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Address2 is Required")]
         public string Address2 { get; set; }
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Company is Required")]
         public int? InsCmpId { get; set; }
@@ -44,6 +44,7 @@ namespace Capital.Domain
         public decimal TotalPremium { get; set; }
         public int CommissionPerc { get; set; }
         public decimal CommissionAmount { get; set; }
+        public decimal TotalCommission { get; set; }
         public string CustContPersonName { get; set; }
         public string CustContDesignation { get; set; }
         public string CustContEmail { get; set; }
