@@ -12,7 +12,7 @@
         columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("Renewal Date").SetWidth(7);
         columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent text-center").RenderValueAs(m => Html.CheckBox("selectedAddressesIds",
         false, new { @class = "CheckBoxClass clcheck", name = "selectedAddressesIds", value = m.PolicyId }));
-    }).WithPaging(15)
-</div>
+    }).WithPaging(15).SetRowCssClasses(x => x.CusName == x.CusName ? "rowfocus" : "")
+
 
 

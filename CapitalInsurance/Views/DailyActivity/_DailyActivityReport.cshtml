@@ -26,5 +26,5 @@
         columns.Add(m => m.DailyActivityContactNo).Titled("Contact No.").SetWidth(10);
         columns.Add(m => m.DailyActivityType).Titled("Type").SetWidth(10);
         columns.Add(m => m.DailyActivityRemarks).Titled("Remarks").SetWidth(10);
-    }).WithPaging(15)
+    }).WithPaging(15).WithPaging(15).SetRowCssClasses(x => x.DailyActivityDate == x.DailyActivityDate ? "rowfocus" : "")
 </div>

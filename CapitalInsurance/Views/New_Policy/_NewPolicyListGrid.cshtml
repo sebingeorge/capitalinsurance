@@ -38,5 +38,6 @@
 
 
 
-    }).WithPaging(15)
+    }).WithPaging(15).SetRowCssClasses(x => x.CusName == x.CusName ? "rowfocus" : "")
+
 </div>

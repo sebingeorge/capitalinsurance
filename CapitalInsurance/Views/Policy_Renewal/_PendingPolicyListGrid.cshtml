@@ -15,5 +15,5 @@
         columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("Renewal Date").SetWidth(5);
         columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(5);
         columns.Add().Encoded(false).Sanitized(false).SetWidth(5).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Create", new { Id = m.PolicyId })">Renew</a>);
-    }).WithPaging(15)
+    }).WithPaging(15).WithPaging(15).SetRowCssClasses(x => x.StrTranNumber == x.StrTranNumber ? "rowfocus" : "")
 </div>

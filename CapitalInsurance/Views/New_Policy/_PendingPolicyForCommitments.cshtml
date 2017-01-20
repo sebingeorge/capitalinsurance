@@ -36,4 +36,4 @@ else
                     columns.Add().Encoded(false).Sanitized(false).SetWidth(5).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("PaymentCommitments", new { Id = m.PolicyId, Type = 3 })">Select</a>);
                 }
 
-            }).WithPaging(15)
+            }).WithPaging(15).SetRowCssClasses(x => x.StrTranNumber == x.StrTranNumber ? "rowfocus" : "")

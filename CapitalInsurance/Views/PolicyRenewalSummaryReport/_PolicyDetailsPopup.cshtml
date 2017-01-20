@@ -27,7 +27,7 @@
         window.location = url;
     }
 </script>
-<table class="table table-bordered" id="aaa" data-placement="bottom">
+<table class="table table-bordered table-hover" id="aaa" data-placement="bottom">
     <thead>
         <tr class="grid_heading">
 
@@ -44,8 +44,8 @@
             <th width="7%">Renew</th>
 
             @*<th width="25%" class="text-right">For Renewal</th>
-            <th width="25%" class="text-right">Renewed</th>
-            <th width="5%"></th>*@
+                <th width="25%" class="text-right">Renewed</th>
+                <th width="5%"></th>*@
         </tr>
     </thead>
     <tbody class="grid_row">
@@ -65,9 +65,9 @@
                     <td> @Model[i].RenewalDate </td>
                     <td> @Model[i].SalesMgName</td>
 
-                   <td>
-                            <a onclick="MoreDetails(@Model[i].PolicyId, '@Model[i].Renew')">@Model[i].Renew</a>
-                        </td>
+                    <td>
+                        <a onclick="MoreDetails(@Model[i].PolicyId, '@Model[i].Renew')">@Model[i].Renew</a>
+                    </td>
                 </tr>
             }
 

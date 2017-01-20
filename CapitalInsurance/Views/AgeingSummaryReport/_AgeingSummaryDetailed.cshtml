@@ -12,8 +12,8 @@
         columns.Add(m => m.CommittedDate).Titled("Committed Date").SetWidth(7);
         columns.Add(m => m.CommittedAmount).Titled("Committed Amount").SetWidth(7);
         columns.Add(m => m.Paid).Titled("Paid").SetWidth(7);
-       
-    }).WithPaging(15)
+
+    }).WithPaging(15).SetRowCssClasses(x => "rowfocus")
 </div>
 
 <br />

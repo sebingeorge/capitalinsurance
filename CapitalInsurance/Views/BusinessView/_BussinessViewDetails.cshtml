@@ -13,7 +13,7 @@
     {
         if (@a.Contains("Model.Year"))
         {
-            columns.Add(m => m.Year).Titled("YEAR").SetWidth(10); 
+            columns.Add(m => m.Year).Titled("YEAR").SetWidth(10);
         }
         if (@a.Contains("Model.Month"))
         {
@@ -89,7 +89,7 @@
         }
         if (@a.Contains("Model.RenewalDate"))
         {
-          
+
             columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("RENEWAL DATE").SetWidth(5);
         }
         if (@a.Contains("Model.EndorcementDate"))
@@ -126,28 +126,30 @@
         }
         if (@a.Contains("Model.CommissionPerc"))
         {
-        columns.Add(m => m.CommissionPerc).Titled("COMMISSION %").SetWidth(10);
-         }
+            columns.Add(m => m.CommissionPerc).Titled("COMMISSION %").SetWidth(10);
+        }
         if (@a.Contains("Model.ExtraPremium"))
-         {
-             columns.Add(m => m.ExtraPremium).Titled("EXTRA PREMIUM").SetWidth(10);
-         }
+        {
+            columns.Add(m => m.ExtraPremium).Titled("EXTRA PREMIUM").SetWidth(10);
+        }
         if (@a.Contains("Model.TotalPremium"))
-         {
-             columns.Add(m => m.TotalPremium).Titled("TOTAL PREMIUM").SetWidth(10);
-         }
+        {
+            columns.Add(m => m.TotalPremium).Titled("TOTAL PREMIUM").SetWidth(10);
+        }
         if (@a.Contains("Model.CommissionAmount"))
-         {
-             columns.Add(m => m.CommissionAmount).Titled("TOTAL COMMISSION").SetWidth(10);
-         }
+        {
+            columns.Add(m => m.CommissionAmount).Titled("TOTAL COMMISSION").SetWidth(10);
+        }
         if (@a.Contains("Model.PaymentTo"))
-         {
-             columns.Add(m => m.PaymentTo).Titled("PAID TO").SetWidth(10);
-         }
+        {
+            columns.Add(m => m.PaymentTo).Titled("PAID TO").SetWidth(10);
+        }
         if (@a.Contains("Model.Aging"))
-         {
-             columns.Add(m => m.Aging).Titled("AGEING").SetWidth(20);
-         }
-      
-    }).WithPaging(15)
+        {
+            columns.Add(m => m.Aging).Titled("AGEING").SetWidth(20);
+        }
+
+    }).WithPaging(15).SetRowCssClasses(x => "rowfocus")
+
+
 </div>

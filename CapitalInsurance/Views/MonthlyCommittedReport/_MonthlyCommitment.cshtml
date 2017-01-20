@@ -9,5 +9,5 @@
         columns.Add(m => m.Amount1).Titled("Dec").SetWidth(10).Css("text-right");
         columns.Add(m => m.Amount2).Titled("Jan").SetWidth(7).Css("text-right");
         columns.Add(m => m.Amount3).Titled("Feb").SetWidth(7).Css("text-right");
-    }).WithPaging(15)
+    }).WithPaging(15).SetRowCssClasses(x => "rowfocus")
 </div>
