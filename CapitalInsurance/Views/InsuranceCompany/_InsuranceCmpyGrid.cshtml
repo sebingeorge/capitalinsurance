@@ -13,5 +13,5 @@
         columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.InsCmpId })">Edit</a>);
         columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Delete", new { Id = m.InsCmpId })">Delete</a>);
 
-    }).WithPaging(15)
+    }).WithPaging(15).SetRowCssClasses(x => x.InsCmpName == x.InsCmpName ? "rowfocus" : "")
 </div>

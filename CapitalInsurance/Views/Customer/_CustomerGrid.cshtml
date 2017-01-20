@@ -18,6 +18,6 @@
         columns.Add(m => m.EmailId).Titled("Email").SetWidth(7);
         columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.CusId })">Edit</a>);
         columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Delete", new { Id = m.CusId })">Delete</a>);
-       
-    }).WithPaging(15)
+
+    }).WithPaging(15).SetRowCssClasses(x => x.SalesMgName == x.SalesMgName ? "rowfocus" : "")
     </div>

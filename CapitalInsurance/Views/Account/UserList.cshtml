@@ -39,7 +39,7 @@
             columns.Add(m => m.RoleName).Titled("Role").SetWidth(12);
             columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.UserId })">Edit</a>);
 
-        }).WithPaging(15)
+        }).WithPaging(15).SetRowCssClasses(x => x.UserName == x.UserName ? "rowfocus" : "")
     </div>
     <div class="row">
         <hr />

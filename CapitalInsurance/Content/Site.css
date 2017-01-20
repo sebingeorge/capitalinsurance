@@ -606,6 +606,8 @@ table thead tr th
     color:#fff !important;
     line-height:13px;
     }
+
+
 /*.text-outer 
 {
     border:3px solid #f1f5f8;
@@ -821,3 +823,7 @@ table thead tr th
     width: auto;
     padding-bottom:10px;
 }
+
+ .rowfocus:hover{
+        background-color:lightblue
+    }
