@@ -459,7 +459,8 @@ Model.Type = ViewBag.type;
                             <th class="text-right ">Amount</th>
                             @if (ViewBag.type == 3)
                             {
-                                <th>Paid</th>
+                                <th>CIB Paid</th>
+                                <th>Ins Comp Paid</th>
                             }
                         </tr>
                         @for (int i = 0; i < Model.Committed.Count; i++)
@@ -491,6 +492,9 @@ Model.Type = ViewBag.type;
                                     </td>
                                     <td>                                       
                                         @Html.CheckBoxFor(model => Model.Committed[i].paid)
+                                    </td>
+                                    <td>                                       
+                                        @Html.CheckBoxFor(model => Model.Committed[i].InsPaid)
                                     </td>
                                 }
                             </tr>

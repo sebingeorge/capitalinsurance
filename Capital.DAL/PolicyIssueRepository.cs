@@ -341,6 +341,13 @@ namespace Capital.DAL
 
                                 id = connection.Execute(sql, item, txn);
                             }
+                            if (item.InsPaid == true)
+                            {
+                                item.PolicyId = model.PolicyId;
+                                sql = sql = @"UPDATE PolicyIssueCommittedDetails set InsPaid =1 WHERE CommRowId = @CommRowId";
+
+                                id = connection.Execute(sql, item, txn);
+                            }
 
                         }
                     }

@@ -16,5 +16,6 @@ namespace Capital.Domain
         public decimal CommittedAmt { get; set; }
 
         public Boolean paid { get; set; }
+        public Boolean InsPaid { get; set; }
     }
 }
