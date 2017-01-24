@@ -236,7 +236,8 @@ namespace CapitalInsurance.Controllers
                 UserId = user.UserId,
                 UserName = user.UserName,
                 UserRole = user.UserRole ?? 0,
-                Module = new UserRepository().GetModules(Id)
+                Module = new UserRepository().GetModules(Id),
+                Reporting=user.Reporting
             };
             ViewBag.UserRole = new SelectList((new UserRepository()).GetUserRole(), "RoleId", "RoleName", user.UserRole);
             ViewBag.Employee = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName", user.SalesMgId);
@@ -262,7 +263,8 @@ namespace CapitalInsurance.Controllers
                     UserRole = model.UserRole,
                     UserSalt = ConfigurationManager.AppSettings["salt"].ToString(),
                     SalesMgId = model.SalesMgId,
-                    Module = model.Module
+                    Module = model.Module,
+                    Reporting=model.Reporting
                 };
                 int res = 0;
                 if ((user.UserId ?? 0) == 0)

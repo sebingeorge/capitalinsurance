@@ -40,12 +40,6 @@
                         @Html.PasswordFor(m => m.Password, new { @class = "form_input" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row form-group">
                     <div class="col-md-3">
                         <label>Confirm Password</label>
                         @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form_input" })
@@ -54,6 +48,13 @@
                 </div>
             </div>
         </div>
+        @*<div class="row">
+            <div class="col-md-12">
+                <div class="row form-group">
+                    
+                </div>
+            </div>
+        </div>*@
         <div class="row">
             <div class="col-md-12">
                 <div class="row form-group">
@@ -61,19 +62,24 @@
                         <label>User Role</label>
                         @Html.DropDownListFor(m => Model.UserRole, (SelectList)ViewBag.UserRole, "Select Role", new { @class = "form_input", autocomplete = "off" })
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row form-group">
                     <div class="col-md-3">
                         <label>Employee</label>
                         @Html.DropDownListFor(m => Model.SalesMgId, (SelectList)ViewBag.Employee, "Select Employee", new { @class = "form_input", autocomplete = "off" })
                     </div>
+                    <div class="col-md-3">
+                        <label>Reporting Person</label>
+                        @Html.DropDownListFor(m => Model.Reporting, (SelectList)ViewBag.Employee, "Select Reporting Person", new { @class = "form_input", autocomplete = "off" })
+                    </div>
                 </div>
             </div>
         </div>
+        @*<div class="row">
+            <div class="col-md-12">
+                <div class="row form-group">
+                    
+                </div>
+            </div>
+        </div>*@
         <br />
      
             <div class="table-responsive">

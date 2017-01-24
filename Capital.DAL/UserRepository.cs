@@ -25,8 +25,8 @@ namespace Capital.DAL
             {
                 try
                 {
-                    string sql = "INSERT INTO [dbo].[User](UserName, UserEmail, UserPassword, UserSalt, UserRole,SalesMgId)";
-                    sql += " VALUES(@UserName, @UserEmail, @UserPassword, @UserSalt, @UserRole, @SalesMgId);";
+                    string sql = "INSERT INTO [dbo].[User](UserName, UserEmail, UserPassword, UserSalt, UserRole,SalesMgId,Reporting)";
+                    sql += " VALUES(@UserName, @UserEmail, @UserPassword, @UserSalt, @UserRole, @SalesMgId,@Reporting);";
                     sql += " SELECT CAST(SCOPE_IDENTITY() as int);";
 
                     var id = connection.Query<int>(sql, user).Single();
