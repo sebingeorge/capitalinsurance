@@ -22,9 +22,8 @@
             return false;
         }
     }
- 
-    function Filter(sender)
-    {
+
+    function Filter(sender) {
         var id = $(sender).val();
         var url = '@Url.Action("PendingPolicyForCustomerInvoice")';
         $("#Cus_Inv").load(url, { ClientId: id });
@@ -33,9 +32,9 @@
         var url = '@Url.Action("Index", "Home")';
         location.href = url;
     }
-        function Previous() {
-            var url = '@Url.Action("PreviousCustomerInvoice")';
-            window.location = url;
+    function Previous() {
+        var url = '@Url.Action("PreviousCustomerInvoice")';
+        window.location = url;
     }
 </script>
 <div class="container content-in">
@@ -59,13 +58,13 @@
             @Html.Action("PendingPolicyForCustomerInvoice")
         </div>
         <div class="row">
-        <hr />
-        <div class="col-md-12 hrpart">
-            <button type="button" class="form-button" onclick="Previous()">Previous</button>
-            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
-            <button type="submit" class="form-button right">Proceed</button>
-            @*<button type="submit" class="form-button right">ExportToExcel</button>*@
+            <hr />
+            <div class="col-md-12 hrpart">
+                <button type="button" class="form-button" onclick="Previous()">Previous</button>
+                <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+                <button type="submit" class="form-button right">Proceed</button>
+                @*<button type="submit" class="form-button right">ExportToExcel</button>*@
+            </div>
         </div>
-    </div>
     }
 </div>
