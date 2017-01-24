@@ -72,6 +72,7 @@
                 <thead>
                     <tr class="grid_heading">
                         <th width="1%">Sl.No.</th>
+                        <th width="10%">Color</th>
                         <th width="10%">Date</th>
                         <th width="5%">Time</th>
                         <th width="15%">Company</th>
@@ -89,11 +90,24 @@
                     {
                         <tr>
                             <td width="1%" align="center">@(i + 1)</td>
+                            <td width="8%">
+                              
+                                <select id="cboType" class="form_input" onchange="Filter()">
+                                    <option value="all" selected>Select Color</option>
+                                    <option value="project" style="background-color:yellow">Yellow</option>
+                                    <option value="project" style="background-color:blue">Blue</option>
+                                    <option value="project" style="background-color:green">Green</option>
+                                    <option value="transport" style="background-color:red">Red</option>
+                                </select>
+                                @*<center> @Html.DropDownListFor(m => m.DailyActivityItems[i].DailyActivityType, Model.DailyActivityItems[i].ColorList, new { @class = "form_input ", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</center>*@
+                            </td>
                             <td width="9%">
+
                                 <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                     @Html.TextBoxFor(model => Model.DailyActivityItems[i].DailyActivityDate, new { @class = "form_input", @onchange = "CheckValidation(this," + i + ")"  })
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                 </div>
+
                             </td>
                             <td width="5%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityTime, new { @class = "form_input timepicker", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
                             <td width="15%">
