@@ -147,7 +147,7 @@ namespace CapitalInsurance.Controllers
                         case "Finance":
                             modulepermission.Finance = true;
                             break;
-                        case "MIS Reports":
+                        case "Reports":
                             modulepermission.MISReports = true;
                             break;
                         default:
