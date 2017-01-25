@@ -70,11 +70,11 @@
                 <th width="30%">Customer</th>
                 <th width="10%" class="text-right">Total Receivable</th>
                 <th width="10%" class="text-right">Overdue</th>
-                <th width="10%" class="text-right">0-15</th>
-                <th width="10%" class="text-right">15-30</th>
-                <th width="10%" class="text-right">30-60</th>
-                <th width="10%" class="text-right">60-90</th>
-                <th width="10%" class="text-right">>90</th>
+                <th width="10%" class="text-right">(0-15)</th>
+                <th width="10%" class="text-right">(15-30)</th>
+                <th width="10%" class="text-right">(30-60)</th>
+                <th width="10%" class="text-right">(60-90)</th>
+                <th width="10%" class="text-right">(90-180)</th>
             </tr>
         </thead>
         <tbody class="grid_row">
@@ -88,11 +88,11 @@
                         </td>
                         <td> @Model[i].TotalPremium </td>
                         <td class="colour-Red text-right"> @Model[i].Overdue </td>
-                        <td>@Model[i].Amount1 </td>
-                        <td>@Model[i].Amount2 </td>
-                        <td>@Model[i].Amount3 </td>
-                        <td>@Model[i].Amount4 </td>
-                        <td>@Model[i].Amount5 </td>
+                        <td class="text-right">@Model[i].Amount1 </td>
+                        <td class="text-right">@Model[i].Amount2 </td>
+                        <td class="text-right">@Model[i].Amount3 </td>
+                        <td class="text-right">@Model[i].Amount4 </td>
+                        <td class="text-right">@Model[i].Amount5 </td>
 
 
                         @*<td class="text-center">

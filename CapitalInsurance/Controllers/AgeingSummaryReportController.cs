@@ -131,11 +131,11 @@ namespace CapitalInsurance.Controllers
             sb.AppendFormat("<td style={0}font-weight:bold;{0}>Customer</td>", (Char)34);
             sb.AppendFormat("<td style={0}font-weight:bold;{0}>Total Receivable</td>", (Char)34);
             sb.AppendFormat("<td style={0}font-weight:bold;{0}>Overdue</td>", (Char)34);
-            sb.AppendFormat("<td style={0}font-weight:bold;{0}>0 - 15</td>", (Char)34);
-            sb.AppendFormat("<td style={0}font-weight:bold;{0}>15 - 30</td>", (Char)34); ;
-            sb.AppendFormat("<td style={0}font-weight:bold;{0}>30 - 60</td>", (Char)34);
-            sb.AppendFormat("<td style={0}font-weight:bold;{0}>60 - 90</td>", (Char)34);
-            sb.AppendFormat("<td style={0}font-weight:bold;{0}> >90 </td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>(0 - 15)</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>(15 - 30)</td>", (Char)34); ;
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>(30 - 60)</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>(60 - 90)</td>", (Char)34);
+            sb.AppendFormat("<td style={0}font-weight:bold;{0}>(90 - 180) </td>", (Char)34);
 
 
 
