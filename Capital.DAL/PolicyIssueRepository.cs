@@ -236,7 +236,7 @@ namespace Capital.DAL
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
 
-                string query = "select ContactName,Designation,EmailId,MobileNo,OfficeNo from Customer where CusId= @Id";
+                string query = "select ContactName,Designation,EmailId,MobileNo,OfficeNo,SalesMgId from Customer where CusId= @Id";
                 return connection.Query<Customer>(query, new { Id = Id }).First<Customer>();
             }
 

@@ -41,7 +41,17 @@ namespace Capital.Domain
                 yield return new SelectListItem { Text = "SC", Value = "SC" };
             }
         }
-    
+        public IEnumerable<SelectListItem> ColorList
+        {
+            get
+            {
+                yield return new SelectListItem { Text = "Select Color", Value = "" };
+                yield return new SelectListItem { Text = "Yellow", Value = "Yellow" };
+                yield return new SelectListItem { Text = "Blue", Value = "Blue" };
+                yield return new SelectListItem { Text = "Green", Value = "Green" };
+                yield return new SelectListItem { Text = "Red", Value = "Red" };
+            }
+        }
 
     }
 }
