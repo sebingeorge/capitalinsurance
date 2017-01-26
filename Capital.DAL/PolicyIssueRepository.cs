@@ -363,7 +363,7 @@ namespace Capital.DAL
                             {
                                 sql = @"INSERT INTO PolicyIssueCommittedDetails
                                    (PolicyId,CommittedDate
-                                   ,CommittedAmt,paid )VALUES(@PolicyId,@CommittedDate,@CommittedAmt,@paid);SELECT CAST(SCOPE_IDENTITY() as int);";
+                                   ,CommittedAmt,paid )VALUES(@PolicyId,@CommittedDate,@CommittedAmt,@paid,@InsPaid);SELECT CAST(SCOPE_IDENTITY() as int);";
                                 id = connection.Execute(sql, item, txn);
                             }
 
