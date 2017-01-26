@@ -10,7 +10,7 @@ namespace CapitalInsurance.Controllers
     public class DailyActivityController : BaseController
     {
         // GET: DailyActivity
-        public ActionResult Index()
+        public ActionResult Index(string type = "all")
         {
             FillSalesManager();
             return View();
@@ -32,6 +32,7 @@ namespace CapitalInsurance.Controllers
             Model.DailyActivityItems.Add(new DailyActivityItem());
             Model.DailyActivityItems.Add(new DailyActivityItem());
             Model.TranDate = DateTime.Now;
+        
             return View(Model);
         }
         [HttpPost]
@@ -55,9 +56,11 @@ namespace CapitalInsurance.Controllers
             }
             return RedirectToAction("Index");
         }
-        public ActionResult DailyActivityReport(DateTime? From, DateTime? To, int EmpId = 0)
+        public ActionResult DailyActivityReport(DateTime? From, DateTime? To, int EmpId = 0,string type="all")
         {
-            return PartialView("_DailyActivityReport", new DailyActivityRepository().GetDailyActivityDetails(From, To, EmpId));
+            var list = new DailyActivityRepository().GetDailyActivityDetails(From, To, EmpId, type);
+            return PartialView("_DailyActivityReport", list);
+           
         }
         void FillSalesManager()
         {

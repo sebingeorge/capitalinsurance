@@ -4,20 +4,20 @@
     @*<span class="filter"><img src="~/Images/icon/filter.png" /></span>*@
     @Html.Grid(Model).Columns(columns =>
     {
-        columns.Add(m => m.CusName).Titled("Customer").SetWidth(12);
+        columns.Add(m => m.CusName).Titled("Customer").SetWidth(20);
         //columns.Add(m => m.CusShortName).Titled("Short Name").SetWidth(10);
         //columns.Add(m => m.RegionName).Titled("Region").SetWidth(7);
-        columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(7);
-        columns.Add(m => m.CusCategory).Titled("Category").SetWidth(7);
-        columns.Add(m => m.StateName).Titled("State").SetWidth(7);
-        columns.Add(m => m.CountryName).Titled("Country").SetWidth(7);
-        columns.Add(m => m.ContactName).Titled("Contact Person").SetWidth(7);
-        columns.Add(m => m.Designation).Titled("Designation").SetWidth(7);
-        columns.Add(m => m.OfficeNo).Titled("Office No.").SetWidth(7);
-        columns.Add(m => m.MobileNo).Titled("Mobile No.").SetWidth(7);
+        columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(10);
+        columns.Add(m => m.CusCategory).Titled("Category").SetWidth(10);
+        //columns.Add(m => m.StateName).Titled("State").SetWidth(7);
+        //columns.Add(m => m.CountryName).Titled("Country").SetWidth(7);
+        columns.Add(m => m.ContactName).Titled("Contact Person").SetWidth(10);
+        columns.Add(m => m.Designation).Titled("Designation").SetWidth(10);
+        columns.Add(m => m.OfficeNo).Titled("Office No.").SetWidth(5);
+        columns.Add(m => m.MobileNo).Titled("Mobile No.").SetWidth(5);
         columns.Add(m => m.EmailId).Titled("Email").SetWidth(7);
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.CusId })">Edit</a>);
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Delete", new { Id = m.CusId })">Delete</a>);
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(10).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Edit", new { Id = m.CusId })">Edit</a>);
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(10).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Delete", new { Id = m.CusId })">Delete</a>);
 
     }).WithPaging(15).SetRowCssClasses(x => x.SalesMgName == x.SalesMgName ? "rowfocus" : "")
     </div>

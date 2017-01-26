@@ -827,3 +827,40 @@ table thead tr th
  .rowfocus:hover{
         background-color:lightblue
     }
+ .pmtop {
+    padding-top: 25px;
+}
+ .reddot {
+    background-color: #e23d14;
+    height: 14px;
+    width: 14px;
+    margin-top: 1px;
+    float: left;
+    margin-right: 2px;
+
+}
+
+.greendot {
+    background-color: #92d050;
+    height: 14px;
+    width: 14px;
+    margin-top: 1px;
+    float: left;
+    margin-right: 2px;
+}
+.yellowdot {
+    background-color: #F9E237;
+    height: 14px;
+    width: 14px;
+    margin-top: 1px;
+    float: left;
+    margin-right: 2px;
+}
+.bluedot {
+    background-color: #6ED7FA;
+    height: 14px;
+    width: 14px;
+    margin-top: 1px;
+    float: left;
+    margin-right: 2px;
+}

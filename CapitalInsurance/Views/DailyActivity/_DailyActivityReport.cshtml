@@ -1,23 +1,44 @@
 ﻿@model List<Capital.Domain.DailyActivityItem>
+
+@{
+    var redcount = (from a in Model where a.DailyActivityType == "SC" select a).Count();
+    var bluecount = (from a in Model where a.DailyActivityType == "FA" select a).Count();
+    var greencount = (from a in Model where a.DailyActivityType == "FC" select a).Count();
+    var yellowcount = (from a in Model where a.DailyActivityType == "CC" select a).Count();
+   
+    
+        
+}
+
 @using GridMvc.Html
 <script>
     $(document).ready(function () {
-     $('.grid-table tr td:nth-child(6)').each(function (index,object) {
+
+        $('.grid-table tr td:nth-child(6)').each(function (index, object) {
             var lastCol = $(this).text();
+
             if (lastCol == "FC") {
                 $(object).parent().css("background-color", "#92d050");
             }
+
             else if (lastCol == "CC") {
                 $(object).parent().css("background-color", "#F9E237");
             }
+
             else if (lastCol == "FA") {
                 $(object).parent().css("background-color", "#6ED7FA");
             }
+
+            else if (lastCol == "SC") {
+                $(object).parent().css("background-color", "#e23d14");
+            }
         });
+
     })
 </script>
+
 <div class="table-responsive scroll3">
-      @Html.Grid(Model).Columns(columns =>
+    @Html.Grid(Model).Columns(columns =>
     {
         columns.Add(m => m.DailyActivityDate).Format("{0:dd/MM/yyyy}").Titled("Date").SetWidth(10);
         columns.Add(m => m.DailyActivityTime).Titled("Time").SetWidth(7);
@@ -28,3 +49,21 @@
         columns.Add(m => m.DailyActivityRemarks).Titled("Remarks").SetWidth(10);
     }).WithPaging(15).WithPaging(15).SetRowCssClasses(x => x.DailyActivityDate == x.DailyActivityDate ? "rowfocus" : "")
 </div>
+<div class="col-md-4 ">
+
+        <div class="col-md-3 pmtop">
+            <div class="reddot"></div>@redcount
+        </div>
+        <div class="col-md-3 pmtop">
+            <div class="greendot"></div>@greencount
+        </div>
+        <div class="col-md-3 pmtop">
+            <div class="yellowdot"></div>@yellowcount
+        </div>
+        <div class="col-md-3 pmtop">
+            <div class="bluedot"></div>@bluecount
+        </div>
+</div>
+
+
+
