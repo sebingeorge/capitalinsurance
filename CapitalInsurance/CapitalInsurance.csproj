@@ -192,6 +192,7 @@
     <Compile Include="Controllers\Customer_InvoiceController.cs" />
     <Compile Include="Controllers\DailyActivityController.cs" />
     <Compile Include="Controllers\InsuranceCompanyController.cs" />
+    <Compile Include="Controllers\InsuranceCompanyPayableReportController.cs" />
     <Compile Include="Controllers\InsuranceProductController.cs" />
     <Compile Include="Controllers\MeetingScheduleController.cs" />
     <Compile Include="Controllers\MISReportController.cs" />
@@ -548,6 +549,8 @@
     <Content Include="Views\AgeingSummaryReport\_AgeingSummaryDetailed.cshtml" />
     <Content Include="Views\New_Policy\_PendingPolicyForCommitments.cshtml" />
     <Content Include="Views\New_Policy\_PendingPolicyForPaymentDetails.cshtml" />
+    <Content Include="Views\InsuranceCompanyPayableReport\_InsuranceCompanyPayableReport.cshtml" />
+    <Content Include="Views\InsuranceCompanyPayableReport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

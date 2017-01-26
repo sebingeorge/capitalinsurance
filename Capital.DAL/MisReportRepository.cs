@@ -24,5 +24,7 @@ namespace Capital.DAL
                 return connection.Query<MonthlyAcheivementcoveragewise>(sql);
             }
         }
+     
+       
     }
 }

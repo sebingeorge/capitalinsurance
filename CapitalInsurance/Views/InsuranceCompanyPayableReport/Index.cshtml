@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container content-in">
+    <div class="row">
+        <h1>Insurance Company Payable Report</h1>
+    </div>
+    <br />
+    <div id="Renewal_Summary">
+        @Html.Action("InsuranceCompanyPayableReport")
+    </div>
+    <div class="row">
+        <hr />
+        <div class="col-md-12 hrpart">
+            <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
+        </div>
+    </div>
+</div>

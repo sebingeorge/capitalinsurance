@@ -235,7 +235,9 @@ namespace CapitalInsurance.Controllers
         }
         public ActionResult PendingPolicyForCommitments()
         {
+          
             return View();
+
         }
         public ActionResult PendingPolicyForCommitmentsGrid(string trnno = "", string client = "", string insuredname = "", string insuredComp = "", string coverage = "")
         {
@@ -245,6 +247,7 @@ namespace CapitalInsurance.Controllers
 
             Session["GridDate"] = griddata;
             Session["excelname"]="Commitments";
+            ViewBag.type = 2;
             return PartialView("_PendingPolicyForCommitments", griddata);
         }
         public ActionResult PendingPolicyForPaymentDetails()
@@ -257,6 +260,7 @@ namespace CapitalInsurance.Controllers
             var griddata = new PolicyIssueRepository().GetNewPolicyForPaymentCollection(trnno, client, insuredname, insuredComp, coverage);
             Session["GridDate"] = griddata;
             Session["excelname"]="PaymentDetails";
+            ViewBag.type = 3;
             return PartialView("_PendingPolicyForPaymentDetails", griddata);
         }
         public ActionResult UpdateCommitments(PolicyIssue model)
