@@ -94,6 +94,8 @@ namespace Capital.Domain
         public string OfficeEmail { get; set; }
         public string QuatarContactNo { get; set; }
         public int Aging { get; set; }
+        public decimal CommittedAmt { get; set; }
+        
         //Endorsement
      
         public int EmployeeNo { get; set; }

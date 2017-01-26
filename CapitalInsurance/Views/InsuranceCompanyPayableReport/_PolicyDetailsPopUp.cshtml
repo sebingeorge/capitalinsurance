@@ -1,0 +1,10 @@
+﻿@model List<Capital.Domain.PolicyIssue>
+@using GridMvc.Html
+<div class="table-responsive scroll3">
+    @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(m => m.PolicyNo).Titled("Policy No.").SetWidth(5);
+        columns.Add(m => m.CommittedAmt).Titled("Total Payable").SetWidth(10).Css("text-right").Format("{0:#}");
+      
+    }).WithPaging(15).SetRowCssClasses(x => "rowfocus")
+</div>

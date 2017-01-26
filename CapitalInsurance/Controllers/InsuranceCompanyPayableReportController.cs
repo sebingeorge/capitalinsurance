@@ -18,8 +18,14 @@ namespace CapitalInsurance.Controllers
         public ActionResult InsuranceCompanyPayableReport()
         {
 
-            return PartialView("_InsuranceCompanyPayableReport");
+            return PartialView("_InsuranceCompanyPayableReport", new ReportRepository().GetInsuranceCompanyPayable());
 
+        }
+        public ActionResult PolicyDetailsPopUp(int id = 0)
+        {
+            if (id != 0)
+                return PartialView("_PolicyDetailsPopup", new ReportRepository().GetPolicyDetailsforPayablePopUp(id));
+            return View();
         }
     }
 }

@@ -551,6 +551,7 @@
     <Content Include="Views\New_Policy\_PendingPolicyForPaymentDetails.cshtml" />
     <Content Include="Views\InsuranceCompanyPayableReport\_InsuranceCompanyPayableReport.cshtml" />
     <Content Include="Views\InsuranceCompanyPayableReport\Index.cshtml" />
+    <Content Include="Views\InsuranceCompanyPayableReport\_PolicyDetailsPopUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -157,5 +157,32 @@ namespace Capital.DAL
                 return connection.Query<PolicyIssue>(query).ToList();
             }
         }
+        public List<PolicyIssue> GetInsuranceCompanyPayable()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string query = @"select IC.InsCmpId,InsCmpName,sum(Cd.CommittedAmt)CommittedAmt from [dbo].[PolicyIssue] PI
+                                inner join InsuranceCompany IC on IC.InsCmpId=PI.InsCmpId
+                                inner join PolicyIssueCommittedDetails CD on cd.PolicyId=pi.PolicyId
+                                where paid=1 and InsPaid=0
+                                group by IC.InsCmpId,InsCmpName";
+
+                             
+
+                return connection.Query<PolicyIssue>(query).ToList();
+            }
+        }
+        public List<PolicyIssue> GetPolicyDetailsforPayablePopUp(int id = 0)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string query = @"select Pi.PolicyId,pi.PolicyNo,sum(Cd.CommittedAmt)CommittedAmt from [dbo].[PolicyIssue] PI
+                                inner join InsuranceCompany Ic on IC.InsCmpId=PI.InsCmpId
+                                inner join PolicyIssueCommittedDetails CD on cd.PolicyId=pi.PolicyId
+                                where paid=1 and InsPaid=0 and pi.InsCmpId=@id
+                                group by Pi.PolicyId,pi.PolicyNo";
+                return connection.Query<PolicyIssue>(query, new { id = id }).ToList();
+            }
+        }
     }
 }

@@ -268,7 +268,7 @@ namespace Capital.DAL
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
                                     where P.OldPolicyId IS NULL and P.PolicyId not in (select PolicyId from PolicyIssueCommittedDetails)  and  isnull(P.SalesMgId,0)=ISNULL(@SalesMgId,isnull(P.SalesMgId,0))
-                                    and p.PolicyId like'%'+@trnno+'%'
+                                    and p.TranNumber like'%'+@trnno+'%'
                                     and c.CusName like '%'+@Client+'%'
 									and p.InsuredName like '%'+@insuredname+'%'
 									and I.InsCmpName like '%'+@insuredComp+'%'
