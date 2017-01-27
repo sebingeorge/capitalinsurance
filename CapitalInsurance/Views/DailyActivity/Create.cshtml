@@ -2,33 +2,28 @@
 @{
     ViewBag.Title = "Create";
 }
+@{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(); }
 <script>
     $(function () {
         $(".timepicker").timepicker({});
     });
 
-    function Previous() {
-        var url = '@Url.Action("PreviousDaily_Activity", "Daily_Activity_report")'
+    function Previous(Id) {
+       
+        var url = '@Url.Action("PreviousDailyActivity")';
+        url += '?id=' + Id;
         window.location = url;
     }
     function Exit() {
         var url = '@Url.Action("Index","Home")';
         location.href = url;
     }
-    function RowColor(index)
-    {
-       
+    function RowColor(index) {
         var bgcolor = $("#cboColorPick_" + index + "").val();
-      
         $("#DailyActivityItems_" + index + "__DailyActivityType").val($("#cboColorPick_" + index + " option:selected").attr("class"));
-       
-        alert($("#cboColorPick_" + index + " option:selected").attr("class"));
-       
-
         $("#row_" + index + "").css("background-color", bgcolor);
     }
-    function CheckValidation(sender, i)
-    {
+    function CheckValidation(sender, i) {
         $("#DailyActivityItems_" + i + "__DailyActivityDate").attr("required", "true");
         $("#DailyActivityItems_" + i + "__DailyActivityCompany").attr("required", "true");
         $("#DailyActivityItems_" + i + "__DailyActivityTime").attr("required", "true");
@@ -37,7 +32,7 @@
         $("#DailyActivityItems_" + i + "__DailyActivityEmail").attr("required", "true");
         $("#DailyActivityItems_" + i + "__DailyActivityType").attr("required", "true");
         $("#DailyActivityItems_" + i + "__DailyActivityRemarks").attr("required", "true");
-     }
+    }
 </script>
 <div class="container content-in">
     <div class="row">
@@ -106,12 +101,12 @@
                                 @Html.HiddenFor(m => m.DailyActivityItems[i].DailyActivityType)
                                 <select id="cboColorPick_@i" class="form_input" onchange="RowColor(@i)">
                                     <option value="all" selected>Select Color</option>
-                                    <option value="#F9E237" class="CC" style="background-color:#F9E237">Yellow</option>
+                                    <option value="#FFC300" class="CC" style="background-color:#FFC300">Yellow</option>
                                     <option value="#6ED7FA" class="FA" style="background-color:#6ED7FA">Blue</option>
                                     <option value="#92d050" class="FC" style="background-color:#92d050">Green</option>
                                     <option value="#e23d14" class="SC" style="background-color:#e23d14">Red</option>
                                 </select>
-                                @*<center> @Html.DropDownListFor(m => m.DailyActivityItems[i].DailyActivityType, Model.DailyActivityItems[i].ColorList, new { @class = "form_input ", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</center>*@
+                                
                             </td>
                             <td width="9%">
 
@@ -129,9 +124,6 @@
                             <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityContactPerson, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
                             <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityContactNo, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
                             <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityEmail, new { @class = "form_input ", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
-                            @*<td width="8%">
-                                <center> @Html.DropDownListFor(m => m.DailyActivityItems[i].DailyActivityType, Model.DailyActivityItems[i].TypeList, new { @class = "form_input ", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</center>
-                            </td>*@
                             <td width="30%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityRemarks, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
                         </tr>
                     }
@@ -142,11 +134,18 @@
     <div class="row">
         <hr />
         <div class="col-md-12">
-            @*<button type="button" class="form-button" onclick="Previous()">Previous DAR</button>
-                <button type="button" class="form-button">New Prospective Client</button>*@
-            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
-            <button type="submit" class="form-button right">Save</button>
 
+            
+            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+            @if (actionName == "Edit")
+            { 
+                <button type="submit" class="form-button right">Update</button>
+            }
+            else
+            {
+                <button type="button" class="form-button" onclick="Previous(@Model.SalesMgId)">Previous</button>
+                <button type="submit" class="form-button right">Save</button>
+            }
         </div>
     </div>
 }

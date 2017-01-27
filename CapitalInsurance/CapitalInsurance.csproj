@@ -552,6 +552,7 @@
     <Content Include="Views\InsuranceCompanyPayableReport\_InsuranceCompanyPayableReport.cshtml" />
     <Content Include="Views\InsuranceCompanyPayableReport\Index.cshtml" />
     <Content Include="Views\InsuranceCompanyPayableReport\_PolicyDetailsPopUp.cshtml" />
+    <Content Include="Views\DailyActivity\PreviousDailyActivity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

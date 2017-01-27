@@ -22,7 +22,7 @@
             }
 
             else if (lastCol == "CC") {
-                $(object).parent().css("background-color", "#F9E237");
+                $(object).parent().css("background-color", "#FFC300");
             }
 
             else if (lastCol == "FA") {
@@ -34,6 +34,10 @@
             }
         });
 
+        $("#redcount").text(@redcount);
+        $("#greencount").text(@greencount);
+        $("#yellowcount").text(@yellowcount);
+        $("#bluecount").text(@bluecount);
     })
 </script>
 
@@ -49,21 +53,7 @@
         columns.Add(m => m.DailyActivityRemarks).Titled("Remarks").SetWidth(10);
     }).WithPaging(15).WithPaging(15).SetRowCssClasses(x => x.DailyActivityDate == x.DailyActivityDate ? "rowfocus" : "")
 </div>
-<div class="col-md-4 ">
 
-        <div class="col-md-3 pmtop">
-            <div class="reddot"></div>@redcount
-        </div>
-        <div class="col-md-3 pmtop">
-            <div class="greendot"></div>@greencount
-        </div>
-        <div class="col-md-3 pmtop">
-            <div class="yellowdot"></div>@yellowcount
-        </div>
-        <div class="col-md-3 pmtop">
-            <div class="bluedot"></div>@bluecount
-        </div>
-</div>
 
 
 

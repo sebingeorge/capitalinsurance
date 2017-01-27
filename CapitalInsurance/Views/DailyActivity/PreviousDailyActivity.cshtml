@@ -1,0 +1,35 @@
+﻿@model List<Capital.Domain.DailyActivity>
+@using GridMvc.Html
+@{
+    ViewBag.Title = "PreviousDailyActivity";
+}
+<script>
+    function Exit()
+    {
+        var url = '@Url.Action("Create", "DailyActivity")';
+        location.href = url;
+    }
+</script>
+<div class="container content-in">
+    <div class="row">
+        <h1>Daily Activity List</h1>
+    </div>
+    <div class="table-responsive scroll3">
+
+        @Html.Grid(Model).Columns(columns =>
+    {
+
+
+        columns.Add(m => m.TranDate).Format("{0:dd/MM/yyyy}").Titled("Daily Activity Date").SetWidth(5);
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Css("cent text-center").RenderValueAs(m => @<a href="@Url.Action("Edit", new {id=m.SalesMgId})">Edit</a>);
+
+    }).WithPaging(15)
+    </div>
+
+    <div class="row">
+        <hr />
+        <div class="col-md-12 hrpart">
+            <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
+        </div>
+    </div>
+</div>
