@@ -29,7 +29,7 @@ namespace Capital.DAL
                                     WHEN (P.DeletionEmpNo IS NOT NULL) THEN 'DELETION'
                                     WHEN (P.DeletionEmpNo IS  NULL ) or (P.AdditionEmpNo IS  NULL )
                                     THEN '-' END AS EndType,
-                                    P.DeletionEmpNo,DATEDIFF(dd,P.RenewalDate,GETDATE ()) Aging,ICActualDate
+                                    P.DeletionEmpNo,DATEDIFF(dd,P.RenewalDate,GETDATE ()) Aging,ICActualDate,0 cibpaid, 0 BalanceRecivable,0 InsCompPaid INTO #TEMP
                                     from PolicyIssue P
                                     left join Customer C on C.CusId = P.CusId
                                     left join InsuranceCompany I on I.InsCmpId = P.InsCmpId
@@ -38,7 +38,20 @@ namespace Capital.DAL
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
                                    	where  isnull(P.SalesMgId,0)=ISNULL(@SalesMgId,isnull(P.SalesMgId,0)) and
                                     I.InsCmpName LIKE '%'+@Company+'%' and P.PolicyNo LIKE '%'+@PolicyNo+'%' and C.CusName LIKE '%'+@Client+'%' and  ISNULL(S.SalesMgName,0) LIKE '%'+@SalesManager+'%'
-                                    order by P.RenewalDate ";
+                                    order by P.RenewalDate ;
+                                    
+                                     with A as (
+                                     select PolicyId, sum(CommittedAmt)Amount from PolicyIssueCommittedDetails WHERE paid=1  group by PolicyId)
+                                     update R set cibpaid =Amount from A inner join #TEMP R on R.PolicyId = A.PolicyId;
+
+					                   with A as (
+                                     select PolicyId, sum(CommittedAmt)Amount from PolicyIssueCommittedDetails WHERE InsPaid=1  group by PolicyId)
+                                     update R set InsCompPaid =Amount from A inner join #TEMP R on R.PolicyId = A.PolicyId;
+
+					                 UPDATE #TEMP SET BalanceRecivable=TotalPremium-cibpaid;
+
+					                 SELECT * FROM #TEMP";
+
                 return connection.Query<PolicyIssue>(query, new { Id = Id,Company = Company, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager }).ToList();
             }
         }

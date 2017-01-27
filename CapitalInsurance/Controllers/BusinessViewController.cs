@@ -190,6 +190,23 @@ namespace CapitalInsurance.Controllers
                 {
                     sb.AppendFormat("<td style={0}font-weight:bold;{0}>TOTAL PREMIUM</td>", (Char)34);
                 }
+
+
+                if (tags.Contains("Model.cibpaid"))
+                {
+                    sb.AppendFormat("<td style={0}font-weight:bold;{0}>CIB PAID</td>", (Char)34);
+                }
+                if (tags.Contains("Model.BalanceRecivable"))
+                {
+                    sb.AppendFormat("<td style={0}font-weight:bold;{0}>BALANCE RECEIVABLE</td>", (Char)34);
+                }
+                if (tags.Contains("Model.InsCompPaid"))
+                {
+                    sb.AppendFormat("<td style={0}font-weight:bold;{0}>INS COMP PAID</td>", (Char)34);
+                }
+
+
+
                 if (tags.Contains("Model.CommissionAmount"))
                 {
                     sb.AppendFormat("<td style={0}font-weight:bold;{0}>TOTAL COMMISSION</td>", (Char)34);
@@ -333,6 +350,21 @@ namespace CapitalInsurance.Controllers
                 {
                     sb.AppendFormat("<td>{1}</td>", (Char)34, item.TotalPremium);
                 }
+
+                if (tags.Contains("Model.cibpaid"))
+                {
+                    sb.AppendFormat("<td>{1}</td>", (Char)34, item.cibpaid);
+                }
+                if (tags.Contains("Model.BalanceRecivable"))
+                {
+                    sb.AppendFormat("<td>{1}</td>", (Char)34, item.BalanceRecivable);
+                }
+                if (tags.Contains("Model.InsCompPaid"))
+                {
+                    sb.AppendFormat("<td>{1}</td>", (Char)34, item.InsCompPaid);
+                }
+
+
                 if (tags.Contains("Model.CommissionAmount"))
                 {
                     sb.AppendFormat("<td>{1}</td>", (Char)34, item.CommissionAmount);

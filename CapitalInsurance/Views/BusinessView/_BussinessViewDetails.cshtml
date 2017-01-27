@@ -94,11 +94,11 @@
         }
         if (@a.Contains("Model.EndorcementDate"))
         {
-            columns.Add(m => m.EndorcementDate).Format("{0:dd/MM/yyyy}").Titled("End date_CIB COMM CALC").SetWidth(5);
+            columns.Add(m => m.EndorcementDate).Format("{0:dd/MM/yyyy}").Titled("END DATE_CIB COMM CALC").SetWidth(5);
         }
         if (@a.Contains("Model.ICActualDate"))
         {
-            columns.Add(m => m.ICActualDate).Format("{0:dd/MM/yyyy}").Titled("End Date_IC ACTUALS").SetWidth(5);
+            columns.Add(m => m.ICActualDate).Format("{0:dd/MM/yyyy}").Titled("END DATE_IC ACTUALS").SetWidth(5);
         }
         if (@a.Contains("Model.EndType"))
         {
@@ -135,6 +135,18 @@
         if (@a.Contains("Model.TotalPremium"))
         {
             columns.Add(m => m.TotalPremium).Titled("TOTAL PREMIUM").SetWidth(10);
+        }
+        if (@a.Contains("Model.cibpaid"))
+        {
+            columns.Add(m => m.cibpaid).Titled("CIB PAID").SetWidth(10);
+        }
+        if (@a.Contains("Model.BalanceRecivable"))
+        {
+            columns.Add(m => m.BalanceRecivable).Titled("BALANCE RECEIVABLE").SetWidth(10);
+        }
+        if (@a.Contains("Model.InsCompPaid"))
+        {
+            columns.Add(m => m.InsCompPaid).Titled("INS COMP PAID").SetWidth(10);
         }
         if (@a.Contains("Model.CommissionAmount"))
         {

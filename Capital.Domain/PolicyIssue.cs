@@ -116,5 +116,9 @@ namespace Capital.Domain
         public decimal? BalanceAmount { get; set; }
         public string Renew { get { return "Renew"; } set{ this.Renew="Renew"; } }
         //public Boolean paid { get; set; }
+
+        public decimal? cibpaid { get; set; }
+        public decimal? BalanceRecivable { get; set; }
+        public decimal? InsCompPaid { get; set; }
     }
 }
