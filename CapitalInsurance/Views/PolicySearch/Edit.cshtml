@@ -1,0 +1,451 @@
+﻿@model Capital.Domain.PolicyIssue
+@{
+    ViewBag.Title = "Edit";
+}
+<script>
+    $(document).ready(function ()
+    {
+
+        if (@ViewBag.type == 2)
+        {
+            $("#PolicyNo").focus();
+        }
+        else
+        {
+            $("#QuickBookRefNo").focus();
+        }
+        $("#againstId").text("Policy No.");
+        $(".numbers-only").keypress(function (e) {
+            if (e.which == 8 || (e.which == 45 && $(this).val().indexOf('-') == -1) || (e.which == 46 && $(this).val().indexOf('.') == -1) || (e.which > 47 && e.which < 58)) {
+            }
+            else {
+                return false;
+            }
+        });
+    })
+</script>
+<style>
+    .divHidden {
+        visibility: hidden;
+    }
+
+    .divShow {
+        visibility: visible;
+    }
+</style>
+
+<div class="container content-in">
+    <div class="row">
+
+        <h1>Payment Collection</h1>
+
+    </div>
+    @using (Html.BeginForm("UpdateCommitments", "New_Policy", FormMethod.Post, new { @class = "createFrom", @id = "box_form", onsubmit = "return validate();" }))
+    {
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Transaction No.</label>
+                        @Html.HiddenFor(m => m.Type)
+                        @Html.HiddenFor(m => m.PolicyId)
+                        @Html.TextBoxFor(m => m.TranNumber, new { @class = "form_input", @readonly = "readonly" })
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Type</label>
+                        @Html.HiddenFor(m => m.TranType)
+                        <select disabled class="form_input" id="Policy_type" onchange="OptionChanged(this)">
+                            <option value="NewPolicy">New Policy</option>
+                            <option value="RenewPolicy">Renew Policy</option>
+                            @*<option value="EndorsePolicy">Endorse Policy</option>*@
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="divHidden" id="policy_details">
+                <div class="col-md-3">
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label>Old Policy No.</label>
+                            @Html.TextBoxFor(m => m.OldPolicyNo, new { @class = "form_input ", @readonly = "readonly" })
+                        </div>
+                        <div class="col-md-6">
+                            <label>Company</label>
+                            @Html.TextBoxFor(m => m.OldCompany, new { @class = "form_input ", @readonly = "readonly" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label>Product Type</label>
+                            @Html.TextBoxFor(m => m.OldProductType, new { @class = "form_input", @readonly = "readonly" })
+                        </div>
+                        <div class="col-md-6">
+                            <label>Premium</label>
+                            @Html.TextBoxFor(m => m.OldPremiumAmt, new { @class = "form_input numbers-only", @style = "text-align:right", @readonly = "readonly" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Client</label>
+                        @Html.DropDownListFor(m => Model.CusId, (SelectList)ViewBag.Customer, "Select Client", new { @class = "form_input", autocomplete = "off", @onchange = "CustomerChanged(this)", @disabled = "true" })
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Insured Name</label>
+                        @Html.TextBoxFor(m => m.InsuredName, new { @class = "form_input", @readonly = "readonly" })
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Address 1</label>
+                        @Html.TextBoxFor(m => m.Address1, new { @class = "form_input", @readonly = "readonly" })
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Address 2</label>
+                        @Html.TextBoxFor(m => m.Address2, new { @class = "form_input", @readonly = "readonly" })
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <h2>Insurance Details</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Company</label>
+                        @Html.DropDownListFor(m => Model.InsCmpId, (SelectList)ViewBag.Company, "Select Company", new { @class = "form_input", autocomplete = "off", @disabled = "true" })
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label>Premium Amount</label>
+                        @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", @readonly = "readonly" })
+
+                    </div>
+                    <div class="col-md-6">
+                        <label>Policy Fees</label>
+                        @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", @readonly = "readonly" })
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Coverage</label>
+                        @Html.DropDownListFor(m => Model.InsPrdId, (SelectList)ViewBag.InsuranceProduct, "Select Coverage", new { @class = "form_input", autocomplete = "off", @disabled = "true" })
+
+                    </div>
+                    <div class="col-md-6">
+                        <label>Additional Premium</label>
+                        @Html.TextBoxFor(m => m.ExtraPremium, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", @readonly = "readonly" })
+
+                    </div>
+                    <div class="col-md-6">
+                        <label>Total Premium</label>
+                        @Html.TextBoxFor(m => m.TotalPremium, new { @class = "form_input", @style = "text-align:right", @readonly = "readonly" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row form-group">
+
+                    <div class="col-md-6">
+                        <label>Policy Sub Date</label>
+                        <div class="input-group date " data-date="" data-date-format="dd-MMM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            @Html.TextBoxFor(m => m.PolicySubDate, new { @class = "form_input", @Value = Model.PolicySubDate.ToString("dd-MMM-yyyy"), @readonly = "readonly" })
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.PolicySubDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6">
+                        <label>Effective Date</label>
+                        <div class="input-group date" data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            @Html.TextBoxFor(m => m.EffectiveDate, new { @class = "form_input ", @Value = Model.EffectiveDate.ToString("dd-MMM-yyyy"), @readonly = "readonly" })
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.EffectiveDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6">
+                        <label>Commi. Percentage</label>
+                        @Html.TextBoxFor(m => m.CommissionPerc, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", @readonly = "readonly" })
+
+                    </div>
+                    <div class="col-md-6">
+                        <label>Commi. Amount</label>
+                        @Html.TextBoxFor(m => m.CommissionAmount, new { @class = "form_input", @style = "text-align:right", @readonly = "readonly" })
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row form-group">
+
+                    <div class="col-md-6">
+                        <label>Renewal Date</label>
+                        <div class="input-group date" data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            @Html.TextBoxFor(m => m.RenewalDate, new { @class = "form_input", @Value = Model.RenewalDate.ToString("dd-MMM-yyyy"), @readonly = "readonly" })
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.RenewalDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6">&nbsp;<br />&nbsp;<br />&nbsp;</div>
+                    <div class="col-md-6" style="margin-top: -9px;">
+                        <label>Total Commi. Amt</label>
+                        @Html.TextBoxFor(m => m.TotalCommission, new { @class = "form_input", @style = "text-align:right", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.TotalCommission, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <div class="row form-group">
+                </div>
+            </div>
+        </div>
+        <hr />
+        <h2>Customer Contact Persons Details</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Name</label>
+                        @Html.TextBoxFor(m => m.CustContPersonName, new { @class = "form_input", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.CustContPersonName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-12">
+                        <label>Mobile No.</label>
+                        @Html.TextBoxFor(m => m.CustContMobile, new { @class = "form_input", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.CustContMobile, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Designation</label>
+                        @Html.TextBoxFor(m => m.CustContDesignation, new { @class = "form_input", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.CustContDesignation, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-12">
+                        <label>Office No.</label>
+                        @Html.TextBoxFor(m => m.CustContOfficeNo, new { @class = "form_input", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.CustContOfficeNo, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Email</label>
+                        @Html.TextBoxFor(m => m.CustContEmail, new { @class = "form_input", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.CustContEmail, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Sales Manager</label>
+                        @Html.DropDownListFor(m => Model.SalesMgId, (SelectList)ViewBag.SalesManager, "Select Sales Manager", new { @class = "form_input", autocomplete = "off", @disabled = "true" })
+                        @Html.ValidationMessageFor(m => m.SalesMgId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <h2>OPERATION</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label id="againstId"></label>
+                        @if (ViewBag.type == 2)
+                        {
+                            @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
+                        }
+                        else
+                        {
+                            @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input", @readonly = "readonly" })
+                        }
+                        @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Remarks</label>
+                        @if (ViewBag.type == 2)
+                        {
+                            @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input" })
+                        }
+                        else
+                        {
+                            @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input", @readonly = "readonly" })
+                        }
+                        @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        if (@ViewBag.type != 1)
+        {
+            <h2>PAYMENT COMMITMENTS</h2>
+            <div class="row">
+                <div class="table-responsive scroll2 col-md-4">
+                    <table class="table table-bordered ">
+                        <tr class="grid_heading">
+                            @*<th></th>*@
+                            <th>Committed Date</th>
+                            <th class="text-right ">Amount</th>
+                            @if (ViewBag.type == 3)
+                            {
+                                <th>CIB Paid</th>
+                                <th>Ins Comp Paid</th>
+                            }
+                        </tr>
+                        @for (int i = 0; i < Model.Committed.Count; i++)
+                        {
+                            <tr>
+                                @Html.HiddenFor(model => Model.Committed[i].CommRowId)
+                                @if (ViewBag.type == 2)
+                                {
+                                    <td>
+                                        <div class="input-group date form_date " data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                            @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input" })
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <div class="input-group date " data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                            @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input", @readonly = "readonly" })
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })
+                                    </td>
+                                    <td>
+                                        @Html.CheckBoxFor(model => Model.Committed[i].paid)
+                                    </td>
+                                    <td>
+                                        @Html.CheckBoxFor(model => Model.Committed[i].InsPaid)
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </table>
+                </div>
+
+            </div>
+        }
+        if (@ViewBag.type == 3)
+        {
+            <hr />
+            <h2>FINANCE</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="row form-group">
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label>Payment to</label>
+                            @Html.DropDownListFor(m => m.PaymentTo, Model.PaymentToList)
+                        </div>
+                        <div class="col-md-6">
+                            <label>Mode of Payment</label>
+                            @Html.DropDownListFor(m => Model.PayModeId, (SelectList)ViewBag.PaymentMode, "Select Payment Mode", new { @class = "form_input", autocomplete = "off" })
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive scroll2 col-md-9 ">
+                    <table class="table table-bordered " id="tab_logic">
+                        <tr class="grid_heading">
+                            <th></th>
+                            <th>Quick Book Reference No.</th>
+                            <th>Cheque No.</th>
+                            <th>Cheque Date</th>
+                            <th>Bank Name</th>
+                            <th>Branch</th>
+                            <th>Cheque Amount</th>
+                            <th></th>
+                        </tr>
+                        @for (int i = 0; i < Model.Cheque.Count; i++)
+                        {
+                            <tr id="Row_@i">
+
+                                <td style="vertical-align:middle"><a class="glyphicon glyphicon-minus del" style="top:0px" onclick="Delete(@i)"></a></td>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Cheque[i].QuickBookRefNo, new { @class = "form_input", autocomplete = "off" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeNo, new { @class = "form_input", autocomplete = "off" })
+                                </td>
+                                <td>
+                                    <div class="input-group date form_date" data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Cheque[i].BankName, new { @class = "form_input", autocomplete = "off" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Cheque[i].BankBranch, new { @class = "form_input", autocomplete = "off" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                                </td>
+                                <td style="vertical-align:middle"><a id="add_row" class="glyphicon glyphicon-plus del" style="top:0px" onclick="AddRow()"></a></td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        }
+        <div class="row">
+            <hr />
+
+        </div>
+    }
+</div>
+

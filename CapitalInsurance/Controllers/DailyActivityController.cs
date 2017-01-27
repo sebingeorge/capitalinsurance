@@ -15,7 +15,6 @@ namespace CapitalInsurance.Controllers
             FillSalesManager();
             return View();
         }
-     
         public ActionResult Create()
         {
           
@@ -38,7 +37,6 @@ namespace CapitalInsurance.Controllers
         [HttpPost]
         public ActionResult Create(DailyActivity Model)
         {
-          
             Model.CreatedBy = UserID;
             if (!ModelState.IsValid)
             {
@@ -66,5 +64,36 @@ namespace CapitalInsurance.Controllers
         {
             ViewBag.SalesManager = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName");
         }
+        public ActionResult PreviousDailyActivity(int id)
+        {
+            return View(new DailyActivityRepository().GetPreviousDailyActivityList(id));
+        }
+       public ActionResult Edit(int id)
+        {
+            DailyActivity model = new DailyActivityRepository().GetDailyActivityHdDetails(id);
+            model.DailyActivityItems = new DailyActivityRepository().GetDailyActivity(id);
+            return View("Create", model);
+        }
+       [HttpPost]
+       public ActionResult Edit(DailyActivity model)
+       {
+           if (!ModelState.IsValid)
+           {
+               var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+               return View(model);
+           }
+           Result res = new DailyActivityRepository().Update(model);
+
+
+           if (res.Value)
+           {
+               TempData["Success"] = "Updated Successfully!";
+           }
+           else
+           {
+
+           }
+           return RedirectToAction("Create");
+       }
     }
 }

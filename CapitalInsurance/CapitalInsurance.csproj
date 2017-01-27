@@ -200,6 +200,7 @@
     <Compile Include="Controllers\New_PolicyController.cs" />
     <Compile Include="Controllers\PayableReportController.cs" />
     <Compile Include="Controllers\PolicyRenewalSummaryReportController.cs" />
+    <Compile Include="Controllers\PolicySearchController.cs" />
     <Compile Include="Controllers\Policy_EndorsementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -552,6 +553,11 @@
     <Content Include="Views\InsuranceCompanyPayableReport\_InsuranceCompanyPayableReport.cshtml" />
     <Content Include="Views\InsuranceCompanyPayableReport\Index.cshtml" />
     <Content Include="Views\InsuranceCompanyPayableReport\_PolicyDetailsPopUp.cshtml" />
+    <Content Include="Views\DailyActivity\PreviousDailyActivity.cshtml" />
+    <Content Include="Views\PolicySearch\Index.cshtml" />
+    <Content Include="Views\PolicySearch\_PolicySearch.cshtml" />
+    <Content Include="Views\PolicySearch\_NewPolicyList.cshtml" />
+    <Content Include="Views\PolicySearch\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
