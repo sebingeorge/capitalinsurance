@@ -2,6 +2,12 @@
 @{
     ViewBag.Title = "Index";
 }
+<script>
+    function Exit() {
+        var url = '@Url.Action("Index","Home")';
+        location.href = url;
+    }
+</script>
 
 <div class="container content-in">
     <div class="row">
