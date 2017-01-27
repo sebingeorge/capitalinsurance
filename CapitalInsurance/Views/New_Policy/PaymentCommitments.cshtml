@@ -17,6 +17,10 @@ Model.Type = ViewBag.type;
     }
 </style>
 <script>
+    function previous() {
+        var url = '@Url.Action("Index", new { type = @ViewBag.Type })';
+        window.location = url;
+    }
     function Exit() {
         var url = '@Url.Action("Index","Home")';
         location.href = url;
@@ -587,6 +591,7 @@ Model.Type = ViewBag.type;
             <hr />
             <div class="col-md-12">
                 <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+                <button type="button" class="form-button left" onclick="previous()">Previous</button>
                 @if (ViewBag.type == 2)
                 {
                     if (Model.PayModeId != null)
