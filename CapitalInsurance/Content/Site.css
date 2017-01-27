@@ -867,3 +867,14 @@ table thead tr th
 .FONT{
     font-size:11PX
 }
+.policy-no 
+{
+    height:33px;
+    line-height:33px;
+    padding-left:10px;
+}
+.policy-search 
+{
+
+    font-size:16px;
+}
