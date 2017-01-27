@@ -407,6 +407,26 @@ namespace Capital.DAL
                 return connection.Query<PolicyIssueChequeReceived>(sql, new { Id = Id });
             }
         }
+        public List<PolicyIssue> GetPaymentCommittedList( string PolicyNo = "")
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string query = @"
+                                    select P.PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)StrTranNumber,C.CusName,P.CustContPersonName,P.InsuredName,I.InsCmpName,
+                                    IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,P.RenewalDate,
+                                    P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionAmount, S.SalesMgName,P.PolicyNo
+                                    from PolicyIssue P
+                                    left join Customer C on C.CusId = P.CusId
+                                    left join InsuranceCompany I on I.InsCmpId = P.InsCmpId
+                                    left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
+                                    left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
+                                    left join SalesManager S on S.SalesMgId = P.SalesMgId
+                                    where P.OldPolicyId IS NULL and P.PolicyNo IS NOT NULL  
+                                    AND isnull(P.PolicyNo,0) LIKE '%'+@PolicyNo+'%'
+                                    order by P.TranNumber";
+                return connection.Query<PolicyIssue>(query, new {PolicyNo = PolicyNo}).ToList();
+            }
+        }
     }
 }
 

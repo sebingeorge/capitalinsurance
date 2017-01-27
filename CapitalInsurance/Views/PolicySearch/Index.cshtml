@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<script>
+    function Exit() {
+        var url = '@Url.Action("Index","Home")';
+        location.href = url;
+    }
+    function Filter() {
+        $("#New_Policy").addClass("fade");
+        var PolicyNo = $("#policyno").val().trim();
+        var url = '@Url.Action("NewPolicyList")';
+        url += "?PolicyNo=" + encodeURIComponent(PolicyNo);
+           $("#New_Policy").load(url, function () {
+            $("#New_Policy").removeClass("fade");
+        });
+    }
+</script>
+<div class="container content-in">
+    <div class="row">
+    <h1>Policy Search</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                    <div class="col-md-3">
+                        <label>Policy No.</label>
+                        <input id="policyno" class="form_input" placeholder="Search for Policy No." onkeyup="Filter()" />
+                    </div>
+             </div>
+        </div>
+    </div>
+    <br />
+    <div id="New_Policy">
+        @Html.Action("NewPolicyList")
+    </div>
+    <div class="row">
+        <hr />
+        <div class="col-md-12 hrpart">
+        <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
+        </div>
+    </div>
+</div>
