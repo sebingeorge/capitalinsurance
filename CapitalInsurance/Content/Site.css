@@ -878,3 +878,10 @@ table thead tr th
 
     font-size:16px;
 }
+.policy-search-icon 
+{
+    font-size: 16px;
+    left: -71px;
+    position: absolute;
+    margin-top: 3px;
+}

@@ -53,8 +53,9 @@ else
         }
     }
 </script>
+
 <ul class="nav navbar-nav right cib">
-   
+   <li><a href="@Url.Action("Index", "PolicySearch")""><i class=" glyphicon glyphicon-search policy-search-icon" title="Policy search"></i></a></li>
     <li><a href="#" title="click to see user information">@username</a></li>
     <li><a href="#"><i class="glyphicon glyphicon-off" onclick="Logout()" title="Logout"></i></a></li>
 </ul>
@@ -79,6 +80,7 @@ else
    
 
         <ul class="nav navbar-nav right">
+  
             <li>
                 <i class="glyphicon glyphicon-bell bell1"></i><a data-toggle="dropdown" class="dropdown-toggle" href="#">@total</a>
                 <ul class="dropdown-menu">
