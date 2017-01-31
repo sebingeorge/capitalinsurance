@@ -69,7 +69,12 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"DECLARE @SalesMgId INT = (select SalesMgId from [User]  U  WHERE U.UserId=@Id and U.UserRole=3)
+                string sql = @"select SalesMgId into #TEMP from [User]  U  WHERE U.UserId=@Id 
+                                union all
+                                select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U  WHERE U.UserId=@Id )
+                                union all
+                                select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U  WHERE U.UserId=@Id ))
+
                                select S.SalesMgId,SM.SalesMgName,SM.SalesMgCode,F.FyName,S.FyId,S.Quarer1 Target1,S.Quarer2 Target2,S.Quarer3 Target3,S.Quarer4 Target4
                                ,0 Achvd1,0 Achvd2,0 Achvd3,0 Achvd4,0 AchvdPerc1,0 AchvdPerc2,0 AchvdPerc3,0 AchvdPerc4 INTO #RESULT from SalesTarget S 
                                INNER JOIN SalesManager SM on S.SalesMgId=SM.SalesMgId
@@ -101,7 +106,7 @@ namespace Capital.DAL
                                CASE WHEN  (Target2-Achvd2) <= 0 THEN 0 ELSE  (Target2-Achvd2) END AS Q2Shortfall,
                                CASE WHEN  (Target3-Achvd3) <= 0 THEN 0 ELSE  (Target3-Achvd3) END AS Q3Shortfall,
                                CASE WHEN  (Target4-Achvd4) <= 0 THEN 0 ELSE  (Target4-Achvd4) END AS Q4Shortfall
-                               FROM #RESULT  WHERE FyId=@FyId and isnull(SalesMgId,0)=ISNULL(@SalesMgId,isnull(SalesMgId,0))";
+                               FROM #RESULT  WHERE FyId=@FyId and isnull(SalesMgId,0) IN (SELECT SalesMgId FROM #TEMP)";
 
                 var objSalesTarget = connection.Query<SalesAchievement>(sql, new {Id=Id, FyId = FyId }).ToList<SalesAchievement>();
                 return objSalesTarget;
@@ -111,7 +116,11 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"DECLARE @SalesMgId INT = (select SalesMgId from [User]  U  WHERE U.UserId=@Id and U.UserRole=3)
+                string sql = @"select SalesMgId into #TEMP from [User]  U  WHERE U.UserId=@Id 
+                                union all
+                                select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U  WHERE U.UserId=@Id )
+                                union all
+                                select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U  WHERE U.UserId=@Id ))
                                select S.SalesMgId,SM.SalesMgName,S.FyId,F.FyName,S.Total,0 TotalAcvd,S.Quarer1 Target1,S.Quarer2 Target2,
                                S.Quarer3 Target3,S.Quarer4 Target4,0 Jan,0 Feb,0 Mar,0 Apl,0 May,0 Jun,0 July,0 Aug,0 Sep,0 Oct,0 Nov,0 Dec,0 Q1Shortfall,
                                0 Q2Shortfall,0 Q3Shortfall,0 Q4Shortfall,0 Q1Excess,0 Q2Excess,0 Q3Excess,0 Q4Excess INTO #RESULT from SalesTarget S
@@ -208,7 +217,7 @@ namespace Capital.DAL
                                CASE WHEN Q1Excess<= 0 THEN 0 ELSE Q1Excess END AS Q1Excess,
                                CASE WHEN Q2Excess<= 0 THEN 0 ELSE Q2Excess END AS Q2Excess,
                                CASE WHEN Q3Excess<= 0 THEN 0 ELSE Q3Excess END AS Q3Excess,
-                               CASE WHEN Q4Excess <= 0 THEN 0 ELSE Q4Excess END AS Q4Excess FROM #RESULT  WHERE  FyId=@FyId and isnull(SalesMgId,0)=ISNULL(@SalesMgId,isnull(SalesMgId,0))";
+                               CASE WHEN Q4Excess <= 0 THEN 0 ELSE Q4Excess END AS Q4Excess FROM #RESULT  WHERE  FyId=@FyId and isnull(SalesMgId,0) IN (SELECT SalesMgId FROM #TEMP)";
 
                 var objSalesTarget = connection.Query<SalesAchievement>(sql, new {Id=Id,FyId = FyId }).ToList<SalesAchievement>();
                 return objSalesTarget;

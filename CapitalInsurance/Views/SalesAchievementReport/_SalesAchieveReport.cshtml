@@ -2,6 +2,8 @@
 
 <div class="table-responsive scroll3">
     <table class="table table-bordered" id="tab_logic">
+@if (Model.Count() > 0)
+{
         <thead>
             <tr class="grid_heading">
 
@@ -13,11 +15,12 @@
 
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>@item.SalesMgCode</td>
-                                </tr>
+                           
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.SalesMgCode</td>
+                                    </tr>
                             }
                         </tbody>
                     </table>
@@ -117,6 +120,15 @@
                     </table>
                 </th>
         </thead>
-        
+                          
+                            }
+                            else
+                            {
+<tr>
+    <td colspan="6" align="center" valign="middle">
+        <em>pls enter sales target and then select an year</em>
+    </td>
+</tr>
+                            }
     </table>
 </div>
