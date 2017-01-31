@@ -91,10 +91,11 @@ namespace Capital.DAL
                                select  year(P.TranDate)year,P.SalesMgId, sum(TotalPremium)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(TranDate)in(10,11,12) and year(P.TranDate)=R.FyName  group by P.SalesMgId,year(P.TranDate))
                                Update R set Achvd4 = A.Amount from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
 
-                               Update R set AchvdPerc1 = (Achvd1/Target1)*100 from #Result R where Achvd1>0;
-                               Update R set AchvdPerc2 = (Achvd2/Target2)*100 from #Result R where Achvd2>0;
-                               Update R set AchvdPerc3 = (Achvd3/Target3)*100 from #Result R where Achvd3>0;
-                               Update R set AchvdPerc4 = (Achvd4/Target4)*100 from #Result R where Achvd4>0;
+                              Update R set AchvdPerc1 = isnull((Achvd1/nullif(Target1,0)),0)*100 from #Result R where Achvd1>0;
+
+                               Update R set AchvdPerc2 = isnull((Achvd2/nullif(Target2,0)),0)*100 from #Result R where Achvd2>0;
+                               Update R set AchvdPerc3 = isnull((Achvd3/nullif(Target3,0)),0)*100 from #Result R where Achvd3>0;
+                               Update R set AchvdPerc4 = isnull((Achvd4/nullif(Target4,0)),0)*100 from #Result R where Achvd4>0;
                                SELECT SalesMgId,SalesMgName,SalesMgCode,FyName,FyId,Target1, Target2, Target3,Target4,Achvd1, Achvd2, Achvd3,Achvd4, AchvdPerc1, AchvdPerc2, AchvdPerc3,AchvdPerc4,
                                CASE WHEN  (Target1-Achvd1) <= 0 THEN 0 ELSE  (Target1-Achvd1) END AS Q1Shortfall,
                                CASE WHEN  (Target2-Achvd2) <= 0 THEN 0 ELSE  (Target2-Achvd2) END AS Q2Shortfall,

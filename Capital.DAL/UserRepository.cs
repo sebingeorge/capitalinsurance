@@ -54,7 +54,7 @@ namespace Capital.DAL
             {
                 try
                 {
-                    string sql = "Update [User] set UserEmail = @UserEmail, UserRole = @UserRole, SalesMgId = @SalesMgId";
+                    string sql = "Update [User] set UserEmail = @UserEmail, UserRole = @UserRole, SalesMgId = @SalesMgId,Reporting = @Reporting";
                     if (user.UserPassword != null && user.UserPassword != "")
                     {
                         sql += ", UserPassword = @UserPassword, @UserSalt = UserSalt";

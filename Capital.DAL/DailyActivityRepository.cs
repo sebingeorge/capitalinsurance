@@ -77,7 +77,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string query = @"Select * from DailyActivity  where SalesMgId=@Id";
+                string query = @"Select DailyActivityId,TranDate,SalesMgId,CONVERT(VARCHAR, DailyActivityDate, 106) DailyActivityDate,DailyActivityTime,DailyActivityCompany,DailyActivityContactPerson,DailyActivityContactNo,DailyActivityEmail,DailyActivityType=(case when DailyActivityType='CC' then '#FFC300' else DailyActivityType end ),DailyActivityRemarks from DailyActivity  where SalesMgId=@Id";
                 return connection.Query<DailyActivityItem>(query, new { id = id }).ToList();
             }
         }
