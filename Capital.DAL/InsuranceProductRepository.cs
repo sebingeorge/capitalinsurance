@@ -78,9 +78,8 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string query = @"select I.InsPrdId,I.InsPrdName,I.InsActiveDate,IC.InsCmpName,IT.insTypeName
+                string query = @"select I.InsPrdId,I.InsPrdName,I.InsActiveDate,IT.insTypeName
                 from InsuranceProduct I
-                left join InsuranceCompany IC on IC.InsCmpId = I.InsCmpId
                 left join InsuranceType IT on IT.InsTypeId = I.InsTypeId
                 where I.InsPrdName LIKE '%'+@Product+'%'
                 order by I.InsPrdName";
