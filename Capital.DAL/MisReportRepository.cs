@@ -24,7 +24,18 @@ namespace Capital.DAL
                 return connection.Query<MonthlyAcheivementcoveragewise>(sql);
             }
         }
-       
+
+
+        public IEnumerable<MonthlySales> GetmonthlySales()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"select  top 12 CONVERT(CHAR(4), CusInvoiceDate, 100) + CONVERT(CHAR(4),  CusInvoiceDate, 120) Monthly,sum(TotalAmount) TotalAmount from [CustomerInvoice]
+                               group by CusInvoiceDate order by CusInvoiceDate desc";
+
+                return connection.Query<MonthlySales>(sql);
+            }
+        }
        
     }
 }
