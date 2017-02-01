@@ -62,7 +62,8 @@ namespace CapitalInsurance.Controllers
         }
         void FillSalesManager()
         {
-            ViewBag.SalesManager = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName");
+            ViewBag.SalesManager = new SelectList((new DropdownRepository()).GetDailyActivityComboforEmployee(UserID), "Id", "Name");
+            //ViewBag.SalesManager = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName");
         }
         public ActionResult PreviousDailyActivity(int id)
         {
