@@ -83,5 +83,22 @@ namespace Capital.DAL
                 return connection.Query<Dropdown>("SELECT FyId Id, FyName Name FROM FinancialYear").ToList();
             }
         }
+        public List<Dropdown> GetDailyActivityComboforEmployee(int id)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string query = @"select SalesMgId into #TEMP from [User]  U  WHERE U.UserId=@Id
+                union all
+                select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U  WHERE U.UserId=@Id )
+                union all
+                select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U  WHERE U.UserId=@Id ))
+                union all
+                select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U  WHERE U.UserId=@Id )))
+
+                select T.SalesMgId Id,S.SalesMgName Name from #TEMP T inner join SalesManager S on S.SalesMgId=T.SalesMgId";
+
+                return connection.Query<Dropdown>(query, new { id = id }).ToList();
+            }
+        }
         }
 }

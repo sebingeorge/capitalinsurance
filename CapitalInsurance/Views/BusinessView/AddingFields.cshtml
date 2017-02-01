@@ -3,10 +3,11 @@
     ViewBag.Title = "AddingFields";
 }
 <script>
-    //$(document).ready(function () {
-    //    $(".check").prop("checked", true);
+    $(document).ready(function () {
+        $(".chkSelect").prop("checked", true);
+        $("#chkSelectAll").prop("checked", true);
 
-    //})
+    })
     $(document).ready(function () {
     $("#chkSelectAll").bind("change", function () {
 
@@ -48,6 +49,7 @@
             $(".chkSelect").prop("checked", false);
         }
     }
+
 </script>
 <div class="container content-in">
 
