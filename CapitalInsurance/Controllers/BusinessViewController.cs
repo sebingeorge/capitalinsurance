@@ -22,16 +22,20 @@ namespace CapitalInsurance.Controllers
             ViewBag.tags = tags;
             if (TempData["Tags"] == null)
             {
+                Session["Tags"] = tags;
                 TempData.Add("Tags", tags);
             }
             TempData.Keep("Tags");
+
             var model = new BusinessViewRepository().GetBusinessViewDetails(UserID, Company, PolicyNo, Client, SalesManager);
             Session["BussData"] = model;
-            return PartialView("_BussinessViewDetails", model);
+            return View("Index", model);
+            //return PartialView("_BussinessViewDetails", model);
         }
-        public ActionResult BusinessViewDetailsFilter(string Company = "", string PolicyNo = "", string Client = "", string SalesManager = "")
+        public ActionResult BusinessViewDetailsFilter( string Company = "", string PolicyNo = "", string Client = "", string SalesManager = "")
         {
-            string[] tags = (string[])TempData["Tags"];
+            string[] tags = (string[])Session["Tags"];
+            //ViewBag.tags = tags;
             if (TempData["Tags"] == null)
             {
                 TempData.Add("Tags", tags);
