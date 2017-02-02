@@ -39,11 +39,37 @@ namespace Capital.DAL
                             connection.Query<int>(sql, new { UserId = id, ModuleId = item.ModuleId });
                         }
                     }
+                    InsertFormPermission(user.Forms, id);
                     //InsertLoginHistory(dataConnection, user.CreatedBy, "Create", "Unit", id.ToString(), "0");
                     return id;
                 }
                 catch (Exception ex)
                 {
+                    return 0;
+                }
+            }
+        }
+        private int InsertFormPermission(List<FormsVsUser> Forms, int UserId)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                IDbTransaction txn = connection.BeginTransaction();
+                try
+                {
+                    string query = @"DELETE FROM UserVsForms WHERE UserId = @UserId";
+                    connection.Execute(query, new { UserId = UserId }, txn);
+                    query = @"INSERT INTO UserVsForms (UserId, FormId)
+                              VALUES (@UserId, @FormId)";
+                    foreach (var item in Forms)
+                    {
+                        connection.Execute(query, new { UserId = UserId, FormId = item.FormId }, txn);
+                    }
+                    txn.Commit();
+                    return 1;
+                }
+                catch
+                {
+                    txn.Rollback();
                     return 0;
                 }
             }
@@ -72,6 +98,7 @@ namespace Capital.DAL
                             connection.Query<int>(sql, new { UserId = user.UserId, ModuleId = item.ModuleId });
                         }
                     }
+                    InsertFormPermission(user.Forms, user.UserId ?? 0);
                 }
                 catch
                 {
@@ -148,9 +175,23 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select U.UserId, U.UserName, U.UserEmail, UR.RoleName from [User] U
-                left join UserRole UR on U.UserRole = UR.RoleId";
+//                string sql = @"select U.UserId, U.UserName, U.UserEmail, UR.RoleName from [User] U
+//                left join UserRole UR on U.UserRole = UR.RoleId";
+                string sql = @"SELECT [UserId]
+                ,[UserName]
+                ,[UserEmail]
+                ,[UserPassword]
+                ,[UserSalt]
+                , UR.RoleName
+                , ModuleNames = STUFF((SELECT ',' + M.ModuleName AS[text()]
+                FROM Modules M join ModuleVsUser MU
 
+                on M.ModuleId = MU.ModuleId
+                WHERE
+                MU.UserId = U.UserId
+                FOR XML PATH('')
+                ), 1, 1,'')
+                FROM[dbo].[User] U left join UserRole UR on U.UserRole = UR.RoleId";
                 return connection.Query<User>(sql).ToList();
             }
         }
@@ -166,6 +207,47 @@ namespace Capital.DAL
                     and ModuleVsUser.UserId = " + (Id ?? 0).ToString();
                 }
                 return connection.Query<Modules>(sql).ToList();
+            }
+        }
+        public IEnumerable<FormsVsUser> GetFormsVsUser(int UserId)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string query = @"SELECT
+	                                F.FormId,
+	                                F.FormName,
+	                                F.ModuleId,
+	                                M.ModuleName,
+	                                CASE WHEN UserId IS NULL THEN 0 ELSE 1 END AS hasPermission
+                                FROM Forms F
+	                                LEFT JOIN UserVsForms UF ON F.FormId = UF.FormId AND UserId = @UserId
+	                                INNER JOIN Modules M ON F.ModuleId = M.ModuleId";
+                return connection.Query<FormsVsUser>(query, new { UserId = UserId });
+            }
+        }
+        public RegisterViewModel GetUserInfo(int? Id)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"SELECT [UserId]
+                ,[UserName]
+                ,[UserEmail]
+                ,[UserPassword]
+                ,[UserSalt]
+                ,[UserRole]
+                FROM[dbo].[User] U Where U.UserId=" + Id;
+                return connection.Query<RegisterViewModel>(sql).FirstOrDefault();
+            }
+        }
+
+        public IEnumerable<FormPermission> GetFormPermissions(int UserId)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string query = @"SELECT F.FormId FROM Forms F
+                                INNER JOIN UserVsForms UF ON F.FormId = UF.FormId 
+                                WHERE UserId = @UserId";
+                return connection.Query<FormPermission>(query, new { UserId = UserId });
             }
         }
     }

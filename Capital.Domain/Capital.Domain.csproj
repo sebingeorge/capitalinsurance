@@ -60,6 +60,7 @@
     <Compile Include="DropDown.cs" />
     <Compile Include="EmailAddress.cs" />
     <Compile Include="EmployeeAchievementVsTraget.cs" />
+    <Compile Include="FormsVsUser.cs" />
     <Compile Include="InsuranceCompany.cs" />
     <Compile Include="InsuranceProduct.cs" />
     <Compile Include="InsuranceProductParameter.cs" />
