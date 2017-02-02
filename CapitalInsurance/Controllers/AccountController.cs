@@ -215,13 +215,61 @@ namespace CapitalInsurance.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(int? UserId)
         {
-            Capital.Domain.RegisterViewModel model = new Capital.Domain.RegisterViewModel();
-            ViewBag.UserRole = new SelectList((new UserRepository()).GetUserRole(), "RoleId", "RoleName");
-            ViewBag.Employee = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName");
-            model.Module = new UserRepository().GetModules(0);
-            return View(model);
+            if ((UserId ?? 0) == 0)
+            {
+                Capital.Domain.RegisterViewModel model = new Capital.Domain.RegisterViewModel();
+                ViewBag.UserRole = new SelectList((new UserRepository()).GetUserRole(), "RoleId", "RoleName");
+                ViewBag.Employee = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName");
+                model.Module = new UserRepository().GetModules(0);
+                model.Forms = new UserRepository().GetFormsVsUser(UserId ?? 0).ToList();
+                FillModulesDropdown(model.Module);
+                return View(model);
+            }
+            else
+            {
+                ViewBag.UserRole = new SelectList((new UserRepository()).GetUserRole(), "RoleId", "RoleName");
+                //Capital.Domain.RegisterViewModel model = new UserRepository().GetUserInfo(Id);
+                Capital.Domain.User user = new UserRepository().GetUserById(UserId ?? 0);
+                Capital.Domain.RegisterViewModel model = new Capital.Domain.RegisterViewModel()
+                {
+                    ConfirmPassword = "",
+                    Email = user.UserEmail,
+                    Password = "",
+                    SalesMgId = user.SalesMgId,
+                    UserId = user.UserId,
+                    UserName = user.UserName,
+                    UserRole = user.UserRole ?? 0,
+                    Module = new UserRepository().GetModules(UserId),
+                    Reporting = user.Reporting
+                };
+
+              
+                ViewBag.Employee = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName", user.SalesMgId);
+                model.Module = new System.Collections.Generic.List<Modules>();
+                var modules = (new UserRepository()).GetModules(UserId);
+
+                model.Forms = new UserRepository().GetFormsVsUser(UserId ?? 0).ToList();
+
+                foreach (var item in modules)
+                {
+                    model.Module.Add(item);
+                }
+              
+                FillModulesDropdown(model.Module);
+                return View(model);
+            }
+
+        }
+        private void FillModulesDropdown(List<Modules> list)
+        {
+            List<Dropdown> moduleNames = new List<Dropdown>();
+            foreach (var item in list)
+            {
+                moduleNames.Add(new Dropdown { Id = item.ModuleId, Name = item.ModuleName });
+            }
+            ViewBag.moduleList = new SelectList(moduleNames, "Id", "Name");
         }
         [AllowAnonymous]
         public ActionResult Edit(int Id)
@@ -241,6 +289,7 @@ namespace CapitalInsurance.Controllers
             };
             ViewBag.UserRole = new SelectList((new UserRepository()).GetUserRole(), "RoleId", "RoleName", user.UserRole);
             ViewBag.Employee = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName", user.SalesMgId);
+            FillModulesDropdown(model.Module);
             return View(model);
         }
 
@@ -275,7 +324,7 @@ namespace CapitalInsurance.Controllers
 
                     user.UserPassword = hashedPassword;
                     user.UserSalt = salt;
-
+                    user.Forms = model.Forms.Where(x => x.hasPermission).ToList();
                     res = (new UserRepository()).InsertUser(user);
                     TempData["Success"] = "Registered Successfully!";
                 }
@@ -290,7 +339,7 @@ namespace CapitalInsurance.Controllers
                         user.UserPassword = hashedPassword;
                         user.UserSalt = salt;
                     }
-
+                    user.Forms = model.Forms.Where(x => x.hasPermission).ToList();
                     res = (new UserRepository()).UpdateUser(user);
                 }
                 if (res > 0)

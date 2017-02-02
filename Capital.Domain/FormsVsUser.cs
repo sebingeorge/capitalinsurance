@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Capital.Domain
 {
-    public class Modules
+    public class FormsVsUser
     {
+        public int FormId { get; set; }
         public int ModuleId { get; set; }
         public string ModuleName { get; set; }
-        public int isPermission { get; set; }
-        public int UserId { get; set; }
+        public string FormName { get; set; }
+        public bool hasPermission { get; set; }
     }
 }

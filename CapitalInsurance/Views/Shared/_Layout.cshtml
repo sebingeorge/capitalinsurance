@@ -47,7 +47,7 @@
                                     <a href="@Url.Action("Create", "InsuranceCompany")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/insurancecompany.png" /></span>Insurance Company</a>
                                     <a href="@Url.Action("Create", "insuranceproduct")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/insuranceproduct.png" /></span>Coverage</a>
                                     <a href="@Url.Action("Create", "Sales_Target")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/salestarget.png" /></span>Sales Target</a>
-                                    <a href="@Url.Action("Register", "Account")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/admin.png" /></span>User</a>
+                                    <a href="@Url.Action("UserList", "Account")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/admin.png" /></span>User Settings</a>
                                 </li>
                             </ul>
                         </div>
@@ -81,9 +81,9 @@
                                 <li>
                                     <a href="@Url.Action("Create", "DailyActivity")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Daily Activity</a>
                                 </li>
-                                <li>
+                                @*<li>
                                     <a href="@Url.Action("Index", "PolicySearch")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Policy Search</a>
-                                </li>
+                                </li>*@
                             </ul>
                         </div>
                     }
@@ -122,7 +122,7 @@
                                 </li>
                                 <li>
                                         <a href="@Url.Action("Index", "InsuranceCompanyPayableReport")" data-toggle="collapse" data-target="#second-level-2"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Insurance Company Payable</a>
-                                    </li>
+                                </li>
                                 <li>
                                     <a href="@Url.Action("Index", "DailyActivity")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Daily Activity Report</a>
                                 </li>
@@ -144,7 +144,7 @@
                         </div>
                     }
                 <li>
-                    <a href="@Url.Action("LogOff", "Account")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/logout.png" /></span>Logout</a>
+                    @*<a href="@Url.Action("LogOff", "Account")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/logout.png" /></span>Logout</a>*@
                 </li>
             </ul>
         </div>
