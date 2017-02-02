@@ -26,7 +26,8 @@ namespace Capital.Domain
         [System.ComponentModel.DataAnnotations.Required]
         public int SalesMgId { get; set; }
         public List<Modules> Module { get; set; }
-
+        public List<FormsVsUser> Forms { get; set; }
+        public string ModuleNames { get; set; }
         public int Reporting { get; set; }
     }
 }

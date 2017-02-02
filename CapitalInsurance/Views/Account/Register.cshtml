@@ -2,6 +2,54 @@
 @{
     ViewBag.Title = "Register";
 }
+@{
+    int Id = 0;
+    try
+    {
+        Id = Convert.ToInt32(Request.QueryString["UserId"].ToString());
+    }
+    catch
+    {
+
+    }
+}
+
+<script>
+    $(document).ready(function () {
+        $('#UserRole').val(@Model.UserRole)
+        
+        $('#formPermissionButton').on('click', function () {
+
+            $('#menu5').show();
+            $('#tabUserPermissions a[href="#menu5"]').tab('show');
+            LoadForms();
+        });
+
+    })
+    function LoadForms() {
+        $("#divUserPermissions input[id^='App1_']").each(function (index, object) {
+            var index = object.id.replace('App1_', '');
+            var moduleId = $("#Module_" + index + "__ModuleId").val();
+            if ($(object).is(":checked")) {
+                $("#menu5 #table_module_" + moduleId).show();
+            }
+            else {
+                $("#menu5 #table_module_" + moduleId).hide();
+                $("#menu5 #table_module_" + moduleId + " td > input[type='checkbox']").each(function (index1, object1) {
+                    $(object1).removeAttr("checked");
+                })
+                $('#cboModuleNames option[value="' + moduleId + '"]').attr("disabled", "true");
+            }
+        });
+
+        $('#div_' + $('#cboModuleNames').val()).removeClass('hide');
+    }
+
+    function OnModuleComboChanged(id) {
+        $('div[id^="div_"]').addClass('hide');
+        $('#div_' + id).removeClass('hide');
+    }
+</script>
 <div class="container content-in">
     <div class="row">
         <h1>New User</h1>
@@ -9,6 +57,8 @@
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
+      
+      
         <div class="row">
             <div class="col-md-12">
                 <div class="row form-group">
@@ -48,18 +98,13 @@
                 </div>
             </div>
         </div>
-        @*<div class="row">
-            <div class="col-md-12">
-                <div class="row form-group">
-                    
-                </div>
-            </div>
-        </div>*@
+
         <div class="row">
             <div class="col-md-12">
                 <div class="row form-group">
                     <div class="col-md-3">
                         <label>User Role</label>
+                        @*@Html.DropDownListFor(m => Model.UserRole, new SelectList(ViewBag.UserRole, "Value", "Text"), "Select Role", new { @class = "form_input", autocomplete = "off"})*@
                         @Html.DropDownListFor(m => Model.UserRole, (SelectList)ViewBag.UserRole, "Select Role", new { @class = "form_input", autocomplete = "off" })
                     </div>
                     <div class="col-md-3">
@@ -73,58 +118,136 @@
                 </div>
             </div>
         </div>
-        @*<div class="row">
-            <div class="col-md-12">
-                <div class="row form-group">
-                    
-                </div>
-            </div>
-        </div>*@
         <br />
-     
-            <div class="table-responsive">
-                <div class="tab_logic">
-                    <table class="table table-bordered table-hover" id="tab_logic">
-                        <thead>
-                            <tr class="grid_heading">
-                                <th style="width:20%;">Module</th>
-                                <th class="text-center" style="width:10%;">Access</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (int j = 0; j < Model.Module.Count; j++)
+
+        <div class="row">
+            <div class="main-grid main-grid-top" id="divUserPermissions">
+                <ul style="visibility: visible;" class="nav nav-tabs test2" id="tabUserPermissions">
+                    <li class="active"><a data-toggle="tab" href="#home" aria-expanded="false">Module Wise Permissions</a></li>
+                    <li class="" style="display:none"><a data-toggle="tab" href="#menu5" aria-expanded="false">Form Permissions</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade active in">
+                        @*<h5>Module Wise Permissions</h5>*@
+                        <div class="table-responsive">
+                            <div class="tab_logic">
+                                <table class="table table-bordered" id="tab_logic">
+                                    <thead>
+                                        <tr class="grid_heading">
+                                            <th style="width:20%;">Module</th>
+                                            <th class="text-center" style="width:10%;">Access</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int j = 0; j < Model.Module.Count; j++)
+                                        {
+                                            <tr class="grid_row">
+                                                @Html.HiddenFor(m => m.Module[j].UserId)
+                                                @Html.HiddenFor(m => m.Module[j].ModuleId)
+                                                @Html.HiddenFor(m => m.Module[j].isPermission)
+                                                @Html.HiddenFor(m => m.Module[j].ModuleName)
+                                                <td style="padding-left:5px;">@Model.Module[j].ModuleName</td>
+                                                <td align="center">
+                                                    <input type="checkbox" id="App1_@j" onchange="App1Changed(@j)" @(Model.Module[j].isPermission == 1 ? "checked" : "") />
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div >
+                                <br/>
+                                <input type="button" id="formPermissionButton" value="Set Form Permissions" class="btn btn-primary" style="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menu5" class="tab-pane fade ">
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                @Html.DropDownList("cboModuleNames", new SelectList(ViewBag.moduleList, "Value", "Text", 1), "Select Module",
+                                    new
+                                    {
+                                        @class = "form_input",
+                                        @onchange = "OnModuleComboChanged(this.value)"
+                                    })
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            @for (int j = 0, i = 0; j < Model.Module.Count; j++)
                             {
-                                <tr class="grid_row">
-                                    @Html.HiddenFor(m => m.Module[j].ModuleId)
-                                    @Html.HiddenFor(m => m.Module[j].ModuleName)
-                                    @Html.HiddenFor(m => m.Module[j].isPermission)
-                                    <td style="padding-left:5px;">@Model.Module[j].ModuleName</td>
-                                    <td align="center">
-                                        <input type="checkbox" id="App1_@j" onchange="App1Changed(@j)" @(Model.Module[j].isPermission == 1 ? "checked" : "") />
-                                    </td>
-                                    <td></td>
-                                </tr>
+                                <div id="div_@Model.Module[j].ModuleId" class="hide">
+                                    <table class="table table-bordered" id="table_module_@Model.Module[j].ModuleId">
+                                        <thead class="grid_heading">
+                                            <tr>
+                                                <th style="text-align:center">#</th>
+                                                <th>Module</th>
+                                                <th>Form</th>
+                                                <th>Access</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          
+                                            @for (int k = 0; k < Model.Forms.Count; k++)
+                                            {
+                                                if (Model.Module[j].ModuleId != Model.Forms[k].ModuleId)
+                                                {
+                                                    continue;
+                                                }
+                                                <tr>
+                                                    <td align="center">
+                                                        @(i + 1)
+                                                    </td>
+                                                    <td>
+                                                     
+                                                        @Model.Forms[k].ModuleName
+                                                      
+                                                    </td>
+                                                    <td>
+                                                        @Html.HiddenFor(m => m.Forms[k].FormId)
+                                                        @Model.Forms[k].FormName
+                                                     
+                                                    </td>
+                                                    <td>
+                                                        @Html.CheckBoxFor(m => m.Forms[k].hasPermission)
+                                                    </td>
+                                                </tr>
+                                                ++i;
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
                             }
-                        </tbody>
-                    </table>
+                        </div>
+                    </div>
                 </div>
+
             </div>
 
-      
+        </div>
+
+
         <div class="row">
             <hr />
             <div class="col-md-12">
-                <button type="button" class="form-button" onclick="Previous()">Previous</button>
+                @*<button type="button" class="form-button" onclick="Previous()">Previous</button>*@
                 <button type="button" class="form-button right" onclick="Exit()">Exit</button>
-                <button type="submit" class="form-button right">Save</button>
+                @*<button type="submit" class="form-button right">Save</button>*@
+                @if (Id > 0)
+                {
+                    <input type="submit" class=" form-button right" value="Update" />
+                }
+                else
+                {
+                    <input type="submit" class=" form-button right" value="Save" />
+                }
             </div>
         </div>
     }
 </div>
 <script>
-    function Previous()
-    {
+    function Previous() {
         var url = '@Url.Action("UserList")';
         location.href = url;
     }
