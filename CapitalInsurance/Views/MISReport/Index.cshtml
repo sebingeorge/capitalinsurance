@@ -13,6 +13,13 @@
 
     string Month = string.Empty;
     string totalamount = string.Empty;
+
+    string salesMg = string.Empty;
+    string achiv = string.Empty;
+
+   
+    string target = string.Empty;
+    
     
 
 
@@ -56,6 +63,37 @@
         else
         {
             totalamount += ", " + item.TotalAmount + "";
+        }
+    }
+
+
+    foreach (var item in Model.EmployeeAchievementVsTraget)
+    {
+
+        if (salesMg == string.Empty)
+        {
+            salesMg = "'" + item.slmgname + "'";
+        }
+        else
+        {
+            salesMg += ",'" + item.slmgname + "'";
+        }
+        if (achiv == string.Empty)
+        {
+            achiv = "" + item.achivement + "";
+        }
+        else
+        {
+            achiv += ", " + item.achivement + "";
+        }
+
+        if (target == string.Empty)
+        {
+            target = "" + item.target + "";
+        }
+        else
+        {
+            target += ", " + item.target + "";
         }
     }
 }
@@ -137,23 +175,23 @@
             title: {
                 text: 'Executive Wise Sales Target Vs Acheivement 2016'
             },
+
             xAxis: {
-                categories: [
-                    'Jinju',
-                    'Santhosh',
-                    'Madhu',
-                    'Bishal',
-                    'Sarfaraj',
-                    'Kumaresan',
-                    'Karthik',
-                    'Rajul',
-                    'Amir',
-                    'Dileep',
-                    'Abdul Razzak',
-                    'Mainuddin'
-                ],
-                crosshair: true
+                //type: 'category'
+
+                categories: [@Html.Raw(salesMg)],
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '11px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+
+                }
             },
+     
+                //crosshair: true
+           
             yAxis: {
                 min: 0,
                 title: {
@@ -176,11 +214,10 @@
             },
             series: [{
                 name: 'Target',
-                data: [49900, 71500, 106400, 12920, 14400, 17600, 13560, 14850, 21640, 19410, 95600, 54400]
-
+                data:[@target]
             }, {
                 name: 'Acheivement',
-                data: [83600, 78800, 98500, 93400, 10600, 84500, 10500, 10430, 91200, 83500, 10660, 92300]
+                data: [@achiv]
 
             }]
         });
