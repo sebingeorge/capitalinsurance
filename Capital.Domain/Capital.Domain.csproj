@@ -71,6 +71,7 @@
     <Compile Include="ModuleVsUser.cs" />
     <Compile Include="ModuleWisePermission.cs" />
     <Compile Include="MonthlyAcheivementcoveragewise.cs" />
+    <Compile Include="MonthlySales.cs" />
     <Compile Include="PaymentCommitments.cs" />
     <Compile Include="PolicyIssue.cs" />
     <Compile Include="PolicyIssueChequeReceived.cs" />

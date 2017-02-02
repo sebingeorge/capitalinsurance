@@ -19,6 +19,7 @@ namespace CapitalInsurance.Controllers
 
 
             dashboard.MonthlyAcheivementcoveragewise = repo.GetmonthlycoverageAchivement();
+            dashboard.MonthlySales = repo.GetmonthlySales();
 
             return View(dashboard);
   
