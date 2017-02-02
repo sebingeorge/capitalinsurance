@@ -36,6 +36,27 @@ namespace Capital.DAL
                 return connection.Query<MonthlySales>(sql);
             }
         }
-       
+
+
+
+        public IEnumerable<EmployeeAchievementVsTraget> GetEmployeeTargetAchivement()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"select sm.SalesMgName slmgname ,sm.SalesMgId slmgcode,sum(TotalPremium) achivement,0 target  into #Temp from  PolicyIssue
+                                inner join [dbo].[User] U on CreatedBy=u.UserId
+                                inner join SalesManager SM on SM.SalesMgId= u.SalesMgId
+                                group by sm.SalesMgName,sm.SalesMgId;
+
+                            with A as(select SalesMgId SalesMg,sum(Total) total from SalesTarget St inner join FinancialYear FY on FyName=  DATEPART(Year, GETDATE())  where St.FyId=fy.FyId group by SalesMgId )
+
+                            update #Temp set target=A.total from A where #Temp.slmgcode=a.SalesMg;
+
+							select * from #Temp";
+
+                return connection.Query<EmployeeAchievementVsTraget>(sql);
+            }
+        }
+
     }
 }
