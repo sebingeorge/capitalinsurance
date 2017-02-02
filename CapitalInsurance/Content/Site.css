@@ -19,16 +19,6 @@
     height:280px;
 }
 
-.tab-content {
-    background-color: #d6d5d5;
-    border: 1px solid white;
-    padding: 12px;
-    margin-left: 1px;
-    border-bottom-left-radius: 5px;
-    -moz-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    -moz-border-bottom-right-radius: 5px;
-}
 
 .cib 
 {
@@ -930,4 +920,14 @@ table thead tr th
 
 .main-grid-top {
     margin-top: 0px;
+}
+.tab-content {
+    background-color: #d6d5d5;
+    border: 1px solid white;
+    padding: 12px;
+    margin-left: 1px;
+    border-bottom-left-radius: 5px;
+    -moz-border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -moz-border-bottom-right-radius: 5px;
 }

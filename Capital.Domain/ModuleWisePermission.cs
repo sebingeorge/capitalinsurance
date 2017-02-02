@@ -14,4 +14,12 @@ namespace Capital.Domain
         public bool Finance { get; set; }
         public bool MISReports { get; set; }
     }
+    public class FormPermission
+    {
+        public int FormId { get; set; }
+        public string ControllerName { get; set; }
+        public string Action { get; set; }
+        public string FormName { get; set; }
+        public int ModuleId { get; set; }
+    }
 }

@@ -13,11 +13,26 @@ namespace CapitalInsurance.Controllers
     public class BaseController : Controller
     {
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
-        {            
+        {
+            try
+            {
+                HttpCookie usr = Request.Cookies["userCookie"] as HttpCookie;
+                int Id = Convert.ToInt32(usr["UserId"]);
+
+
+                if (Session["formPermission"] == null)
+                {
+                    IEnumerable<FormPermission> formPermission = new UserRepository().GetFormPermissions(Id);
+                    Session["formPermission"] = formPermission;
+                }
+            }
+            catch
+            {
+
+            }
             return base.BeginExecuteCore(callback, state);
 
         }
-
         public int UserID
         {
             get

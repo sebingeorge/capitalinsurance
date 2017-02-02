@@ -239,5 +239,16 @@ namespace Capital.DAL
                 return connection.Query<RegisterViewModel>(sql).FirstOrDefault();
             }
         }
+
+        public IEnumerable<FormPermission> GetFormPermissions(int UserId)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string query = @"SELECT F.FormId FROM Forms F
+                                INNER JOIN UserVsForms UF ON F.FormId = UF.FormId 
+                                WHERE UserId = @UserId";
+                return connection.Query<FormPermission>(query, new { UserId = UserId });
+            }
+        }
     }
 }

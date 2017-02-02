@@ -1,5 +1,6 @@
 ﻿@{
     var permissions = (Capital.Domain.ModuleWisePermission)Session["ModulePermission"];
+    var formPermission = (List<Capital.Domain.FormPermission>)Session["formPermission"];
 }
 <!DOCTYPE html>
 <html>
@@ -25,7 +26,7 @@
     <script src="~/Scripts/jquery.timepicker.min.js"></script>
 </head>
 
-<body>    
+<body>
     <div id="wrapper" class="toggled">
         <!-- Sidebar -->
         <div id="sidebar-wrapper" class="nav nav-pills nav-stacked">
@@ -38,110 +39,230 @@
                 <li>
                     @if (permissions.Admin)
                     {
-                        <a href="#" data-toggle="collapse" data-target="#first-level-1"><span><img src="~/Images/icon/admin.png" /></span>Admin<span class="caret arrow"></span></a>
-                        <div id="first-level-1" class="collapse">
-                            <ul>
-                                <li>
-                                    <a href="@Url.Action("Create", "Customer")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/customer.png" /></span>Customer</a>
-                                    <a href="@Url.Action("Create", "SalesManager")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/sales-Manager.png" /></span>Employee Details</a>
-                                    <a href="@Url.Action("Create", "InsuranceCompany")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/insurancecompany.png" /></span>Insurance Company</a>
-                                    <a href="@Url.Action("Create", "insuranceproduct")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/insuranceproduct.png" /></span>Coverage</a>
-                                    <a href="@Url.Action("Create", "Sales_Target")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/salestarget.png" /></span>Sales Target</a>
-                                    <a href="@Url.Action("UserList", "Account")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/admin.png" /></span>User Settings</a>
-                                </li>
-                            </ul>
-                        </div>
+
+                        if (formPermission != null)
+                        {
+                            <a href="#" data-toggle="collapse" data-target="#first-level-1"><span><img src="~/Images/icon/admin.png" /></span>Admin<span class="caret arrow"></span></a>
+                            <div id="first-level-1" class="collapse">
+                                <ul>
+                                    @if (formPermission.Find(x => x.FormId == 1) != null
+                                    || formPermission.Find(x => x.FormId == 2) != null
+                                    || formPermission.Find(x => x.FormId == 3) != null
+                                    || formPermission.Find(x => x.FormId == 4) != null
+                                    || formPermission.Find(x => x.FormId == 5) != null
+                                    || formPermission.Find(x => x.FormId == 6) != null)
+                                    {
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 1) != null)
+                                            {
+                                                <a href="@Url.Action("Create", "Customer")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/customer.png" /></span>Customer</a>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 2) != null)
+                                            {
+                                                <a href="@Url.Action("Create", "SalesManager")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/sales-Manager.png" /></span>Employee Details</a>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 3) != null)
+                                            {
+                                                <a href="@Url.Action("Create", "InsuranceCompany")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/insurancecompany.png" /></span>Insurance Company</a>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 4) != null)
+                                            {
+                                                <a href="@Url.Action("Create", "insuranceproduct")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/insuranceproduct.png" /></span>Coverage</a>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 5) != null)
+                                            {
+                                                <a href="@Url.Action("Create", "Sales_Target")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/salestarget.png" /></span>Sales Target</a>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 6) != null)
+                                            {
+                                                <a href="@Url.Action("UserList", "Account")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/admin.png" /></span>User Settings</a>
+                                            }
+
+                                        </li>
+                                    }
+                                </ul>
+
+                            </div>
+                        }
                     }
                     @if (permissions.Documentation)
                     {
-                        <a href="#" data-toggle="collapse" data-target="#first-level-2"><span><img src="~/Images/icon/operation.png" /></span>Documentation<span class="caret arrow"></span></a>
-                        <div id="first-level-2" class="collapse">
-                            <ul>
-                                <li>
-                                    <a href="@Url.Action("Create", "New_Policy", new { type = 1 })" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/newpolicy.png" /></span>New Policy</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-2"><span><img src="~/Images/icon/policyrenewal.png" /></span>Policy Renewal</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "Policy_Endorsement")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/endorsement.png" /></span>Policy Endorsement</a>
-                                </li>
-                            </ul>
-                        </div>
+                        if (formPermission != null)
+                        {
+                            <a href="#" data-toggle="collapse" data-target="#first-level-2"><span><img src="~/Images/icon/operation.png" /></span>Documentation<span class="caret arrow"></span></a>
+                            <div id="first-level-2" class="collapse">
+                                <ul>
+                                    @if (formPermission.Find(x => x.FormId == 9) != null
+                                    || formPermission.Find(x => x.FormId == 10) != null
+                                    || formPermission.Find(x => x.FormId == 11) != null)
+                                    {
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 9) != null)
+                                            {
+                                                <a href="@Url.Action("Create", "New_Policy", new { type = 1 })" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/newpolicy.png" /></span>New Policy</a>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 10) != null)
+                                            {
+                                                <a href="@Url.Action("Index", "Policy_Renewal")" data-toggle="collapse" data-target="#second-level-2"><span><img src="~/Images/icon/policyrenewal.png" /></span>Policy Renewal</a>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 11) != null)
+                                            {
+                                                <a href="@Url.Action("Index", "Policy_Endorsement")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/endorsement.png" /></span>Policy Endorsement</a>
+                                            }
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        }
                     }
                     @if (permissions.Sales)
                     {
-                        <a href="#" data-toggle="collapse" data-target="#first-level-22"><span><img src="~/Images/icon/operation.png" /></span>Sales<span class="caret arrow"></span></a>
-                        <div id="first-level-22" class="collapse">
-                            <ul>
-                                <li>
-                                    <a href="@Url.Action("PendingPolicyForCommitments", "New_Policy")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/newpolicy.png" /></span>Payment Commitments</a>
-                                </li>
-                              
-                                <li>
-                                    <a href="@Url.Action("Create", "DailyActivity")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Daily Activity</a>
-                                </li>
-                                @*<li>
-                                    <a href="@Url.Action("Index", "PolicySearch")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Policy Search</a>
-                                </li>*@
-                            </ul>
-                        </div>
+                        if (formPermission != null)
+                        {
+                            <a href="#" data-toggle="collapse" data-target="#first-level-22"><span><img src="~/Images/icon/operation.png" /></span>Sales<span class="caret arrow"></span></a>
+                            <div id="first-level-22" class="collapse">
+                                <ul>
+                                    @if (formPermission.Find(x => x.FormId == 13) != null
+                                    || formPermission.Find(x => x.FormId == 15) != null)
+                                    {
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 13) != null)
+                                            {
+                                                <a href="@Url.Action("PendingPolicyForCommitments", "New_Policy")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/newpolicy.png" /></span>Payment Commitments</a>
+                                            }
+                                        </li>
+
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 15) != null)
+                                            {
+                                                <a href="@Url.Action("Create", "DailyActivity")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Daily Activity</a>
+                                            }
+                                        </li>
+                                        @*<li>
+                                                <a href="@Url.Action("Index", "PolicySearch")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Policy Search</a>
+                                            </li>*@
+                                    }
+                                </ul>
+                            </div>
+                        }
                     }
                     @if (permissions.Finance)
                     {
-                        <a href="#" data-toggle="collapse" data-target="#first-level-23"><span><img src="~/Images/icon/operation.png" /></span>Finance<span class="caret arrow"></span></a>
-                        <div id="first-level-23" class="collapse">
-                            <ul>
-                                <li>
-                                    <a href="@Url.Action("PendingPolicyForPaymentDetails", "New_Policy")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/salestarget.png" /></span>Payment Collection</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "Customer_Invoice")" data-toggle="collapse" data-target="#second-level-4"><span><img src="~/Images/icon/invoice.png" /></span>Customer Invoice</a>
-                                </li>
-                                @*<li>
-                                    <a href="@Url.Action("PendingReceivableReport", "ReceivableReport")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/receivablereport.png" /></span>Receivable Reports</a>
-                                </li>*@
-                              
-                            </ul>
-                        </div>
+                        if (formPermission != null)
+                        {
+                            <a href="#" data-toggle="collapse" data-target="#first-level-23"><span><img src="~/Images/icon/operation.png" /></span>Finance<span class="caret arrow"></span></a>
+                            <div id="first-level-23" class="collapse">
+                                <ul>
+                                    @if (formPermission.Find(x => x.FormId == 16) != null
+                                    || formPermission.Find(x => x.FormId == 17) != null)
+                                    {
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 16) != null)
+                                            {
+                                                <a href="@Url.Action("PendingPolicyForPaymentDetails", "New_Policy")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/salestarget.png" /></span>Payment Collection</a>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 17) != null)
+                                            {
+                                                <a href="@Url.Action("Index", "Customer_Invoice")" data-toggle="collapse" data-target="#second-level-4"><span><img src="~/Images/icon/invoice.png" /></span>Customer Invoice</a>
+                                            }
+                                        </li>
+                                        @*<li>
+                                                <a href="@Url.Action("PendingReceivableReport", "ReceivableReport")" data-toggle="collapse" data-target="#second-level-3"><span><img src="~/Images/icon/receivablereport.png" /></span>Receivable Reports</a>
+                                            </li>*@
+                                    }
+                                </ul>
+                            </div>
+                        }
                     }
                     @if (permissions.MISReports)
                     {
-                        <a href="#" data-toggle="collapse" data-target="#first-level-3"><span><img src="~/Images/icon/mis.png" /></span>Reports<span class="caret arrow"></span></a>
-                        <div id="first-level-3" class="collapse">
-                            <ul>
-                                <li>
-                                    <a href="@Url.Action("AddingFields", "BusinessView")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Business View</a>
-                                </li>
-                              
-                                <li>
-                                    <a href="@Url.Action("Index", "SalesAchievementReport")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/salesachivementreport.png" /></span>Sales Achievement Report</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "TotalSalesTargetReport")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/salesachivementreport.png" /></span>Total Sales Target Report</a>
-                                </li>
-                                <li>
-                                        <a href="@Url.Action("Index", "InsuranceCompanyPayableReport")" data-toggle="collapse" data-target="#second-level-2"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Insurance Company Payable</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "DailyActivity")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Daily Activity Report</a>
-                                </li>
+                        if (formPermission != null)
+                        {
+                            <a href="#" data-toggle="collapse" data-target="#first-level-3"><span><img src="~/Images/icon/mis.png" /></span>Reports<span class="caret arrow"></span></a>
+                            <div id="first-level-3" class="collapse">
+                                <ul>
+                                    @if (formPermission.Find(x => x.FormId == 18) != null
+                                    || formPermission.Find(x => x.FormId == 19) != null
+                                    || formPermission.Find(x => x.FormId == 20) != null
+                                    || formPermission.Find(x => x.FormId == 21) != null
+                                    || formPermission.Find(x => x.FormId == 22) != null
+                                    || formPermission.Find(x => x.FormId == 23) != null
+                                    || formPermission.Find(x => x.FormId == 24) != null
+                                    || formPermission.Find(x => x.FormId == 25) != null)
+                                    {
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 18) != null)
+                                            {
+                                                <a href="@Url.Action("AddingFields", "BusinessView")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Business View</a>
+                                            }
+                                        </li>
 
-                                <li>
-                                    <a href="@Url.Action("Index", "MISReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>MIS Report</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "AgeingSummaryReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Ageing Summary Report</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "PolicyRenewalSummaryReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Renewal Summary Report</a>
-                                </li>
-                                @*<li>
-                                    <a href="@Url.Action("Index", "MonthlyCommittedReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Monthly Commitments</a>
-                                </li>*@
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 19) != null)
+                                            {
+                                                <a href="@Url.Action("Index", "SalesAchievementReport")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/salesachivementreport.png" /></span>Sales Achievement Report</a>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 20) != null)
+                                            {
+                                                <a href="@Url.Action("Index", "TotalSalesTargetReport")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/salesachivementreport.png" /></span>Total Sales Target Report</a>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 21) != null)
+                                            {
+                                                <a href="@Url.Action("Index", "InsuranceCompanyPayableReport")" data-toggle="collapse" data-target="#second-level-2"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Insurance Company Payable</a>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 22) != null)
+                                            {
+                                                <a href="@Url.Action("Index", "DailyActivity")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Daily Activity Report</a>
+                                            }
+                                        </li>
 
-                            </ul>
-                        </div>
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 23) != null)
+                                            {
+                                                <a href="@Url.Action("Index", "MISReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>MIS Report</a>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 24) != null)
+                                            {
+                                                <a href="@Url.Action("Index", "AgeingSummaryReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Ageing Summary Report</a>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (formPermission.Find(x => x.FormId == 25) != null)
+                                            {
+                                                <a href="@Url.Action("Index", "PolicyRenewalSummaryReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Renewal Summary Report</a>
+                                            }
+                                        </li>
+                                        @*<li>
+                                                <a href="@Url.Action("Index", "MonthlyCommittedReport")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/dailyactivityreport.png" /></span>Monthly Commitments</a>
+                                            </li>*@
+                                    }
+                                </ul>
+                            </div>
+                        }
                     }
                 <li>
                     @*<a href="@Url.Action("LogOff", "Account")" data-toggle="collapse" data-target="##second-level-5"><span><img src="~/Images/icon/logout.png" /></span>Logout</a>*@
@@ -162,14 +283,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" width="40" /></a></li>
-                  
+
                     @*<li class="top-button"><a href="@Url.Action("Index", "Home")">Home</a></li>*@
                 </ul>
-               
+
                 @Html.Action("LoadQuickView", "Home")
                 @*@Html.Partial("_LoginPartial")*@
             </div>
-           
+
         </div>
     </div>
     <div class="container body-content">
@@ -204,4 +325,3 @@
     </script>
 </body>
 </html>
-

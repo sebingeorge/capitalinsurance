@@ -109,7 +109,7 @@ namespace CapitalInsurance.Controllers
         {
             var userData = String.Format("{0}|{1}|{2}|{3}|{4}",
                 user.UserId, user.UserName, user.UserPassword, user.UserEmail, user.UserRole);
-            var ticket = new FormsAuthenticationTicket(1, userData, DateTime.UtcNow, DateTime.UtcNow.AddMinutes(30), isPersistent, userData, FormsAuthentication.FormsCookiePath);
+            var ticket = new FormsAuthenticationTicket(1, userData, DateTime.UtcNow, DateTime.UtcNow.AddMinutes(360), isPersistent, userData, FormsAuthentication.FormsCookiePath);
             var encryptedTicket = FormsAuthentication.Encrypt(ticket);
             var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket) { HttpOnly = true };
             cookiecollection.Add(authCookie);
@@ -122,7 +122,7 @@ namespace CapitalInsurance.Controllers
             userCookie.Values.Add("UserRole", user.UserRole.ToString());
             cookiecollection.Add(userCookie);
             Session.Add("user", userCookie);
-
+            Session.Timeout = 360;
             UserRepository repo = new UserRepository();
             string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
             repo.InsertLoginHistory(user, Session.SessionID.ToString(), ip, OrganizationId.ToString());
@@ -625,6 +625,7 @@ namespace CapitalInsurance.Controllers
 
         protected override void Dispose(bool disposing)
         {
+            Session.Remove("formPermission");
             if (disposing)
             {
                 if (_userManager != null)
@@ -642,7 +643,7 @@ namespace CapitalInsurance.Controllers
 
             base.Dispose(disposing);
         }
-
+      
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

@@ -10,5 +10,6 @@ namespace Capital.Domain
     {
 
         public IEnumerable<MonthlyAcheivementcoveragewise> MonthlyAcheivementcoveragewise { get; set; }
+        public IEnumerable<MonthlySales> MonthlySales { get; set; }
     }
 }

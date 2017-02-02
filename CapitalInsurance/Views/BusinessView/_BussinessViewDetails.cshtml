@@ -2,8 +2,8 @@
 @model List<Capital.Domain.PolicyIssue>
 @using GridMvc.Html
 @{
-     string[] a=ViewBag.tags;
-     TempData["tags"] = ViewBag.tags;
+    string[] a = (string[])Session["Tags"];
+     //TempData["tags"] = ViewBag.tags;
 }
 
 <div class="table-responsive scroll3">
@@ -161,7 +161,7 @@
             columns.Add(m => m.Aging).Titled("AGEING").SetWidth(20);
         }
 
-    }).WithPaging(15).SetRowCssClasses(x => "rowfocus")
+    }).WithPaging(15).SetRowCssClasses(x => x.SalesMgName == x.SalesMgName ? "rowfocus" : "")
 
 
 </div>
