@@ -10,7 +10,7 @@ namespace Capital.DAL
 {
     public class MisReportRepository : BaseRepository
     {
-
+               
         static string dataConnection = GetConnectionString("CibConnection");
         public IEnumerable<MonthlyAcheivementcoveragewise> GetmonthlycoverageAchivement()
         {
@@ -18,7 +18,7 @@ namespace Capital.DAL
             {
                 string sql = @"select InsPrdName coverage,sum(CommissionAmount) TotalAmount from PolicyIssue p
 							inner join InsuranceProduct ip on ip.InsPrdId=p.InsPrdId
-							where DATEPART(month,TranDate)=DATEPART(month,GETDATE())
+							where DATEPART(month,TranDate)=DATEPART(month,GETDATE()) and DATEPART(YEAR,TranDate)=DATEPART(YEAR,GETDATE())
 							group by InsPrdName order by TotalAmount desc";
 
                 return connection.Query<MonthlyAcheivementcoveragewise>(sql);
@@ -41,23 +41,52 @@ namespace Capital.DAL
 
 
 
-        public IEnumerable<EmployeeAchievementVsTraget> GetEmployeeTargetAchivement()
+        public IEnumerable<EmployeeAchievementVsTraget> GetEmployeeTargetAchivement(int Id)
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select sm.SalesMgName slmgname ,sm.SalesMgId slmgcode,sum(TotalPremium) achivement,0 target  into #Temp from  PolicyIssue Pi
+
+                string sql = @"select SalesMgId into #TEMP1 from [User]  U  WHERE U.UserId=@Id 
+                            union all
+                            select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U  WHERE U.UserId=@Id )
+                            union all
+                            select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U  WHERE U.UserId=@Id ))
+                            union all
+                            select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U  WHERE U.UserId=@Id )))
+
+
+
+
+
+                                select sm.SalesMgName slmgname ,sm.SalesMgId slmgcode,sum(TotalPremium) achivement,0 target  into #Temp from  PolicyIssue Pi
                                
                                 inner join SalesManager SM on SM.SalesMgId= Pi.SalesMgId
-								where DATEPART(Year,pi.TranDate)=  DATEPART(Year, GETDATE()) 
+								where DATEPART(Year,pi.TranDate)=  DATEPART(Year, GETDATE()) AND sm.SalesMgId IN(SELECT SalesMgId FROM #TEMP1 )
                                 group by sm.SalesMgName,sm.SalesMgId;
 
-                            with A as(select SalesMgId SalesMg,sum(Total) total from SalesTarget St inner join FinancialYear FY on FyName=  DATEPART(Year, GETDATE())  where St.FyId=fy.FyId group by SalesMgId )
+                               with A as(select SalesMgId SalesMg,sum(Total) total from SalesTarget St inner join FinancialYear FY on FyName=  DATEPART(Year, GETDATE())  where St.FyId=fy.FyId group by SalesMgId )
 
-                            update #Temp set target=A.total from A where #Temp.slmgcode=a.SalesMg;
+                               update #Temp set target=A.total from A where #Temp.slmgcode=a.SalesMg;
 
-							select * from #Temp";
+							   select * from #Temp";
 
-                return connection.Query<EmployeeAchievementVsTraget>(sql);
+                return connection.Query<EmployeeAchievementVsTraget>(sql, new { Id = Id });
+
+  
+            }
+        }
+
+
+        public IEnumerable<CoverageVsSales> GetCoverageVsSales()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"select ip.InsPrdName Coverage,sum(PremiumAmount) TotalAmount from PolicyIssue p
+							inner join InsuranceProduct ip on ip.InsPrdId=p.InsPrdId
+							 where DATEPART(YEAR,TranDate)= DATEPART(YEAR,GETDATE())
+							 group by ip.InsPrdName";
+
+                return connection.Query<CoverageVsSales>(sql);
             }
         }
 

@@ -13,7 +13,18 @@ namespace CapitalInsurance.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+
+            Dashboard dashboard = new Dashboard();
+            MisReportRepository repo = new MisReportRepository();
+
+
+            dashboard.MonthlyAcheivementcoveragewise = repo.GetmonthlycoverageAchivement();
+            dashboard.MonthlySales = repo.GetmonthlySales();
+            dashboard.EmployeeAchievementVsTraget = repo.GetEmployeeTargetAchivement(UserID);
+            dashboard.CoverageVsSales = repo.GetCoverageVsSales();
+
+            return View(dashboard);
+            //return View();
         }
 
         public ActionResult About()

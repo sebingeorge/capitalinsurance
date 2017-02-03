@@ -13,7 +13,7 @@ namespace CapitalInsurance.Controllers
     public class BaseController : Controller
     {
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
-        {
+       {
             try
             {
                 HttpCookie usr = Request.Cookies["userCookie"] as HttpCookie;

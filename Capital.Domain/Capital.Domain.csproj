@@ -49,6 +49,7 @@
     <Compile Include="AgeingSummary.cs" />
     <Compile Include="BussinessView.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="CoverageVsSales.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerCategory.cs" />
     <Compile Include="CustomerInvoice.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="RegisterViewModel.cs" />
     <Compile Include="RenewalSummary.cs" />
     <Compile Include="Required.cs" />
+    <Compile Include="ResetPassword.cs" />
     <Compile Include="Result.cs" />
     <Compile Include="SalesAchievement.cs" />
     <Compile Include="SalesManager.cs" />

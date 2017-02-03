@@ -13,5 +13,7 @@ namespace Capital.Domain
         public IEnumerable<MonthlySales> MonthlySales { get; set; }
 
         public IEnumerable<EmployeeAchievementVsTraget> EmployeeAchievementVsTraget { get; set; }
+
+        public IEnumerable<CoverageVsSales> CoverageVsSales { get; set; }
     }
 }

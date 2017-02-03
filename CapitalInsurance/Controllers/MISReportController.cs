@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace CapitalInsurance.Controllers
 {
-    public class MISReportController : Controller
+    public class MISReportController : BaseController
     {
         // GET: MISReport
         public ActionResult Index()
@@ -20,7 +20,8 @@ namespace CapitalInsurance.Controllers
 
             dashboard.MonthlyAcheivementcoveragewise = repo.GetmonthlycoverageAchivement();
             dashboard.MonthlySales = repo.GetmonthlySales();
-            dashboard.EmployeeAchievementVsTraget = repo.GetEmployeeTargetAchivement();
+            dashboard.EmployeeAchievementVsTraget = repo.GetEmployeeTargetAchivement(UserID);
+            dashboard.CoverageVsSales = repo.GetCoverageVsSales();
 
             return View(dashboard);
   
