@@ -18,7 +18,7 @@ namespace Capital.DAL
             {
                 string sql = @"select InsPrdName coverage,sum(CommissionAmount) TotalAmount from PolicyIssue p
 							inner join InsuranceProduct ip on ip.InsPrdId=p.InsPrdId
-							where DATEPART(month,TranDate)=DATEPART(month,GETDATE())
+							where DATEPART(month,TranDate)=DATEPART(month,GETDATE()) and DATEPART(YEAR,TranDate)=DATEPART(YEAR,GETDATE())
 							group by InsPrdName order by TotalAmount desc";
 
                 return connection.Query<MonthlyAcheivementcoveragewise>(sql);
@@ -58,6 +58,20 @@ namespace Capital.DAL
 							select * from #Temp";
 
                 return connection.Query<EmployeeAchievementVsTraget>(sql);
+            }
+        }
+
+
+        public IEnumerable<CoverageVsSales> GetCoverageVsSales()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                string sql = @"select ip.InsPrdName Coverage,sum(PremiumAmount) TotalAmount from PolicyIssue p
+							inner join InsuranceProduct ip on ip.InsPrdId=p.InsPrdId
+							 where DATEPART(YEAR,TranDate)= DATEPART(YEAR,GETDATE())
+							 group by ip.InsPrdName";
+
+                return connection.Query<CoverageVsSales>(sql);
             }
         }
 
