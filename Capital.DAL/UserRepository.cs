@@ -250,5 +250,26 @@ namespace Capital.DAL
                 return connection.Query<FormPermission>(query, new { UserId = UserId });
             }
         }
+        public int UpdateUserPassword(User user)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                try
+                {
+                    string sql = "";
+                    if (user.UserPassword != null && user.UserPassword != "")
+                    {
+                         sql = "Update [User] set UserPassword = @UserPassword, @UserSalt = UserSalt where UserId = @UserId;";
+                    }
+                      connection.Query(sql, user);
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+            //InsertLoginHistory(dataConnection, user.CreatedBy, "Update", "Unit", user.UserId.ToString(), "0");
+            return user.UserId ?? 0;
+        }
     }
 }
