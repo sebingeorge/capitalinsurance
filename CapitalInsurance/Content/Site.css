@@ -403,7 +403,7 @@ margin-bottom:20px;
 }
 table thead tr th
 {
-    height:18px;
+    height:10px;
 }
 
 .content-in .footer th 
@@ -417,8 +417,8 @@ table thead tr th
     border-radius:5px 5px 0 0;
     -moz-border-radius:5px 5px 0 0;
     color:#fff;
-    background:/*#10a4d4*/#0099cc;
-    height:18px;
+    background:#681d44;
+    height:10px;
     /*line-height:18px;*/
     padding-left:5px;
     padding-right:5px;
