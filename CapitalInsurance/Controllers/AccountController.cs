@@ -416,47 +416,7 @@ namespace CapitalInsurance.Controllers
             return View();
         }
 
-        //
-        // GET: /Account/ResetPassword
-        [AllowAnonymous]
-        public ActionResult ResetPassword(string code)
-        {
-            return code == null ? View("Error") : View();
-        }
 
-        //
-        // POST: /Account/ResetPassword
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            var user = await UserManager.FindByNameAsync(model.Email);
-            if (user == null)
-            {
-                // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
-            if (result.Succeeded)
-            {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
-            AddErrors(result);
-            return View();
-        }
-
-        //
-        // GET: /Account/ResetPasswordConfirmation
-        [AllowAnonymous]
-        public ActionResult ResetPasswordConfirmation()
-        {
-            return View();
-        }
 
         //
         // POST: /Account/ExternalLogin
@@ -703,6 +663,37 @@ namespace CapitalInsurance.Controllers
         }
         #endregion
 
-      
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult ResetPassword(Capital.Domain.ResetPassword model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                Capital.Domain.User user = new Capital.Domain.User()
+                {
+                    ConfirmPassword = model.Password,
+                    UserId = UserID,
+                    UserPassword = model.Password,
+                    UserSalt = ConfigurationManager.AppSettings["salt"].ToString(),
+
+                };
+                int res = 0;
+                if (user.UserPassword != null && user.UserPassword != "")
+                {
+                    string salt = ConfigurationManager.AppSettings["salt"].ToString();
+                    string saltpassword = String.Concat(salt, user.UserPassword);
+                    string hashedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(saltpassword, "sha1");
+
+                    user.UserPassword = hashedPassword;
+                    user.UserSalt = salt;
+                }
+
+                res = (new UserRepository()).UpdateUserPassword(user);
+            }
+            return RedirectToAction("LogOff");
+
+        }
+
     }
 }

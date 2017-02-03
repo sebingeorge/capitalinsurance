@@ -83,6 +83,7 @@
     <Compile Include="RegisterViewModel.cs" />
     <Compile Include="RenewalSummary.cs" />
     <Compile Include="Required.cs" />
+    <Compile Include="ResetPassword.cs" />
     <Compile Include="Result.cs" />
     <Compile Include="SalesAchievement.cs" />
     <Compile Include="SalesManager.cs" />
