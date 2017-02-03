@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace CapitalInsurance.Controllers
 {
-    public class Sales_TargetController : Controller
+    public class Sales_TargetController : BaseController
     {
         // GET: Sales_Target
         public ActionResult Index()

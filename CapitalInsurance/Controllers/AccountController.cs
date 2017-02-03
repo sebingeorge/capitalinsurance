@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace CapitalInsurance.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -571,7 +571,7 @@ namespace CapitalInsurance.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
-
+      
         //
         // POST: /Account/LogOff
 
@@ -702,5 +702,7 @@ namespace CapitalInsurance.Controllers
             }
         }
         #endregion
+
+      
     }
 }

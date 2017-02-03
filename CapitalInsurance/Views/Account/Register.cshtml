@@ -123,7 +123,7 @@
         <div class="row">
             <div class="main-grid main-grid-top" id="divUserPermissions">
                 <ul style="visibility: visible;" class="nav nav-tabs test2" id="tabUserPermissions">
-                    <li class="active"><a data-toggle="tab" href="#home" aria-expanded="false">Module Wise Permissions</a></li>
+                    <li class="active"><a data-toggle="tab" href="#home" aria-expanded="false" >Module Wise Permissions </a></li>
                     <li class="" style="display:none"><a data-toggle="tab" href="#menu5" aria-expanded="false">Form Permissions</a></li>
                 </ul>
                 <div class="tab-content">
@@ -173,6 +173,7 @@
                                         @onchange = "OnModuleComboChanged(this.value)"
                                     })
                             </div>
+                            <br/>
                         </div>
                         <div class="table-responsive">
                             @for (int j = 0, i = 0; j < Model.Module.Count; j++)

@@ -43,6 +43,7 @@ else
 }
 <script>
     function Logout() {
+        alert("hello");
         var cfm = confirm("Are you sure to logout?");
         if (!cfm) {
             return false;
@@ -52,11 +53,22 @@ else
             location.href = url;
         }
     }
+    function changepassword() {
+        var url = '@Url.Action("ChangePassword", "Home")';
+      
+        $('#changepwrd').html('Change Password...<br><br>');
+        $('#changepwrd').load(url);
+        $('#details-modal').modal('show');
+    }
+
 </script>
 
 <ul class="nav navbar-nav right cib">
    <li><a href="@Url.Action("Index", "PolicySearch")""><i class=" glyphicon glyphicon-search policy-search-icon" title="Policy search"></i></a></li>
+   
     <li><a href="#" title="click to see user information">@username</a></li>
+   
+<li><a href="#" value="change password" onclick="changepassword()" style="width: 150px;" data-toggle="modal" data-target="#changepasswordPopup">Change Password</a></li>
     <li><a href="#"><i class="glyphicon glyphicon-off" onclick="Logout()" title="Logout"></i></a></li>
 </ul>
 <div class="alert1">
@@ -98,3 +110,23 @@ else
         </ul>
 </div>
 
+ <!-- Modal -->
+<div class="modal fade" id="changepasswordPopup" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Change Password</h4>
+            </div>
+            <div class="modal-body">
+                <p id="changepwrd"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

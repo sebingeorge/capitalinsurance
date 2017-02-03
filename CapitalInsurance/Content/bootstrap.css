@@ -3875,14 +3875,19 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .nav-tabs > li > a {
+  background-color:#2db4e3;
   margin-right: 2px;
   line-height: 1.428571429;
   border: 1px solid transparent;
   border-radius: 4px 4px 0 0;
+  color:#fff;
 }
 
 .nav-tabs > li > a:hover {
-  border-color: #eeeeee #eeeeee #dddddd;
+    border-color: #eeeeee #eeeeee #dddddd;
+  text-decoration:none;
+  background-color:#1e8fb6;
+  /*border-color: #eeeeee #eeeeee #dddddd;*/
 }
 
 .nav-tabs > li.active > a,

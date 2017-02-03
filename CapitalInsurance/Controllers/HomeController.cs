@@ -46,5 +46,10 @@ namespace CapitalInsurance.Controllers
           
             return PartialView("_LoginPartial", view);
         }
+        public ActionResult ChangePassword()
+        {
+
+            return PartialView("_ChangePassword");
+        }
     }
 }
