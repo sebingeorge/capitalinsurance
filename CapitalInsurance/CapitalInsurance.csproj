@@ -558,6 +558,7 @@
     <Content Include="Views\PolicySearch\_PolicySearch.cshtml" />
     <Content Include="Views\PolicySearch\_NewPolicyList.cshtml" />
     <Content Include="Views\PolicySearch\Edit.cshtml" />
+    <Content Include="Views\Home\_ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
