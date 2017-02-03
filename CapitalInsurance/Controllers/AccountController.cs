@@ -571,7 +571,7 @@ namespace CapitalInsurance.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
-
+      
         //
         // POST: /Account/LogOff
 
@@ -702,5 +702,7 @@ namespace CapitalInsurance.Controllers
             }
         }
         #endregion
+
+      
     }
 }

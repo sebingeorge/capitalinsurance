@@ -5672,7 +5672,27 @@ body.modal-open,
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
           box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   background-clip: padding-box;
+  
 }
+.mtop1 
+{
+    margin-top:100px;
+}
+.changepassword 
+{
+    background-color:#fff;
+    height:250px;
+    margin-left:150px;
+
+}
+
+    .changepassword label 
+    {
+    font-size:12px;
+    font-weight:normal;
+    color:#555454;
+    }
+
 
 .modal-backdrop {
   position: fixed;
@@ -5680,7 +5700,7 @@ body.modal-open,
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1030;
+  z-index: -999/*1030*/;
   background-color: #000000;
 }
 

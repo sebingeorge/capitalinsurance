@@ -769,6 +769,12 @@ table thead tr th
 
 @media (min-width: 768px) and (max-width: 991px) {
 
+        .changepassword 
+    {
+        margin-left:0 !important;
+        height:296px !important;
+    }
+
     .menu-icon
     {
         left:6px !important;
@@ -795,6 +801,11 @@ table thead tr th
 }
 
 @media (min-width: 320px) and (max-width: 650px) {
+    .changepassword 
+    {
+        margin-left:0 !important;
+        height:296px !important;
+    }
     .outer-login h2 
     {
         font-size:16px !important;
