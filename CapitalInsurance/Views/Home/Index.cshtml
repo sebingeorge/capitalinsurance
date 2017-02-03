@@ -1,8 +1,439 @@
-﻿@{
+﻿
+
+@model  Capital.Domain.Dashboard
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 
-<div class="container body">
+@{
 
+    string CoverageType = string.Empty;
+    string totAmount = string.Empty;
+
+    string Month = string.Empty;
+    string totalamount = string.Empty;
+
+    string salesMg = string.Empty;
+    string achiv = string.Empty;
+
+
+    string target = string.Empty;
+
+    string Coverage = string.Empty;
+    string Amount = string.Empty;
+
+
+
+
+    foreach (var item in Model.MonthlyAcheivementcoveragewise)
+    {
+
+        if (CoverageType == string.Empty)
+        {
+            CoverageType = "'" + item.coverage + "'";
+        }
+        else
+        {
+            CoverageType += ",'" + item.coverage + "'";
+        }
+        if (totAmount == string.Empty)
+        {
+            totAmount = "" + item.TotalAmount + "";
+        }
+        else
+        {
+            totAmount += ", " + item.TotalAmount + "";
+        }
+    }
+
+
+    foreach (var item in Model.MonthlySales)
+    {
+
+        if (Month == string.Empty)
+        {
+            Month = "'" + item.Monthly + "'";
+        }
+        else
+        {
+            Month += ",'" + item.Monthly + "'";
+        }
+        if (totalamount == string.Empty)
+        {
+            totalamount = "" + item.TotalAmount + "";
+        }
+        else
+        {
+            totalamount += ", " + item.TotalAmount + "";
+        }
+    }
+
+
+    foreach (var item in Model.EmployeeAchievementVsTraget)
+    {
+
+        if (salesMg == string.Empty)
+        {
+            salesMg = "'" + item.slmgname + "'";
+        }
+        else
+        {
+            salesMg += ",'" + item.slmgname + "'";
+        }
+        if (achiv == string.Empty)
+        {
+            achiv = "" + item.achivement + "";
+        }
+        else
+        {
+            achiv += ", " + item.achivement + "";
+        }
+
+        if (target == string.Empty)
+        {
+            target = "" + item.target + "";
+        }
+        else
+        {
+            target += ", " + item.target + "";
+        }
+    }
+
+    foreach (var item in Model.CoverageVsSales)
+    {
+
+        if (Coverage == string.Empty)
+        {
+            Coverage = "'" + item.Coverage + "'";
+        }
+        else
+        {
+            Coverage += ",'" + item.Coverage + "'";
+        }
+        if (Amount == string.Empty)
+        {
+            Amount = "" + item.TotalAmount + "";
+        }
+        else
+        {
+            Amount += ", " + item.TotalAmount + "";
+        }
+    }
+}
+<script>
+    $(function () {
+        // Create the chart
+        //MonthlySales();
+        SalesVsTarget();
+        //SalesVsTargetMonthly();
+        //MonthlyProductWiseSales();
+        //MonthlyCWiseSales();
+        //showMonthlyAchivementOnCoverage();
+    });
+    function MonthlySales() {
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column',
+                renderTo: 'Monthly Sales'
+            },
+            title: {
+                text: 'Monthly Sales'
+            },
+            subtitle: {
+                text: 'Monthly Achievement for Last Six Months.'
+            },
+            xAxis: {
+                //type: 'category'
+
+                categories: [@Html.Raw(Month)],
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '11px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Total Sales in QAR'
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+            },
+
+            series: [{
+                name: 'Amount',
+                colorByPoint: true,
+                data: [@totalamount]
+
+            }]
+
+
+
+        });
+    }
+    function SalesVsTarget() {
+        Highcharts.chart('container1', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Executive Wise Sales Target Vs Acheivement '
+            },
+
+            subtitle: {
+                text: 'Current Year.'
+            },
+
+            xAxis: {
+                //type: 'category'
+
+                categories: [@Html.Raw(salesMg)],
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '11px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+
+                }
+            },
+
+            //crosshair: true
+
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Target vs Acheivement (QAR)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Target',
+                data: [@target]
+            }, {
+                name: 'Acheivement',
+                data: [@achiv]
+
+            }]
+        });
+    }
+    //function SalesVsTargetMonthly() {
+    //    Highcharts.chart('container2', {
+    //        chart: {
+    //            type: 'column'
+    //        },
+    //        title: {
+    //            text: 'Monthly Sales Target Vs Acheivement 2016'
+    //        },
+    //        xAxis: {
+    //            categories: [
+    //                'Jan',
+    //                'Feb',
+    //                'Mar',
+    //                'Apr',
+    //                'May',
+    //                'Jun',
+    //                'Jul',
+    //                'Aug',
+    //                'Sep',
+    //                'Oct',
+    //                'Nov',
+    //                'Dec'
+    //            ],
+    //            crosshair: true
+    //        },
+    //        yAxis: {
+    //            min: 0,
+    //            title: {
+    //                text: 'Target vs Acheivement (QAR)'
+    //            }
+    //        },
+    //        tooltip: {
+    //            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+    //            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+    //                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+    //            footerFormat: '</table>',
+    //            shared: true,
+    //            useHTML: true
+    //        },
+    //        plotOptions: {
+    //            column: {
+    //                pointPadding: 0.2,
+    //                borderWidth: 0
+    //            }
+    //        },
+    //        series: [{
+    //            name: 'Target',
+    //            data: [49900, 71500, 106400, 12920, 14400, 17600, 13560, 14850, 21640, 19410, 95600, 54400]
+
+    //        }, {
+    //            name: 'Acheivement',
+    //            data: [83600, 78800, 98500, 93400, 10600, 84500, 10500, 10430, 91200, 83500, 10660, 92300]
+
+    //        }]
+    //    });
+    //}
+    function MonthlyCWiseSales() {
+        Highcharts.chart('container3', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Coverage Wise Sales'
+            },
+            subtitle: {
+                text: 'Current Year'
+            },
+            xAxis: {
+                //type: 'category'
+
+                categories: [@Html.Raw(Coverage)],
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '11px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Total Sales in QAR'
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+            },
+
+            series: [{
+                name: 'Amount',
+                colorByPoint: true,
+                data: [@Amount]
+
+            }],
+
+        });
+    }
+
+    function showMonthlyAchivementOnCoverage() {
+        chart1 = new Highcharts.chart('container4', {
+            chart: {
+                type: 'column',
+                renderTo: 'Monthly Achievement'
+            },
+            title: {
+                text: 'Monthly Achievement'
+            },
+            subtitle: {
+                text: 'Monthly Achievement for current Month.'
+            },
+            xAxis: {
+                //type: 'category',
+                categories: [@Html.Raw(CoverageType)],
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '11px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Achieved Amount'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Amount',
+                data: [@totAmount]
+
+            }]
+
+        });
+    }
+
+</script>
+
+
+<div class="container content-in">
+    <div class="row">
+        <h1> Executive Dashboard</h1>
+    </div>
+    @*<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>*@
+    <div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    @*<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>*@
+    @*<div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div id="container4" style="min-width: 310px; height: 400px; margin: 0 auto"></div>*@
 </div>
