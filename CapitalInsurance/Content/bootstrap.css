@@ -5680,7 +5680,7 @@ body.modal-open,
 }
 .changepassword 
 {
-    background-color:#fff;
+    background-color:#e4f6fc;
     height:250px;
     margin-left:150px;
 
@@ -5717,7 +5717,7 @@ body.modal-open,
 .modal-header {
   min-height: 16.428571429px;
   padding: 15px;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #868787;
 }
 
 .modal-header .close {
