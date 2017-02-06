@@ -21,7 +21,7 @@ namespace Capital.DAL
 //                string sql = @"select FyId,ST.SalesMgId,SalesMgName,Quarer1,Quarer2,Quarer3,Quarer4,Total from SalesTarget ST
 //                               left join SalesManager S on S.SalesMgId=ST.SalesMgId where FyId=" + FyId + "  order by SalesMgName";
                 string sql = @"select FyId,S.SalesMgId,SalesMgName,Quarer1,Quarer2,Quarer3,Quarer4,Total from SalesManager S   left join SalesTarget ST
-                               on S.SalesMgId=ST.SalesMgId where DsgId in (9,10,11) and FyId=" + FyId + "  order by SalesMgName";
+                               on S.SalesMgId=ST.SalesMgId where DsgId in (9,10,11,2) and FyId=" + FyId + "  order by SalesMgName";
                 var objSalesTarget = connection.Query<SalesTargetItem>(sql).ToList<SalesTargetItem>();
                 return objSalesTarget;
             }
@@ -30,7 +30,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select * from SalesManager where DsgId in (9,10,11) order by SalesMgName";
+                string sql = @"select * from SalesManager where DsgId in (9,10,11,2) order by SalesMgName";
                 var objSalesTarget = connection.Query<SalesTargetItem>(sql).ToList<SalesTargetItem>();
                 return objSalesTarget;
             }

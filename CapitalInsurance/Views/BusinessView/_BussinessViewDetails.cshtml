@@ -81,7 +81,9 @@
         }
         if (@a.Contains("Model.EffectiveDate"))
         {
-            columns.Add(m => m.EffectiveDate).Format("{0:dd/MM/yyyy}").Titled("INCEPTION DATE").SetWidth(20);
+           
+                columns.Add(m => m.EffectiveDate).Format("{0:dd/MM/yyyy}").Titled("INCEPTION DATE").SetWidth(20);
+          
         }
         if (@a.Contains("Model.ExpiryDate"))
         {
@@ -89,7 +91,6 @@
         }
         if (@a.Contains("Model.RenewalDate"))
         {
-
             columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("RENEWAL DATE").SetWidth(5);
         }
         if (@a.Contains("Model.EndorcementDate"))
