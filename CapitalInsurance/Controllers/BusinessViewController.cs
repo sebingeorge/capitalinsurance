@@ -299,17 +299,40 @@ namespace CapitalInsurance.Controllers
                 }
                 if (tags.Contains("Model.EffectiveDate"))
                 {
+                    if (item.EffectiveDate != DateTime.MinValue)
+                    {
                     sb.AppendFormat("<td>{1}</td>", (Char)34, item.EffectiveDate.ToString("dd-MMM-yyyy"));
+                    }
+                    else
+                    {
+                        sb.AppendFormat("<td>{1}</td>", (Char)34,"        -");
+                    }
+
                 }
                 if (tags.Contains("Model.ExpiryDate"))
-                {
-                    sb.AppendFormat("<td>{1}</td>", (Char)34, item.ExpiryDate.ToString("dd-MMM-yyyy"));
-                }
-                if (tags.Contains("Model.RenewalDate"))
-                {
 
-                    sb.AppendFormat("<td>{1}</td>", (Char)34, item.RenewalDate.ToString("dd-MMM-yyyy"));
-                }
+                    if (item.ExpiryDate != DateTime.MinValue)
+                    {
+                        sb.AppendFormat("<td>{1}</td>", (Char)34, item.ExpiryDate.ToString("dd-MMM-yyyy"));
+                    }
+                    else
+                    {
+                        sb.AppendFormat("<td>{1}</td>", (Char)34, "       -");
+                    }
+
+     
+
+                if (tags.Contains("Model.RenewalDate"))
+
+                    if (item.RenewalDate != DateTime.MinValue)
+                    {
+                        sb.AppendFormat("<td>{1}</td>", (Char)34, item.RenewalDate.ToString("dd-MMM-yyyy"));
+                    }
+                    else
+                    {
+                        sb.AppendFormat("<td>{1}</td>", (Char)34,"       -");
+                    }
+              
                 if (tags.Contains("Model.EndorcementDate"))
                 {
                     sb.AppendFormat("<td>{1}</td>", (Char)34, item.EndorcementDate);
