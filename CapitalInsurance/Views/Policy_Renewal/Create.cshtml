@@ -1,6 +1,6 @@
 ﻿@model Capital.Domain.PolicyIssue
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Renew Policy";
 }
 @{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
   if (actionName == "Create")
@@ -23,7 +23,7 @@
         location.href = url;
     }
     function Total_Premium() {
-
+      
         var PremiumAmount = parseFloat($("#PremiumAmount").val());
         var PolicyFee = parseFloat($("#PolicyFee").val());
         var AdditionalPreminum = parseFloat($("#ExtraPremium").val());
@@ -42,9 +42,13 @@
         $("#TotalPremium").val(TotalPremium);
 
         var commissionperc = parseFloat($("#CommissionPerc").val());
-        var commissionAmt = (TotalPremium * (commissionperc / 100));
-        $("#CommissionAmount").val(commissionAmt);
+       
 
+        var commissionAmt = (PremiumAmount * (commissionperc / 100));
+    
+        var TotalCommission = AdditionalPreminum + commissionAmt;
+        $("#CommissionAmount").val(commissionAmt);
+        $("#TotalCommission").val(TotalCommission);
     }
     function AddRow() {
 
@@ -221,8 +225,6 @@
                         @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()" })
                         @Html.ValidationMessageFor(m => m.PremiumAmount, "", new { @class = "text-danger" })
                     </div>
-
-
                     <div class="col-md-6">
                         <label>Policy Fees</label>
                         @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()" })
@@ -293,6 +295,12 @@
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         @Html.ValidationMessageFor(m => m.RenewalDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6">&nbsp;<br />&nbsp;<br />&nbsp;</div>
+                    <div class="col-md-6" style="margin-top: -9px;">
+                        <label>Total Commi. Amt</label>
+                        @Html.TextBoxFor(m => m.TotalCommission, new { @class = "form_input", @style = "text-align:right", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.TotalCommission, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>

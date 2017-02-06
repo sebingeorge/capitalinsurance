@@ -47,7 +47,7 @@ namespace Capital.DAL
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
                 string sql = @"select PolicyId,TranPrefix,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
-                                    PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
+                                    PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,TotalCommission,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
                                     PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorcementDate,AdditionEmpNo,
                                     DeletionEmpNo,EndorcementTypeId,TranType,CreatedBy,CreatedDate,QuickBookRefNo from PolicyIssue where PolicyId=@Id";
 
@@ -72,12 +72,12 @@ namespace Capital.DAL
                     model.TranNumber = PolicyIssueRepository.GetNextDocNo(model.TranType);
                     string sql = @"INSERT INTO PolicyIssue
                                    (TranPrefix,TranNumber,TranDate,CusId,InsuredName,Address1,Address2,InsCmpId,InsPrdId,InsCoverId,PolicySubDate,EffectiveDate,RenewalDate,
-                                    PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
+                                    PremiumAmount,PolicyFee,ExtraPremium,Totalpremium,CommissionPerc,CommissionAmount,TotalCommission,CustContPersonName,CustContDesignation,CustContEmail,CustContMobile,
                                     PaymentOption,SalesMgId,OperationManager,PolicyNo,Remarks,FinanceManager,PaymentTo,PayModeId,OldPolicyId,CIBEffectiveDate,EndorcementDate,AdditionEmpNo,
                                     DeletionEmpNo,EndorcementTypeId,TranType,CreatedBy,CreatedDate)
                                     VALUES
                                     (@TranPrefix,@TranNumber,@TranDate,@CusId,@InsuredName,@Address1,@Address2,@InsCmpId,@InsPrdId,@InsCoverId,@PolicySubDate,@EffectiveDate,@RenewalDate,
-                                    @PremiumAmount,@PolicyFee,@ExtraPremium,@Totalpremium,@CommissionPerc,@CommissionAmount,@CustContPersonName,@CustContDesignation,@CustContEmail,@CustContMobile,
+                                    @PremiumAmount,@PolicyFee,@ExtraPremium,@Totalpremium,@CommissionPerc,@CommissionAmount,@TotalCommission,@CustContPersonName,@CustContDesignation,@CustContEmail,@CustContMobile,
                                     @PaymentOption,@SalesMgId,@OperationManager,@PolicyNo,@Remarks,@FinanceManager,@PaymentTo,@PayModeId,@PolicyId,@CIBEffectiveDate,@EndorcementDate,@AdditionEmpNo,
                                     @DeletionEmpNo,@EndorcementTypeId,'RenewPolicy',@CreatedBy,@CreatedDate);
                                     SELECT CAST(SCOPE_IDENTITY() as int);";

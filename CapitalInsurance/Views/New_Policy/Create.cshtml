@@ -26,7 +26,7 @@
         location.href = url;
     }
     function Total_Premium() {
-
+      
         var PremiumAmount = parseFloat($("#PremiumAmount").val());
         var PolicyFee = parseFloat($("#PolicyFee").val());
         var AdditionalPreminum = parseFloat($("#ExtraPremium").val());
@@ -46,6 +46,7 @@
 
         var commissionperc = parseFloat($("#CommissionPerc").val());
         var commissionAmt = (PremiumAmount * (commissionperc / 100));
+      
         var TotalCommission = AdditionalPreminum + commissionAmt;
         $("#CommissionAmount").val(commissionAmt);
         $("#TotalCommission").val(TotalCommission);

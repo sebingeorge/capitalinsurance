@@ -31,8 +31,10 @@
         $("#TotalPremium").val(TotalPremium);
 
         var commissionperc = parseFloat($("#CommissionPerc").val());
-        var commissionAmt = (TotalPremium * (commissionperc / 100));
+        var commissionAmt = (PremiumAmount * (commissionperc / 100));
+        var TotalCommission = AdditionalPreminum + commissionAmt;
         $("#CommissionAmount").val(commissionAmt);
+        $("#TotalCommission").val(TotalCommission);
 
     }
     function Total_Employees() {
@@ -280,7 +282,6 @@
                         <label>Deletion</label>
                         @Html.TextBoxFor(m => m.DeletionEmpNo, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Employees()" })
                     </div>
-
                     <div class="col-md-6">
                         <label>Commi. Percentage</label>
                         @Html.TextBoxFor(m => m.CommissionPerc, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()"})
@@ -291,12 +292,10 @@
                         @Html.TextBoxFor(m => m.CommissionAmount, new { @class = "form_input", @style = "text-align:right"})
                         @Html.ValidationMessageFor(m => m.CommissionAmount, "", new { @class = "text-danger" })
                     </div>
-
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="row form-group">
-
                     @*<div class="col-md-6">
                         <label>Effective Date</label>
                         <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
