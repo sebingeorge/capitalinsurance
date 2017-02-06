@@ -326,7 +326,7 @@ namespace CapitalInsurance.Controllers
                     user.UserSalt = salt;
                     user.Forms = model.Forms.Where(x => x.hasPermission).ToList();
                     res = (new UserRepository()).InsertUser(user);
-                    TempData["Success"] = "Registered Successfully!";
+                    TempData["Success"] = "Saved Successfully!";
                 }
                 else
                 {
