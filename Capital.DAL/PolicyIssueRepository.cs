@@ -256,7 +256,7 @@ namespace Capital.DAL
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
             //DECLARE @SalesMgId INT = (select SalesMgId from [User]  U  WHERE U.UserId=@Id and U.UserRole=3)
-                string query = @"select SalesMgId into #TEMP1 from [User]  U  WHERE U.UserId=@Id 
+                string query = @"select SalesMgId into #TEMP from [User]  U  WHERE U.UserId=@Id 
                                  union all
                                  select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U  WHERE U.UserId=@Id )
                                  union all
