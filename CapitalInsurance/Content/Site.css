@@ -464,6 +464,10 @@ table thead tr th
     padding-right:5px;
     color:#5a5c5c;
 }
+.toptotal 
+{
+    margin-top:42px;
+}
 .grid-header
 {
     border-radius:5px 5px 0 0;
