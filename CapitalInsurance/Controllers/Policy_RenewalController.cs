@@ -67,7 +67,7 @@ namespace CapitalInsurance.Controllers
             FromDate = FromDate ?? ViewBag.Fromdate;
             ToDate = ToDate ?? ViewBag.Todate;
 
-            var pendingData = new PolicyRenewalRepository().GetNewPolicyForRenewal(FromDate, ToDate, PolicyNo, Client, SalesManager);
+            var pendingData = new PolicyRenewalRepository().GetNewPolicyForRenewal(UserID,FromDate, ToDate, PolicyNo, Client, SalesManager);
 
             Session["pendingData"] = pendingData;
 

@@ -51,7 +51,7 @@ namespace CapitalInsurance.Controllers
             {
                 DateTime FromDate = new PolicyRenewalRepository().GetFromDate(); ;
                 DateTime ToDate = new PolicyRenewalRepository().GetToDate();
-                var res = new PolicyRenewalRepository().GetNewPolicyForRenewal(FromDate,ToDate , "", "", "");
+                var res = new PolicyRenewalRepository().GetNewPolicyForRenewal(UserID,FromDate,ToDate , "", "", "");
                 view.NoOfRenewalPolicy = res.Count;
             }
           

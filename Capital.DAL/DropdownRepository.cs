@@ -100,5 +100,12 @@ namespace Capital.DAL
                 return connection.Query<Dropdown>(query, new { id = id }).ToList();
             }
         }
+        public List<Dropdown> GetSalesManagers()
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+                return connection.Query<Dropdown>("SELECT SalesMgId Id, SalesMgName Name FROM SalesManager where SalesMgId not in (SELECT SalesMgId FROM [User]) ").ToList();
+            }
+        }
         }
 }

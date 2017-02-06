@@ -221,7 +221,7 @@ namespace CapitalInsurance.Controllers
             {
                 Capital.Domain.RegisterViewModel model = new Capital.Domain.RegisterViewModel();
                 ViewBag.UserRole = new SelectList((new UserRepository()).GetUserRole(), "RoleId", "RoleName");
-                ViewBag.Employee = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName");
+                ViewBag.Employee = new SelectList((new DropdownRepository()).GetSalesManagers(), "Id", "Name");
                 model.Module = new UserRepository().GetModules(0);
                 model.Forms = new UserRepository().GetFormsVsUser(UserId ?? 0).ToList();
                 FillModulesDropdown(model.Module);
@@ -245,7 +245,7 @@ namespace CapitalInsurance.Controllers
                     Reporting = user.Reporting
                 };
 
-              
+
                 ViewBag.Employee = new SelectList((new SalesManagerRepository()).GetSalesManagers(), "SalesMgId", "SalesMgName", user.SalesMgId);
                 model.Module = new System.Collections.Generic.List<Modules>();
                 var modules = (new UserRepository()).GetModules(UserId);
@@ -341,6 +341,7 @@ namespace CapitalInsurance.Controllers
                     }
                     user.Forms = model.Forms.Where(x => x.hasPermission).ToList();
                     res = (new UserRepository()).UpdateUser(user);
+                    TempData["Success"] = "Updated Successfully!";
                 }
                 if (res > 0)
                 {

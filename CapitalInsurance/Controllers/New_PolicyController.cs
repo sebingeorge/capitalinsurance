@@ -231,7 +231,7 @@ namespace CapitalInsurance.Controllers
             {
                 return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetPaymentCollectionList(FromDate, ToDate, PolicyNo, Client, SalesManager));
             }
-            return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetNewPolicy(FromDate, ToDate, PolicyNo,Client,SalesManager));
+            return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetNewPolicy(UserID,FromDate, ToDate, PolicyNo, Client, SalesManager));
         }
         public ActionResult PendingPolicyForCommitments()
         {
