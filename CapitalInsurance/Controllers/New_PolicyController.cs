@@ -34,7 +34,7 @@ namespace CapitalInsurance.Controllers
             model.Cheque.Add(new PolicyIssueChequeReceived());
             model.PolicySubDate = DateTime.Now;
             model.EffectiveDate = DateTime.Now;
-            model.RenewalDate = DateTime.Now;
+            model.RenewalDate = DateTime.Now.AddMonths(6);
             model.ICActualDate = null;
           
             return View(model);
@@ -200,7 +200,7 @@ namespace CapitalInsurance.Controllers
         public JsonResult GetCustomerContactDetailsByKey(int Id)
         {
             var details = (new PolicyIssueRepository()).GetCustomerContactDetails(Id);
-            return Json(new { Success = true, ContactName = details.ContactName, Designation = details.Designation, EmailId = details.EmailId, MobileNo = details.MobileNo, OfficeNo = details.OfficeNo, SalesMgId = details.SalesMgId }, JsonRequestBehavior.AllowGet);
+            return Json(new { Success = true, ContactName = details.ContactName, Designation = details.Designation, EmailId = details.EmailId, MobileNo = details.MobileNo, OfficeNo = details.OfficeNo, SalesMgId = details.SalesMgId, Address1 = details.Address1, Address2 = details.Address2 }, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public JsonResult GetTransNum(string Id)

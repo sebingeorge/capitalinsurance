@@ -38,7 +38,7 @@ namespace Capital.DAL
                                  AND C.CusName LIKE '%'+@Client+'%'
                                  AND isnull(P.PolicyNo,0) LIKE '%'+@PolicyNo+'%'
                                  AND isnull(S.SalesMgName,0) LIKE '%'+@SalesManager+'%'
-                                 order by P.TranNumber";
+                                 order by P.CreatedDate desc";
                 return connection.Query<PolicyIssue>(query, new {FromDate = FromDate,ToDate = ToDate,PolicyNo = PolicyNo,Client = Client,SalesManager = SalesManager,Id=Id }).ToList();
             }
         }
@@ -68,7 +68,7 @@ namespace Capital.DAL
                                     AND C.CusName LIKE '%'+@Client+'%'
                                     AND isnull(P.PolicyNo,0) LIKE '%'+@PolicyNo+'%'
                                     AND ISNULL(S.SalesMgName,0) LIKE '%'+@SalesManager+'%'
-                                    order by P.TranNumber";
+                                    order by P.CreatedDate desc";
                 return connection.Query<PolicyIssue>(query, new {Id = Id, FromDate = FromDate, ToDate = ToDate, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager }).ToList();
             }
         }
@@ -251,7 +251,7 @@ namespace Capital.DAL
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
 
-                string query = "select ContactName,Designation,EmailId,MobileNo,OfficeNo,SalesMgId from Customer where CusId= @Id";
+                string query = "select ContactName,Designation,EmailId,MobileNo,OfficeNo,SalesMgId,Address1,Address2 from Customer where CusId= @Id";
                 return connection.Query<Customer>(query, new { Id = Id }).First<Customer>();
             }
 
@@ -293,7 +293,7 @@ namespace Capital.DAL
 								 and p.InsuredName like '%'+@insuredname+'%'
 								 and I.InsCmpName like '%'+@insuredComp+'%'
 								 and IP.InsPrdName like '%'+@coverage+'%'
-                                 order by P.TranNumber";
+                                 order by P.CreatedDate desc";
                 return connection.Query<PolicyIssue>(query, new {Id = Id,trnno = trnno, client = client, insuredname = insuredname, insuredComp = insuredComp, coverage = coverage }).ToList();
        
             }
@@ -383,7 +383,7 @@ namespace Capital.DAL
                             {
                                 sql = @"INSERT INTO PolicyIssueCommittedDetails
                                    (PolicyId,CommittedDate
-                                   ,CommittedAmt,paid )VALUES(@PolicyId,@CommittedDate,@CommittedAmt,@paid,@InsPaid);SELECT CAST(SCOPE_IDENTITY() as int);";
+                                   ,CommittedAmt,paid,InsPaid)VALUES(@PolicyId,@CommittedDate,@CommittedAmt,@paid,@InsPaid);SELECT CAST(SCOPE_IDENTITY() as int);";
                                 id = connection.Execute(sql, item, txn);
                             }
 

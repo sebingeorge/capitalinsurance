@@ -38,7 +38,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                return connection.Query<Dropdown>("SELECT CusId Id, CusName Name FROM Customer").ToList();
+                return connection.Query<Dropdown>("SELECT CusId Id, CusName Name FROM Customer order by CusName").ToList();
             }
         }
         public List<Dropdown> GetCustomerFrmPolicy()
