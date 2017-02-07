@@ -58,7 +58,7 @@ namespace CapitalInsurance.Controllers
         {
             FromDate = FromDate ?? FYStartdate;
             ToDate = ToDate ?? DateTime.Now;
-            return PartialView("_PendingPolicyListGrid", new PolicyEndorsementRepository().GetNewPolicyForEndorse(FromDate, ToDate, PolicyNo, Client, SalesManager));
+            return PartialView("_PendingPolicyListGrid", new PolicyEndorsementRepository().GetNewPolicyForEndorse(UserID,FromDate, ToDate, PolicyNo, Client, SalesManager));
         }
         void FillDropdowns()
         {
