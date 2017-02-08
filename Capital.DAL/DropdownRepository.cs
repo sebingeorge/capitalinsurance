@@ -45,7 +45,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                return connection.Query<Dropdown>("SELECT CusId Id, CusName Name FROM Customer where CusId in (select CusId from PolicyIssue)").ToList();
+                return connection.Query<Dropdown>("SELECT CusId Id, CusName Name FROM Customer where CusId in (select CusId from PolicyIssue )").ToList();
             }
         }
         public List<Dropdown> GetInsuranceProduct()

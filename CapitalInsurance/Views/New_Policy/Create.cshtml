@@ -291,8 +291,8 @@
             <div class="row form-group">
                 <div class="col-md-12">
                     <label>Address 1</label>
-                    @Html.TextBoxFor(m => m.Address1, new { @class = "form_input" })
-                    @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(m => m.Address1, new { @class = "form_input", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger"})
                 </div>
             </div>
         </div>
@@ -300,7 +300,7 @@
             <div class="row form-group">
                 <div class="col-md-12">
                     <label>Address 2</label>
-                    @Html.TextBoxFor(m => m.Address2, new { @class = "form_input" })
+                    @Html.TextBoxFor(m => m.Address2, new { @class = "form_input", @readonly = "readonly" })
                     @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })
                 </div>
             </div>
