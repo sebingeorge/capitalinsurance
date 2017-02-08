@@ -216,7 +216,7 @@
                                         <li>
                                             @if (formPermission.Find(x => x.FormId == 19) != null)
                                             {
-                                                <a href="@Url.Action("Index", "SalesAchievementReport")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/salesachivementreport.png" /></span>Sales Achievement Report</a>
+                                                <a href="@Url.Action("Index", "SalesAchievementReport")" data-toggle="collapse" data-target="#second-level-1"><span><img src="~/Images/icon/salesachivementreport.png" /></span>Sales Incentive Report</a>
                                             }
                                         </li>
                                         <li>
@@ -282,9 +282,9 @@
                 <a href="#menu-toggle" class="menu-icon" id="menu-toggle"></a>
             </div>
             <div class="navbar-collapse collapse">
-                @*<ul class="nav navbar-nav">
+                <ul class="nav navbar-nav home-logo">
                     <li><a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" width="40" /></a></li>
-                </ul>*@
+                </ul>
 
                 @Html.Action("LoadQuickView", "Home")
                 @*@Html.Partial("_LoginPartial")*@

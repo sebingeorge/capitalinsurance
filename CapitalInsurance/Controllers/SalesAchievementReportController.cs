@@ -18,7 +18,6 @@ namespace CapitalInsurance.Controllers
         }
         public ActionResult SalesAchieveReport(int? FyId)
         {
-
             return PartialView("_SalesAchieveReport", new SalesTargetRepository().GetSalesAchievementReportDetails(UserID, FyId));
         }
         void FillFinYear()
