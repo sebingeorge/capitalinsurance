@@ -46,5 +46,9 @@ namespace Capital.Domain
         public string OfficeEmail { get; set; }
         public string PersonalEmail { get; set; }
 
+        public decimal MonthlySalary { get; set; }
+
+        public decimal IncentivePerc { get; set; }
+
     }
 }

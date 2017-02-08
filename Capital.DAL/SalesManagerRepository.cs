@@ -62,6 +62,8 @@ namespace Capital.DAL
                                    ,DateOfBirth
                                    ,OfficeEmail
                                    ,PersonalEmail
+                                   ,MonthlySalary
+                                   ,IncentivePerc
                                    )
                                    VALUES
                                    (@SalesMgCode
@@ -92,7 +94,9 @@ namespace Capital.DAL
                                    ,@DateOfJoining
                                    ,@DateOfBirth
                                    ,@OfficeEmail
-                                   ,@PersonalEmail );SELECT CAST(SCOPE_IDENTITY() as int);";
+                                   ,@PersonalEmail
+                                   ,@MonthlySalary
+                                   ,@IncentivePerc);SELECT CAST(SCOPE_IDENTITY() as int);";
                                    
                     int id = connection.Query<int>(sql, model).Single();
                     if (id > 0)      
@@ -177,7 +181,9 @@ namespace Capital.DAL
                                    ,DateOfJoining=@DateOfJoining
                                    ,DateOfBirth=@DateOfBirth
                                    ,OfficeEmail=@OfficeEmail
-                                   ,PersonalEmail=@PersonalEmail WHERE SalesMgId=@SalesMgId";
+                                   ,PersonalEmail=@PersonalEmail
+                                   ,MonthlySalary=@MonthlySalary 
+                                   ,IncentivePerc=@IncentivePerc WHERE SalesMgId=@SalesMgId";
                     int id = connection.Execute(sql, model);
                     if (id > 0)
                     {

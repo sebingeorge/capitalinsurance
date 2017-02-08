@@ -16,7 +16,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select InsPrdName coverage,sum(CommissionAmount) TotalAmount from PolicyIssue p
+                string sql = @"select InsPrdName coverage,sum(TotalCommission) TotalAmount from PolicyIssue p
 							inner join InsuranceProduct ip on ip.InsPrdId=p.InsPrdId
 							where DATEPART(month,TranDate)=DATEPART(month,GETDATE()) and DATEPART(YEAR,TranDate)=DATEPART(YEAR,GETDATE())
 							group by InsPrdName order by TotalAmount desc";
@@ -30,7 +30,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @" select CONVERT(CHAR(4), TranDate, 100) + CONVERT(CHAR(4),  TranDate, 120) Monthly,sum(PremiumAmount) TotalAmount,DATEPART(MM,TranDate) MONTHC,DATEPART(YYYY,TranDate) YRARC INTO  #TEMPSALES from PolicyIssue WHERE TranDate>=DATEADD(month, -6, GETDATE()) and trandate<=GETDATE()
+                string sql = @" select CONVERT(CHAR(4), TranDate, 100) + CONVERT(CHAR(4),  TranDate, 120) Monthly,sum(TotalCommission) TotalAmount,DATEPART(MM,TranDate) MONTHC,DATEPART(YYYY,TranDate) YRARC INTO  #TEMPSALES from PolicyIssue WHERE TranDate>=DATEADD(month, -6, GETDATE()) and trandate<=GETDATE()
                                group by TRaNDATE
 
 							   SELECT   Monthly,SUM(TotalAmount) TotalAmount FROM #TEMPSALES GROUP BY Monthly, YRARC,MONTHC ORDER BY YRARC,MONTHC ASC ";
@@ -58,7 +58,7 @@ namespace Capital.DAL
 
 
 
-                                select sm.SalesMgName slmgname ,sm.SalesMgId slmgcode,sum(TotalPremium) achivement,0 target  into #Temp from  PolicyIssue Pi
+                                select sm.SalesMgName slmgname ,sm.SalesMgId slmgcode,sum(TotalCommission) achivement,0 target  into #Temp from  PolicyIssue Pi
                                
                                 inner join SalesManager SM on SM.SalesMgId= Pi.SalesMgId
 								where DATEPART(Year,pi.TranDate)=  DATEPART(Year, GETDATE()) AND sm.SalesMgId IN(SELECT SalesMgId FROM #TEMP1 )
@@ -81,7 +81,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select ip.InsPrdName Coverage,sum(PremiumAmount) TotalAmount from PolicyIssue p
+                string sql = @"select ip.InsPrdName Coverage,sum(TotalCommission) TotalAmount from PolicyIssue p
 							inner join InsuranceProduct ip on ip.InsPrdId=p.InsPrdId
 							 where DATEPART(YEAR,TranDate)= DATEPART(YEAR,GETDATE())
 							 group by ip.InsPrdName";
