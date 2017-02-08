@@ -225,6 +225,9 @@ textarea {
 {
     margin:0;
     padding:0;
+}
+.home-logo 
+{
     margin-left:35px;
 }
 
@@ -946,4 +949,9 @@ table thead tr th
     -moz-border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     -moz-border-bottom-right-radius: 5px;
+}
+.manager 
+{
+    min-width:250px;
+    float:left;
 }
