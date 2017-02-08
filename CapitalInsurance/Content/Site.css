@@ -947,3 +947,8 @@ table thead tr th
     border-bottom-right-radius: 5px;
     -moz-border-bottom-right-radius: 5px;
 }
+.manager 
+{
+    min-width:250px;
+    float:left;
+}
