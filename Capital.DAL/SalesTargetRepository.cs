@@ -84,20 +84,20 @@ namespace Capital.DAL
                                INNER JOIN FinancialYear F ON F.FyId=S.FyId;
         
                                with A as (
-                               select year(P.TranDate)year,P.SalesMgId, sum(P.TotalPremium)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(P.TranDate) in (1,2,3) and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
-                               Update R set Achvd1 = A.Amount from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+                               select year(P.TranDate)year,P.SalesMgId, sum(P.TotalCommission)Amount,((3 * MonthlySalary)*(IncentivePerc/100))Incentive from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (1,2,3) and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate),MonthlySalary,IncentivePerc)
+                               Update R set Achvd1 = A.Amount-A.Incentive from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
                                
                                with A as (
-                               select year(P.TranDate)year,P.SalesMgId, sum(TotalPremium)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(TranDate)in(4,5,6) and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate))
-                               Update R set Achvd2 = A.Amount from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+                               select year(P.TranDate)year,P.SalesMgId, sum(TotalCommission)Amount,((3 * MonthlySalary)*(IncentivePerc/100))Incentive from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(TranDate)in(4,5,6) and year(P.TranDate)=R.FyName group by P.SalesMgId,year(P.TranDate),MonthlySalary,IncentivePerc)
+                               Update R set Achvd2 = A.Amount-A.Incentive from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
                                
                                with A as (
-                               select year(P.TranDate)year,P.SalesMgId, sum(TotalPremium)Amount from PolicyIssue  P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(TranDate)in(7,8,9) and year(P.TranDate)=R.FyName  group by P.SalesMgId,year(P.TranDate))
-                               Update R set Achvd3 = A.Amount from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+                               select year(P.TranDate)year,P.SalesMgId, sum(TotalCommission)Amount,((3 * MonthlySalary)*(IncentivePerc/100))Incentive from PolicyIssue  P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(TranDate)in(7,8,9) and year(P.TranDate)=R.FyName  group by P.SalesMgId,year(P.TranDate),MonthlySalary,IncentivePerc)
+                               Update R set Achvd3 = A.Amount-A.Incentive from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
                                
                                with A as (
-                               select  year(P.TranDate)year,P.SalesMgId, sum(TotalPremium)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId where month(TranDate)in(10,11,12) and year(P.TranDate)=R.FyName  group by P.SalesMgId,year(P.TranDate))
-                               Update R set Achvd4 = A.Amount from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
+                               select  year(P.TranDate)year,P.SalesMgId, sum(TotalCommission)Amount,((3 * MonthlySalary)*(IncentivePerc/100))Incentive from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(TranDate)in(10,11,12) and year(P.TranDate)=R.FyName  group by P.SalesMgId,year(P.TranDate),MonthlySalary,IncentivePerc)
+                               Update R set Achvd4 = A.Amount-A.Incentive from A inner join #Result R on R.SalesMgId = A.SalesMgId and A.year=R.FyName;
 
                                Update R set AchvdPerc1 = isnull((Achvd1/nullif(Target1,0)),0)*100 from #Result R where Achvd1>0;
 
