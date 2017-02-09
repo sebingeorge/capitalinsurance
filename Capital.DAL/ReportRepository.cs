@@ -20,7 +20,7 @@ namespace Capital.DAL
 
                       SELECT P.CusId,C.CusName,0 Overdue,sum(P.TotalPremium)TotalPremium,0 Amount1,0 Amount2,0 Amount3,0 Amount4,0 Amount5 INTO #Result FROM PolicyIssue P 
                      inner join Customer C ON P.CusId=c.CusId 
-					 where P.PolicyNo IS NOT NULL
+					 where P.PolicyStage=3
                      group by  P.CusId,C.CusName;
 
                     

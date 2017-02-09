@@ -22,7 +22,7 @@ namespace Capital.DAL
                                     left join InsuranceCompany I on I.InsCmpId = P.InsCmpId
                                     left join CustomerInvoiceItem CI ON CI.PolicyId =P.PolicyId
                                     inner join InsuranceProduct IP on p.InsPrdId= IP.InsPrdId
-                                    where CI.PolicyId IS NULL AND P.CusId = ISNULL(NULLIF(@ClientId, 0), P.CusId) AND  P.PayModeId IS NOT NULL AND P.PolicyNo IS NOT NULL";
+                                    where CI.PolicyId IS NULL AND P.CusId = ISNULL(NULLIF(@ClientId, 0), P.CusId) AND  P.PolicyStage=3";
 
                 return connection.Query<PolicyIssue>(query, new { ClientId = ClientId }).ToList();
             }

@@ -8,11 +8,23 @@
         location.href = url;
     }
     function Exit() {
-        var url = '@Url.Action("Index","Home")';
+        if(@ViewBag.Type==1)
+        {
+            var url = '@Url.Action("Create", "New_Policy")';
+            url += "?type=" + '@ViewBag.Type'
+        }
+        else if(@ViewBag.Type==2)
+        {
+         var url = '@Url.Action("PendingPolicyForCommitments", "New_Policy")';
+        }
+        else if(@ViewBag.Type==3)
+        {
+            var url = '@Url.Action("PendingPolicyForPaymentDetails", "New_Policy")';
+        }
         location.href = url;
     }
-   
-   
+
+
     function Filter() {
 
         $("#New_Policy").addClass("fade");

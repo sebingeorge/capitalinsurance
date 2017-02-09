@@ -95,6 +95,7 @@ namespace Capital.Domain
         public string QuatarContactNo { get; set; }
         public int Aging { get; set; }
         public decimal CommittedAmt { get; set; }
+        public int? PolicyStage { get; set; }
         
         //Endorsement
      

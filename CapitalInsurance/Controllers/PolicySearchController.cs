@@ -23,19 +23,19 @@ namespace CapitalInsurance.Controllers
         {
                 return PartialView("_NewPolicyList", new PolicyIssueRepository().GetPaymentCommittedList(PolicyNo));
         }
-        public ActionResult Edit(int Id)
+        public ActionResult ViewPolicy(int Id)
         {
             ViewBag.Title = "View";
             FillDropdowns();
             PolicyIssue objPolicy = new PolicyIssueRepository().GetNewPolicy(Id);
-            if(objPolicy.PayModeId != 0)
-            {
-                ViewBag.Type = 3;
-            }
-            else
-            {
-                ViewBag.Type = 2;
-            }
+            //if(objPolicy.PayModeId != 0)
+            //{
+            //    ViewBag.Type = 3;
+            //}
+            //else
+            //{
+            //    ViewBag.Type = 2;
+            //}
             objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
             objPolicy.Committed = new List<PaymentCommitments>();
             objPolicy.Committed.Add(new PaymentCommitments());

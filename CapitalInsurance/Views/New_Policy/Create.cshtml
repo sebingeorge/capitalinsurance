@@ -222,6 +222,7 @@
                 <div class="col-md-12">
                     <label>Transaction No.</label>
                     @Html.HiddenFor(m => m.PolicyId)
+                    @Html.HiddenFor(m => m.PolicyStage)
                     @Html.TextBoxFor(m => m.TranNumber, new { @class = "form_input", @readonly = "readonly" })
                     @Html.ValidationMessageFor(m => m.TranNumber, "", new { @class = "text-danger" })
                 </div>
@@ -282,7 +283,7 @@
             <div class="row form-group">
                 <div class="col-md-12">
                     <label>Insured Name</label>
-                    @Html.TextBoxFor(m => m.InsuredName, new { @class = "form_input" })
+                    @Html.TextBoxFor(m => m.InsuredName, new { @class = "form_input", autocomplete = "off" })
                     @Html.ValidationMessageFor(m => m.InsuredName, "", new { @class = "text-danger" })
                 </div>
             </div>

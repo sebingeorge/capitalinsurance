@@ -24,10 +24,11 @@ namespace CapitalInsurance.Controllers
         }
         public ActionResult Create(int? type)
         {
-            ViewBag.Type = type;
+            //ViewBag.Type = type;
             FillDropdowns();
             PolicyIssue model = new PolicyIssue();
             model.TranType = "NewPolicy";
+            model.PolicyStage = type;
             var internalid = PolicyIssueRepository.GetNextDocNo(model.TranType);
             model.TranNumber = "CIB/NEW/" + internalid;
             model.Cheque = new List<PolicyIssueChequeReceived>();
@@ -61,7 +62,7 @@ namespace CapitalInsurance.Controllers
             {
 
             }
-            return RedirectToAction("Index", new { type=1});
+            return RedirectToAction("Index", new { type = model.PolicyStage});
         }
         public ActionResult Edit(int?type,int Id)
           
@@ -72,6 +73,7 @@ namespace CapitalInsurance.Controllers
             FillDropdowns();
          
             PolicyIssue objPolicy = new PolicyIssueRepository().GetNewPolicy(Id);
+            //objPolicy.PolicyStage = type;
             objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
             objPolicy.Committed = new List<PaymentCommitments>();
             objPolicy.Committed.Add(new PaymentCommitments());
@@ -141,6 +143,7 @@ namespace CapitalInsurance.Controllers
             FillDropdowns();
 
             PolicyIssue objPolicy = new PolicyIssueRepository().GetNewPolicy(Id);
+            objPolicy.PolicyStage = type;
             objPolicy.Cheque = new List<PolicyIssueChequeReceived>();
             objPolicy.Cheque.Add(new PolicyIssueChequeReceived());
             if(type==2)
@@ -153,11 +156,32 @@ namespace CapitalInsurance.Controllers
             }
             else
             {
+                objPolicy.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
                 objPolicy.Committed = new PolicyIssueRepository().GetCommittedDetails(Id);
             }
            
             return View(objPolicy);
 
+        }
+        public ActionResult CreatePaymentCollection(int Id)
+        {
+            ViewBag.Type = 3;
+            ViewBag.Title = "Edit";
+            FillDropdowns();
+            PolicyIssue Model = new PolicyIssueRepository().GetNewPolicy(Id);
+            Model.PolicyStage = 3;
+
+            Model.Cheque = new PolicyIssueRepository().GetChequeDetails(Id);
+            if (Model.Cheque.Count==0)
+            {
+            Model.Cheque = new List<PolicyIssueChequeReceived>();
+            Model.Cheque.Add(new PolicyIssueChequeReceived());
+            }
+           
+
+
+            Model.Committed = new PolicyIssueRepository().GetCommittedDetails(Id);
+            return View("PaymentCommitments", Model);
         }
         public ActionResult PaymentDetails(int Id, int? type)
         {
@@ -194,7 +218,7 @@ namespace CapitalInsurance.Controllers
             {
 
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { type = model.PolicyStage });
         }
         [HttpGet]
         public JsonResult GetCustomerContactDetailsByKey(int Id)
@@ -223,15 +247,19 @@ namespace CapitalInsurance.Controllers
             ViewBag.Type = type;
             FromDate = FromDate ?? FYStartdate;
             ToDate = ToDate ?? DateTime.Now;
-            if (type == 2)
-            {
-                return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetPaymentCommittedList(UserID, FromDate, ToDate, PolicyNo, Client, SalesManager));
-            }
-            else if (type == 3)
-            {
-                return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetPaymentCollectionList(FromDate, ToDate, PolicyNo, Client, SalesManager));
-            }
-            return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetNewPolicy(UserID,FromDate, ToDate, PolicyNo, Client, SalesManager));
+
+            //if (type == 2)
+            //{
+            //    return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetPaymentCommittedList(UserID, FromDate, ToDate, PolicyNo, Client, SalesManager));
+            //}
+            //else if (type == 3)
+            //{
+            //    return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetPaymentCollectionList(FromDate, ToDate, PolicyNo, Client, SalesManager));
+            //}
+
+            List<PolicyIssue> model = new PolicyIssueRepository().GetNewPolicy(UserID, FromDate, ToDate, PolicyNo, Client, SalesManager);
+
+            return PartialView("_NewPolicyListGrid", model);
         }
         public ActionResult PendingPolicyForCommitments()
         {
@@ -260,7 +288,6 @@ namespace CapitalInsurance.Controllers
             var griddata = new PolicyIssueRepository().GetNewPolicyForPaymentCollection(trnno, client, insuredname, insuredComp, coverage);
             Session["GridDate"] = griddata;
             Session["excelname"]="PaymentDetails";
-            ViewBag.type = 3;
             return PartialView("_PendingPolicyForPaymentDetails", griddata);
         }
         public ActionResult UpdateCommitments(PolicyIssue model)
@@ -274,7 +301,7 @@ namespace CapitalInsurance.Controllers
             {
 
             }
-            return RedirectToAction("Index", new { type = model.Type });
+            return RedirectToAction("Index", new { type = model.PolicyStage });
         }
         public ActionResult Print(int Id)
         {

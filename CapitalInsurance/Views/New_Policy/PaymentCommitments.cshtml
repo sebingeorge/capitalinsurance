@@ -5,7 +5,7 @@
 }
 @{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
 ViewBag.actionName = actionName;
-Model.Type = ViewBag.type;
+
 }
 <style>
     .divHidden {
@@ -121,7 +121,7 @@ Model.Type = ViewBag.type;
         });
     })
 </script>
-@if (ViewBag.Type == 2)
+@*@if (ViewBag.Type == 2)
 {
     <script>
         function validate()
@@ -135,10 +135,9 @@ Model.Type = ViewBag.type;
             return true;
         }
     </script>
-}
-@if (ViewBag.Type == 3)
-{
-    <script>
+}*@
+
+    @*<script>
         function validate()
         {
             if($("#PolicyNo").val() == "")
@@ -154,12 +153,13 @@ Model.Type = ViewBag.type;
             //    return false;
             //}
             return true;
-        }
-    </script>
-}
+        }@if (ViewBag.Type == 3)
+{
+    </script>*@
+@*}*@
 <div class="container content-in">
     <div class="row">
-        @if (ViewBag.type == 2)
+        @if (Model.PolicyStage == 2)
         {
             <h1>Payment Commitments</h1>
         }
@@ -175,8 +175,9 @@ Model.Type = ViewBag.type;
                 <div class="row form-group">
                     <div class="col-md-12">
                         <label>Transaction No.</label>
-                        @Html.HiddenFor(m => m.Type)
+                      
                         @Html.HiddenFor(m => m.PolicyId)
+                        @Html.HiddenFor(m => m.PolicyStage)
                         @Html.TextBoxFor(m => m.TranNumber, new { @class = "form_input", @readonly = "readonly" })
                      
                     </div>
@@ -424,9 +425,9 @@ Model.Type = ViewBag.type;
                 <div class="row form-group">
                     <div class="col-md-12">
                         <label id="againstId"></label>
-                        @if (ViewBag.type == 2)
+                        @if (Model.PolicyStage == 2)
                         {
-                            @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input" })
+                            @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input", autocomplete = "off" })
                         }
                         else
                         {
@@ -440,9 +441,9 @@ Model.Type = ViewBag.type;
                 <div class="row form-group">
                     <div class="col-md-12">
                         <label>Remarks</label>
-                        @if (ViewBag.type == 2)
+                        @if (Model.PolicyStage == 2)
                         {
-                            @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input" })
+                            @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input", autocomplete = "off" })
                         }
                         else
                         {
@@ -454,7 +455,7 @@ Model.Type = ViewBag.type;
             </div>
 
         </div>
-        if (@ViewBag.type != 1)
+        if (@Model.PolicyStage != 1)
         {
             <h2>PAYMENT COMMITMENTS</h2>
             <div class="row">
@@ -464,7 +465,7 @@ Model.Type = ViewBag.type;
                             @*<th></th>*@
                             <th>Committed Date</th>
                             <th class="text-right ">Amount</th>
-                            @if (ViewBag.type == 3)
+                            @if (Model.PolicyStage == 3)
                             {
                                 <th>CIB Paid</th>
                                 <th>Ins Comp Paid</th>
@@ -474,11 +475,11 @@ Model.Type = ViewBag.type;
                         {
                             <tr>
                                 @Html.HiddenFor(model => Model.Committed[i].CommRowId)
-                                @if (ViewBag.type == 2)
+                                @if (Model.PolicyStage == 2)
                                 {
                                     <td>
                                         <div class="input-group date form_date " data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                            @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input" })
+                                            @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input", autocomplete = "off" })
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                         </div>
                                     </td>
@@ -511,7 +512,7 @@ Model.Type = ViewBag.type;
 
             </div>
         }
-        if (@ViewBag.type == 3)
+        if (@Model.PolicyStage == 3)
         {
             <hr />
             <h2>FINANCE</h2>
@@ -551,7 +552,7 @@ Model.Type = ViewBag.type;
                             <th>Cheque Date</th>
                             <th>Bank Name</th>
                             <th>Branch</th>
-                            <th>Cheque Amount</th>
+                            <th class ="text-right">Cheque Amount</th>
                             <th></th>
                         </tr>
                         @for (int i = 0; i < Model.Cheque.Count; i++)
@@ -592,7 +593,7 @@ Model.Type = ViewBag.type;
             <div class="col-md-12">
                 <button type="button" class="form-button right" onclick="Exit()">Exit</button>
                 <button type="button" class="form-button left" onclick="previous()">Previous</button>
-                @if (ViewBag.type == 2)
+                @if (Model.PolicyStage == 2)
                 {
                     if (Model.PayModeId != null)
                     {
