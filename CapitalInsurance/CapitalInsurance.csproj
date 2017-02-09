@@ -206,9 +206,8 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Policy_RenewalController.cs" />
     <Compile Include="Controllers\ReceivableReportController.cs" />
-    <Compile Include="Controllers\SalesAchievementReportController.cs" />
+    <Compile Include="Controllers\SalesIncentiveReportController.cs" />
     <Compile Include="Controllers\SalesManagerController.cs" />
-    <Compile Include="Controllers\Sales_Achievement_reportController.cs" />
     <Compile Include="Controllers\Sales_TargetController.cs" />
     <Compile Include="Controllers\TotalSalesTargetReportController.cs" />
     <Compile Include="Global.asax.cs">
@@ -543,8 +542,8 @@
     <Content Include="Views\DailyActivity\Create.cshtml" />
     <Content Include="Views\DailyActivity\Index.cshtml" />
     <Content Include="Views\DailyActivity\_DailyActivityReport.cshtml" />
-    <Content Include="Views\SalesAchievementReport\_SalesAchieveReport.cshtml" />
-    <Content Include="Views\SalesAchievementReport\Index.cshtml" />
+    <Content Include="Views\SalesIncentiveReport\_SalesIncentiveReport.cshtml" />
+    <Content Include="Views\SalesIncentiveReport\Index.cshtml" />
     <Content Include="Views\TotalSalesTargetReport\_TotalSalesTargetReport.cshtml" />
     <Content Include="Views\TotalSalesTargetReport\Index.cshtml" />
     <Content Include="Views\AgeingSummaryReport\_AgeingSummaryDetailed.cshtml" />

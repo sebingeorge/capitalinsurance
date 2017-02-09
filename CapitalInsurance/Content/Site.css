@@ -955,3 +955,8 @@ table thead tr th
     min-width:250px;
     float:left;
 }
+.code 
+{
+    min-width:100px;
+    float:left;
+}

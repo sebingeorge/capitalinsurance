@@ -66,7 +66,7 @@ namespace Capital.DAL
             return res;
         }
 
-        public List<SalesAchievement> GetSalesAchievementReportDetails(int Id,int? FyId)
+        public List<SalesAchievement> GetSalesIncentiveReportDetails(int Id, int? FyId)
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {

@@ -8,17 +8,17 @@ using System.Web.Mvc;
 
 namespace CapitalInsurance.Controllers
 {
-    public class SalesAchievementReportController : BaseController
+    public class SalesIncentiveReportController : BaseController
     {
-        // GET: SalesAchievementReport
+        // GET: SalesIncentiveReport
         public ActionResult Index()
         {
             FillFinYear();
             return View();
         }
-        public ActionResult SalesAchieveReport(int? FyId)
+        public ActionResult SalesIncentiveReport(int? FyId)
         {
-            return PartialView("_SalesAchieveReport", new SalesTargetRepository().GetSalesAchievementReportDetails(UserID, FyId));
+            return PartialView("_SalesIncentiveReport", new SalesTargetRepository().GetSalesIncentiveReportDetails(UserID, FyId));
         }
         void FillFinYear()
         {

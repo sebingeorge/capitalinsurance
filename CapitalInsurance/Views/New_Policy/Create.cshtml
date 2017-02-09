@@ -320,12 +320,12 @@
 
                 <div class="col-md-6">
                     <label>Premium Amount</label>
-                    @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()" })
+                    @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", autocomplete = "off" })
                     @Html.ValidationMessageFor(m => m.PremiumAmount,"",new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">
                     <label>Policy Fees</label>
-                    @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()" })
+                    @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", autocomplete = "off" })
                     @Html.ValidationMessageFor(m => m.PolicyFee, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -339,7 +339,7 @@
                 </div>
                 <div class="col-md-6">
                     <label>Additional Premium</label>
-                    @Html.TextBoxFor(m => m.ExtraPremium, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()" })
+                    @Html.TextBoxFor(m => m.ExtraPremium, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", autocomplete = "off" })
                     @Html.ValidationMessageFor(m => m.ExtraPremium, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">

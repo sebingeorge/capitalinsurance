@@ -2,7 +2,9 @@
 @{
     ViewBag.Title = "PaymentCommitments";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
+
 @{string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
 ViewBag.actionName = actionName;
 
@@ -25,7 +27,14 @@ ViewBag.actionName = actionName;
         var url = '@Url.Action("Index","Home")';
         location.href = url;
     }
-   
+    function OnAmountChanged() {
+        var amount = 0;
+        $("input[id$='__CommittedAmt']").each(function (index, object) {
+            if (!isNaN($(object).val()))
+                amount += Number($(object).val());
+        })
+        $("#commitmentotal").text(amount.toFixed(2));
+    }
 
     function AddRow() {
 
@@ -119,43 +128,44 @@ ViewBag.actionName = actionName;
                 return false;
             }
         });
+        OnAmountChanged();
     })
 </script>
 @*@if (ViewBag.Type == 2)
-{
-    <script>
-        function validate()
-        {
-            if($("#PolicyNo").val() == "")
+    {
+        <script>
+            function validate()
             {
-                alert("Please enter Policy Number.");
-                $("#PolicyNo").focus();
-                return false;
+                if($("#PolicyNo").val() == "")
+                {
+                    alert("Please enter Policy Number.");
+                    $("#PolicyNo").focus();
+                    return false;
+                }
+                return true;
             }
-            return true;
-        }
-    </script>
-}*@
+        </script>
+    }*@
 
-    @*<script>
-        function validate()
-        {
-            if($("#PolicyNo").val() == "")
+@*<script>
+            function validate()
             {
-                alert("Please enter Policy Number.");
-                $("#PolicyNo").focus();
-                return false;
-            }
-            //if($("#QuickBookRefNo").val() =="")
-            //{
-            //    alert("Please enter Quick Book Reference Number.");
-            //    $("#QuickBookRefNo").focus();
-            //    return false;
-            //}
-            return true;
-        }@if (ViewBag.Type == 3)
-{
-    </script>*@
+                if($("#PolicyNo").val() == "")
+                {
+                    alert("Please enter Policy Number.");
+                    $("#PolicyNo").focus();
+                    return false;
+                }
+                //if($("#QuickBookRefNo").val() =="")
+                //{
+                //    alert("Please enter Quick Book Reference Number.");
+                //    $("#QuickBookRefNo").focus();
+                //    return false;
+                //}
+                return true;
+            }@if (ViewBag.Type == 3)
+    {
+        </script>*@
 @*}*@
 <div class="container content-in">
     <div class="row">
@@ -175,11 +185,11 @@ ViewBag.actionName = actionName;
                 <div class="row form-group">
                     <div class="col-md-12">
                         <label>Transaction No.</label>
-                      
+
                         @Html.HiddenFor(m => m.PolicyId)
                         @Html.HiddenFor(m => m.PolicyStage)
                         @Html.TextBoxFor(m => m.TranNumber, new { @class = "form_input", @readonly = "readonly" })
-                     
+
                     </div>
                 </div>
             </div>
@@ -230,7 +240,7 @@ ViewBag.actionName = actionName;
                     <div class="col-md-12">
                         <label>Client</label>
                         @Html.DropDownListFor(m => Model.CusId, (SelectList)ViewBag.Customer, "Select Client", new { @class = "form_input", autocomplete = "off", @onchange = "CustomerChanged(this)", @disabled = "true" })
-                      
+
                     </div>
                 </div>
             </div>
@@ -239,7 +249,7 @@ ViewBag.actionName = actionName;
                     <div class="col-md-12">
                         <label>Insured Name</label>
                         @Html.TextBoxFor(m => m.InsuredName, new { @class = "form_input", @readonly = "readonly" })
-                       
+
                     </div>
                 </div>
             </div>
@@ -248,7 +258,7 @@ ViewBag.actionName = actionName;
                     <div class="col-md-12">
                         <label>Address 1</label>
                         @Html.TextBoxFor(m => m.Address1, new { @class = "form_input", @readonly = "readonly" })
-                      
+
                     </div>
                 </div>
             </div>
@@ -257,7 +267,7 @@ ViewBag.actionName = actionName;
                     <div class="col-md-12">
                         <label>Address 2</label>
                         @Html.TextBoxFor(m => m.Address2, new { @class = "form_input", @readonly = "readonly" })
-                     
+
                     </div>
                 </div>
             </div>
@@ -270,18 +280,18 @@ ViewBag.actionName = actionName;
                     <div class="col-md-12">
                         <label>Company</label>
                         @Html.DropDownListFor(m => Model.InsCmpId, (SelectList)ViewBag.Company, "Select Company", new { @class = "form_input", autocomplete = "off", @disabled = "true" })
-                      
+
                     </div>
 
                     <div class="col-md-6">
                         <label>Premium Amount</label>
                         @Html.TextBoxFor(m => m.PremiumAmount, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", @readonly = "readonly" })
-                       
+
                     </div>
                     <div class="col-md-6">
                         <label>Policy Fees</label>
                         @Html.TextBoxFor(m => m.PolicyFee, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", @readonly = "readonly" })
-                      
+
                     </div>
                 </div>
             </div>
@@ -290,12 +300,12 @@ ViewBag.actionName = actionName;
                     <div class="col-md-12">
                         <label>Coverage</label>
                         @Html.DropDownListFor(m => Model.InsPrdId, (SelectList)ViewBag.InsuranceProduct, "Select Coverage", new { @class = "form_input", autocomplete = "off", @disabled = "true" })
-                       
+
                     </div>
                     <div class="col-md-6">
                         <label>Additional Premium</label>
                         @Html.TextBoxFor(m => m.ExtraPremium, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", @readonly = "readonly" })
-                       
+
                     </div>
                     <div class="col-md-6">
                         <label>Total Premium</label>
@@ -329,12 +339,12 @@ ViewBag.actionName = actionName;
                     <div class="col-md-6">
                         <label>Commi. Percentage</label>
                         @Html.TextBoxFor(m => m.CommissionPerc, new { @class = "form_input numbers-only", @style = "text-align:right", @onkeyup = "Total_Premium()", @readonly = "readonly" })
-                      
+
                     </div>
                     <div class="col-md-6">
                         <label>Commi. Amount</label>
                         @Html.TextBoxFor(m => m.CommissionAmount, new { @class = "form_input", @style = "text-align:right", @readonly = "readonly" })
-               
+
                     </div>
                 </div>
             </div>
@@ -473,6 +483,7 @@ ViewBag.actionName = actionName;
                         </tr>
                         @for (int i = 0; i < Model.Committed.Count; i++)
                         {
+
                             <tr>
                                 @Html.HiddenFor(model => Model.Committed[i].CommRowId)
                                 @if (Model.PolicyStage == 2)
@@ -484,7 +495,7 @@ ViewBag.actionName = actionName;
                                         </div>
                                     </td>
                                     <td>
-                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right", @onkeyup = "OnAmountChanged()" })
                                     </td>
                                 }
                                 else
@@ -498,15 +509,29 @@ ViewBag.actionName = actionName;
                                     <td>
                                         @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })
                                     </td>
-                                    <td>                                       
+                                    <td>
                                         @Html.CheckBoxFor(model => Model.Committed[i].paid)
                                     </td>
-                                    <td>                                       
+                                    <td>
                                         @Html.CheckBoxFor(model => Model.Committed[i].InsPaid)
                                     </td>
                                 }
                             </tr>
                         }
+                        <tfoot class="grid_heading">
+                            <tr>
+                                <th colspan="1" class="text-right">Total</th>
+                                <th style="text-align:right">
+                                    <span id="commitmentotal">0.00</span>
+                                </th>
+                              
+                                @if (Model.PolicyStage == 3)
+                                {
+                                    <th></th>
+                                    <th></th>
+                                }
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
 
@@ -525,10 +550,10 @@ ViewBag.actionName = actionName;
                                 @Html.ValidationMessageFor(m => m.FinanceManager, "", new { @class = "text-danger" })
                             </div>*@
                         @*<div class="col-md-12">
-                            <label>Quick Book Reference No.</label>
-                            @Html.TextBoxFor(m => m.QuickBookRefNo, new { @class = "form_input" })
-                            @Html.ValidationMessageFor(m => m.QuickBookRefNo, "", new { @class = "text-danger" })
-                        </div>*@
+                                <label>Quick Book Reference No.</label>
+                                @Html.TextBoxFor(m => m.QuickBookRefNo, new { @class = "form_input" })
+                                @Html.ValidationMessageFor(m => m.QuickBookRefNo, "", new { @class = "text-danger" })
+                            </div>*@
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -552,7 +577,7 @@ ViewBag.actionName = actionName;
                             <th>Cheque Date</th>
                             <th>Bank Name</th>
                             <th>Branch</th>
-                            <th class ="text-right">Cheque Amount</th>
+                            <th class="text-right">Cheque Amount</th>
                             <th></th>
                         </tr>
                         @for (int i = 0; i < Model.Cheque.Count; i++)
@@ -598,8 +623,8 @@ ViewBag.actionName = actionName;
                     if (Model.PayModeId != null)
                     {
                         @*<span class="perm">
-                            <em>**Cannot edit this Policy, because Payment Collection is already done for this Policy</em>
-                        </span>*@
+                                <em>**Cannot edit this Policy, because Payment Collection is already done for this Policy</em>
+                            </span>*@
                         if (actionName == "Edit")
                         {
                             <button type="submit" class="form-button right">Update</button>

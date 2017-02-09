@@ -9,9 +9,9 @@
     }
     function Filter() {
         var id = $("#FyId").val();
-        var url = '@Url.Action("SalesAchieveReport")';
+        var url = '@Url.Action("SalesIncentiveReport")';
         url += "?FyId=" + id;
-        $("#Sales_Achvd").load(url);
+        $("#Sales_Incentve").load(url);
     }
 </script>
    
@@ -36,9 +36,9 @@
             </div>
         </div>
         <br />
-        <div class="table-responsive" id="Sales_Achvd">
-            @Html.Action("SalesAchieveReport", new { FyId = 0 })
-        </div>
+    <div class="table-responsive" id="Sales_Incentve">
+        @Html.Action("SalesIncentiveReport", new { FyId = 0 })
+    </div>
         <div class="row">
             <hr />
             <div class="col-md-12">
