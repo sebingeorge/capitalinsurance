@@ -22,6 +22,7 @@ namespace Capital.Domain
       public int Achvd2 { get; set; }
       public int Achvd3 { get; set; }
       public int Achvd4 { get; set; }
+      public int Achvd5 { get; set; }
       public int AchvdPerc1 { get; set; }
       public int AchvdPerc2 { get; set; }
       public int AchvdPerc3 { get; set; }
@@ -42,6 +43,7 @@ namespace Capital.Domain
       public int Q2Shortfall { get; set; }
       public int Q3Shortfall { get; set; }
       public int Q4Shortfall { get; set; }
+      public int Q5Shortfall { get; set; }
       public int Q1Excess { get; set; }
       public int Q2Excess { get; set; }
       public int Q3Excess { get; set; }
