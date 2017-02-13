@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Capital.Domain.SalesAchievement>
+﻿@model IEnumerable<Capital.Domain.SalesIncentive>
 
 <div class="table-responsive scroll3">
     <table class="table table-bordered" id="tab_logic">
@@ -53,7 +53,7 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>@item.Target1</td>
+                                    <td>@item.Benchmark</td>
                                 </tr>
                             }
                         </tbody>
@@ -70,7 +70,7 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>@item.AchvdPerc1</td>
+                                    <td>@item.IncentivePerc</td>
                                 </tr>
                             }
                         </tbody>
@@ -89,8 +89,8 @@
                             {
                                 <tr>
 
-                                    <td width="25%">@item.Achvd1</td>
-                                    <td width="25%">@item.Q1Shortfall</td>
+                                    <td width="25%">@item.JanComm</td>
+                                    <td width="25%">@item.JanInctve</td>
                                 </tr>
                             }
                         </tbody>
@@ -108,8 +108,8 @@
                             {
                                 <tr>
 
-                                    <td width="25%">@item.Achvd2</td>
-                                    <td width="25%">@item.Q2Shortfall</td>
+                                    <td width="25%">@item.FebComm</td>
+                                    <td width="25%">@item.FebInctve</td>
                                 </tr>
                             }
                         </tbody>
@@ -127,8 +127,8 @@
                             {
                                 <tr>
 
-                                    <td width="25%">@item.Achvd3</td>
-                                    <td width="25%">@item.Q3Shortfall</td>
+                                    <td width="25%">@item.MarComm</td>
+                                    <td width="25%">@item.MarInctve</td>
                                 </tr>
                             }
                         </tbody>
@@ -146,8 +146,8 @@
                             {
                                 <tr>
 
-                                    <td width="25%">@item.Achvd4</td>
-                                    <td width="25%">@item.Q4Shortfall</td>
+                                    <td width="25%">@item.AplComm</td>
+                                    <td width="25%">@item.AplInctve</td>
                                 </tr>
                             }
                         </tbody>
@@ -165,8 +165,8 @@
                             {
                                 <tr>
 
-                                    <td width="25%">@item.Achvd5</td>
-                                    <td width="25%">@item.Q5Shortfall</td>
+                                    <td width="25%">@item.MayComm</td>
+                                    <td width="25%">@item.MayInctve</td>
                                 </tr>
                             }
                         </tbody>
@@ -184,8 +184,8 @@
                             {
                                 <tr>
 
-                                    <td width="25%">@item.Achvd5</td>
-                                    <td width="25%">@item.Q5Shortfall</td>
+                                    <td width="25%">@item.JunComm</td>
+                                    <td width="25%">@item.JunInctve</td>
                                 </tr>
                             }
                         </tbody>
@@ -203,8 +203,8 @@
                             {
                                 <tr>
 
-                                    <td width="25%">@item.Achvd5</td>
-                                    <td width="25%">@item.Q5Shortfall</td>
+                                    <td width="25%">@item.JulyComm</td>
+                                    <td width="25%">@item.JulyInctve</td>
                                 </tr>
                             }
                         </tbody>
@@ -222,8 +222,8 @@
                             {
                                 <tr>
 
-                                    <td width="25%">@item.Achvd5</td>
-                                    <td width="25%">@item.Q5Shortfall</td>
+                                    <td width="25%">@item.AugComm</td>
+                                    <td width="25%">@item.AugInctve</td>
                                 </tr>
                             }
                         </tbody>
@@ -241,8 +241,8 @@
                             {
                                 <tr>
 
-                                    <td width="25%">@item.Achvd5</td>
-                                    <td width="25%">@item.Q5Shortfall</td>
+                                    <td width="25%">@item.SepComm</td>
+                                    <td width="25%">@item.SepInctve</td>
                                 </tr>
                             }
                         </tbody>
@@ -260,8 +260,8 @@
                             {
                                 <tr>
 
-                                    <td width="25%">@item.Achvd5</td>
-                                    <td width="25%">@item.Q5Shortfall</td>
+                                    <td width="25%">@item.OctComm</td>
+                                    <td width="25%">@item.OctInctve</td>
                                 </tr>
                             }
                         </tbody>
@@ -279,8 +279,8 @@
                             {
                                 <tr>
 
-                                    <td width="25%">@item.Achvd5</td>
-                                    <td width="25%">@item.Q5Shortfall</td>
+                                    <td width="25%">@item.NovComm</td>
+                                    <td width="25%">@item.NovInctve</td>
                                 </tr>
                             }
                         </tbody>
@@ -298,8 +298,8 @@
                             {
                                 <tr>
 
-                                    <td width="25%">@item.Achvd5</td>
-                                    <td width="25%">@item.Q5Shortfall</td>
+                                    <td width="25%">@item.DecComm</td>
+                                    <td width="25%">@item.DecInctve</td>
                                 </tr>
                             }
                         </tbody>
