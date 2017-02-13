@@ -84,7 +84,7 @@ namespace Capital.DAL
                     {
                         item.CusInvoiceId = model.CusInvoiceId;
                         sql = @"INSERT INTO CustomerInvoiceItem
-                                (CusInvoiceId,PolicyId,Remarks)VALUES(@CusInvoiceId,@PolicyId,@Remarks);SELECT CAST(SCOPE_IDENTITY() as int);";
+                                (CusInvoiceId,PolicyId,Remarks,CusInvAmt)VALUES(@CusInvoiceId,@PolicyId,@Remarks,@CusInvAmt);SELECT CAST(SCOPE_IDENTITY() as int);";
                     }
                     int id = connection.Execute(sql, model.Items);
                     if (id > 0)
