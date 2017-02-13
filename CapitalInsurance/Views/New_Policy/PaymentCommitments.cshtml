@@ -38,7 +38,7 @@ ViewBag.actionName = actionName;
 
     function AddRow() {
 
-
+       
         var i = 0;
         var no = 1;
         $('tr[id^="Row_"]').each(function () {
@@ -63,6 +63,13 @@ ViewBag.actionName = actionName;
         clone.html($(clone).html().replace(/this,0/, 'this,' + i + ''));
         $("#tab_logic").append('<tr id="Row_' + i + '">' + clone.html() + '  </tr>');
         Append_Date();
+      
+        $("#Cheque_" + i + "__BankName").val('');
+        $("#Cheque_" + i + "__ChequeNo").val('');
+        $("#Cheque_" + i + "__QuickBookRefNo").val('');
+        $("#Cheque_" + i + "__BankBranch").val('');
+        $("#Cheque_" + i + "__ChequeAmt").val('');
+        $("#Cheque_" + i + "__ChequeDate").val('');
     }
     function Delete(index) {
         var i = 0;

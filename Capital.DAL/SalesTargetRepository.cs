@@ -21,7 +21,7 @@ namespace Capital.DAL
 //                string sql = @"select FyId,ST.SalesMgId,SalesMgName,Quarer1,Quarer2,Quarer3,Quarer4,Total from SalesTarget ST
 //                               left join SalesManager S on S.SalesMgId=ST.SalesMgId where FyId=" + FyId + "  order by SalesMgName";
                 string sql = @"select FyId,S.SalesMgId,SalesMgName,Quarer1,Quarer2,Quarer3,Quarer4,Total from SalesManager S   left join SalesTarget ST
-                               on S.SalesMgId=ST.SalesMgId where DsgId in (9,10,11,2) and FyId=" + FyId + "  order by SalesMgName";
+                               on S.SalesMgId=ST.SalesMgId where DsgName in ('OPERATION MANAGER','RELATIONSHIP MANAGER','SENIOR RELATIONSHIP MANAGER','BUSINESS DEVELOPMENT MANAGER') and FyId=" + FyId + "  order by SalesMgName";
                 var objSalesTarget = connection.Query<SalesTargetItem>(sql).ToList<SalesTargetItem>();
                 return objSalesTarget;
             }
@@ -30,7 +30,7 @@ namespace Capital.DAL
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select * from SalesManager where DsgId in (9,10,11,2) order by SalesMgName";
+                string sql = @"select * from SalesManager where DsgName in('OPERATION MANAGER','RELATIONSHIP MANAGER','SENIOR RELATIONSHIP MANAGER','BUSINESS DEVELOPMENT MANAGER') order by SalesMgName";
                 var objSalesTarget = connection.Query<SalesTargetItem>(sql).ToList<SalesTargetItem>();
                 return objSalesTarget;
             }
@@ -66,67 +66,72 @@ namespace Capital.DAL
             return res;
         }
 
-        public List<SalesAchievement> GetSalesIncentiveReportDetails(int Id, int? FyId)
+        public List<SalesIncentive> GetSalesIncentiveReportDetails(int Id, int? FyId)
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
-                string sql = @"select SM.SalesMgId,SM.SalesMgCode,SM.SalesMgName,IncentivePerc,(3*MonthlySalary)Benchmark,0 janComm,0 janInctve,0 febComm,0 febInctve,
-                0 marComm,0 marInctve,0 aplComm,0 aplInctve ,0 mayComm,0 mayInctve,0 juneComm,0 juneInctve,
-                0 julyComm,0 julyInctve,0 augComm,0 augInctve ,0 sepComm,0 sepInctve,0 octComm,0 octInctve,0 novComm,0 novInctve 
-                ,0 decComm,0 decInctve  INTO #RESULT
-                from SalesManager SM 
+                string sql = @"DECLARE @finyear INT = (SELECT  year(FyStartDate)  FROM FinancialYear  WHERE FyId = @FyId)
+	                                   
+                                   
+                                   
+
+                select SM.SalesMgId,SM.SalesMgCode,SM.SalesMgName,IncentivePerc,(3*MonthlySalary)Benchmark,0 JanComm,0 JanInctve,0 FebComm,0 FebInctve,
+                0 MarComm,0 MarInctve,0 AplComm,0 AplInctve ,0 MayComm,0 MayInctve,0 JuneComm,0 JuneInctve,
+                0 JulyComm,0 JulyInctve,0 AugComm,0 AugInctve ,0 SepComm,0 SepInctve,0 OctComm,0 OctInctve,0 NovComm,0 NovInctve 
+                ,0 DecComm,0 DecInctve  INTO #RESULT
+                from SalesManager SM;
 
                 with A as (
-                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (1)group by P.SalesMgId)
-                Update R set janComm = A.Amount,janInctve=(A.Amount-R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
+                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (1) AND year(P.TranDate)=@finyear group by P.SalesMgId)
+                Update R set JanComm = A.Amount,JanInctve=A.Amount-(R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
 
                 with A as (
-                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (2)group by P.SalesMgId)
-                Update R set febComm = A.Amount,febInctve=(A.Amount-R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
+                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (2) AND year(P.TranDate)=@finyear  group by P.SalesMgId)
+                Update R set FebComm = A.Amount,FebInctve=A.Amount-(R.Benchmark * (R.IncentivePerc/100)) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
 
                 with A as (
-                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (3)group by P.SalesMgId)
-                Update R set marComm = A.Amount,marInctve=(A.Amount-R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
+                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (3) AND year(P.TranDate)=@finyear  group by P.SalesMgId)
+                Update R set marComm = A.Amount,marInctve=A.Amount-(R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
 
                 with A as (
-                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (4)group by P.SalesMgId)
-                Update R set aplComm = A.Amount,aplInctve=(A.Amount-R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
+                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (4) AND year(P.TranDate)=@finyear  group by P.SalesMgId)
+                Update R set AplComm = A.Amount,AplInctve=A.Amount-(R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
 
                 with A as (
-                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (5)group by P.SalesMgId)
-                Update R set mayComm = A.Amount,mayInctve=(A.Amount-R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
+                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (5) AND year(P.TranDate)=@finyear  group by P.SalesMgId)
+                Update R set MayComm = A.Amount,MayInctve=A.Amount-(R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
 
                 with A as (
-                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (6)group by P.SalesMgId)
-                Update R set juneComm = A.Amount,juneInctve=(A.Amount-R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
+                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (6) AND year(P.TranDate)=@finyear  group by P.SalesMgId)
+                Update R set JuneComm = A.Amount,JuneInctve=A.Amount-(R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
 
                 with A as (
-                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (7)group by P.SalesMgId)
-                Update R set julyComm = A.Amount,julyInctve=(A.Amount-R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
+                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (7) AND year(P.TranDate)=@finyear  group by P.SalesMgId)
+                Update R set JulyComm = A.Amount,JulyInctve=A.Amount-(R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
 
                 with A as (
-                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (8)group by P.SalesMgId)
-                Update R set augComm = A.Amount,augInctve=(A.Amount-R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
+                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (8) AND year(P.TranDate)=@finyear  group by P.SalesMgId)
+                Update R set AugComm = A.Amount,AugInctve=A.Amount-(R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
 
                 with A as (
-                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (9)group by P.SalesMgId)
-                Update R set sepComm = A.Amount,sepInctve=(A.Amount-R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
+                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (9) AND year(P.TranDate)=@finyear  group by P.SalesMgId)
+                Update R set SepComm = A.Amount,SepInctve=A.Amount-(R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
 
                 with A as (
-                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (10)group by P.SalesMgId)
-                Update R set octComm = A.Amount,octInctve=(A.Amount-R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
+                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (10) AND year(P.TranDate)=@finyear  group by P.SalesMgId)
+                Update R set OctComm = A.Amount,OctInctve=A.Amount-(R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
 
                 with A as (
-                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (11)group by P.SalesMgId)
-                Update R set novComm = A.Amount,novInctve=(A.Amount-R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
+                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (11) AND year(P.TranDate)=@finyear  group by P.SalesMgId)
+                Update R set NovComm = A.Amount,NovInctve=A.Amount-(R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
 
                 with A as (
-                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (12)group by P.SalesMgId)
-                Update R set decComm = A.Amount,decInctve=(A.Amount-R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
+                select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (12) AND year(P.TranDate)=@finyear  group by P.SalesMgId)
+                Update R set DecComm = A.Amount,DecInctve=A.Amount-(R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
 
                 SELECT * FROM #Result";
 
-                var objSalesTarget = connection.Query<SalesAchievement>(sql, new {Id=Id, FyId = FyId }).ToList<SalesAchievement>();
+                var objSalesTarget = connection.Query<SalesIncentive>(sql, new { Id = Id, FyId = FyId }).ToList<SalesIncentive>();
                 return objSalesTarget;
             }
         }

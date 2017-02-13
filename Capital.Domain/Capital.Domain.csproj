@@ -86,6 +86,7 @@
     <Compile Include="ResetPassword.cs" />
     <Compile Include="Result.cs" />
     <Compile Include="SalesAchievement.cs" />
+    <Compile Include="SalesIncentive.cs" />
     <Compile Include="SalesManager.cs" />
     <Compile Include="SalesTarget.cs" />
     <Compile Include="State.cs" />
