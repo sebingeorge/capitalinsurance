@@ -70,5 +70,19 @@ namespace CapitalInsurance.Controllers
 
             }
         }
+
+        public string UserRolename
+        {
+            get
+            {
+                UserRepository repo = new UserRepository();
+                return repo.userrole(UserID);
+              
+            }
+            set
+            {
+
+            }
+        }
     }
 }

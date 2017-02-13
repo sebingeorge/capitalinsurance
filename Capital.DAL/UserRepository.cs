@@ -271,5 +271,47 @@ namespace Capital.DAL
             //InsertLoginHistory(dataConnection, user.CreatedBy, "Update", "Unit", user.UserId.ToString(), "0");
             return user.UserId ?? 0;
         }
+        //public  User userrole(int UserId)
+        //{
+        //    using (IDbConnection connection = OpenConnection(dataConnection))
+        //    {
+                
+        //            string sql = "";
+                   
+        //                sql = "select ur.RoleName from [user] U inner join UserRole Ur on Ur.RoleId=u.UserRole where U.UserId= @UserId;";
+
+     
+
+        //                //return connection.Query(sql, new { UserId = UserId }).ToString();
+
+
+        //                var userrole = new User();
+        //                try
+        //                {
+        //                    userrole = connection.Query<User>(sql).Single();
+        //                }
+        //                catch
+        //                {
+
+        //                }
+        //                return userrole;
+          
+                
+        //    }
+
+            
+        //}
+        public string userrole(int UserId)
+        {
+            using (IDbConnection connection = OpenConnection(dataConnection))
+            {
+
+                string qry = @"select ur.RoleName from [user] U inner join UserRole Ur on Ur.RoleId=u.UserRole where U.UserId= @UserId";
+
+
+                return connection.Query<string>(qry, new { UserId = UserId }).First();
+            }
+        }
+
     }
 }

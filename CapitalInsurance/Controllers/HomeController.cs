@@ -49,9 +49,9 @@ namespace CapitalInsurance.Controllers
 
             if (view.RenewalPolicy)
             {
-                DateTime FromDate = new PolicyRenewalRepository().GetFromDate(); ;
+                DateTime FromDate = new PolicyRenewalRepository().GetFromDate(); 
                 DateTime ToDate = new PolicyRenewalRepository().GetToDate();
-                var res = new PolicyRenewalRepository().GetNewPolicyForRenewal(UserID,FromDate,ToDate , "", "", "");
+                var res = new PolicyRenewalRepository().GetNewPolicyForRenewal(UserID, UserRolename, FromDate, ToDate, "", "", "");
                 view.NoOfRenewalPolicy = res.Count;
             }
           
