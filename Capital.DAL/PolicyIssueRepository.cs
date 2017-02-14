@@ -442,8 +442,8 @@ namespace Capital.DAL
                                     left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                     left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                     left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                    where P.OldPolicyId IS NULL and P.PolicyStage in (2,3)  
-                                    AND isnull(P.PolicyNo,0) LIKE '%'+@PolicyNo+'%'
+                                    where P.OldPolicyId IS NULL and P.PolicyNo IS NOT NULL
+                                    AND P.PolicyNo LIKE '%'+@PolicyNo+'%'
                                     order by P.TranNumber";
                 return connection.Query<PolicyIssue>(query, new { PolicyNo = PolicyNo }).ToList();
             }
