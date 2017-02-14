@@ -132,7 +132,7 @@
                                 </td>
                                 <td width="9%">
                                     <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                        @Html.TextBoxFor(model => Model.DailyActivityItems[i].DailyActivityDate, new { @class = "form_input", @onchange = "CheckValidation(this," + i + ")" })
+                                        @Html.TextBoxFor(model => Model.DailyActivityItems[i].DailyActivityDate, Model.DailyActivityItems[i].DailyActivityDate.GetValueOrDefault(DateTime.Today).ToString("dd/MMM/yyyy"), new { @class = "form_input", @onchange = "CheckValidation(this," + i + ")" })
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                     </div>
                                 </td>
