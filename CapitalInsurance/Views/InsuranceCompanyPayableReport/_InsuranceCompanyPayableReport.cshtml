@@ -13,32 +13,38 @@ function getpolicyDetails(Id)
    }
 </script>
  
+<div class="col-md-12">
+    <table class="table table-bordered table-hover" id="aaa" data-placement="bottom">
+        <thead>
+            <tr class="grid_heading">
+                <th width="1%" class="text-center">#</th>
+                <th width="34%">Insurance Company</th>
+                <th width="7%" class="text-right" nowrap>Payable</th>
 
-    <div class="col-md-12">
-        <table class="scrollTable table table-bordered" id="aaa" data-placement="bottom">
-            <thead>
-                <tr class="grid_heading">
-                    <th width="1%" class="text-center">#</th>
-                    <th width="34%">Insurance Company</th>
-                    <th width="7%" class="text-right" nowrap>Payable</th>
-
+            </tr>
+        </thead>
+        @{int i = 0;}
+        @foreach (var item in Model)
+        {
+            ++i;
+            <tbody class="grid_row">
+                <tr>
+                    <td class="grid-cell text-center">@i</td>
+                    <td onclick="getpolicyDetails(@item.InsCmpId)" class="grid-cell  lblue" value="Get Policy Details" style="width: 150px;cursor:pointer;" data-toggle="modal" data-target="#Policydetailspopup">@item.InsCmpName</td>
+                    <td class="grid-cell text-right">@item.CommittedAmt </td>
                 </tr>
-            </thead>
-            @{int i = 0;}
-            @foreach (var item in Model)
-            {
-                ++i;
-                <tbody class="grid_row">
-                    <tr>
-                        <td class="grid-cell text-center">@i</td>
-                        <td onclick="getpolicyDetails(@item.InsCmpId)" class="grid-cell  lblue" value="Get Policy Details" style="width: 150px;cursor:pointer;" data-toggle="modal" data-target="#Policydetailspopup">@item.InsCmpName</td>
-                        <td class ="grid-cell text-right">@item.CommittedAmt </td>
-                    </tr>
 
-                </tbody>
-            }
-        </table>
-    </div>
+            </tbody>
+        }
+    </table>
+</div>
+
+
+
+
+
+
+  
 
 
 

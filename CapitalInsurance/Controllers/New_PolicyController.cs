@@ -257,7 +257,7 @@ namespace CapitalInsurance.Controllers
             //    return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetPaymentCollectionList(FromDate, ToDate, PolicyNo, Client, SalesManager));
             //}
 
-            List<PolicyIssue> model = new PolicyIssueRepository().GetNewPolicy(UserID, FromDate, ToDate, PolicyNo, Client, SalesManager);
+            List<PolicyIssue> model = new PolicyIssueRepository().GetNewPolicy(UserID, UserRolename, FromDate, ToDate, PolicyNo, Client, SalesManager);
 
             return PartialView("_NewPolicyListGrid", model);
         }
@@ -271,7 +271,7 @@ namespace CapitalInsurance.Controllers
         {
             //return PartialView("_PendingPolicyForCommitments", new PolicyIssueRepository().GetNewPolicyForCommitments(trnno , client ,insuredname , insuredComp , coverage));
 
-            var griddata = new PolicyIssueRepository().GetNewPolicyForCommitments(UserID,trnno, client, insuredname, insuredComp, coverage);
+            var griddata = new PolicyIssueRepository().GetNewPolicyForCommitments(UserID,UserRolename,trnno, client, insuredname, insuredComp, coverage);
 
             Session["GridDate"] = griddata;
             Session["excelname"]="Commitments";
