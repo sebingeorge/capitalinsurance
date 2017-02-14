@@ -20,7 +20,7 @@ namespace Capital.Domain
       public string PolicyNo { get; set; }
       public DateTime Date { get; set; }
       public string Coverage { get; set; }
-      public string CommittedDate { get; set; }
+      public DateTime CommittedDate { get; set; }
       public string CommittedAmount { get; set; }
       public string Paid { get; set; }
       public decimal netamount { get; set; }
