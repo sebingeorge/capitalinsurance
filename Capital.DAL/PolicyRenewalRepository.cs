@@ -30,10 +30,10 @@ namespace Capital.DAL
                                  left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                  left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                  left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                 where P.PolicyId not in (select isnull(OldPolicyId,0) from PolicyIssue) and P.PayModeId IS NOT NULL and P.PolicyNo IS NOT NULL 
+                                 where P.PolicyId not in (select isnull(OldPolicyId,0) from PolicyIssue) and P.PayModeId IS NOT NULL and P.PolicyStage=3
                                  AND CAST(P.RenewalDate AS date)  >=CAST(@FromDate AS date)  and CAST(P.RenewalDate AS date) <=CAST(@ToDate AS date)
                                  AND C.CusName LIKE '%'+@Client+'%'
-                                 AND P.PolicyNo LIKE '%'+@PolicyNo+'%'
+                                 AND isnull(P.PolicyNo,0) LIKE '%'+@PolicyNo+'%'
                                  AND ISNULL(S.SalesMgName,0) LIKE '%'+@SalesManager+'%'
                                  order by P.RenewalDate ";
                 }
@@ -58,10 +58,10 @@ namespace Capital.DAL
                                  left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                  left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                  left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                 where P.PolicyId not in (select isnull(OldPolicyId,0) from PolicyIssue) and P.PayModeId IS NOT NULL and P.PolicyNo IS NOT NULL and  isnull(P.SalesMgId,0) IN (SELECT SalesMgId FROM #TEMP)
+                                 where P.PolicyId not in (select isnull(OldPolicyId,0) from PolicyIssue) and P.PayModeId IS NOT NULL and P.PolicyStage=3 and  isnull(P.SalesMgId,0) IN (SELECT SalesMgId FROM #TEMP)
                                  AND CAST(P.RenewalDate AS date)  >=CAST(@FromDate AS date)  and CAST(P.RenewalDate AS date) <=CAST(@ToDate AS date)
                                  AND C.CusName LIKE '%'+@Client+'%'
-                                 AND P.PolicyNo LIKE '%'+@PolicyNo+'%'
+                                 AND isnull(P.PolicyNo,0) LIKE '%'+@PolicyNo+'%'
                                  AND ISNULL(S.SalesMgName,0) LIKE '%'+@SalesManager+'%'
                                  order by P.RenewalDate ";
                 }
