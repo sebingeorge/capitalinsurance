@@ -7,10 +7,10 @@
     {
 
         columns.Add(m => m.PolicyNo).Titled("Policy No.").SetWidth(5);
-        columns.Add(m => m.Date).Titled("Date").SetWidth(10);
+        columns.Add(m => m.Date).Format("{0:dd/MM/yyyy}").Titled("Date").SetWidth(10);
         columns.Add(m => m.Coverage).Titled("Coverage").SetWidth(10);
-        columns.Add(m => m.CommittedDate).Titled("Committed Date").SetWidth(7);
-        columns.Add(m => m.CommittedAmount).Titled("Committed Amount").SetWidth(7);
+        columns.Add(m => m.CommittedDate).Format("{0:dd/MM/yyyy}").Titled("Committed Date").SetWidth(7);
+        columns.Add(m => m.CommittedAmount).Titled("Committed Amount").SetWidth(7).Css("text-right");
         columns.Add(m => m.Paid).Titled("Paid").SetWidth(7);
 
     }).WithPaging(15).SetRowCssClasses(x => "rowfocus")
@@ -18,7 +18,7 @@
 
 <br />
 
-<div class="col-md-10 text-right">
+<div class="col-md-11 text-right">
     <h5> Net Receivables : <strong>@Model[0].netamount</strong></h5>
 </div>
 <br />

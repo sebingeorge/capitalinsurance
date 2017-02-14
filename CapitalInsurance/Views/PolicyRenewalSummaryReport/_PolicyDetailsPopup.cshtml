@@ -1,22 +1,6 @@
 ﻿@model List<Capital.Domain.PolicyIssue>
 @using GridMvc.Html
-@*<div class="table-responsive scroll3">*@
-   
-    @*//{
-    //    columns.Add(m => m.StrTranNumber).Titled("Transaction No.").SetWidth(12);
-    //    columns.Add(m => m.PolicyNo).Titled("Policy No.").SetWidth(5);
-    //    columns.Add(m => m.CusName).Titled("Client").SetWidth(10);
-    //    columns.Add(m => m.CustContPersonName).Titled("Contact Name").SetWidth(10);
-    //    columns.Add(m => m.InsuredName).Titled("Insured Name").SetWidth(7);
-    //    columns.Add(m => m.InsCmpName).Titled("Insurance Company").SetWidth(7);
-    //    columns.Add(m => m.InsPrdName).Titled("Product").SetWidth(7);
-    //    columns.Add(m => m.TotalPremium).Titled("Total Premium").SetWidth(7).Css("text-right").Format("{0:#}");
-    //    columns.Add(m => m.RenewalDate).Format("{0:dd/MM/yyyy}").Titled("Renewal Date").SetWidth(7);
-    //    columns.Add(m => m.SalesMgName).Titled("Sales Manager").SetWidth(7);
-        //columns.Add(m => m.Renew).Titled("Renew").SetWidth(7).*@
-        
-    @*//}).WithPaging(15)
-</div>*@
+
 
 <script>
 
@@ -38,14 +22,11 @@
             <th width="10%">Insured Name</th>
             <th width="10%">Insurance Company</th>
             <th width="7%">Product</th>
-            <th width="7%">Total Premium</th>
+            <th width="7%" class="text-right">Total Premium</th>
             <th width="7%">Renewal Date</th>
             <th width="10%">Sales Manager</th>
             <th width="7%">Renew</th>
 
-            @*<th width="25%" class="text-right">For Renewal</th>
-                <th width="25%" class="text-right">Renewed</th>
-                <th width="5%"></th>*@
         </tr>
     </thead>
     <tbody class="grid_row">
@@ -61,8 +42,8 @@
                     <td> @Model[i].InsuredName </td>
                     <td> @Model[i].InsCmpName </td>
                     <td> @Model[i].InsPrdName </td>
-                    <td> @Model[i].TotalPremium </td>
-                    <td> @Model[i].RenewalDate </td>
+                    <td class="text-right"> @Model[i].TotalPremium </td>
+                    <td> @Model[i].RenewalDate.ToString("MM/dd/yyyy") </td>
                     <td> @Model[i].SalesMgName</td>
 
                     <td>
