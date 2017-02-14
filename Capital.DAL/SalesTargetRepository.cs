@@ -129,7 +129,10 @@ namespace Capital.DAL
                 select P.SalesMgId, sum(P.TotalCommission)Amount from PolicyIssue P INNER JOIN  #Result R on R.SalesMgId= P.SalesMgId inner join SalesManager S ON S.SalesMgId=P.SalesMgId where month(P.TranDate) in (12) AND year(P.TranDate)=@finyear  group by P.SalesMgId)
                 Update R set DecComm = A.Amount,DecInctve=A.Amount-(R.Benchmark)*(R.IncentivePerc/100) from A inner join #Result R on R.SalesMgId = A.SalesMgId ;
 
-                SELECT * FROM #Result";
+                SELECT SalesMgId,SalesMgCode,SalesMgName,IncentivePerc,Benchmark,JanComm, CASE WHEN JanInctve<= 0 THEN 0 ELSE JanInctve END AS JanInctve,FebComm, CASE WHEN FebInctve<= 0 THEN 0 ELSE FebInctve END AS FebInctve,
+                MarComm, CASE WHEN MarInctve<= 0 THEN 0 ELSE MarInctve END AS MarInctve,AplComm, CASE WHEN AplInctve<= 0 THEN 0 ELSE AplInctve END AS AplInctve ,MayComm,CASE WHEN MayInctve<= 0 THEN 0 ELSE MayInctve END AS MayInctve,JuneComm,CASE WHEN JuneInctve<= 0 THEN 0 ELSE JuneInctve END AS JuneInctve,
+               JulyComm, CASE WHEN JulyInctve<= 0 THEN 0 ELSE JulyInctve END AS JulyInctve,AugComm, CASE WHEN AugInctve<= 0 THEN 0 ELSE AugInctve END AS AugInctve,SepComm, CASE WHEN SepInctve<= 0 THEN 0 ELSE SepInctve END AS SepInctve,OctComm,CASE WHEN OctInctve<= 0 THEN 0 ELSE OctInctve END AS OctInctve,NovComm,CASE WHEN NovInctve<= 0 THEN 0 ELSE NovInctve END AS NovInctve 
+                ,DecComm, CASE WHEN DecInctve<= 0 THEN 0 ELSE DecInctve END AS DecInctve FROM #Result";
 
                 var objSalesTarget = connection.Query<SalesIncentive>(sql, new { Id = Id,userRolename=userRolename, FyId = FyId }).ToList<SalesIncentive>();
                 return objSalesTarget;
