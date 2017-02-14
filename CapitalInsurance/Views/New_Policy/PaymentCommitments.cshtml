@@ -594,7 +594,7 @@ ViewBag.actionName = actionName;
                             </td>
                             <td>
                                 <div class="input-group date form_date" data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
+                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, Model.Cheque[i].ChequeDate.GetValueOrDefault(DateTime.Today).ToString("dd/MMM/yyyy"), new { @class = "form_input" })
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                 </div>
                             </td>
