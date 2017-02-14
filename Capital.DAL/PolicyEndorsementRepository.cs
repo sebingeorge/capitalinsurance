@@ -13,11 +13,31 @@ namespace Capital.DAL
     public class PolicyEndorsementRepository : BaseRepository
     {
      static string dataConnection = GetConnectionString("CibConnection");
-     public List<PolicyIssue> GetNewPolicyForEndorse(int Id, DateTime? FromDate, DateTime? ToDate, string PolicyNo = "", string Client = "", string SalesManager = "")
+     public List<PolicyIssue> GetNewPolicyForEndorse(int Id,string userRolename, DateTime? FromDate, DateTime? ToDate, string PolicyNo = "", string Client = "", string SalesManager = "")
      {
          using (IDbConnection connection = OpenConnection(dataConnection))
          {
-             string query = @"select SalesMgId into #TEMP from [User]  U  WHERE U.UserId=@Id 
+             string query = "";
+             if (userRolename == "Administrator")
+             {
+                  query = @"   select P.PolicyId,Concat(P.TranPrefix,'/',P.TranNumber)StrTranNumber,C.CusName,P.CustContPersonName,P.InsuredName,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,P.RenewalDate,
+                              P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionAmount, S.SalesMgName,P.PolicyNo
+                              from PolicyIssue P
+                              left join Customer C on C.CusId = P.CusId
+                              left join InsuranceCompany I on I.InsCmpId = P.InsCmpId
+                              left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
+                              left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
+                              left join SalesManager S on S.SalesMgId = P.SalesMgId
+                              where P.PolicyId not in (select isnull(OldPolicyId,0) from PolicyIssue) and P.PayModeId IS NOT NULL and P.PolicyNo IS NOT NULL 
+                              AND CAST(P.TranDate AS date)  >=CAST(@FromDate AS date)  and CAST(P.TranDate AS date) <=CAST(@ToDate AS date)
+                              AND C.CusName LIKE '%'+@Client+'%'
+                              AND P.PolicyNo LIKE '%'+@PolicyNo+'%'
+                              AND ISNULL(S.SalesMgName,0) LIKE '%'+@SalesManager+'%'
+                              order by P.TranNumber desc";
+             }
+             else
+             {
+                  query = @"select SalesMgId into #TEMP from [User]  U  WHERE U.UserId=@Id 
                               union all
                               select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U  WHERE U.UserId=@Id )
                               union all
@@ -40,6 +60,7 @@ namespace Capital.DAL
                               AND P.PolicyNo LIKE '%'+@PolicyNo+'%'
                               AND ISNULL(S.SalesMgName,0) LIKE '%'+@SalesManager+'%'
                               order by P.TranNumber desc";
+             }
              return connection.Query<PolicyIssue>(query, new { FromDate = FromDate, ToDate = ToDate, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager, Id = Id }).ToList();
          }
      }

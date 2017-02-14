@@ -18,7 +18,7 @@ namespace CapitalInsurance.Controllers
         }
         public ActionResult SalesIncentiveReport(int? FyId)
         {
-            return PartialView("_SalesIncentiveReport", new SalesTargetRepository().GetSalesIncentiveReportDetails(UserID, FyId));
+            return PartialView("_SalesIncentiveReport", new SalesTargetRepository().GetSalesIncentiveReportDetails(UserID,UserRolename,FyId));
         }
         void FillFinYear()
         {

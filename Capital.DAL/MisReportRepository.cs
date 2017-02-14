@@ -10,6 +10,7 @@ namespace Capital.DAL
 {
     public class MisReportRepository : BaseRepository
     {
+        string Sql = "";
                
         static string dataConnection = GetConnectionString("CibConnection");
         public IEnumerable<MonthlyAcheivementcoveragewise> GetmonthlycoverageAchivement()
@@ -41,12 +42,29 @@ namespace Capital.DAL
 
 
 
-        public IEnumerable<EmployeeAchievementVsTraget> GetEmployeeTargetAchivement(int Id)
+        public IEnumerable<EmployeeAchievementVsTraget> GetEmployeeTargetAchivement(int Id, string userRolename)
         {
+            string sql = "";
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
+                if (userRolename == "Administrator")
+                {
 
-                string sql = @"select SalesMgId into #TEMP1 from [User]  U  WHERE U.UserId=@Id 
+                    sql = @"select sm.SalesMgName slmgname ,sm.SalesMgId slmgcode,sum(TotalCommission) achivement,0 target  into #Temp from  PolicyIssue Pi
+                               
+                                inner join SalesManager SM on SM.SalesMgId= Pi.SalesMgId
+								where DATEPART(Year,pi.TranDate)=  DATEPART(Year, GETDATE()) 
+                                group by sm.SalesMgName,sm.SalesMgId;
+
+                               with A as(select SalesMgId SalesMg,sum(Total) total from SalesTarget St inner join FinancialYear FY on FyName=  DATEPART(Year, GETDATE())  where St.FyId=fy.FyId group by SalesMgId )
+
+                               update #Temp set target=A.total from A where #Temp.slmgcode=a.SalesMg;
+
+							   select * from #Temp";
+                }
+                else
+                {
+                    sql = @"select SalesMgId into #TEMP1 from [User]  U  WHERE U.UserId=@Id 
                             union all
                             select SalesMgId from [User]  U where Reporting in (select SalesMgId from [User]  U  WHERE U.UserId=@Id )
                             union all
@@ -70,6 +88,7 @@ namespace Capital.DAL
 
 							   select * from #Temp";
 
+                }
                 return connection.Query<EmployeeAchievementVsTraget>(sql, new { Id = Id });
 
   
