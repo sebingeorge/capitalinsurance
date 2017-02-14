@@ -38,7 +38,7 @@ ViewBag.actionName = actionName;
 
     function AddRow() {
 
-       
+
         var i = 0;
         var no = 1;
         $('tr[id^="Row_"]').each(function () {
@@ -63,7 +63,7 @@ ViewBag.actionName = actionName;
         clone.html($(clone).html().replace(/this,0/, 'this,' + i + ''));
         $("#tab_logic").append('<tr id="Row_' + i + '">' + clone.html() + '  </tr>');
         Append_Date();
-      
+
         $("#Cheque_" + i + "__BankName").val('');
         $("#Cheque_" + i + "__ChequeNo").val('');
         $("#Cheque_" + i + "__QuickBookRefNo").val('');
@@ -176,11 +176,15 @@ ViewBag.actionName = actionName;
 @*}*@
 <div class="container content-in">
     <div class="row">
-        @if (Model.PolicyStage == 2)
+        @if (Model.PolicyStage == 1)
+        {
+            <h1>New Policy(PSF)</h1>
+        }
+        else if (Model.PolicyStage == 2)
         {
             <h1>Payment Commitments</h1>
         }
-        else
+        else if (Model.PolicyStage == 3)
         {
             <h1>Payment Collection</h1>
         }
@@ -435,43 +439,33 @@ ViewBag.actionName = actionName;
                 </div>
             </div>
         </div>
-        <hr />
-        <h2>OPERATION</h2>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="row form-group">
-                    <div class="col-md-12">
-                        <label id="againstId"></label>
-                        @if (Model.PolicyStage == 2)
-                        {
-                            @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input", autocomplete = "off" })
-                        }
-                        else
-                        {
-                            @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input", @readonly = "readonly" })
-                        }
-                        @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div class="row form-group">
-                    <div class="col-md-12">
-                        <label>Remarks</label>
-                        @if (Model.PolicyStage == 2)
-                        {
-                            @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input", autocomplete = "off" })
-                        }
-                        else
-                        {
-                            @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input", @readonly = "readonly" })
-                        }
-                        @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
 
-        </div>
+        if (@Model.PolicyStage != 1)
+        {
+            <hr />
+            <h2>OPERATION</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label id="againstId"></label>
+                            @Html.TextBoxFor(m => m.PolicyNo, new { @class = "form_input", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.PolicyNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label>Remarks</label>
+                            @Html.TextBoxFor(m => m.Remarks, new { @class = "form_input", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.Remarks, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
         if (@Model.PolicyStage != 1)
         {
             <h2>PAYMENT COMMITMENTS</h2>
@@ -484,46 +478,46 @@ ViewBag.actionName = actionName;
                             <th class="text-right ">Amount</th>
                             @if (Model.PolicyStage == 3)
                             {
-                                <th>CIB Paid</th>
-                                <th>Ins Comp Paid</th>
+                            <th>CIB Paid</th>
+                            <th>Ins Comp Paid</th>
                             }
                         </tr>
                         @for (int i = 0; i < Model.Committed.Count; i++)
                         {
 
-                            <tr>
-                                @Html.HiddenFor(model => Model.Committed[i].CommRowId)
-                                @if (Model.PolicyStage == 2)
+                        <tr>
+                            @Html.HiddenFor(model => Model.Committed[i].CommRowId)
+                            @if (Model.PolicyStage == 2)
                                 {
-                                    <td>
-                                        <div class="input-group date form_date " data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                            @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input", autocomplete = "off" })
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right", @onkeyup = "OnAmountChanged()" })
-                                    </td>
+                                <td>
+                                    <div class="input-group date form_date " data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input", autocomplete = "off" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right", @onkeyup = "OnAmountChanged()" })
+                                </td>
                                 }
                                 else
                                 {
-                                    <td>
-                                        <div class="input-group date " data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                            @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input", @readonly = "readonly" })
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })
-                                    </td>
-                                    <td>
-                                        @Html.CheckBoxFor(model => Model.Committed[i].paid)
-                                    </td>
-                                    <td>
-                                        @Html.CheckBoxFor(model => Model.Committed[i].InsPaid)
-                                    </td>
+                                <td>
+                                    <div class="input-group date " data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input", @readonly = "readonly" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })
+                                </td>
+                                <td>
+                                    @Html.CheckBoxFor(model => Model.Committed[i].paid)
+                                </td>
+                                <td>
+                                    @Html.CheckBoxFor(model => Model.Committed[i].InsPaid)
+                                </td>
                                 }
-                            </tr>
+                        </tr>
                         }
                         <tfoot class="grid_heading">
                             <tr>
@@ -531,11 +525,11 @@ ViewBag.actionName = actionName;
                                 <th style="text-align:right">
                                     <span id="commitmentotal">0.00</span>
                                 </th>
-                              
+
                                 @if (Model.PolicyStage == 3)
                                 {
-                                    <th></th>
-                                    <th></th>
+                                <th></th>
+                                <th></th>
                                 }
                             </tr>
                         </tfoot>
@@ -589,32 +583,32 @@ ViewBag.actionName = actionName;
                         </tr>
                         @for (int i = 0; i < Model.Cheque.Count; i++)
                         {
-                            <tr id="Row_@i">
+                        <tr id="Row_@i">
 
-                                <td style="vertical-align:middle"><a class="glyphicon glyphicon-minus del" style="top:0px" onclick="Delete(@i)"></a></td>
-                                <td>
-                                    @Html.TextBoxFor(model => Model.Cheque[i].QuickBookRefNo, new { @class = "form_input", autocomplete = "off" })
-                                </td>
-                                <td>
-                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeNo, new { @class = "form_input", autocomplete = "off" })
-                                </td>
-                                <td>
-                                    <div class="input-group date form_date" data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                        @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    @Html.TextBoxFor(model => Model.Cheque[i].BankName, new { @class = "form_input", autocomplete = "off" })
-                                </td>
-                                <td>
-                                    @Html.TextBoxFor(model => Model.Cheque[i].BankBranch, new { @class = "form_input", autocomplete = "off" })
-                                </td>
-                                <td>
-                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
-                                </td>
-                                <td style="vertical-align:middle"><a id="add_row" class="glyphicon glyphicon-plus del" style="top:0px" onclick="AddRow()"></a></td>
-                            </tr>
+                            <td style="vertical-align:middle"><a class="glyphicon glyphicon-minus del" style="top:0px" onclick="Delete(@i)"></a></td>
+                            <td>
+                                @Html.TextBoxFor(model => Model.Cheque[i].QuickBookRefNo, new { @class = "form_input", autocomplete = "off" })
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(model => Model.Cheque[i].ChequeNo, new { @class = "form_input", autocomplete = "off" })
+                            </td>
+                            <td>
+                                <div class="input-group date form_date" data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                    @Html.TextBoxFor(model => Model.Cheque[i].ChequeDate, new { @class = "form_input" })
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(model => Model.Cheque[i].BankName, new { @class = "form_input", autocomplete = "off" })
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(model => Model.Cheque[i].BankBranch, new { @class = "form_input", autocomplete = "off" })
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(model => Model.Cheque[i].ChequeAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right" })
+                            </td>
+                            <td style="vertical-align:middle"><a id="add_row" class="glyphicon glyphicon-plus del" style="top:0px" onclick="AddRow()"></a></td>
+                        </tr>
                         }
                     </table>
                 </div>
