@@ -343,6 +343,8 @@ a:hover,
 a:focus {
   color: #2a6496;
   text-decoration: underline;
+  cursor:pointer;
+
 }
 
 a:focus {
@@ -435,6 +437,10 @@ cite {
 
 .text-warning {
   color: #c09853;
+}
+#loginForm .validation-summary-errors 
+{
+    margin-top:-20px;
 }
 
 .text-danger {
