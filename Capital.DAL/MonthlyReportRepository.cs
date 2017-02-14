@@ -31,7 +31,7 @@ select @LastDay_Next2Month = (SELECT DATEADD(s,-1,DATEADD(mm, DATEDIFF(m,0,GETDA
 
 
 
- SELECT P.PolicyId,C.CusName,P.TranType,P.TotalPremium,0 Amount1,0 Amount2,0 Amount3 INTO #Result FROM PolicyIssue P inner join Customer C ON C.CusId=P.CusId where P.PolicyNo IS NOT NULL;
+ SELECT P.PolicyId,C.CusName,P.TranType,P.TotalPremium,0 Amount1,0 Amount2,0 Amount3 INTO #Result FROM PolicyIssue P inner join Customer C ON C.CusId=P.CusId where P.PolicyStage=3;
                      
                      with A as (
                      select PolicyId, sum(ChequeAmt)Amount from PolicyIssueChequeReceived  group by PolicyId)
