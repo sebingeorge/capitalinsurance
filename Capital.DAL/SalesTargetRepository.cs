@@ -75,7 +75,7 @@ namespace Capital.DAL
                                    
                                    
 
-                select SM.SalesMgId,SM.SalesMgCode,SM.SalesMgName,IncentivePerc,(3*MonthlySalary)Benchmark,0 JanComm,0 JanInctve,0 FebComm,0 FebInctve,
+                select SM.SalesMgId,SM.SalesMgCode,SM.SalesMgName,isnull(IncentivePerc,0)IncentivePerc,(3*isnull(MonthlySalary,0))Benchmark,0 JanComm,0 JanInctve,0 FebComm,0 FebInctve,
                 0 MarComm,0 MarInctve,0 AplComm,0 AplInctve ,0 MayComm,0 MayInctve,0 JuneComm,0 JuneInctve,
                 0 JulyComm,0 JulyInctve,0 AugComm,0 AugInctve ,0 SepComm,0 SepInctve,0 OctComm,0 OctInctve,0 NovComm,0 NovInctve 
                 ,0 DecComm,0 DecInctve  INTO #RESULT
