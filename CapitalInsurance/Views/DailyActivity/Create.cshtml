@@ -6,6 +6,14 @@
 <script>
     $(document).ready(function ()
     {
+        if('@actionName' =="Edit")
+        {
+            for (var index = 0; index < @Model.DailyActivityItems.Count ; index++)
+            {
+                $("#cboColorPick_" + index).val($("#DailyActivityItems_" + index + "__DailyActivityType").val());
+                RowColor(index);
+            }
+        }
 
     })
     $(function () {
@@ -18,8 +26,18 @@
         url += '?id=' + Id;
         window.location = url;
     }
-    function Exit() {
-        var url = '@Url.Action("Index","Home")';
+    function Exit(Id) {
+        if('@actionName' =="Edit")
+        {
+            var url = '@Url.Action("PreviousDailyActivity")';
+            url += '?id=' + Id;
+        }
+        else
+        {
+            var url = '@Url.Action("Index","Home")';
+        }
+       
+
         location.href = url;
     }
     function RowColor(index) {
@@ -38,116 +56,116 @@
         $("#DailyActivityItems_" + i + "__DailyActivityRemarks").attr("required", "true");
     }
 
-     
+
 </script>
 <div class="container content-in">
     <div class="row">
         <h1>Daily Activity</h1>
     </div>
-@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "createFrom", @id = "box_form" }))
     {
-    <div class="row">
-        <div class="col-md-1">
-            <div class="form-group">
-                <div class="photo col-md-2">
-                    <img src="~/Images/photo.jpg" />
-                </div>
-            </div>
-
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <div class="col-md-12">
-                    <label>Date</label>
-                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                        @Html.TextBoxFor(m => m.TranDate, new { @class = "form_input", @Value = Model.TranDate.ToString("dd-MMM-yyyy") })
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="form-group">
+                    <div class="photo col-md-2">
+                        <img src="~/Images/photo.jpg" />
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <label>Employee</label>
-                    @Html.TextBoxFor(m => m.SalesMgName, new { @class = "form_input ", @readonly = "readonly" })
-                    @Html.HiddenFor(m => m.SalesMgId)
-                </div>
 
-                <div class="col-md-12">
-                    <label>Designation</label>
-                    @Html.TextBoxFor(m => m.DsgName, new { @class = "form_input ", @readonly = "readonly" })
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label>Date</label>
+                        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            @Html.TextBoxFor(m => m.TranDate, new { @class = "form_input", @Value = Model.TranDate.ToString("dd-MMM-yyyy") })
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Employee</label>
+                        @Html.TextBoxFor(m => m.SalesMgName, new { @class = "form_input ", @readonly = "readonly" })
+                        @Html.HiddenFor(m => m.SalesMgId)
+                    </div>
+
+                    <div class="col-md-12">
+                        <label>Designation</label>
+                        @Html.TextBoxFor(m => m.DsgName, new { @class = "form_input ", @readonly = "readonly" })
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>
-    <div class="row">
-        <br />
-        <div class="col-md-12">
-            <table class="table table-bordered" id="aaa" data-placement="bottom">
-                <thead>
-                    <tr class="grid_heading">
-                        <th width="1%">Sl.No.</th>
-                        <th width="10%">Color</th>
-                        <th width="10%">Date</th>
-                        <th width="5%">Time</th>
-                        <th width="15%">Company</th>
-                        <th width="15%">Contact Person</th>
-                        <th width="10%">Contact Number</th>
-                        <th width="10%">Email ID</th>
-                        @*<th width="8%">Type</th>*@
-                        <th width="30%">Remarks</th>
-                    </tr>
-                </thead>
-                <tbody class="grid_row">
-                    @*@{int i = 0;}*@
-                    @for (int i = 0; i < Model.DailyActivityItems.Count; i++)
-                    {
-                        <tr id="row_@i">
-                            <td width="1%" align="center">@(i + 1)</td>
-                            <td width="8%">
-                                @Html.HiddenFor(m => m.DailyActivityItems[i].DailyActivityType)
-                                <select id="cboColorPick_@i" class="form_input" onchange="RowColor(@i)">
-                                    <option value="all" selected>Select Color</option>
-                                    <option value="#FFC300" class="CC" style="background-color:#FFC300">Yellow</option>
-                                    <option value="#6ED7FA" class="FA" style="background-color:#6ED7FA">Blue</option>
-                                    <option value="#92d050" class="FC" style="background-color:#92d050">Green</option>
-                                    <option value="#e23d14" class="SC" style="background-color:#e23d14">Red</option>
-                                </select>
-                            </td>
-                            <td width="9%">
-                                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                    @Html.TextBoxFor(model => Model.DailyActivityItems[i].DailyActivityDate, new { @class = "form_input", @onchange = "CheckValidation(this," + i + ")" })
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                </div>
-                            </td>
-                            <td width="5%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityTime, new { @class = "form_input timepicker", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
-                            <td width="15%">
-                                @Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityCompany, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })
-                            </td>
-                            <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityContactPerson, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
-                            <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityContactNo, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
-                            <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityEmail, new { @class = "form_input ", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
-                            <td width="30%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityRemarks, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
+        </div>
+        <div class="row">
+            <br />
+            <div class="col-md-12">
+                <table class="table table-bordered" id="aaa" data-placement="bottom">
+                    <thead>
+                        <tr class="grid_heading">
+                            <th width="1%">Sl.No.</th>
+                            <th width="10%">Color</th>
+                            <th width="10%">Date</th>
+                            <th width="5%">Time</th>
+                            <th width="15%">Company</th>
+                            <th width="15%">Contact Person</th>
+                            <th width="10%">Contact Number</th>
+                            <th width="10%">Email ID</th>
+                            @*<th width="8%">Type</th>*@
+                            <th width="30%">Remarks</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody class="grid_row">
+                        @*@{int i = 0;}*@
+                        @for (int i = 0; i < Model.DailyActivityItems.Count; i++)
+                        {
+                            <tr id="row_@i">
+                                <td width="1%" align="center">@(i + 1)</td>
+                                <td width="8%">
+                                    @Html.HiddenFor(m => m.DailyActivityItems[i].DailyActivityType)
+                                    <select id="cboColorPick_@i" class="form_input" onchange="RowColor(@i)">
+                                        <option value="all" selected>Select Color</option>
+                                        <option value="#FFC300" class="CC" style="background-color:#FFC300">Yellow</option>
+                                        <option value="#6ED7FA" class="FA" style="background-color:#6ED7FA">Blue</option>
+                                        <option value="#92d050" class="FC" style="background-color:#92d050">Green</option>
+                                        <option value="#e23d14" class="SC" style="background-color:#e23d14">Red</option>
+                                    </select>
+                                </td>
+                                <td width="9%">
+                                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        @Html.TextBoxFor(model => Model.DailyActivityItems[i].DailyActivityDate, new { @class = "form_input", @onchange = "CheckValidation(this," + i + ")" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </td>
+                                <td width="5%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityTime, new { @class = "form_input timepicker", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
+                                <td width="15%">
+                                    @Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityCompany, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })
+                                </td>
+                                <td width="15%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityContactPerson, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
+                                <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityContactNo, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
+                                <td width="10%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityEmail, new { @class = "form_input ", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
+                                <td width="30%">@Html.TextBoxFor(m => m.DailyActivityItems[i].DailyActivityRemarks, new { @class = "form_input", autocomplete = "off", @onchange = "CheckValidation(this," + i + ")" })</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <hr />
-        <div class="col-md-12">
+        <div class="row">
+            <hr />
+            <div class="col-md-12">
 
-            
-            <button type="button" class="form-button right" onclick="Exit()">Exit</button>
-            @if (actionName == "Edit")
-            { 
-                <button type="submit" class="form-button right">Update</button>
-            }
-            else
-            {
-                <button type="button" class="form-button" onclick="Previous(@Model.SalesMgId)">Previous</button>
-                <button type="submit" class="form-button right">Save</button>
-            }
+
+                <button type="button" class="form-button right" onclick="Exit(@Model.SalesMgId)">Exit</button>
+                @if (actionName == "Edit")
+                {
+                    <button type="submit" class="form-button right">Update</button>
+                }
+                else
+                {
+                    <button type="button" class="form-button" onclick="Previous(@Model.SalesMgId)">Previous</button>
+                    <button type="submit" class="form-button right">Save</button>
+                }
+            </div>
         </div>
-    </div>
-}
+    }
 </div>
