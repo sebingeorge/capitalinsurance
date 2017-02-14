@@ -30,7 +30,7 @@ function getpolicyDetails(Id)
             <tbody class="grid_row">
                 <tr>
                     <td class="grid-cell text-center">@i</td>
-                    <td onclick="getpolicyDetails(@item.InsCmpId)" class="grid-cell  lblue" value="Get Policy Details" style="width: 150px;cursor:pointer;" data-toggle="modal" data-target="#Policydetailspopup">@item.InsCmpName</td>
+                    <td><a onclick="getpolicyDetails(@item.InsCmpId)" class="grid-cell  lblue" value="Get Policy Details" style="width: 150px;cursor:pointer;" data-toggle="modal" data-target="#Policydetailspopup">@item.InsCmpName</a> </td>
                     <td class="grid-cell text-right">@item.CommittedAmt </td>
                 </tr>
 
