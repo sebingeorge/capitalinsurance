@@ -7,6 +7,12 @@
         var url = '@Url.Action("Index","Home")';
         location.href = url;
     }
+
+    function InsuranceCompanyPayable() {
+
+        var url = '@Url.Action("InsuranceCompanyPayable", "InsuranceCompanyPayableReport")';
+        window.location = url;
+    }
 </script>
 
 <div class="container content-in">
@@ -21,6 +27,7 @@
         <hr />
         <div class="col-md-12 hrpart">
             <input type="button" class=" form-button right" onclick="Exit()" value="Exit" />
+            <input type="button" class=" form-button right" onclick="InsuranceCompanyPayable()" value="ExportToExcel" />
         </div>
     </div>
 </div>
