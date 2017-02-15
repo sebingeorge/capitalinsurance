@@ -95,7 +95,7 @@ namespace CapitalInsurance.Controllers
                 {
                     objPolicy.Committed.Add(new PaymentCommitments());
                 }
-               
+                objPolicy.PolicyStage = 2;
                 return View("PaymentCommitments", objPolicy);
             }
             if (type == 3)

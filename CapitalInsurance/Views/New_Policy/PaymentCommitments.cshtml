@@ -510,7 +510,7 @@ ViewBag.actionName = actionName;
                                 <td>
                                     @Html.TextBoxFor(model => Model.Committed[i].CommittedAmt, new { @class = "form_input numbers-only", autocomplete = "off", @style = "text-align:right", @readonly = "readonly" })
                                 </td>
-                                 if (Model.PolicyStage == 3)
+                                    if (Model.PolicyStage == 3)
                                     {
                                 <td>
                                     @Html.CheckBoxFor(model => Model.Committed[i].paid)
