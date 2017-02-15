@@ -311,10 +311,10 @@
             <div class="col-md-12">
                 <label>Date of Birth</label>
                 <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form_input" })
+                    @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form_input", @Value = Model.DateOfBirth.ToString("dd-MMM-yyyy") })
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div> 
-                @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(m => m.DateOfBirth,"", new { @class = "text-danger" })
             </div>
         </div>
     </div>
