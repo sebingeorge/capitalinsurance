@@ -25,7 +25,7 @@ namespace Capital.DAL
                             (C.EmployeeNo + ISNULL(P.AdditionEmpNo,0) - ISNULL(P.DeletionEmpNo,0))EmployeeNo,P.CustContPersonName,P.InsuredName,P.CustContDesignation,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,
                             (Select RenewalDate from PolicyIssue A where TranType='NewPolicy' AND A.PolicyId=P.PolicyId )ExpiryDate,
                             (select A.RenewalDate from PolicyIssue A  where P.TranType='RenewPolicy' and P.PolicyId=A.PolicyId)RenewalDate,
-                            P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionPerc,P.CommissionAmount, S.SalesMgName,S.SalesMgCode,S.QuatarContactNo,S.OfficeEmail,P.PolicyNo,P.PolicyFee,P.PaymentTo,P.PolicySubDate,P.TranType,P.EndorcementDate,
+                            P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionPerc,P.TotalCommission CommissionAmount, S.SalesMgName,S.SalesMgCode,S.QuatarContactNo,S.OfficeEmail,P.PolicyNo,P.PolicyFee,P.PaymentTo,P.PolicySubDate,P.TranType,P.EndorcementDate,
                             (select A.PolicyNo from PolicyIssue A  where P.TranType='EndorsePolicy' and P.PolicyId=A.PolicyId)EndorcementNo,P.AdditionEmpNo,
                             CASE WHEN (P.DeletionEmpNo IS NOT NULL) and (P.DeletionEmpNo IS NOT NULL) THEN 'ADD/DEL'
                             WHEN (P.AdditionEmpNo IS NOT NULL) THEN 'ADDITION'
@@ -69,7 +69,7 @@ namespace Capital.DAL
                             (C.EmployeeNo + ISNULL(P.AdditionEmpNo,0) - ISNULL(P.DeletionEmpNo,0))EmployeeNo,P.CustContPersonName,P.InsuredName,P.CustContDesignation,I.InsCmpName,IP.InsPrdName,IC.InsCoverName,P.EffectiveDate,
                             (Select RenewalDate from PolicyIssue A where TranType='NewPolicy' AND A.PolicyId=P.PolicyId )ExpiryDate,
                             (select A.RenewalDate from PolicyIssue A  where P.TranType='RenewPolicy' and P.PolicyId=A.PolicyId)RenewalDate,
-                            P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionPerc,P.CommissionAmount, S.SalesMgName,S.SalesMgCode,S.QuatarContactNo,S.OfficeEmail,P.PolicyNo,P.PolicyFee,P.PaymentTo,P.PolicySubDate,P.TranType,P.EndorcementDate,
+                            P.PremiumAmount,P.ExtraPremium,P.Totalpremium,P.CommissionPerc,P.TotalCommission CommissionAmount, S.SalesMgName,S.SalesMgCode,S.QuatarContactNo,S.OfficeEmail,P.PolicyNo,P.PolicyFee,P.PaymentTo,P.PolicySubDate,P.TranType,P.EndorcementDate,
                             (select A.PolicyNo from PolicyIssue A  where P.TranType='EndorsePolicy' and P.PolicyId=A.PolicyId)EndorcementNo,P.AdditionEmpNo,
                             CASE WHEN (P.DeletionEmpNo IS NOT NULL) and (P.DeletionEmpNo IS NOT NULL) THEN 'ADD/DEL'
                             WHEN (P.AdditionEmpNo IS NOT NULL) THEN 'ADDITION'
