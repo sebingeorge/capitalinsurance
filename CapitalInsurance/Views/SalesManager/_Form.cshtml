@@ -17,7 +17,17 @@
         popup.focus();
         return false;
     }
-
+    $(document).ready(function ()
+    {
+     
+        $(".numbers-only").keypress(function (e) {
+            if (e.which == 8 || (e.which == 45 && $(this).val().indexOf('-') == -1) || (e.which == 46 && $(this).val().indexOf('.') == -1) || (e.which > 47 && e.which < 58)) {
+            }
+            else {
+                return false;
+            }
+        });
+    })
 </script>
 <div class="row">
     <div class="col-md-12">
@@ -84,14 +94,14 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label>Salary</label>
-                @Html.TextBoxFor(m => m.MonthlySalary, new { @class = "form_input text-right", autocomplete = "off" })
+                @Html.TextBoxFor(m => m.MonthlySalary, new { @class = "form_input text-right numbers-only", autocomplete = "off" })
           
             </div>
             <div class="col-md-6">
                 <label>Incentive %</label>
-                @Html.TextBoxFor(m => m.IncentivePerc, new { @class = "form_input text-right", autocomplete = "off" })
+                @Html.TextBoxFor(m => m.IncentivePerc, new { @class = "form_input text-right numbers-only", autocomplete = "off" })
 
-            </div>
+            </div> 
         </div>
     </div>
 
@@ -262,7 +272,7 @@
             <div class="col-md-3">
                 <label>Issue Date</label>
                 <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    @Html.TextBoxFor(m => m.PassportIssueDate, new { @class = "form_input" })
+                    @Html.TextBoxFor(m => m.PassportIssueDate, Model.PassportIssueDate.GetValueOrDefault(DateTime.Today).ToString("dd-MMM-yyyy"), new { @class = "form_input" })
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
                 @Html.ValidationMessageFor(m => m.PassportIssueDate, "", new { @class = "text-danger" })
@@ -271,7 +281,7 @@
             <div class="col-md-3">
                 <label>End Date</label>
                 <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    @Html.TextBoxFor(m => m.PassportEndDate, new { @class = "form_input" })
+                    @Html.TextBoxFor(m => m.PassportEndDate, Model.PassportEndDate.GetValueOrDefault(DateTime.Today).ToString("dd-MMM-yyyy"), new { @class = "form_input" })
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
                 @Html.ValidationMessageFor(m => m.PassportEndDate, "", new { @class = "text-danger" })
@@ -280,7 +290,7 @@
             <div class="col-md-3">
                 <label>Issue Date</label>
                 <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    @Html.TextBoxFor(m => m.VisaIssueDate, new { @class = "form_input" })
+                    @Html.TextBoxFor(m => m.VisaIssueDate, Model.VisaIssueDate.GetValueOrDefault(DateTime.Today).ToString("dd-MMM-yyyy"), new { @class = "form_input" })
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div> 
                 @Html.ValidationMessageFor(m => m.VisaIssueDate, "", new { @class = "text-danger" })
@@ -289,7 +299,7 @@
             <div class="col-md-3">
                 <label>End Date</label>
                 <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    @Html.TextBoxFor(m => m.VisaEndDate, new { @class = "form_input" })
+                    @Html.TextBoxFor(m => m.VisaEndDate, Model.VisaEndDate.GetValueOrDefault(DateTime.Today).ToString("dd-MMM-yyyy"), new { @class = "form_input" })
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div> 
                 @Html.ValidationMessageFor(m => m.VisaEndDate, "", new { @class = "text-danger" })
@@ -303,7 +313,7 @@
             <div class="col-md-12">
                 <label>Date of Joining</label>
                 <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    @Html.TextBoxFor(m => m.DateOfJoining, new { @class = "form_input" })
+                    @Html.TextBoxFor(m => m.DateOfJoining, Model.DateOfJoining.GetValueOrDefault(DateTime.Today).ToString("dd-MMM-yyyy"), new { @class = "form_input" })
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div> 
                 @Html.ValidationMessageFor(m => m.DateOfJoining, "", new { @class = "text-danger" })
@@ -311,7 +321,7 @@
             <div class="col-md-12">
                 <label>Date of Birth</label>
                 <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form_input", @Value = Model.DateOfBirth.ToString("dd-MMM-yyyy") })
+                    @Html.TextBoxFor(m => m.DateOfBirth, Model.DateOfBirth.GetValueOrDefault(DateTime.Today).ToString("dd-MMM-yyyy"), new { @class = "form_input" })
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div> 
                 @Html.ValidationMessageFor(m => m.DateOfBirth,"", new { @class = "text-danger" })
