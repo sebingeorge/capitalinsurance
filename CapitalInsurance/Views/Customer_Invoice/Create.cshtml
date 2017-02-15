@@ -114,7 +114,7 @@
                         </td>
                         @*@Html.TextBoxFor(m => m.Items[i].EffectiveDate, new { @class = "form_input", autocomplete = "off", @readonly = "readonly" })*@
                             <td><div class="input-group date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                @Html.TextBoxFor(m => m.Items[i].EffectiveDate, new { @class = "form_input", @readonly = "readonly" })
+                                @Html.TextBoxFor(m => m.Items[i].EffectiveDate, Model.Items[i].EffectiveDate.GetValueOrDefault(DateTime.Today).ToString("dd/MMM/yyyy"), new { @class = "form_input", @readonly = "readonly" })
                                 @*<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>*@
                             </div>
                         </td>

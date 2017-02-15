@@ -491,7 +491,7 @@ ViewBag.actionName = actionName;
                                 {
                                 <td>
                                     <div class="input-group date form_date " data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input", autocomplete = "off" })
+                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, Model.Committed[i].CommittedDate.GetValueOrDefault(DateTime.Today).ToString("dd/MMM/yyyy"), new { @class = "form_input", autocomplete = "off" })
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                     </div>
                                 </td>
@@ -503,7 +503,7 @@ ViewBag.actionName = actionName;
                                 {
                                 <td>
                                     <div class="input-group date " data-date="" data-date-format="dd-MM-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, new { @class = "form_input", @readonly = "readonly" })
+                                        @Html.TextBoxFor(model => Model.Committed[i].CommittedDate, Model.Committed[i].CommittedDate.GetValueOrDefault(DateTime.Today).ToString("dd/MMM/yyyy"), new { @class = "form_input", @readonly = "readonly" })
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                     </div>
                                 </td>
