@@ -36,7 +36,7 @@ namespace Capital.Domain
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Effective Date is Required")]
         public DateTime EffectiveDate { get; set; }
          [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Renewal Date is Required")]
-        public DateTime RenewalDate { get; set; }
+        public DateTime? RenewalDate { get; set; }
          public DateTime ExpiryDate { get; set; }
         public decimal PremiumAmount { get; set; }
         public decimal PolicyFee { get; set; }

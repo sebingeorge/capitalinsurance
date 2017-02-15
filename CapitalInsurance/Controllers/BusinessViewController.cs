@@ -326,7 +326,7 @@ namespace CapitalInsurance.Controllers
 
                     if (item.RenewalDate != DateTime.MinValue)
                     {
-                        sb.AppendFormat("<td>{1}</td>", (Char)34, item.RenewalDate.ToString("dd-MMM-yyyy"));
+                        sb.AppendFormat("<td>{1}</td>", (Char)34, item.RenewalDate.Value.ToString("dd-MMM-yyyy"));
                     }
                     else
                     {

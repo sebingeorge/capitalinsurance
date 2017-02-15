@@ -35,9 +35,10 @@ namespace CapitalInsurance.Controllers
             model.Cheque.Add(new PolicyIssueChequeReceived());
             model.PolicySubDate = DateTime.Now;
             model.EffectiveDate = DateTime.Now;
-            model.RenewalDate = DateTime.Now.AddMonths(6);
+           // model.RenewalDate = DateTime.Now.AddMonths(6);
             model.ICActualDate = null;
-          
+        
+            
             return View(model);
         }
         [HttpPost]
@@ -242,7 +243,7 @@ namespace CapitalInsurance.Controllers
 
             return Json(new { Success = true, internalid = prefix + internalid }, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult NewPolicyList(int? type,DateTime? FromDate, DateTime? ToDate,string PolicyNo="", string Client = "", string SalesManager = "")
+        public ActionResult NewPolicyList(int type,DateTime? FromDate, DateTime? ToDate,string PolicyNo="", string Client = "", string SalesManager = "")
         {
             ViewBag.Type = type;
             FromDate = FromDate ?? FYStartdate;
@@ -257,7 +258,7 @@ namespace CapitalInsurance.Controllers
             //    return PartialView("_NewPolicyListGrid", new PolicyIssueRepository().GetPaymentCollectionList(FromDate, ToDate, PolicyNo, Client, SalesManager));
             //}
 
-            List<PolicyIssue> model = new PolicyIssueRepository().GetNewPolicy(UserID, UserRolename, FromDate, ToDate, PolicyNo, Client, SalesManager);
+            List<PolicyIssue> model = new PolicyIssueRepository().GetNewPolicy(type,UserID, UserRolename, FromDate, ToDate, PolicyNo, Client, SalesManager);
 
             return PartialView("_NewPolicyListGrid", model);
         }
@@ -454,7 +455,7 @@ namespace CapitalInsurance.Controllers
 
                 sb.AppendFormat("<td>{1}</td>", (Char)34, item.BalanceAmount);
 
-                sb.AppendFormat("<td>{1}</td>", (Char)34, item.RenewalDate.ToString("MMMM dd,yyyy"));
+                sb.AppendFormat("<td>{1}</td>", (Char)34, item.RenewalDate.Value.ToString("MMMM dd,yyyy"));
 
                 sb.AppendFormat("<td>{1}</td>", (Char)34, item.SalesMgName);
 
