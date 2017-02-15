@@ -416,6 +416,20 @@ namespace Capital.DAL
 
                                 id = connection.Execute(sql, item, txn);
                             }
+                            if (item.paid == false)
+                            {
+                                item.PolicyId = model.PolicyId;
+                                sql = sql = @"UPDATE PolicyIssueCommittedDetails set paid=0 WHERE CommRowId = @CommRowId";
+
+                                id = connection.Execute(sql, item, txn);
+                            }
+                            if (item.InsPaid == false)
+                            {
+                                item.PolicyId = model.PolicyId;
+                                sql = sql = @"UPDATE PolicyIssueCommittedDetails set InsPaid =0 WHERE CommRowId = @CommRowId";
+
+                                id = connection.Execute(sql, item, txn);
+                            }
 
                         }
                     }
