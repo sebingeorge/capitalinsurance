@@ -32,7 +32,7 @@ namespace Capital.DAL
                             WHEN (P.DeletionEmpNo IS NOT NULL) THEN 'DELETION'
                             WHEN (P.DeletionEmpNo IS  NULL ) or (P.AdditionEmpNo IS  NULL )
                             THEN '-' END AS EndType,
-                            P.DeletionEmpNo,DATEDIFF(dd,P.RenewalDate,GETDATE ()) Aging,ICActualDate,0 cibpaid, 0 BalanceRecivable,0 InsCompPaid INTO #TEMP
+                            P.DeletionEmpNo,DATEDIFF(dd,GETDATE (),P.RenewalDate) Aging,ICActualDate,0 cibpaid, 0 BalanceRecivable,0 InsCompPaid INTO #TEMP
                             from PolicyIssue P
                             left join Customer C on C.CusId = P.CusId
                             left join InsuranceCompany I on I.InsCmpId = P.InsCmpId
@@ -76,7 +76,7 @@ namespace Capital.DAL
                             WHEN (P.DeletionEmpNo IS NOT NULL) THEN 'DELETION'
                             WHEN (P.DeletionEmpNo IS  NULL ) or (P.AdditionEmpNo IS  NULL )
                             THEN '-' END AS EndType,
-                            P.DeletionEmpNo,DATEDIFF(dd,P.RenewalDate,GETDATE ()) Aging,ICActualDate,0 cibpaid, 0 BalanceRecivable,0 InsCompPaid INTO #TEMP
+                            P.DeletionEmpNo,DATEDIFF(dd,GETDATE (),P.RenewalDate) Aging,ICActualDate,0 cibpaid, 0 BalanceRecivable,0 InsCompPaid INTO #TEMP
                             from PolicyIssue P
                             left join Customer C on C.CusId = P.CusId
                             left join InsuranceCompany I on I.InsCmpId = P.InsCmpId
