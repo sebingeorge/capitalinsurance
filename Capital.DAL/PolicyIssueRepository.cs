@@ -12,7 +12,7 @@ namespace Capital.DAL
     public class PolicyIssueRepository : BaseRepository
     {
         static string dataConnection = GetConnectionString("CibConnection");
-        public List<PolicyIssue> GetNewPolicy(int Id, string userRolename, DateTime? FromDate, DateTime? ToDate, string PolicyNo = "", string Client = "", string SalesManager = "")
+        public List<PolicyIssue> GetNewPolicy(int type,int Id, string userRolename, DateTime? FromDate, DateTime? ToDate, string PolicyNo = "", string Client = "", string SalesManager = "")
         {
             using (IDbConnection connection = OpenConnection(dataConnection))
             {
@@ -28,7 +28,7 @@ namespace Capital.DAL
                                  left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                  left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                  left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                 where P.OldPolicyId IS NULL AND P.TranType='NewPolicy' 
+                                 where P.OldPolicyId IS NULL AND P.TranType='NewPolicy' and  P.PolicyStage >=@type
                                  AND cast(convert(varchar(20),P.TranDate,106) as datetime) between @FromDate and @ToDate
                                  AND C.CusName LIKE '%'+@Client+'%'
                                  AND isnull(P.PolicyNo,0) LIKE '%'+@PolicyNo+'%'
@@ -54,7 +54,7 @@ namespace Capital.DAL
                                  left join InsuranceProduct IP on IP.InsPrdId = P.InsPrdId
                                  left join InsuranceCoverage IC on IC.InsCoverId = P.InsCoverId
                                  left join SalesManager S on S.SalesMgId = P.SalesMgId
-                                 where P.OldPolicyId IS NULL AND P.TranType='NewPolicy' and   isnull(P.SalesMgId,0) IN (SELECT SalesMgId FROM #TEMP)
+                                 where P.OldPolicyId IS NULL AND P.TranType='NewPolicy' and   isnull(P.SalesMgId,0) IN (SELECT SalesMgId FROM #TEMP) and  P.PolicyStage >=@type
                                  AND cast(convert(varchar(20),P.TranDate,106) as datetime) between @FromDate and @ToDate
                                  AND C.CusName LIKE '%'+@Client+'%'
                                  AND isnull(P.PolicyNo,0) LIKE '%'+@PolicyNo+'%'
@@ -62,7 +62,7 @@ namespace Capital.DAL
                                  order by P.CreatedDate desc";
 
                 }
-                return connection.Query<PolicyIssue>(query, new { FromDate = FromDate, ToDate = ToDate, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager, Id = Id }).ToList<PolicyIssue>();
+                return connection.Query<PolicyIssue>(query, new { FromDate = FromDate, ToDate = ToDate, PolicyNo = PolicyNo, Client = Client, SalesManager = SalesManager, Id = Id, type = type }).ToList<PolicyIssue>();
             }
         }
 //        public List<PolicyIssue> GetPaymentCommittedList(int Id,DateTime? FromDate, DateTime? ToDate, string PolicyNo = "", string Client = "", string SalesManager = "")
