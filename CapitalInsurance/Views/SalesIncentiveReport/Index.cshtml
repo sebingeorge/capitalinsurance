@@ -7,6 +7,14 @@
         var url = '@Url.Action("Index","Home")';
         location.href = url;
     }
+    function ExportSalesIncentive() {
+        //alert(ee);
+        var Finyear = $("#FyId option:selected").text();
+     
+        var url = '@Url.Action("ExportSalesIncentive", "SalesIncentiveReport")';
+        url += "?Finyear=" + Finyear;
+        window.location = url;
+    }
     function Filter() {
         var id = $("#FyId").val();
         var url = '@Url.Action("SalesIncentiveReport")';
@@ -43,6 +51,7 @@
             <hr />
             <div class="col-md-12">
                 <button type="button" class="form-button right" onclick="Exit()">Exit</button>
+                <button type="button" class="form-button right" onclick="ExportSalesIncentive()">ExportToExcel</button>
             </div>
         </div>
 
